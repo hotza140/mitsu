@@ -79,7 +79,7 @@
                                                     value="<?php if(isset($item)){echo $item->link;} ?>">
                                             </div>
                                         </div>
-                                        <!-- 
+                                        
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">Ttile TH</label>
@@ -126,7 +126,7 @@
                                                 <textarea class="form-control" name="detailen" id="summernote2"
                                                     style="height:300px"><?php if(isset($item)){echo $item->detailen;} ?></textarea>
                                             </div>
-                                        </div> -->
+                                        </div>
 
 
 
