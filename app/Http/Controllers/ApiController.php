@@ -33,8 +33,9 @@ class ApiController extends Controller
 
 
      // URL PICTURE
-     protected $prefix = 'http://www.mitsuheavyth.com/img/upload/';
-
+    //  protected $prefix = 'http://www.mitsuheavyth.com/img/upload/';
+    protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
+     
 
 
 
