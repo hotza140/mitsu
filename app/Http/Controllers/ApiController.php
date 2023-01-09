@@ -79,7 +79,14 @@ class ApiController extends Controller
             $user->market=$r->market;
             $user->phone=$r->phone;
 
-            $user->token=random_bytes(12);
+            $length=12;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $user->token=$randomString;
 
             $p=province::where('name_th',$r->province)->first();
             if($p!=null){
