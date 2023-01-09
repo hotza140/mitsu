@@ -246,7 +246,7 @@ class ApiController extends Controller
                 'status' =>  $status,
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
-            ]);
+            ],400);
 			
         }
      
@@ -300,7 +300,7 @@ class ApiController extends Controller
           'status'=>$status,  
           'message'=>$message,
           'url_picture' => $this->prefix,
-         ]);
+         ],400);
           }
 
      }
@@ -357,7 +357,7 @@ class ApiController extends Controller
                     'status' =>  $status,
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
-                ]);
+                ],400);
                 
             }
          
@@ -391,7 +391,7 @@ class ApiController extends Controller
                     'status' =>  $status,
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
-                ]);
+                ],400);
                 
             }
          
