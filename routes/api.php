@@ -20,14 +20,14 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group([
-    'middleware' => 'api.token',
+    // 'middleware' => 'api.token',
     'prefix' => 'common',
 ], function () {
- 
-    Route::get('/api_news','ApiController@api_news');
- 
-});
 
+    Route::get('/api_news','ApiController@api_news');
+    Route::post('/api_verify_customer','ApiController@verify_customer');
+    Route::post('/api_create_airconditioner','ApiController@add_air_conditioner');
+});
 
 
 Route::post('/api_register_user','ApiController@api_register_user');

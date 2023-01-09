@@ -19,6 +19,8 @@ use App\Models\banner;
 use App\Models\product;
 use App\Models\history_point;
 use App\Models\news;
+use App\Models\Customer;
+use App\Models\AirConditioner;
 
 use App\Mail\Forget_email;
 use Illuminate\Support\Facades\Mail;
@@ -31,11 +33,10 @@ class ApiController extends Controller
 
 {
 
-
      // URL PICTURE
     //  protected $prefix = 'http://www.mitsuheavyth.com/img/upload/';
     protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
-     
+
 
 
 
@@ -73,9 +74,9 @@ class ApiController extends Controller
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
             ]);
-			
+
         }
-     
+
     }
      ///Register  User///
 
@@ -83,7 +84,7 @@ class ApiController extends Controller
 
       ///LOGIN  User///
     public function api_login_user(Request $r)
-    {   
+    {
     $check =User::where('email',$r->email)->where('type',5)->first();
     if($check){
             $confirm =User::where('email',$r->email)->where('type',5)->where('open',0)->first();
@@ -96,7 +97,7 @@ class ApiController extends Controller
             if($password){
             $message = "Success";
 
-      
+
 
             }else{
             $message = "Invalid Password";
@@ -107,7 +108,7 @@ class ApiController extends Controller
     $message = "Invalid Email";
     }
           if ($message == "Success") {
-              $status = true;  
+              $status = true;
                            return response()->json([
           'results'=>[
                       'user'=>$password,
@@ -115,7 +116,7 @@ class ApiController extends Controller
           'status'=>$status,
           'message'=>$message,
           'url_picture' => $this->prefix,
-            
+
          ]);
           }else{
            $status = false;
@@ -123,7 +124,7 @@ class ApiController extends Controller
           'results'=>[
         'email'=>$r->email,'password'=>$r->password,
           ],
-          'status'=>$status,  
+          'status'=>$status,
           'message'=>$message,
           'url_picture' => $this->prefix,
          ]);
@@ -162,8 +163,8 @@ class ApiController extends Controller
                 $item->id_user=$r->id_user;
                 $item->date=date('Y-m-d H:i:s');
                 $item->save();
-    
-    
+
+
                 $message="Success!";
                 $status=true;
                 return response()->json([
@@ -184,9 +185,9 @@ class ApiController extends Controller
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
                 ]);
-                
+
             }
-         
+
         }
          ///Add  Product USER///
 
@@ -197,8 +198,8 @@ class ApiController extends Controller
             if($check==null){
 
                 $check->delete();
-    
-    
+
+
                 $message="Success!";
                 $status=true;
                 return response()->json([
@@ -218,9 +219,9 @@ class ApiController extends Controller
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
                 ]);
-                
+
             }
-         
+
         }
          ///Delete  Product USER///
 
@@ -231,7 +232,7 @@ class ApiController extends Controller
            ///NEWS///
         public function api_news(){
             $news=news::orderby('id','desc')->get();
-    
+
                 $message="Success!";
                 $status=true;
                 return response()->json([
@@ -242,13 +243,57 @@ class ApiController extends Controller
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
                 ]);
-         
+
         }
         ///NEWS///
-     
 
 
+        //===============  add air conditionner ==================//
+        public function search_customer_name($name){
+            // $user_value =
+        }
 
+        public function verify_customer(Request $request){
+            $find_customer = Customer::where('first_name',$request->first_name)->where('last_name',$request->last_name)->get();
 
+            //Don't Have Customer values
+            if($find_customer->count() == 0 ){
+                // $message="This information is not yet available.";
+                $status=true;
+                return response()->json([
+                    'status' =>  $status,
+                    // 'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+            }
+        }
+
+        public function add_air_conditioner(Request $request){
+            // $check_username = AirConditioner::where('indoor_number',$request->indoor_number)->with('customer')->get();
+            return $check_username;
+
+            $air_conditioner_validator = [
+                'indoor_number' => 'unique:air_conditioners,indoor_number',
+                'outdoor_number' => 'unique:air_conditioners,outdoor_number',
+            ];
+
+            $error_validator = [
+                'indoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+                'outdoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+            ];
+
+            $validator = Validator::make(
+                $request->all(),
+                $air_conditioner_validator,
+                $error_validator
+            );
+
+            if($validator->fails()){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'error'
+                    ]);
+            }
+        }
 
 }
