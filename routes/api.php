@@ -25,14 +25,18 @@ Route::group([
 ], function () {
  
     Route::get('/api_news','ApiController@api_news');
+
+    Route::get('/api_province','ApiController@api_province');
+
+    Route::post('/api_register_user','ApiController@api_register_user');
+Route::post('/api_login_user','ApiController@api_login_user');
+
+Route::post('/api_add_product_user','ApiController@api_add_product_user');
+Route::post('/api_delete_product_user','ApiController@api_delete_product_user');
  
 });
 
 
 
-Route::post('/api_register_user','ApiController@api_register_user');
-Route::post('/api_login_user','ApiController@api_login_user');
 
-Route::post('/api_add_product_user','ApiController@api_add_product_user');
-Route::post('/api_delete_product_user','ApiController@api_delete_product_user');
 

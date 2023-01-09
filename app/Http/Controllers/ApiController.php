@@ -20,6 +20,10 @@ use App\Models\product;
 use App\Models\history_point;
 use App\Models\news;
 
+use App\Models\province;
+use App\Models\district;
+use App\Models\amphur;
+
 use App\Mail\Forget_email;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -245,6 +249,30 @@ class ApiController extends Controller
          
         }
         ///NEWS///
+
+
+
+            ///province///
+            public function api_province(){
+                $province=province::orderby('id','desc')->get();
+                $district=district::orderby('id','desc')->get();
+                $amphur=amphur::orderby('id','desc')->get();
+        
+                    $message="Success!";
+                    $status=true;
+                    return response()->json([
+                        'results'=>[
+                            'province'=>$province,
+                            'district'=>$district,
+                            'amphur'=>$amphur,
+                        ],
+                        'status' =>  $status,
+                        'message' =>  $message,
+                        'url_picture' => $this->prefix,
+                    ]);
+             
+            }
+            ///province///
      
 
 
