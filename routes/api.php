@@ -27,6 +27,8 @@ Route::group([
     Route::get('/api_news','ApiController@api_news');
 
     Route::get('/api_province','ApiController@api_province');
+    
+    Route::post('/api_edit_user','ApiController@api_edit_user');
 
     Route::post('/api_register_user','ApiController@api_register_user');
 Route::post('/api_login_user','ApiController@api_login_user');

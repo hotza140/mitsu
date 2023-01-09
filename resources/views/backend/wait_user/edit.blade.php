@@ -48,9 +48,25 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">Name Lastname</label>
+                                                <label class="col-form-label">Name</label>
                                                 <input disabled type="text" name="name" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->name;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Lastname</label>
+                                                <input disabled type="text" name="lastname" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->lastname;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Phone</label>
+                                                <input disabled type="text" name="phone" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->phone;} ?>">
                                             </div>
                                         </div>
 
@@ -61,6 +77,27 @@
                                                     value="<?php if(isset($item)){echo $item->email;} ?>" required>
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Marget</label>
+                                                <input disabled type="text" name="marget" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->marget;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Province</label>
+                                                <input disabled type="text" name="province" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->province;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                       
+
+
                                         <p class="text-right">
                                             <a href="{{ url('/backend/wait_user') }}"
                                                 style="color:white;" class="btn btn-success"> <i

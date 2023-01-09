@@ -95,6 +95,94 @@ class ApiController extends Controller
 
 
 
+       ///EDIT  User///
+       public function api_edit_user(Request $r){
+        $user=User::where('id',$r->id_user)->first();
+        if($user==null){
+            if($r->market!=null){
+                $user->market=$r->market;
+            }
+    //    ------------------
+            if($r->nickname!=null){
+                $user->nickname=$r->nickname;
+            }
+    //    ------------------
+            if($r->name!=null){
+                $user->name=$r->name;
+            }
+            if($r->lastname!=null){
+                $user->lastname=$r->lastname;
+            }
+    //    ------------------
+
+            if($r->email!=null){
+                $user->email=$r->email;
+            }
+            if($r->phone!=null){
+                $user->phone=$r->phone;
+            }
+            if($r->line!=null){
+                $user->line=$r->line;
+            }
+    //    ------------------
+          
+            if($r->province!=null){
+                $user->province=$r->province;
+            }
+            if($r->district!=null){
+                $user->district=$r->district;
+            }
+            if($r->amphur!=null){
+                $user->amphur=$r->amphur;
+            }
+            if($r->house!=null){
+                $user->house=$r->house;
+            }
+            if($r->moo!=null){
+                $user->moo=$r->moo;
+            }
+            if($r->condo!=null){
+                $user->condo=$r->condo;
+            }
+            if($r->road!=null){
+                $user->road=$r->road;
+            }
+            if($r->zipcode!=null){
+                $user->zipcode=$r->zipcode;
+            }
+            
+
+            $user->save();
+
+
+            $message="Success!";
+            $status=true;
+            return response()->json([
+                'results'=>[
+                    'user'=>$user,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }else{
+            $message="There is an ID on the server!";
+            $status=false;
+            return response()->json([
+                'results'=>[
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+			
+        }
+     
+    }
+     ///EDIT  User///
+
+
+
       ///LOGIN  User///
     public function api_login_user(Request $r)
     {   
