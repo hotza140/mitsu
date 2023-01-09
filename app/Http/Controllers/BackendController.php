@@ -40,8 +40,6 @@ class BackendController extends Controller
         return view('backend.welcome');
     }
 
-  
-
 
      ///Forget Password---------------
 

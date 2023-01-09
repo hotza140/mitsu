@@ -20,7 +20,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 
 Route::group([
-    'middleware' => 'api.token',
+    // 'middleware' => 'api.token',
     'prefix' => 'common',
 ], function () {
     Route::get('/api_user/{id}','ApiController@api_user');
