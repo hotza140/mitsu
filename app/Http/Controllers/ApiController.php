@@ -93,7 +93,6 @@ class ApiController extends Controller
 
          $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
          $user->code=$year.'H'.$num;
-         $user->save();
          // CODE
 
 
