@@ -79,6 +79,8 @@ class ApiController extends Controller
             $user->market=$r->market;
             $user->phone=$r->phone;
 
+            $user->token=random_bytes(12);
+
             $p=province::where('name_th',$r->province)->first();
             if($p!=null){
             $user->province=$r->province;
@@ -86,7 +88,7 @@ class ApiController extends Controller
             }
 
                // CODE
-         $nu=User::where('type',5)->wheredate('created_at',$year)->orderby('id','desc')->first();
+         $nu=User::where('type',5)->orderby('id','desc')->first();
          if($nu!=null){
             $nm=$nu->num+1;
          }else{
@@ -122,7 +124,7 @@ class ApiController extends Controller
                 'status' =>  $status,
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
-            ]);
+            ],400);
 			
         }
      
