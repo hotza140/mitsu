@@ -80,8 +80,10 @@ class ApiController extends Controller
             $user->phone=$r->phone;
 
             $p=province::where('name_th',$r->province)->first();
+            if($p!=null){
             $user->province=$r->province;
             $user->id_p=$p->id;
+            }
 
                // CODE
          $nu=User::where('type',5)->wheredate('created_at',$year)->orderby('id','desc')->first();
@@ -162,18 +164,24 @@ class ApiController extends Controller
           
             if($r->province!=null){
                 $p=province::where('name_th',$r->province)->first();
+                if($p!=null){
                 $user->id_p=$p->id;
                 $user->province=$r->province;
+                }
             }
             if($r->district!=null){
                 $d=district::where('name_th',$r->district)->first();
+                if($d!=null){
                 $user->id_d=$d->id;
                 $user->district=$r->district;
+                }
             }
             if($r->amphur!=null){
                 $a=amphur::where('name_th',$r->amphur)->first();
+                if($a!=null){
                 $user->id_a=$a->id;
                 $user->amphur=$r->amphur;
+                }
             }
             if($r->house!=null){
                 $user->house=$r->house;
