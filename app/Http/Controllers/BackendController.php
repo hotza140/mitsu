@@ -20,6 +20,10 @@ use App\Models\product;
 use App\Models\history_point;
 use App\Models\news;
 
+use App\Models\province;
+use App\Models\district;
+use App\Models\amphur;
+
 use App\Mail\Forget_email;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -35,8 +39,6 @@ class BackendController extends Controller
        public function welcome(){
         return view('backend.welcome');
     }
-
-  
 
 
      ///Forget Password---------------

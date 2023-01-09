@@ -39,24 +39,6 @@
 
                                        
 
-                                 
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">Name Lastname</label>
-                                                <input type="text" name="name" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->name;} ?>">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">Email</label>
-                                                <input type="email" name="email" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->email;} ?>" required>
-                                            </div>
-                                        </div>
-
-
 
                                         <p class="text-right">
                                             <a href="{{ url('/backend/wait_user') }}"

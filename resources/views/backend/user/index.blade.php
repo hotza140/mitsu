@@ -26,7 +26,7 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    <a style="color:white;" class="btn btn-success" href="{{url('/backend/user_add')}}"> <i class="fa fa-plus"></i> Add</a>
+                                    <!-- <a style="color:white;" class="btn btn-success" href="{{url('/backend/user_add')}}"> <i class="fa fa-plus"></i> Add</a> -->
 
                                 </div>
                                 <div class="card-block">
@@ -37,8 +37,10 @@
                                                
                                                     <th>#</th>
                                                     <th>Open/Close</th>
+                                                    <th>Code</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
+                                                    <th>Phone</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
@@ -79,8 +81,10 @@
                                                            
                                                          @endif 
 
+                                                         <td>{{$items->code}}</td>
                                                          <td>{{$items->name}}</td>
                                                          <td>{{$items->email}}</td>
+                                                         <td>{{$items->phone}}</td>
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
@@ -95,8 +99,10 @@
                                                 <tr>
                                                 <th>#</th>
                                                     <th>Open/Close</th>
+                                                    <th>Code</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
+                                                    <th>Phone</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>

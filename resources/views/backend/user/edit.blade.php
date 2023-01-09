@@ -32,8 +32,9 @@
                                 </div>
                                 <div class="card-block">
 
-                                    <form method="post" id="" action="{{ url('/backend/user_update/'.$item->id) }}"
-                                        enctype="multipart/form-data">
+                                    <!-- <form method="post" id="" action="{{ url('/backend/user_update/'.$item->id) }}"
+                                        enctype="multipart/form-data"> -->
+                                        <form>
                                         @csrf
 
 
@@ -60,35 +61,143 @@
                                         <br>
                                         @endif
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Nickname</label>
+                                                <input disabled type="text" name="nickname" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->nickname;} ?>">
+                                            </div>
+                                        </div>
+
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">Name Lastname</label>
-                                                <input type="text" name="name" class="form-control" id=""
+                                                <label class="col-form-label">Name</label>
+                                                <input disabled type="text" name="name" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->name;} ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
+                                                <label class="col-form-label">Lastname</label>
+                                                <input disabled  type="text" name="lastname" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->lastname;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Phone</label>
+                                                <input disabled  type="text" name="phone" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->phone;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
                                                 <label class="col-form-label">Email</label>
-                                                <input type="email" name="email" class="form-control" id=""
+                                                <input disabled type="email" name="email" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->email;} ?>" required>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
+                                                <label class="col-form-label">LINE</label>
+                                                <input disabled type="text" name="line" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->line;} ?>" required>
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="form-group row">
+                                            <div class="col-sm-12">
                                                 <label class="col-form-label">New
                                                     Password(หากไม่ต้องการเปลี่ยนให้เว้นว่างเอาไว้)</label>
-                                                <input type="text" name="password" class="form-control" id="" value="">
+                                                <input disabled type="text" name="password" class="form-control" id="" value="">
+                                            </div>
+                                        </div> -->
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Marget</label>
+                                                <input disabled  type="text" name="marget" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->marget;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Province</label>
+                                                <input disabled  type="text" name="province" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->province;} ?>">
                                             </div>
                                         </div>
 
 
-                                        <button type="submit" class="btn btn-success " style="color:white;"
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">District</label>
+                                                <input disabled  type="text" name="district" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->district;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Amphur</label>
+                                                <input disabled  type="text" name="amphur" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->amphur;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Zipcode</label>
+                                                <input disabled  type="text" name="zipcode" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->zipcode;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">บ้านเลขที่</label>
+                                                <input disabled  type="text" name="house" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->house;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">หมู่ที่</label>
+                                                <input disabled  type="text" name="moo" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->moo;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">หมู่บ้าน/คอนโด</label>
+                                                <input disabled  type="text" name="condo" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->condo;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">ถนน</label>
+                                                <input disabled  type="text" name="road" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->road;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <!-- <button type="submit" class="btn btn-success " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
-                                                    class="fa fa-check-circle-o"></i> Save </button>
+                                                    class="fa fa-check-circle-o"></i> Save </button> -->
                                        
 
                                     </form>

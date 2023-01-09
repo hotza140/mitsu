@@ -22,6 +22,10 @@ use App\Models\news;
 use App\Models\Customer;
 use App\Models\AirConditioner;
 
+use App\Models\province;
+use App\Models\district;
+use App\Models\amphur;
+
 use App\Mail\Forget_email;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
@@ -40,8 +44,29 @@ class ApiController extends Controller
 
 
 
+        ///user///
+        public function api_user($id){
+            $user=User::where('id',$id)->first();
+
+                $message="Success!";
+                $status=true;
+                return response()->json([
+                    'results'=>[
+                        'user'=>$user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+
+        }
+        ///user///
+
+
+
        ///Register  User///
        public function api_register_user(Request $r){
+        $year=date('Y');
         $check=User::where('email',$r->email)->first();
         if($check==null){
             $user=new User();
@@ -49,8 +74,42 @@ class ApiController extends Controller
             $user->email=$r->email;
             $user->password=Hash::make($r->password);
             $user->type=5;
-            $user->code=rand(11111111,99999999);
-            $user->status=0;
+            $user->status=1;
+
+            $user->lastname=$r->lastname;
+            $user->market=$r->market;
+            $user->phone=$r->phone;
+
+            $length=12;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            $user->token=$randomString;
+
+            $p=province::where('name_th',$r->province)->first();
+            if($p!=null){
+            $user->province=$r->province;
+            $user->id_p=$p->id;
+            }
+
+               // CODE
+         $nu=User::where('type',5)->orderby('id','desc')->first();
+         if($nu!=null){
+            $nm=$nu->num+1;
+         }else{
+            $nm=1;
+         }
+         $user->num=$nm;
+
+         $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+         $user->code=$year.'H'.$num;
+         // CODE
+
+
+
             $user->save();
 
 
@@ -73,12 +132,127 @@ class ApiController extends Controller
                 'status' =>  $status,
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
-            ]);
+            ],400);
 
         }
 
     }
      ///Register  User///
+
+
+
+       ///EDIT  User///
+       public function api_edit_user(Request $r){
+        $user=User::where('id',$r->id_user)->first();
+        if($user==null){
+            if($r->market!=null){
+                $user->market=$r->market;
+            }
+    //    ------------------
+            if($r->nickname!=null){
+                $user->nickname=$r->nickname;
+            }
+    //    ------------------
+            if($r->name!=null){
+                $user->name=$r->name;
+            }
+            if($r->lastname!=null){
+                $user->lastname=$r->lastname;
+            }
+    //    ------------------
+
+            if($r->email!=null){
+                $user->email=$r->email;
+            }
+            if($r->phone!=null){
+                $user->phone=$r->phone;
+            }
+            if($r->line!=null){
+                $user->line=$r->line;
+            }
+    //    ------------------
+
+            if($r->province!=null){
+                $p=province::where('name_th',$r->province)->first();
+                if($p!=null){
+                $user->id_p=$p->id;
+                $user->province=$r->province;
+                }
+            }
+            if($r->district!=null){
+                $d=district::where('name_th',$r->district)->first();
+                if($d!=null){
+                $user->id_d=$d->id;
+                $user->district=$r->district;
+                }
+            }
+            if($r->amphur!=null){
+                $a=amphur::where('name_th',$r->amphur)->first();
+                if($a!=null){
+                $user->id_a=$a->id;
+                $user->amphur=$r->amphur;
+                }
+            }
+            if($r->house!=null){
+                $user->house=$r->house;
+            }
+            if($r->moo!=null){
+                $user->moo=$r->moo;
+            }
+            if($r->condo!=null){
+                $user->condo=$r->condo;
+            }
+            if($r->road!=null){
+                $user->road=$r->road;
+            }
+            if($r->zipcode!=null){
+                $user->zipcode=$r->zipcode;
+            }
+
+    //    ------------------
+
+            if($r->picture!=null){
+                if(!$r->hasFile('picture')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('picture');
+                if(!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $picture = $_FILES['picture']['name'];
+                $r->picture->move(public_path() . '/img/upload', $picture);
+                $user->picture = $picture;}
+
+
+
+            $user->save();
+
+
+            $message="Success!";
+            $status=true;
+            return response()->json([
+                'results'=>[
+                    'user'=>$user,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }else{
+            $message="There is an ID on the server!";
+            $status=false;
+            return response()->json([
+                'results'=>[
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ],400);
+
+        }
+
+    }
+     ///EDIT  User///
 
 
 
@@ -127,7 +301,7 @@ class ApiController extends Controller
           'status'=>$status,
           'message'=>$message,
           'url_picture' => $this->prefix,
-         ]);
+         ],400);
           }
 
      }
@@ -184,7 +358,7 @@ class ApiController extends Controller
                     'status' =>  $status,
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
-                ]);
+                ],400);
 
             }
 
@@ -218,7 +392,7 @@ class ApiController extends Controller
                     'status' =>  $status,
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
-                ]);
+                ],400);
 
             }
 
@@ -246,6 +420,48 @@ class ApiController extends Controller
 
         }
         ///NEWS///
+
+
+
+            ///province///
+            public function api_province(){
+
+                $ps = 'select name_th,id,name_en
+                FROM tb_province
+                ORDER BY
+                CONVERT ( name_th USING tis620 ) ASC' ;
+
+                $ds = 'select name_th,id,name_en
+                FROM tb_districts
+                ORDER BY
+                CONVERT ( name_th USING tis620 ) ASC' ;
+
+                $as = 'select name_th,id,name_en
+                FROM tb_amupur
+                ORDER BY
+                CONVERT ( name_th USING tis620 ) ASC' ;
+
+                $province =  DB::select($ps);
+                $district =  DB::select($ds);
+                $amphur =  DB::select($as);
+
+
+                    $message="Success!";
+                    $status=true;
+                    return response()->json([
+                        'results'=>[
+                            'province'=>$province,
+                            'district'=>$district,
+                            'amphur'=>$amphur,
+                        ],
+                        'status' =>  $status,
+                        'message' =>  $message,
+                        'url_picture' => $this->prefix,
+                    ]);
+
+            }
+            ///province///
+
 
 
         //===============  add air conditionner ==================//
