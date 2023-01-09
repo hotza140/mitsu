@@ -65,6 +65,7 @@ class ApiController extends Controller
 
        ///Register  User///
        public function api_register_user(Request $r){
+        $year=date('Y');
         $check=User::where('email',$r->email)->first();
         if($check==null){
             $user=new User();
@@ -72,7 +73,6 @@ class ApiController extends Controller
             $user->email=$r->email;
             $user->password=Hash::make($r->password);
             $user->type=5;
-            $user->code=rand(11111111,99999999);
             $user->status=0;
 
             $user->lastname=$r->lastname;
@@ -81,6 +81,20 @@ class ApiController extends Controller
             $user->amphur=$r->amphur;
             $user->market=$r->market;
             $user->phone=$r->phone;
+
+               // CODE
+         $nu=User::where('type',5)->wheredate('created_at',$year)->orderby('id','desc')->first();
+         if($nu!=null){
+            $nm=$nu->num+1;
+         }else{
+            $nm=1;
+         }
+         $user->num=$nm;
+
+         $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+         $user->code=$year.'H'.$num;
+         $user->save();
+         // CODE
 
 
 
