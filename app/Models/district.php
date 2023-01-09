@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class districts extends Model
+class district extends Model
 {
     protected $table="tb_districts";
     protected $primarykey="id";
