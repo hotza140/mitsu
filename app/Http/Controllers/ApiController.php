@@ -54,6 +54,16 @@ class ApiController extends Controller
             $user->type=5;
             $user->code=rand(11111111,99999999);
             $user->status=0;
+
+            $user->lastname=$r->lastname;
+            $user->province=$r->province;
+            $user->district=$r->district;
+            $user->amphur=$r->amphur;
+            $user->market=$r->market;
+            $user->phone=$r->phone;
+
+
+
             $user->save();
 
 
