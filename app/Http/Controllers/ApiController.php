@@ -43,6 +43,26 @@ class ApiController extends Controller
 
 
 
+        ///user///
+        public function api_user($id){
+            $user=User::where('id',$id)->first();
+    
+                $message="Success!";
+                $status=true;
+                return response()->json([
+                    'results'=>[
+                        'user'=>$user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+         
+        }
+        ///user///
+ 
+
+
        ///Register  User///
        public function api_register_user(Request $r){
         $check=User::where('email',$r->email)->first();
@@ -150,6 +170,21 @@ class ApiController extends Controller
             if($r->zipcode!=null){
                 $user->zipcode=$r->zipcode;
             }
+
+    //    ------------------
+
+            if($r->picture!=null){
+                if(!$r->hasFile('picture')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('picture');
+                if(!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $picture = $_FILES['picture']['name'];
+                $r->picture->move(public_path() . '/img/upload', $picture);
+                $user->picture = $picture;}
+
             
 
             $user->save();

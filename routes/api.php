@@ -23,7 +23,8 @@ Route::group([
     'middleware' => 'api.token',
     'prefix' => 'common',
 ], function () {
- 
+    Route::get('/api_user/{id}','ApiController@api_user');
+
     Route::get('/api_news','ApiController@api_news');
 
     Route::get('/api_province','ApiController@api_province');
