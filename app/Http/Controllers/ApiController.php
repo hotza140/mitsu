@@ -415,9 +415,26 @@ class ApiController extends Controller
 
             ///province///
             public function api_province(){
-                $province=province::orderby('id','desc')->get();
-                $district=district::orderby('id','desc')->get();
-                $amphur=amphur::orderby('id','desc')->get();
+
+                $ps = 'select name_th,id,name_en
+                FROM tb_province
+                ORDER BY
+                CONVERT ( name_th USING tis620 ) ASC' ;
+
+                $ds = 'select name_th,id,name_en
+                FROM tb_districts
+                ORDER BY
+                CONVERT ( name_th USING tis620 ) ASC' ;
+
+                $as = 'select name_th,id,name_en
+                FROM tb_amupur
+                ORDER BY
+                CONVERT ( name_th USING tis620 ) ASC' ;
+
+                $province =  DB::select($ps);
+                $district =  DB::select($ds);
+                $amphur =  DB::select($as);
+               
         
                     $message="Success!";
                     $status=true;
