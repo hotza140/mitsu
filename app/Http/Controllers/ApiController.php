@@ -278,7 +278,6 @@ class ApiController extends Controller
                            return response()->json([
           'results'=>[
                       'user'=>$password,
-                      'token'=>$password->token,
                     ],
           'status'=>$status,
           'message'=>$message,
