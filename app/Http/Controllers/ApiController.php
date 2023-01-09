@@ -73,7 +73,7 @@ class ApiController extends Controller
             $user->email=$r->email;
             $user->password=Hash::make($r->password);
             $user->type=5;
-            $user->status=0;
+            $user->status=1;
 
             $user->lastname=$r->lastname;
             $user->market=$r->market;
