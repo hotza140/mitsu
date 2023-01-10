@@ -466,7 +466,18 @@ class ApiController extends Controller
 
         //===============  add air conditionner ==================//
         public function search_customer_name($name){
-            // $user_value =
+            $get_customer = Customer::where('full_name','like',$name)->get();
+
+            if($get_customer->count() != 0){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success!',
+                    'result' => [
+                        'customer' => $get_customer,
+                    ],
+                    'url_picture' => $this->prefix,
+                ]);
+            }
         }
 
         public function verify_customer(Request $request){
@@ -532,10 +543,14 @@ class ApiController extends Controller
             if($air_conditioner->save()){
                 return response()->json([
                     'status' => true,
-                    'message' => 'success!'
+                    'message' => 'success!',
+                    'url_picture' => $this->prefix,
                 ]);
             }
 
         }
 
+        public function update_air_conditioner(Request $request){
+            //$testt = Customer::find($request->customer_id);
+        }
 }
