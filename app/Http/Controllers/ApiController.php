@@ -486,7 +486,7 @@ class ApiController extends Controller
 
         public function add_air_conditioner(Request $request){
             // $check_username = AirConditioner::where('indoor_number',$request->indoor_number)->with('customer')->get();
-            return $check_username;
+            // return $check_username;
 
             $air_conditioner_validator = [
                 'indoor_number' => 'unique:air_conditioners,indoor_number',
@@ -508,6 +508,31 @@ class ApiController extends Controller
                 return response()->json([
                     'status' => false,
                     'error' => $validator->errors(),
+                ],400);
+            }
+
+            $customer = new Customer();
+            $customer->first_name = $request->first_name;
+            $customer->last_name = $request->last_name;
+            $customer->full_name = $request->first_name.' '.$request->last_name;
+            $customer->phone = $request->phone;
+            $customer->line = $request->line;
+            $customer->address = $request->address;
+            $customer->more_address = $request->more_address;
+            $customer->latitude = $request->latitude;
+            $customer->longitude = $request->longitude;
+            $customer->save();
+
+            $air_conditioner = new AirConditioner();
+            $air_conditioner->customer_id = $customer->id;
+            $air_conditioner->indoor_number = $request->indoor_number;
+            $air_conditioner->outdoor_number = $request->outdoor_number;
+            // $air_conditioner->save();
+
+            if($air_conditioner->save()){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'success!'
                 ]);
             }
 
