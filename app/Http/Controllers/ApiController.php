@@ -507,9 +507,10 @@ class ApiController extends Controller
             if($validator->fails()){
                 return response()->json([
                     'status' => false,
-                    'message' => 'error'
-                    ]);
+                    'error' => $validator->errors(),
+                ]);
             }
+
         }
 
 }
