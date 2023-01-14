@@ -470,13 +470,18 @@ class ApiController extends Controller
 
             if($get_customer->count() != 0){
                 return response()->json([
-                    'status' => true,
+                    'status' => true, 
                     'message' => 'Success!',
                     'result' => [
                         'customer' => $get_customer,
                     ],
                     'url_picture' => $this->prefix,
                 ]);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Not found',
+                ],400);
             }
         }
 
@@ -492,6 +497,12 @@ class ApiController extends Controller
                     // 'message' =>  $message,
                     'url_picture' => $this->prefix,
                 ]);
+            }else{
+                $status = false;
+                return response()->json([
+                    'status' => $status,
+                    'message' => 'Error',
+                ],400);
             }
         }
 
@@ -546,6 +557,10 @@ class ApiController extends Controller
                     'message' => 'success!',
                     'url_picture' => $this->prefix,
                 ]);
+            }else{
+                return response()->json([
+                    'status' => false,
+                ],400);
             }
 
         }
