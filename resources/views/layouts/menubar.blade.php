@@ -66,7 +66,7 @@
        <!-- ตาปิดเปิด -->
 
 
-    
+
     <!-- เรียงลำดับ -->
     <style>
     .sortable {
@@ -247,7 +247,7 @@
                                     <div class="input-group">
                                         <span class="input-group-addon search-close"><i class="ti-close"></i></span>
                                         <input type="text" class="form-control">
-                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span> 
+                                        <span class="input-group-addon search-btn"><i class="ti-search"></i></span>
                                     </div>
                                 </div>
                             </li> -->
@@ -364,9 +364,9 @@
                                             <a href="{{url('backend/wait_user')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">USER รอการยืนยัน</span>
-                                                <span class="pcoded-mcaret"></span> 
+                                                <span class="pcoded-mcaret"></span>
                                                 <?php $num=DB::table('users')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
-                                                <span class="pcoded-badge label label-danger">{{$nums}}</span> 
+                                                <span class="pcoded-badge label label-danger">{{$nums}}</span>
                                             </a>
                                         </li>
                                     </ul> -->
@@ -382,7 +382,7 @@
                                             <a href="{{url('backend/user')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">USER</span>
-                                                <span class="pcoded-mcaret"></span> 
+                                                <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span>  -->
                                             </a>
                                         </li>
@@ -393,7 +393,7 @@
                             </ul>
                             <!-- USER Page-->
 
-                            
+
 
 
                             <!-- Home Page-->
@@ -421,7 +421,7 @@
                                             <a href="{{url('backend/banner')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">BANNER</span>
-                                                <span class="pcoded-mcaret"></span> 
+                                                <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span>  -->
                                             </a>
                                         </li>
@@ -431,10 +431,6 @@
                                 </li>
                             </ul>
                             <!-- Home Page-->
-
-
-
-
 
 
                              <!-- NEWS-->
@@ -473,10 +469,46 @@
                             </ul>
                             <!-- NEWS-->
 
+                            <!-- Air Conditioner-->
+                            <ul class="pcoded-item pcoded-left-item">
+                                <!-- Start-->
+                                @if(isset($page)) @if($page=="air_conditioner") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">รายการเครื่องปรับอากาศ</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                    </a>
+
+                                    <!-- Air Conditioner -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="air_conditioner") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/air_conditioner')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">ข้อมูล</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- Air Conditioner -->
+
+                                    <!-- End-->
+                                </li>
+                            </ul>
+                            <!-- Air Conditioner-->
 
 
 
-                         
+
+
 
 
 
