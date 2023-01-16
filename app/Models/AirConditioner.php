@@ -11,6 +11,6 @@ class AirConditioner extends Model
 
     public function customer()
     {
-        return $this->belongsTo('App\Models\Customer', 'id');
+        return $this->belongsTo('App\Models\Customer', 'customer_id');
     }
 }
