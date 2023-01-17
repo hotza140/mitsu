@@ -470,7 +470,7 @@ class ApiController extends Controller
 
             if($get_customer->count() != 0){
                 return response()->json([
-                    'status' => true, 
+                    'status' => true,
                     'message' => 'Success!',
                     'result' => [
                         'customer' => $get_customer,
@@ -481,6 +481,26 @@ class ApiController extends Controller
                 return response()->json([
                     'status' => false,
                     'message' => 'Not found',
+                ],400);
+            }
+        }
+
+        public function get_customer($id){
+            $customer = Customer::where('id',$id)->with('airconditioner')->first();
+
+            if(!empty($customer)){
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success!',
+                    'result' => [
+                        'customer' => $customer,
+                    ],
+                    'url_picture' => $this->prefix,
+                ]);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Error',
                 ],400);
             }
         }
@@ -566,6 +586,27 @@ class ApiController extends Controller
         }
 
         public function update_air_conditioner(Request $request){
-            //$testt = Customer::find($request->customer_id);
+
+            $air_conditioner = new AirConditioner;
+            $air_conditioner->customer_id = $customer->id;
+            $air_conditioner->indoor_number = $request->indoor_number;
+            $air_conditioner->outdoor_number = $request->outdoor_number;
+
+            if($air_conditioner->save()){
+                $customer = Customer::where('id',$request->customer_id)->with('airconditioner')->first();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success!',
+                    'result' => [
+                        'customer' => $customer,
+                    ],
+                    'url_picture' => $this->prefix,
+                ]);
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Can Not Update'
+                ],400);
+            }
         }
 }

@@ -26,7 +26,7 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    <a style="color:white;" class="btn btn-success" href="{{url('/backend/banner_add')}}"> <i class="fa fa-plus"></i> Add</a>
+                                    {{-- <a style="color:white;" class="btn btn-success" href="{{url('/backend/banner_add')}}"> <i class="fa fa-plus"></i> Add</a> --}}
 
                                 </div>
                                 <div class="card-block">
@@ -48,9 +48,9 @@
                                             @foreach($item as $key=>$items)
                                                 <tr>
                                                     <td>{{$key+1}}</td>
-                                                    <td>{{$item->customer->full_name}}</td>
-                                                    <td>{{$item->outdoor_number}}</td>
-                                                    <td>{{$item->indoor_number}}</td>
+                                                    <td>{{$items->customer->full_name}}</td>
+                                                    <td>{{($items->outdoor_number) ?? '-'}}</td>
+                                                    <td>{{($items->indoor_number)?? '-'}}</td>
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
                                                     <a href="{{url('/backend/air_conditioner/'.$items->id)}}" class="btn btn-sm btn-primary" style="color:white;"><i class="fa fa-gear"></i>Edit</a>

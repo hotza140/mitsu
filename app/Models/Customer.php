@@ -11,6 +11,6 @@ class Customer extends Model
 
     public function airconditioner()
     {
-        return $this->hasMany('App\Models\AirConditioner', 'customer_id');
+        return $this->hasMany('App\Models\AirConditioner', 'id');
     }
 }

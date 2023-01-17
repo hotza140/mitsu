@@ -29,9 +29,10 @@ class AirConditionerController extends Controller
         $data['page'] = 'air_conditioner';
 
         $data['item'] = AirConditioner::orderby('id','asc')->with('customer')->get();
+        // return $data['item'];
         $data['list'] = 'air_conditioner';
         return view('backend.conditioner.index',$data);
     }
 
-    
+
 }
