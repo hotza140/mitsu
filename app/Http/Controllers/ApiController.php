@@ -369,7 +369,7 @@ class ApiController extends Controller
             ///Delete  Product USER///
         public function api_delete_product_user(Request $r){
             $check=product::where('id',$r->id)->first();
-            if($check==null){
+            if($check!=null){
 
                 $check->delete();
 
