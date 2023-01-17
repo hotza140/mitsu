@@ -144,7 +144,7 @@ class ApiController extends Controller
        ///EDIT  User///
        public function api_edit_user(Request $r){
         $user=User::where('id',$r->id_user)->first();
-        if($user==null){
+        if($user!=null){
             if($r->market!=null){
                 $user->market=$r->market;
             }
