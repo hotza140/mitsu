@@ -144,7 +144,7 @@ class ApiController extends Controller
        ///EDIT  User///
        public function api_edit_user(Request $r){
         $user=User::where('id',$r->id_user)->first();
-        if($user==null){
+        if($user!=null){
             if($r->market!=null){
                 $user->market=$r->market;
             }
@@ -369,7 +369,7 @@ class ApiController extends Controller
             ///Delete  Product USER///
         public function api_delete_product_user(Request $r){
             $check=product::where('id',$r->id)->first();
-            if($check==null){
+            if($check!=null){
 
                 $check->delete();
 
