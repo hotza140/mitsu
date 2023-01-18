@@ -527,8 +527,6 @@ class ApiController extends Controller
         }
 
         public function add_air_conditioner(Request $request){
-            // $check_username = AirConditioner::where('indoor_number',$request->indoor_number)->with('customer')->get();
-            // return $check_username;
 
             $air_conditioner_validator = [
                 'indoor_number' => 'unique:air_conditioners,indoor_number',
@@ -586,6 +584,30 @@ class ApiController extends Controller
         }
 
         public function update_air_conditioner(Request $request){
+
+            $check_validate = [
+                'customer_id' => 'required',
+                'indoor_number' => 'unique:air_conditioners,indoor_number',
+                'outdoor_number' => 'unique:air_conditioners,outdoor_number'
+            ];
+
+            $error_validator = [
+                'indoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+                'outdoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+            ];
+
+            $validator = Validator::make(
+                $request->all(),
+                $air_conditioner_validator,
+                $error_validator
+            );
+
+            if($validator->fails()){
+                return response()->json([
+                    'status' => false,
+                    'error' => $validator->errors(),
+                ],400);
+            }
 
             $air_conditioner = new AirConditioner;
             $air_conditioner->customer_id = $customer->id;

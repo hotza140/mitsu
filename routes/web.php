@@ -101,7 +101,7 @@ Route::prefix('backend')->group(function(){
 
     // ===== Conditioner List ====
     Route::get('air_conditioner',[App\Http\Controllers\AirConditionerController::class,'index']);
-    Route::get('air_conditioner/{id}',[App\Http\Controllers\AirConditionerController::class,'view']);
+    Route::get('air_conditioner/{id}',[App\Http\Controllers\AirConditionerController::class,'details']);
     Route::get('air_conditioner/destroy/{id}',[App\Http\Controllers\AirConditionerController::class,'destroy']);
 });
 
