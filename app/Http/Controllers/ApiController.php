@@ -551,35 +551,50 @@ class ApiController extends Controller
                 ],400);
             }
 
-            $customer = new Customer();
-            $customer->first_name = $request->first_name;
-            $customer->last_name = $request->last_name;
-            $customer->full_name = $request->first_name.' '.$request->last_name;
-            $customer->phone = $request->phone;
-            $customer->line = $request->line;
-            $customer->address = $request->address;
-            $customer->more_address = $request->more_address;
-            $customer->latitude = $request->latitude;
-            $customer->longitude = $request->longitude;
-            $customer->save();
+            if(!empty($request->indoor_number)){
+                $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number',$request->indoor_number)->get()->count();
+            }
+            if(!empty($request->outdoor_number)){
+                $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number',$request->outdoor_number)->get()->count();
+            }
 
-            $air_conditioner = new AirConditioner();
-            $air_conditioner->customer_id = $customer->id;
-            $air_conditioner->indoor_number = $request->indoor_number;
-            $air_conditioner->outdoor_number = $request->outdoor_number;
-            // $air_conditioner->save();
+            if($check_serial_indoor != 0 || $check_serial_outdoor != 0){
+                $customer = new Customer();
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->full_name = $request->first_name.' '.$request->last_name;
+                $customer->phone = $request->phone;
+                $customer->line = $request->line;
+                $customer->address = $request->address;
+                $customer->more_address = $request->more_address;
+                $customer->latitude = $request->latitude;
+                $customer->longitude = $request->longitude;
+                $customer->save();
 
-            if($air_conditioner->save()){
-                return response()->json([
-                    'status' => true,
-                    'message' => 'success!',
-                    'url_picture' => $this->prefix,
-                ]);
+                $air_conditioner = new AirConditioner();
+                $air_conditioner->customer_id = $customer->id;
+                $air_conditioner->indoor_number = $request->indoor_number;
+                $air_conditioner->outdoor_number = $request->outdoor_number;
+
+                if($air_conditioner->save()){
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'url_picture' => $this->prefix,
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Data cannot be saved!'
+                    ],400);
+                }
             }else{
                 return response()->json([
                     'status' => false,
+                    'message' => 'Not Found Air Conditioner in Data.'
                 ],400);
             }
+
 
         }
 
@@ -630,5 +645,11 @@ class ApiController extends Controller
                     'message' => 'Can Not Update'
                 ],400);
             }
+        }
+
+        public function test_database(){
+            $test = DB::connection('pgsql')->table('products')->get();
+
+            return $test;
         }
 }
