@@ -162,6 +162,59 @@ class ApiController extends Controller
 
 
 
+      ///--------api_change_oldpass---------///
+      public function api_change_password(Request $r){
+        $user=User::where('id',$r->id_user)->first();
+        $check=Hash::make($r->old_pass);
+        if(Hash::check($r->old_pass, $user->password)){
+
+        if($r->new_pass==$r->new_pass_check){
+        $user=User::where('id',$r->id_user)->first();
+        $make=Hash::make($r->password);
+        $user->password=$make;
+        $user->save();
+
+        $status=true;
+        $message="Success!";
+        return response()->json([
+        'results'=>[
+        'user' =>$user,  
+        ],
+        'status'=>$status,
+        'message' =>  $message,
+        'url_picture' => $this->prefix,        
+        ]);
+
+    }else{
+        $status=false;
+        $message="Password Check do not match!";
+        return response()->json([
+        'results'=>[
+        'user' =>$user,  
+        ],
+        'status'=>$status,
+        'message' =>  $message,
+        'url_picture' => $this->prefix,        
+        ]);
+    }
+
+        }else{
+        $status=false;
+        $message="Old Password Wrong!";
+        return response()->json([
+        'results'=>[
+        'user' =>$user,  
+        ],
+        'status'=>$status,
+        'message' =>  $message,
+        'url_picture' => $this->prefix,        
+        ]);
+        }
+    }
+    ///-----------------///
+
+
+
        ///EDIT  User///
        public function api_edit_user(Request $r){
         $user=User::where('id',$r->id_user)->first();
