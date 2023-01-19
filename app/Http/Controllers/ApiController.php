@@ -87,6 +87,27 @@ class ApiController extends Controller
             for ($i = 0; $i < $length; $i++) {
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
+            $cm=User::where('token',$randomString)->first();
+            if($cm!=null){
+                  $length=12;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            }
+            $cmm=User::where('token',$randomString)->first();
+            if($cm!=null){
+                  $length=12;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+            }
+            
             $user->token=$randomString;
 
             $p=province::where('name_th',$r->province)->first();
