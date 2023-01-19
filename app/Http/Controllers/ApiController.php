@@ -486,8 +486,13 @@ class ApiController extends Controller
 
 
         //===============  add air conditionner ==================//
-        public function search_customer_name($name){
-            $get_customer = Customer::where('full_name','like',$name)->get();
+        public function search_customer_name($name = null){
+
+            if($name == null){
+                $get_customer = Customer::orderby('full_name','asc')->get();
+            }else{
+                $get_customer = Customer::where('full_name','like',$name)->get();
+            }
 
             if($get_customer->count() != 0){
                 return response()->json([
@@ -549,9 +554,19 @@ class ApiController extends Controller
 
         public function add_air_conditioner(Request $request){
 
+            $check_name_customer = Customer::where('first_name',$request->first_name)->where('last_name',$request->last_name)->get()->count();
+            if($check_name_customer != 0){
+                return response()->json([
+                    'status' => false,
+                    'error' => [
+                        'customer' => 'A Customer Name has already been taken.'
+                    ],
+                ],400);
+            }
+
             $air_conditioner_validator = [
-                'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
-                'outdoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
+                'indoor_number' => 'required|unique:air_conditioners,indoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
             ];
 
             $error_validator = [
