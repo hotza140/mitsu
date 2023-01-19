@@ -228,8 +228,8 @@
                             </div>
                         </div>
                         <a href="{{url('/backend')}}">
-                            <!-- <img class="img-fluid" src="{{asset('images/logo.png')}}" alt="Theme-Logo" width="100px" /> -->
-                            <h7>MITSU Backend</h7>
+                            <img class="img-fluid" src="{{asset('img/back.jpg')}}" alt="Theme-Logo" width="100px" />
+                            <!-- <h7>MITSU Backend</h7> -->
                         </a>
                         <a class="mobile-options">
                             <i class="ti-more"></i>
