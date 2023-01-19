@@ -644,7 +644,7 @@ class ApiController extends Controller
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number',$request->indoor_number)->get()->count();
             $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number',$request->outdoor_number)->get()->count();
 
-            if($check_serial_indoor != 0 || $check_serial_outdoor != 0){
+            if($check_serial_indoor != 0 && $check_serial_outdoor != 0){
                 $customer = new Customer();
                 $customer->first_name = $request->first_name;
                 $customer->last_name = $request->last_name;
@@ -680,8 +680,6 @@ class ApiController extends Controller
                     'message' => 'Not Found Air Conditioner in Data.'
                 ],400);
             }
-
-
         }
 
         public function update_air_conditioner(Request $request){
