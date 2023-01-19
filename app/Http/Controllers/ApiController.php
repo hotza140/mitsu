@@ -170,7 +170,7 @@ class ApiController extends Controller
 
         if($r->new_pass==$r->new_pass_check){
         $user=User::where('id',$r->id_user)->first();
-        $make=Hash::make($r->password);
+        $make=Hash::make($r->new_pass);
         $user->password=$make;
         $user->save();
 
