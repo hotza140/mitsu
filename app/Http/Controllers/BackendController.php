@@ -200,7 +200,7 @@ class BackendController extends Controller
         if(Auth::user()->type != 0){
             return redirect()->to('/backend')->with('success','You NOT Super Admin!');
         }
-        $item=User ::orderby('id','asc')->get();
+        $item=User ::where('type','<',5)->orderby('id','asc')->get();
         return view('backend.admin_user.index',[
             'item'=>$item,
             'page'=>"admin_user",
