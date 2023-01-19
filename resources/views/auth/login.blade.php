@@ -122,7 +122,7 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <img src="{{asset('img/pic_ad.png')}}" style="width:300px" alt="small-logo.png">
+                                <img src="{{asset('img/back.jpg')}}" style="width:300px" alt="small-logo.png">
                                 <!-- <div class="row">
                                     <div class="col-md-10">
                                         <p class="text-inverse text-left m-b-0">Thank you and enjoy our website.</p>
