@@ -28,7 +28,7 @@
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                    <center><img src="{{asset('img/pic.jpg')}}" width="200px"></center>
+                                    <center><img src="{{asset('img/back.jpg')}}" width="200px"></center>
                                     <br><br>
                                        <center><h2>Welcome To Backend</h2></center>
                                     </div>
