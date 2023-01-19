@@ -98,7 +98,7 @@ class ApiController extends Controller
             }
             }
             $cmm=User::where('token',$randomString)->first();
-            if($cm!=null){
+            if($cmm!=null){
                   $length=12;
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
             $charactersLength = strlen($characters);
@@ -107,7 +107,7 @@ class ApiController extends Controller
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
             }
-            
+
             $user->token=$randomString;
 
             $p=province::where('name_th',$r->province)->first();
