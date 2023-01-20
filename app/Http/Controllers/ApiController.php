@@ -14,6 +14,7 @@ use Auth;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use PDF;
+use Illuminate\Validation\Rule;
 
 use App\Models\banner;
 use App\Models\product;
@@ -178,11 +179,11 @@ class ApiController extends Controller
         $message="Success!";
         return response()->json([
         'results'=>[
-        'user' =>$user,  
+        'user' =>$user,
         ],
         'status'=>$status,
         'message' =>  $message,
-        'url_picture' => $this->prefix,        
+        'url_picture' => $this->prefix,
         ]);
 
     }else{
@@ -190,11 +191,11 @@ class ApiController extends Controller
         $message="Password Check do not match!";
         return response()->json([
         'results'=>[
-        'user' =>$user,  
+        'user' =>$user,
         ],
         'status'=>$status,
         'message' =>  $message,
-        'url_picture' => $this->prefix,        
+        'url_picture' => $this->prefix,
         ]);
     }
 
@@ -203,11 +204,11 @@ class ApiController extends Controller
         $message="Old Password Wrong!";
         return response()->json([
         'results'=>[
-        'user' =>$user,  
+        'user' =>$user,
         ],
         'status'=>$status,
         'message' =>  $message,
-        'url_picture' => $this->prefix,        
+        'url_picture' => $this->prefix,
         ]);
         }
     }
@@ -617,9 +618,23 @@ class ApiController extends Controller
                 ],400);
             }
 
+            $indoor_number = $request->indoor_number;
+
             $air_conditioner_validator = [
                 'indoor_number' => 'required|unique:air_conditioners,indoor_number',
+                'indoor_number' => 'required|unique:air_conditioners,outdoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
                 'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
+                /*'indoor_number' => [
+                    'required',
+                    Rule::unique('air_conditioners','indoor_number')->where('outdoor_number','=',$indoor_number),
+                ],
+                'outdoor_number' => [
+                    'required',
+                    Rule::unique('air_conditioners','outdoor_number')->where(function($query) use ($request){
+                        return $query->where('indoor_number',$request->outdoor_number);
+                    }),
+                ],*/
             ];
 
             $error_validator = [
@@ -686,8 +701,10 @@ class ApiController extends Controller
 
             $check_validate = [
                 'customer_id' => 'required',
-                'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
-                'outdoor_number' => 'nullable|unique:air_conditioners,outdoor_number'
+                'indoor_number' => 'required|unique:air_conditioners,indoor_number',
+                'indoor_number' => 'required|unique:air_conditioners,outdoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
             ];
 
             $error_validator = [
