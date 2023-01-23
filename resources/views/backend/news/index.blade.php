@@ -50,6 +50,33 @@
                                                 @foreach($item as $key=>$items)
                                                 <tr class="num" id="{{$items->id}}">
                                                     <td>{{$key+1}}</td>
+
+                                                    @if($items->choose==0)
+                                                    <td>
+                                                    <form method="post" id="form{{$items->id}}" action="{{ url('/news_choose') }}" enctype="multipart/form-data" name="form{{$items->id}}" onsubmit="submit()">
+                                                    @csrf
+
+                                                            <input type="hidden" name="hidden" value="0" class="hidden">
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id">
+                                                            <input type="checkbox" > <i class="fa fa-times-circle-o"></i> Open
+                                                    </form>
+                                                            </td>
+                                                            
+                                                         @else
+                                                         <td>
+                                                         <form method="post" id="form{{$items->id}}" action="{{ url('/news_choose') }}" enctype="multipart/form-data" name="form{{$items->id}}" onsubmit="submit()">
+                                                         @csrf
+
+                                                            <input type="hidden" name="hidden" value="1" class="hidden">
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id">
+                                                            <input type="checkbox" checked > <i class="fa fa-times-circle-o"></i> Close
+                                                        
+                                                         </form>    
+                                                            </td>       
+                                                           
+                                                         @endif 
+
+
                                                     <td><img src="{{asset('/img/upload/'.$items->picture)}}"
                                                             style="width:200px"></td>
                                                     <td>{{$items->titleen}}</td>
