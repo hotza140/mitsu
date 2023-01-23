@@ -148,6 +148,7 @@
 <script>
     $(document).on('change', '.choose', e => {
         e.preventDefault();
+        alert('ccc');
 
         var form_tr = $(this).closest('#FormStatus');
         var id = form_tr.find('.io').val();
