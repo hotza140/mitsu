@@ -89,8 +89,9 @@ Route::prefix('backend')->group(function(){
     Route::get('wait_user_edit/{id}',[App\Http\Controllers\BackendController::class,'wait_user_edit']);
     Route::post('wait_user_update/{id}',[App\Http\Controllers\BackendController::class,'wait_user_update']);
     //wait_user
-
+    
     //news
+    Route::post('news_choose',[App\Http\Controllers\BackendController::class,'news_choose']);
     Route::get('news',[App\Http\Controllers\BackendController::class,'news']);
     Route::get('news_destroy/{id}',[App\Http\Controllers\BackendController::class,'news_destroy']);
     Route::get('news_add',[App\Http\Controllers\BackendController::class,'news_add']);
