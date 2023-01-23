@@ -196,7 +196,7 @@ class ApiController extends Controller
         'status'=>$status,
         'message' =>  $message,
         'url_picture' => $this->prefix,
-        ]);
+        ],400);
     }
 
         }else{
@@ -209,7 +209,7 @@ class ApiController extends Controller
         'status'=>$status,
         'message' =>  $message,
         'url_picture' => $this->prefix,
-        ]);
+        ],400);
         }
     }
     ///-----------------///
