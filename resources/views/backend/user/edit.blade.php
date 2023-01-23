@@ -339,12 +339,12 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    {{-- <a style="color:white;" class="btn btn-success" href="{{url('/backend/banner_add')}}"> <i class="fa fa-plus"></i> Add</a> --}}
+                                <strong><h3 class="m-b-10">รายการเครื่องปรับอากาศ</h3></strong>
 
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                        <table id="simpletable2" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
 
