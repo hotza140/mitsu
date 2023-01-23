@@ -397,9 +397,9 @@
 
 
                             <!-- Home Page-->
-                            <ul class="pcoded-item pcoded-left-item">
+                            <!-- <ul class="pcoded-item pcoded-left-item"> -->
                                 <!-- Start-->
-                                @if(isset($page)) @if($page=="home") <li class="pcoded-hasmenu active pcoded-trigger">
+                                <!-- @if(isset($page)) @if($page=="home") <li class="pcoded-hasmenu active pcoded-trigger">
                                     @else
                                 <li class="pcoded-hasmenu"> @endif
                                     @else
@@ -408,12 +408,11 @@
                                         <span class="pcoded-micon"><i class="ti-home"></i><b> </b></span>
                                         <span class="pcoded-mtext">หน้าหลัก</span>
                                         <span class="pcoded-mcaret"></span>
-                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
-                                    </a>
+                                    </a> -->
 
 
                                     <!-- BANNER -->
-                                    <ul class="pcoded-submenu">
+                                    <!-- <ul class="pcoded-submenu">
                                         @if(isset($list)) @if($list=="banner") <li class="active"> @else
                                         <li class=""> @endif
                                             @else
@@ -422,14 +421,13 @@
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">BANNER</span>
                                                 <span class="pcoded-mcaret"></span>
-                                                <!-- <span class="pcoded-badge label label-danger">1</span>  -->
                                             </a>
                                         </li>
-                                    </ul>
+                                    </ul> -->
                                     <!-- BANNER -->
 
-                                </li>
-                            </ul>
+                                <!-- </li>
+                            </ul> -->
                             <!-- Home Page-->
 
 
