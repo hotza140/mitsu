@@ -478,7 +478,7 @@
                                     @else
                                 <li class="pcoded-hasmenu"> @endif
                                     <a href="javascript:void(0)">
-                                        <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
+                                        <span class="pcoded-micon"><i class="ti-settings"></i><b>D</b></span>
                                         <span class="pcoded-mtext">รายการเครื่องปรับอากาศ</span>
                                         <span class="pcoded-mcaret"></span>
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
