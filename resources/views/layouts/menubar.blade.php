@@ -90,7 +90,7 @@
 
 
 
-    <link rel="icon" href="{{asset('img/pic_ad.png')}}">
+    <link rel="icon" href="{{asset('img/back.jpg')}}">
 
     <script src="https://cdn.tiny.cloud/1/lbofybl1owssztg9a8memm8o5ydzb5mn8y1qt9e3yfki6jkq/tinymce/5/tinymce.min.js"
         referrerpolicy="origin"></script>
