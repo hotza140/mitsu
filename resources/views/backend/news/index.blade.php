@@ -58,7 +58,7 @@
 
                                                             <input type="hidden" name="hidden" value="0" class="hidden val">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id io">
-                                                            <input type="checkbox" class="choose" >
+                                                            <center><input type="checkbox" class="choose"  ></center>
                                                     </form>
                                                             </td>
                                                             
@@ -69,7 +69,7 @@
 
                                                             <input type="hidden" name="hidden" value="1" class="hidden val">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id io">
-                                                            <input type="checkbox" class="choose" checked >
+                                                            <center><input type="checkbox" class="choose" checked ></center>
                                                         
                                                          </form>    
                                                             </td>       
@@ -166,7 +166,7 @@
                     // $('#successMsg').show();
                     console.log(status);
                     if(status=='success'){
-                        //alert('save');
+                        alert('save');
                         // $('#form').submit();
                     }else{
                         //alert(status);

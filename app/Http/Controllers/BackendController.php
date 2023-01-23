@@ -588,7 +588,7 @@ class BackendController extends Controller
                 $item->choose=1;
                 $item->save();}
         }
-        $status=true;
+        $status='success';
         return response()->json($status);
     }
     // Choose
