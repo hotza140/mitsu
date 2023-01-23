@@ -43,8 +43,8 @@ Route::group([
     Route::post('/api_verify_customer','ApiController@verify_customer');
     Route::post('/api_create_airconditioner','ApiController@add_air_conditioner');
 
-    Route::get('/api_search_customer/{name}','ApiController@search_customer_name');
-    Route::get('/api_search_customer','ApiController@search_customer_name');
+    Route::get('/api_search_customer/{id}/{name}','ApiController@search_customer_name');
+    Route::get('/api_search_customer/{id}','ApiController@search_customer_name');
     Route::get('/api_get_customer/{id}','ApiController@get_customer');
     Route::post('/api_update_airconditioner','ApiController@update_air_conditioner');
 

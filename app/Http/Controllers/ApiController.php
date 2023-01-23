@@ -540,12 +540,12 @@ class ApiController extends Controller
 
 
         //===============  add air conditionner ==================//
-        public function search_customer_name($name = null){
+        public function search_customer_name($mechanic_id ,$name = null){
 
             if($name == null){
-                $get_customer = Customer::orderby('full_name','asc')->get();
+                $get_customer = Customer::where('mechanic_id',$mechanic_id)->orderby('full_name','asc')->get();
             }else{
-                $get_customer = Customer::where('full_name','like',$name)->get();
+                $get_customer = Customer::where('mechanic_id',$mechanic_id)->where('full_name','like',$name)->get();
             }
 
             if($get_customer->count() != 0){
@@ -580,7 +580,7 @@ class ApiController extends Controller
             }else{
                 return response()->json([
                     'status' => false,
-                    'message' => 'Error',
+                    'message' => 'This information already exists.',
                 ],400);
             }
         }
@@ -590,17 +590,19 @@ class ApiController extends Controller
 
             //Don't Have Customer values
             if($find_customer->count() == 0 ){
-                // $message="This information is not yet available.";
+                $message="This information is not yet available.";
                 $status=true;
                 return response()->json([
                     'status' =>  $status,
-                    // 'message' =>  $message,
+                    'message' =>  $message,
                     'url_picture' => $this->prefix,
                 ]);
             }else{
                 $status = false;
+                $message = 'This information already exists.';
                 return response()->json([
                     'status' => $status,
+                    'message' =>  $message,
                     'message' => 'Error',
                 ],400);
             }
@@ -608,6 +610,7 @@ class ApiController extends Controller
 
         public function add_air_conditioner(Request $request){
 
+            //check customer
             $check_name_customer = Customer::where('first_name',$request->first_name)->where('last_name',$request->last_name)->get()->count();
             if($check_name_customer != 0){
                 return response()->json([
@@ -661,6 +664,7 @@ class ApiController extends Controller
 
             if($check_serial_indoor != 0 && $check_serial_outdoor != 0){
                 $customer = new Customer();
+                $customer->mechanic_id = $request->mechanic_id;
                 $customer->first_name = $request->first_name;
                 $customer->last_name = $request->last_name;
                 $customer->full_name = $request->first_name.' '.$request->last_name;
@@ -714,7 +718,7 @@ class ApiController extends Controller
 
             $validator = Validator::make(
                 $request->all(),
-                $air_conditioner_validator,
+                $check_validate,
                 $error_validator
             );
 
@@ -728,7 +732,7 @@ class ApiController extends Controller
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number',$request->indoor_number)->get()->count();
             $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number',$request->outdoor_number)->get()->count();
 
-            if($check_serial_indoor != 0 || $check_serial_outdoor != 0){
+            if($check_serial_indoor != 0 && $check_serial_outdoor != 0){
                 $air_conditioner = new AirConditioner;
                 $air_conditioner->customer_id = $customer->id;
                 $air_conditioner->indoor_number = $request->indoor_number;
