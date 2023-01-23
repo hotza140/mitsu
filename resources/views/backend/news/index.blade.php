@@ -149,6 +149,7 @@
         var form_tr = $(this).closest('.FormStatus');
         var id = form_tr.find('.id').val();
         var hidden = form_tr.find('.hidden').val();
+        alert(id);alert(hidden);
         
             $.ajax({
                 url: "{!!url('/news_choose')!!}",

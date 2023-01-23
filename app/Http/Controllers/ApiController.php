@@ -479,8 +479,18 @@ class ApiController extends Controller
 
 
            ///NEWS///
-        public function api_news(){
-            $news=news::orderby('id','desc')->get();
+        public function api_news(Request $r){
+            $type=$r->type;
+
+            if($type=='banner'){
+                $news=news::orderby('id','desc')->limit(4)->get();
+            }elseif($type=='new'){
+                $news=news::orderby('id','desc')->limit(5)->get();
+            }elseif($type=='advice'){
+                $news=news::where('choose',1)->orderby('id','desc')->get();
+            }else{
+                $news=news::orderby('id','desc')->paginate(9);
+            }
 
                 $message="Success!";
                 $status=true;
