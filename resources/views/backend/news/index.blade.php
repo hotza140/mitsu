@@ -38,6 +38,7 @@
                                                 <tr>
 
                                                     <th>#</th>
+                                                    <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
                                                     <th>Title</th>
                                                     <!-- <th>Created_at</th> -->
@@ -53,22 +54,18 @@
 
                                                     @if($items->choose==0)
                                                     <td>
-                                                    <form method="post" id="FormStatus" cl action="{{ url('/news_choose') }}" enctype="multipart/form-data" name="FormStatus" onsubmit="submit()">
-                                                    @csrf
-
-                                                            <input type="hidden" name="hidden" value="0" class="hidden val">
-                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id io">
+                                                    <form  class="FormStatus"  >
+                                                            <input type="hidden" name="hidden" value="0" class="hidden ">
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id ">
                                                             <center><input type="checkbox" class="choose"  ></center>
                                                     </form>
                                                             </td>
                                                             
                                                          @else
                                                          <td>
-                                                         <form method="post" id="FormStatus" action="{{ url('/news_choose') }}" enctype="multipart/form-data" name="FormStatus" onsubmit="submit()">
-                                                         @csrf
-
-                                                            <input type="hidden" name="hidden" value="1" class="hidden val">
-                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id io">
+                                                         <form  class="FormStatus"  >
+                                                            <input type="hidden" name="hidden" value="1" class="hidden ">
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id ">
                                                             <center><input type="checkbox" class="choose" checked ></center>
                                                         
                                                          </form>    
@@ -98,6 +95,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
                                                     <th>Title</th>
                                                     <!-- <th>Created_at</th> -->
@@ -146,39 +144,31 @@
 @section('script')
 
 <script>
-    $(document).on('change', '.choose', e => {
-        e.preventDefault();
-        alert('ccc');
+    $(document).on('change', '.choose', function () {
 
-        var form_tr = $(this).closest('#FormStatus');
-        var id = form_tr.find('.io').val();
-        var hidden = form_tr.find('.val').val();
-
+        var form_tr = $(this).closest('.FormStatus');
+        var id = form_tr.find('.id').val();
+        var hidden = form_tr.find('.hidden').val();
+        
             $.ajax({
-                url: '{{url('/news_choose')}}',
-                type: "POST",
+                url: "{!!url('/news_choose')!!}",
+                method: "POST",
+                type: "PUT",
                 data: {
                     "_token": "{{ csrf_token() }}",
-                    form_tr: form_tr,
                     id: id,
                     hidden: hidden,
                 },
                 success: function(status) {
-                    // $('#successMsg').show();
                     console.log(status);
                     if(status=='success'){
                         alert('save');
                         // $('#form').submit();
                     }else{
-                        //alert(status);
+                        alert('error');
                         // location.reload();
                     }
                    
-                },
-                error: function(status) {
-                    // $('#nameErrorMsg').text(response.responseJSON.errors.name);
-                    //console.log(status);
-                       // alert(status);
                 },
             });
 
