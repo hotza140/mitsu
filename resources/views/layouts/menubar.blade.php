@@ -503,12 +503,41 @@
                             </ul>
                             <!-- Air Conditioner-->
 
+                            <!-- Training-->
+                            <ul class="pcoded-item pcoded-left-item">
+                                <!-- Start-->
+                                @if(isset($page)) @if($page=="training") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-bag"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">รายการฝึกอบรม</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                    </a>
 
+                                    <!-- Training -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="training") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/training')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">ข้อมูล</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- Training-->
 
-
-
-
-
+                                    <!-- End-->
+                                </li>
+                            </ul>
+                            <!--Training-->
 
 
                             <br> <br> <br> <br>

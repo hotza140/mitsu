@@ -45,7 +45,7 @@ class BackendController extends Controller
 
      public function forget_pass($id){
         $user=User::where('forgot_code',$id)->first();
-        
+
         return view('forget_pass',[
             'user'=>$user,
             'id'=>$id,
@@ -58,7 +58,7 @@ class BackendController extends Controller
         if($r->pass==$r->pass_check){
             $user->password=Hash::make($r->pass);
             $user->forgot_code=null;
-    
+
             $user->save();
             return redirect()->back()->with('success','Change Password Success!');
         }else{
@@ -66,10 +66,10 @@ class BackendController extends Controller
             ->with('pass_check',$r->pass_check);
         }
     }
-    
 
 
-   
+
+
     public function login_backend(Request $r)
     {
         if (Auth::attempt(['email' => $r->email, 'password' => $r->password])){
@@ -104,10 +104,10 @@ class BackendController extends Controller
     public function verify(){
         return view('auth/verify');
     }
-    
 
 
-   
+
+
     //banner//
     public function banner(){
         $item=banner ::orderby('id','desc')->get();
@@ -123,7 +123,7 @@ class BackendController extends Controller
         $item->titleen=$r->titleen;
         $item->detailth=$r->detailth;
         $item->detailen=$r->detailen;
-		
+
         if($r->picture!=null){
             $picture = $_FILES['picture']['name'];
             $r->picture->move(public_path() . '/img/upload', $picture);
@@ -139,7 +139,7 @@ class BackendController extends Controller
         $item->titleen=$r->titleen;
         $item->detailth=$r->detailth;
         $item->detailen=$r->detailen;
-		
+
         if(isset($r->picture)){
             $path =public_path().'/img/upload/'.$item->picture;
             if(File::exists($path)){
@@ -217,7 +217,7 @@ class BackendController extends Controller
         if($ch!=null){
             return redirect()->back()->with('success','Email Same in Data!');
             }
-        $item->email=$r->email;    
+        $item->email=$r->email;
 
         if($r->password!=null){
             $item->password=Hash::make($r->password);
@@ -242,7 +242,7 @@ class BackendController extends Controller
         if($ch!=null){
             return redirect()->back()->with('success','Email Same in Data!');
             }
-        $item->email=$r->email;    
+        $item->email=$r->email;
 
         if($r->password!=null){
             $item->password=Hash::make($r->password);
@@ -307,13 +307,13 @@ class BackendController extends Controller
             }
 
         $item->name=$r->name;
-        $item->email=$r->email;    
+        $item->email=$r->email;
         if($r->password!=null){
             $item->password=Hash::make($r->password);
         }
 
         $item->type=5;
-		
+
         // if($r->picture!=null){
         //     $picture = $_FILES['picture']['name'];
         //     $r->picture->move(public_path() . '/img/upload', $picture);
@@ -336,7 +336,7 @@ class BackendController extends Controller
         if($r->password!=null){
             $item->password=Hash::make($r->password);
         }
-		
+
         // if(isset($r->picture)){
         //     $path =public_path().'/img/upload/'.$item->picture;
         //     if(File::exists($path)){
@@ -393,17 +393,17 @@ class BackendController extends Controller
             $item=new User();
             $ch=User::where('email',$r->email)->where('type','>',2)->first();
             $item->status=1;
-    
+
             $item->save();
-    
+
             return redirect()->to('/backend/wait_user')->with('success','Sucess!');
-    
+
         }
         public function wait_user_update(Request $r,$id){
             $item=User::where('id',$id)->first();
-    
+
             $item->status=1;
-    
+
             $item->save();
             return redirect()->to('/backend/wait_user')->with('success','Sucess!');
         }
@@ -460,7 +460,7 @@ class BackendController extends Controller
         $item->date=$date;
 
         $item->id_user=$r->id_user;
-		
+
         if($r->picture!=null){
             $picture = $_FILES['picture']['name'];
             $r->picture->move(public_path() . '/img/upload', $picture);
@@ -477,7 +477,7 @@ class BackendController extends Controller
         $item->detailth=$r->detailth;
         $item->desth=$r->desth;
         $item->price=$r->price;
-		
+
         if(isset($r->picture)){
             $path =public_path().'/img/upload/'.$item->picture;
             if(File::exists($path)){
@@ -543,7 +543,7 @@ class BackendController extends Controller
 
     public function history_point_destroy($id){
         $item=history_point::where('id',$id)->first();
-        
+
         $user=User::where('id',$item->id_user)->first();
         if($user!=null){
         $point=$user->point;
@@ -565,7 +565,7 @@ class BackendController extends Controller
         // เรียงลำดับ News
     public function numupdate(Request $request){
         if(isset($request->num)) {
-            $num  = $request->num; 
+            $num  = $request->num;
             for($i=0; $i < count($num);$i++) {
                 $sql = news::where("id",$num[$i])->update([
                     'num'=>$i
@@ -596,11 +596,11 @@ class BackendController extends Controller
     // Choose
 
 
-    
+
 
           //news//
-    
-    
+
+
            public function news(){
             $item=news ::orderby('num','asc')->get();
             return view('backend.news.index',[
@@ -615,11 +615,11 @@ class BackendController extends Controller
             $item->titleen=$r->titleen;
             $item->detailth=$r->detailth;
             $item->detailen=$r->detailen;
-    
+
             $item->desth=$r->desth;
             $item->desen=$r->desen;
             $item->link=$r->link;
-            
+
             if(isset($r->picture)){
                 $path =public_path().'/img/upload/'.$item->picture;
                 if(File::exists($path)){
@@ -628,10 +628,10 @@ class BackendController extends Controller
                 $picture = $_FILES['picture']['name'];
                 $r->picture->move(public_path() . '/img/upload', $picture);
                 $item->picture = $picture;}
-    
+
             $item->save();
             return redirect()->to('/backend/news')->with('success','Sucess!');
-    
+
         }
         public function news_update(Request $r,$id){
             $item=news::where('id',$id)->first();
@@ -639,11 +639,11 @@ class BackendController extends Controller
             $item->titleen=$r->titleen;
             $item->detailth=$r->detailth;
             $item->detailen=$r->detailen;
-    
+
             $item->desth=$r->desth;
             $item->desen=$r->desen;
             $item->link=$r->link;
-            
+
             if(isset($r->picture)){
                 $path =public_path().'/img/upload/'.$item->picture;
                 if(File::exists($path)){
@@ -652,7 +652,7 @@ class BackendController extends Controller
                 $picture = $_FILES['picture']['name'];
                 $r->picture->move(public_path() . '/img/upload', $picture);
                 $item->picture = $picture;}
-    
+
             $item->save();
             return redirect()->to('/backend/news')->with('success','Sucess!');
         }
