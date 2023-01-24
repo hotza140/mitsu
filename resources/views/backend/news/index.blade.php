@@ -47,9 +47,11 @@
 
                                                 </tr>
                                             </thead>
-                                            <tbody class="sortable">
+                                            <!-- <tbody class="sortable"> -->
+                                            <tbody>
                                                 @foreach($item as $key=>$items)
-                                                <tr class="num" id="{{$items->id}}">
+                                                <!-- <tr class="num" id="{{$items->id}}"> -->
+                                                <tr>
                                                     <td>{{$key+1}}</td>
 
                                                     @if($items->choose==0)
