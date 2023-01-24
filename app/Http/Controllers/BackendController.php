@@ -577,6 +577,26 @@ class BackendController extends Controller
     // เรียงลำดับ
 
 
+    // Choose
+      public function news_choose(Request $r){
+        if($r->ajax()){
+        $item=news::where('id',$r->id)->first();
+            if($r->hidden==1){
+                $item->choose=0;
+                $item->save();}
+                else{
+                $item->choose=1;
+                $item->save();}
+        $status='success';
+        }else{
+            $status='not';
+        }
+        return response()->json($status);
+    }
+    // Choose
+
+
+
 
           //news//
 

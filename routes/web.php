@@ -35,6 +35,7 @@ Route::group(['middleware' => ['auth']],function(){
 Route::get('/backend',[App\Http\Controllers\BackendController::class,'welcome']);
 
 Route::post('/open_close',[App\Http\Controllers\BackendController::class,'open_close']);
+Route::post('/news_choose',[App\Http\Controllers\BackendController::class,'news_choose']);
 
 Route::prefix('backend')->group(function(){
     Route::get('banner',[App\Http\Controllers\BackendController::class,'banner']);
@@ -89,8 +90,9 @@ Route::prefix('backend')->group(function(){
     Route::get('wait_user_edit/{id}',[App\Http\Controllers\BackendController::class,'wait_user_edit']);
     Route::post('wait_user_update/{id}',[App\Http\Controllers\BackendController::class,'wait_user_update']);
     //wait_user
-
+    
     //news
+    
     Route::get('news',[App\Http\Controllers\BackendController::class,'news']);
     Route::get('news_destroy/{id}',[App\Http\Controllers\BackendController::class,'news_destroy']);
     Route::get('news_add',[App\Http\Controllers\BackendController::class,'news_add']);

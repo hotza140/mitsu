@@ -38,6 +38,7 @@
                                                 <tr>
 
                                                     <th>#</th>
+                                                    <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
                                                     <th>Title</th>
                                                     <!-- <th>Created_at</th> -->
@@ -50,6 +51,29 @@
                                                 @foreach($item as $key=>$items)
                                                 <tr class="num" id="{{$items->id}}">
                                                     <td>{{$key+1}}</td>
+
+                                                    @if($items->choose==0)
+                                                    <td>
+                                                    <form  class="FormStatus"  >
+                                                            <input type="hidden" name="hidden" value="0" class="hidden ">
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id ">
+                                                            <center><input type="checkbox" class="choose"  ></center>
+                                                    </form>
+                                                            </td>
+                                                            
+                                                         @else
+                                                         <td>
+                                                         <form  class="FormStatus"  >
+                                                            <input type="hidden" name="hidden" value="1" class="hidden ">
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id ">
+                                                            <center><input type="checkbox" class="choose" checked ></center>
+                                                        
+                                                         </form>    
+                                                            </td>       
+                                                           
+                                                         @endif 
+
+
                                                     <td><img src="{{asset('/img/upload/'.$items->picture)}}"
                                                             style="width:200px"></td>
                                                     <td>{{$items->titleen}}</td>
@@ -71,6 +95,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
                                                     <th>Title</th>
                                                     <!-- <th>Created_at</th> -->
@@ -117,6 +142,38 @@
 @endsection
 
 @section('script')
+
+<script>
+    $(document).on('change', '.choose', function () {
+
+        var form_tr = $(this).closest('.FormStatus');
+        var id = form_tr.find('.id').val();
+        var hidden = form_tr.find('.hidden').val();
+        
+            $.ajax({
+                url: "{!!url('/news_choose')!!}",
+                method: "POST",
+                type: "PUT",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id: id,
+                    hidden: hidden,
+                },
+                success: function(status) {
+                    console.log(status);
+                    if(status=='success'){
+                        // alert('save');
+                        // $('#form').submit();
+                    }else{
+                        // alert('error');
+                        // location.reload();
+                    }
+                   
+                },
+            });
+
+    });
+    </script>
 
 
 @endsection
