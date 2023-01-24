@@ -149,7 +149,6 @@
         var form_tr = $(this).closest('.FormStatus');
         var id = form_tr.find('.id').val();
         var hidden = form_tr.find('.hidden').val();
-        alert(id);alert(hidden);
         
             $.ajax({
                 url: "{!!url('/news_choose')!!}",
@@ -163,10 +162,10 @@
                 success: function(status) {
                     console.log(status);
                     if(status=='success'){
-                        alert('save');
+                        // alert('save');
                         // $('#form').submit();
                     }else{
-                        alert('error');
+                        // alert('error');
                         // location.reload();
                     }
                    
