@@ -621,8 +621,6 @@ class ApiController extends Controller
                 ],400);
             }
 
-            $indoor_number = $request->indoor_number;
-
             $air_conditioner_validator = [
                 'indoor_number' => 'required|unique:air_conditioners,indoor_number',
                 'indoor_number' => 'required|unique:air_conditioners,outdoor_number',
