@@ -57,7 +57,6 @@
                                                     @if($items->choose==0)
                                                     <td>
                                                     <form  class="FormStatus"  >
-                                                            <input type="hidden" name="hidden" value="0" class="hidden ">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id ">
                                                             <center><input type="checkbox" class="choose switchery switchery-default"  ></center>
                                                     </form>
@@ -66,7 +65,6 @@
                                                          @else
                                                          <td>
                                                          <form  class="FormStatus"  >
-                                                            <input type="hidden" name="hidden" value="1" class="hidden ">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id ">
                                                             <center><input type="checkbox" class="choose switchery switchery-default" checked ></center>
                                                         
@@ -150,7 +148,6 @@
 
         var form_tr = $(this).closest('.FormStatus');
         var id = form_tr.find('.id').val();
-        var hidden = form_tr.find('.hidden').val();
         
             $.ajax({
                 url: "{!!url('/news_choose')!!}",
@@ -159,7 +156,6 @@
                 data: {
                     "_token": "{{ csrf_token() }}",
                     id: id,
-                    hidden: hidden,
                 },
                 success: function(status) {
                     console.log(status);
