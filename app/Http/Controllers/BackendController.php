@@ -581,7 +581,7 @@ class BackendController extends Controller
       public function news_choose(Request $r){
         if($r->ajax()){
         $item=news::where('id',$r->id)->first();
-            if($r->hidden==1){
+            if($item->choose==1){
                 $item->choose=0;
                 $item->save();}
                 else{

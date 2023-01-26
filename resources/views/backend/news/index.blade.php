@@ -59,7 +59,7 @@
                                                     <form  class="FormStatus"  >
                                                             <input type="hidden" name="hidden" value="0" class="hidden ">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id ">
-                                                            <center><input type="checkbox" class="choose"  ></center>
+                                                            <center><input type="checkbox" class="choose switchery switchery-default"  ></center>
                                                     </form>
                                                             </td>
                                                             
@@ -68,7 +68,7 @@
                                                          <form  class="FormStatus"  >
                                                             <input type="hidden" name="hidden" value="1" class="hidden ">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id ">
-                                                            <center><input type="checkbox" class="choose" checked ></center>
+                                                            <center><input type="checkbox" class="choose switchery switchery-default" checked ></center>
                                                         
                                                          </form>    
                                                             </td>       
