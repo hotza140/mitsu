@@ -594,7 +594,8 @@
     <script  src="{{asset('files/assets/pages/form-validation/form-validation.js')}}"></script>
         <!-- เสริม -->
 
-
+    <!-- Switch component js -->
+    <script  src="{{asset('files/bower_components/switchery/js/switchery.min.js')}}"></script>
 
 
          <!-- Required Jquery -->
