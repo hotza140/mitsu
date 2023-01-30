@@ -38,6 +38,7 @@
                                                     <th>#</th>
                                                     <th>Open/Close</th>
                                                     <th>Code</th>
+                                                    <th>Picture</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
@@ -82,6 +83,11 @@
                                                          @endif 
 
                                                          <td>{{$items->code}}</td>
+                                                         @if($items->picture!=null)
+                                                         <td><img src="{{asset('/img/upload/'.$items->picture)}}" style="width:100px"></td>
+                                                         @else
+                                                         <td><img src="{{asset('/img/no_img.png')}}" style="width:100px"></td>
+                                                         @endif
                                                          <td>{{$items->name}}</td>
                                                          <td>{{$items->email}}</td>
                                                          <td>{{$items->phone}}</td>
@@ -100,6 +106,7 @@
                                                 <th>#</th>
                                                     <th>Open/Close</th>
                                                     <th>Code</th>
+                                                    <th>Picture</th>
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>

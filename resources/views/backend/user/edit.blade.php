@@ -46,13 +46,7 @@
                                         @endif
                                         <!-- -------EDIT---------- -->
 
-                                        @if($item->user_picture!=null)
-                                        <br>
-                                        <center><img src="{{asset('img/upload/'.$item->user_picture)}}" width="200px">
-                                        </center>
-                                        <br>
-                                        @endif
-
+                                        
 
                                         @if($item->picture!=null)
                                         <br>
