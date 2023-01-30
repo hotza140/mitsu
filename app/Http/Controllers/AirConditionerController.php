@@ -41,6 +41,13 @@ class AirConditionerController extends Controller
         return view('backend.conditioner.detail',$data);
     }
 
+    public function details_user($id,$item){
+        $data['detail'] = AirConditioner::where('id',$id)->with('customer')->first();
+        $data['list'] = 'air_conditioner';
+
+        return view('backend.conditioner.detail',$data,$item);
+    }
+
     public function destroy($id){
         $item = Customer::where('id',$id)->first();
         $item->delete();

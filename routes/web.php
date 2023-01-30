@@ -106,6 +106,8 @@ Route::prefix('backend')->group(function(){
     Route::get('air_conditioner/{id}',[App\Http\Controllers\AirConditionerController::class,'details']);
     Route::get('air_conditioner/destroy/{id}',[App\Http\Controllers\AirConditionerController::class,'destroy']);
 
+    Route::get('air_conditioner/{id}/{item}',[App\Http\Controllers\AirConditionerController::class,'details_user']);
+
     // ===== Training =====
     Route::get('training',[App\Http\Controllers\TrainingController::class, 'index']);
     Route::get('training/add',[App\Http\Controllers\TrainingController::class,'add']);
