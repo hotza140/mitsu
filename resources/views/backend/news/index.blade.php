@@ -40,7 +40,7 @@
                                                     <th>#</th>
                                                     <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
-                                                    <th>Title</th>
+                                                    <!-- <th>Title</th> -->
                                                     <!-- <th>Created_at</th> -->
                                                     <th>Updated_at</th>
                                                     <th>Tool</th>
@@ -76,7 +76,7 @@
 
                                                     <td><img src="{{asset('/img/upload/'.$items->picture)}}"
                                                             style="width:200px"></td>
-                                                    <td>{{$items->titleen}}</td>
+                                                    <!-- <td>{{$items->titleen}}</td> -->
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
@@ -97,7 +97,7 @@
                                                     <th>#</th>
                                                     <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
-                                                    <th>Title</th>
+                                                    <!-- <th>Title</th> -->
                                                     <!-- <th>Created_at</th> -->
                                                     <th>Updated_at</th>
                                                     <th>Tool</th>
