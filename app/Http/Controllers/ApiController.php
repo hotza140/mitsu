@@ -773,28 +773,52 @@ class ApiController extends Controller
 
         public function update_customer(Request $request){
             // return $request->all();
-            foreach($request->all() as $key =>$item){
+            $find_customer = Customer::where('id',$request->id)->first();
 
-                if($key == 'full_name'){
-                    $text = $request->full_name;
-                    $arr_name =   array_filter(explode(" ", $text), fn ($value) =>  $value != "");
-                    $arr_name = array_values($arr_name);
-                    // return  $arr_name;
-                    $dataPrepare = [
-                        'full_name' => $arr_name[0].' '.$arr_name[1],
-                        'first_name' => $arr_name[0],
-                        'last_name' => $arr_name[1],
-                    ];
+            if(!empty($find_customer)){
+                foreach($request->all() as $key =>$item){
 
-                    // return $dataPrepare;
-                }else{
-                    $dataPrepare = [
-                        $key => $item,
-                    ];
+                    if($key == 'full_name'){
+                        $text = $request->full_name;
+                        $arr_name =   array_filter(explode(" ", $text), fn ($value) =>  $value != "");
+                        $arr_name = array_values($arr_name);
+                        // return  $arr_name;
+                        $dataPrepare = [
+                            'full_name' => $arr_name[0].' '.$arr_name[1],
+                            'first_name' => $arr_name[0],
+                            'last_name' => $arr_name[1],
+                        ];
+
+                        // return $dataPrepare;
+                    }else{
+                        $dataPrepare = [
+                            $key => $item,
+                        ];
+                    }
+                    $update_customer = Customer::find($request->id)->update($dataPrepare);
+                    $fetch_customer = Customer::where('id',$request->id)->first();
                 }
-                Customer::find($request->id)->update($dataPrepare);
+                //======check update
+                if($update_customer){
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Update Success!',
+                        'result' => [
+                            'customer' => $fetch_customer,
+                        ]
+                    ]);
+                }else{
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Can Not Update!',
+                    ],400);
+                }
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Not found Customer in clound!',
+                ],400);
             }
-
 
         }
 
