@@ -771,6 +771,31 @@ class ApiController extends Controller
 
         }
 
+        public function update_customer(Request $request){
+            // return $request->all();
+            foreach($request->all() as $key =>$item){
+
+                if($key == 'full_name'){
+                    $text = $request->full_name;
+                    $arr_name =   array_filter(explode(" ", $text), fn ($value) =>  $value != "");
+                    $arr_name = array_values($arr_name);
+                    // return  $arr_name;
+                    // $key->full_name = $arr_name[0].' '.$arr_name[1];
+                    // return $key->full_name;
+                    // $key
+                }
+
+
+                $dataPrepare = [
+                    $key => $item,
+                ];
+
+                Customer::find($request->id)->update($dataPrepare);
+            }
+
+
+        }
+
         public function test_database(){
             $test = DB::connection('pgsql')->table('products')->get();
 

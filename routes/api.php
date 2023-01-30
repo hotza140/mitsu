@@ -48,6 +48,8 @@ Route::group([
     Route::get('/api_get_customer/{id}','ApiController@get_customer');
     Route::post('/api_update_airconditioner','ApiController@update_air_conditioner');
 
+    Route::post('/api_update_customer','ApiController@update_customer');
+
     Route::get('/test_database','ApiController@test_database');
 });
 
