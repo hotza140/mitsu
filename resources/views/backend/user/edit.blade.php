@@ -46,11 +46,16 @@
                                         @endif
                                         <!-- -------EDIT---------- -->
 
-                                        
+
 
                                         @if($item->picture!=null)
                                         <br>
                                         <center><img src="{{asset('img/upload/'.$item->picture)}}" width="200px">
+                                        </center>
+                                        <br>
+                                        @else
+                                        <br>
+                                        <center><img src="{{asset('img/no_img.png')}}" width="200px">
                                         </center>
                                         <br>
                                         @endif
