@@ -353,6 +353,7 @@ class BackendController extends Controller
         $item=User::where('id',$id)->first();
         return view('backend.user.edit',[
             'item'=>$item,
+            'id'=>$id,
             'page'=>"user",
             'list'=>"user",
         ]);

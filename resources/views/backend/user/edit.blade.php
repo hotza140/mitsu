@@ -365,7 +365,7 @@
                                                     <td>{{($items->indoor_number)?? '-'}}</td>
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
-                                                    <a href="{{url('/backend/air_conditioner/'.$items->id)}}" class="btn btn-sm btn-primary" style="color:white;"><i class="fa fa-gear"></i>Edit</a>
+                                                    <a href="{{url('/backend/air_conditioner/'.$items->id.'/'.$id)}}" class="btn btn-sm btn-primary" style="color:white;"><i class="fa fa-gear"></i>Edit</a>
                                                         <a href="{{url('/backend/air_conditioner/destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a>
                                                     </td>
                                                 </tr>
