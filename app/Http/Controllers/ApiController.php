@@ -780,16 +780,18 @@ class ApiController extends Controller
                     $arr_name =   array_filter(explode(" ", $text), fn ($value) =>  $value != "");
                     $arr_name = array_values($arr_name);
                     // return  $arr_name;
-                    // $key->full_name = $arr_name[0].' '.$arr_name[1];
-                    // return $key->full_name;
-                    // $key
+                    $dataPrepare = [
+                        'full_name' => $arr_name[0].' '.$arr_name[1],
+                        'first_name' => $arr_name[0],
+                        'last_name' => $arr_name[1],
+                    ];
+
+                    // return $dataPrepare;
+                }else{
+                    $dataPrepare = [
+                        $key => $item,
+                    ];
                 }
-
-
-                $dataPrepare = [
-                    $key => $item,
-                ];
-
                 Customer::find($request->id)->update($dataPrepare);
             }
 
