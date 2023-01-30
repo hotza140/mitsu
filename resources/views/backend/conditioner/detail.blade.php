@@ -79,9 +79,16 @@
                                         </div>
 
                                         <p class="text-right">
-                                            <a href="{{ url('/backend/air_conditioner') }}"
+
+                                        @if(isset($item))
+                                            <a href="{{ url('/backend/user_edit/'.$item->id) }}"
                                                 style="color:white;" class="btn btn-success"> <i
                                                     class="fa fa-share-square-o"></i> Back </a>
+                                                    @else
+                                                    <a href="{{ url('/backend/air_conditioner') }}"
+                                                style="color:white;" class="btn btn-success"> <i
+                                                    class="fa fa-share-square-o"></i> Back </a>
+                                                    @endif
                                             {{-- <button type="submit" class="btn btn-danger " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
                                                     class="fa fa-check-circle-o"></i> Save </button> --}}
