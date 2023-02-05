@@ -683,4 +683,26 @@ class BackendController extends Controller
         //news//
 
 
+        //================ AJAX ===================
+
+        public function get_amphure($id){
+            $province_code = province::where('id',$id)->first();
+            $amphure = amphur::where('province_code',$province_code->code)->get();
+
+            return $amphure;
+        }
+
+        public function get_district($id){
+            $district = district::where('amphure_id',$id)->get();
+
+            return $district;
+        }
+
+        public function get_postcode($id){
+            $district = district::where('id',$id)->first();
+            $postcode = $district->zip_code;
+
+            return $postcode;
+        }
+
 }

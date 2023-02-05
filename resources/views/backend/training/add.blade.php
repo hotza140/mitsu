@@ -8,7 +8,7 @@
                 <!-- Page-header start -->
                 <div class="page-header card">
                     <div class="card-block">
-                        <h5 class="m-b-10">NEWS/ADD</h5>
+                        <h5 class="m-b-10">Training/ADD</h5>
 
                     </div>
                 </div>
@@ -29,25 +29,31 @@
                                         enctype="multipart/form-data">
                                         @csrf
 
-                                        <!-- -------EDIT---------- -->
-                                        @if(isset($item))
-                                        <input type="hidden" name="edit" value="{{$item->id}}">
-                                        @else
-                                        <input type="hidden" name="edit" value="">
-                                        @endif
-                                        <!-- -------EDIT---------- -->
-
                                         <div class="form-group row">
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">name</label>
-                                                <input type="text" name="name" class="form-control" id="name" value="">
+                                                <label class="col-form-label">หัวข้อฝึกอบรม</label>
+                                                <input type="text" name="name" class="form-control" id="name" >
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">วันที่และเวลา</label>
+                                                <input type="datetime-local" name="datetime" class="form-control" id="datetime" >
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">Address</label>
-                                                <textarea class="form-control" name="desth" id="" style="height:150px"></textarea>
+                                                <label class="col-form-label">รายละเอียดการฝึกอบรม</label>
+                                                <textarea class="form-control" name="detail" id="" style="height:150px"></textarea>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">ที่อยู่</label>
+                                                <textarea class="form-control" name="desth" id="" style="height:70px"></textarea>
                                             </div>
                                         </div>
 
@@ -56,11 +62,15 @@
                                                 <label class="col-form-label">จังหวัด</label>
                                                 <select class="form-control" name="province" id="province">
                                                     <option value="">ระบุจังหวัด</option>
+                                                    @foreach ($provinces as $province)
+                                                    <option value="{{$province->id}}">{{$province->name_th}}</option>
+                                                    @endforeach
+
                                                 </select>
                                             </div>
                                             <div class="col-md-6 col-sm-12">
                                                 <label class="col-form-label">อำเภอ</label>
-                                                <select class="form-control" name="amphur" id="amphur">
+                                                <select class="form-control" name="amphure" id="amphure">
                                                     <option value="">ระบุอำเภอ</option>
                                                 </select>
                                             </div>
@@ -75,10 +85,9 @@
                                             </div>
                                             <div class="col-md-6 col-sm-12">
                                                 <label class="col-form-label">เลขไปรษณีย์</label>
-                                                <input type="text" class="form-control">
+                                                <input type="text" id="postcode" name="postcode" class="form-control">
                                             </div>
                                         </div>
-
 
                                         <p class="text-right">
                                             <a href="{{ url('/backend/training') }}" style="color:white;"
@@ -108,6 +117,36 @@
     @endsection
 
     @section('script')
+    <script>
+        $('#province').change(function(){
+            id = $('#province').val();
+            $.get('{{url("fetch_amphure")}}/'+id,function(result){
+                $('#amphure').empty().append('<option value="">ระบุอำเภอ</option>');
+                $('#district').empty().append('<option value="">ระบุตำบล</option>');
+                $('#postcode').val('');
+                $.each(result,function(indexInArray,value){
+                    $('#amphure').append('<option value="'+value.id+'">'+value.name_th+'</option>');
+                });
+            });
+        });
 
+        $('#amphure').change(function(){
+            id = $('#amphure').val();
+            $.get('{{url("fetch_district")}}/'+id,function(result){
+                $('#district').empty().append('<option value="">ระบุตำบล</option>');
+                $('#postcode').val('');
+                $.each(result,function(indexInArray,value){
+                    $('#district').append('<option value="'+value.id+'">'+value.name_th+'</option>');
+                });
+            });
+        });
+
+        $('#district').change(function(){
+            id = $('#district').val();
+            $.get('{{url("fetch_postcode")}}/'+id, function(result){
+                $('#postcode').val(result);
+            });
+        });
+    </script>
 
     @endsection

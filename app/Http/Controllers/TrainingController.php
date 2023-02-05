@@ -24,6 +24,8 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
 
+use App\Models\province;
+
 class TrainingController extends Controller
 {
     public function index(){
@@ -38,6 +40,7 @@ class TrainingController extends Controller
     public function add(){
         $data['page'] = 'training';
         $data['list'] = 'training';
+        $data['provinces'] = province::orderby('id','asc')->get();
         return view('backend.training.add',$data);
     }
 
@@ -52,6 +55,41 @@ class TrainingController extends Controller
         $item = Customer::where('id',$id)->first();
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
+    }
+
+    // Function Insert และ Update
+    public function insert(Request $request)
+    {
+        return $this->store($request,$id=null);
+    }
+    public function update(Request $request, $id=null)
+    {
+        return $this->store($request,$id);
+    }
+
+    public function store(Request $request,$id = null){
+        $province = province::where('id',$request->province)->first();
+        $amphure = amphur::where('id',$request->amphure)->first();
+        $district = district::where('id',$request->district)->first();
+
+        if($id == null){
+            return $request->datetime;
+            return date('Y-m-d H:i', strtotime($request->datetime));
+            $training = new Training;
+            $training->name = $request->name;
+            $training->detail = $request->detail;
+            $training->datetime = $request->datetime;
+            $training->address = $request->adderss.' '.$district->name_th.' '.$amphure->name_th.' '.$province->name_th.' '.$request->postcode;
+            $training->province = $request->province;
+            $training->amphure = $request->amphure;
+            $training->district = $request->district;
+        }else{
+            //
+        }
+
+        if($training->save()){
+            return redirect()->to('/backend/training')->with('success','Sucess!');
+        }
     }
 
 }

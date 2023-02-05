@@ -32,10 +32,10 @@ Route::post('/login_backend',[App\Http\Controllers\BackendController::class,'log
 Route::group(['middleware' => ['auth']],function(){
 
     Route::get('/',[App\Http\Controllers\BackendController::class,'welcome']);
-Route::get('/backend',[App\Http\Controllers\BackendController::class,'welcome']);
+    Route::get('/backend',[App\Http\Controllers\BackendController::class,'welcome']);
 
-Route::post('/open_close',[App\Http\Controllers\BackendController::class,'open_close']);
-Route::post('/news_choose',[App\Http\Controllers\BackendController::class,'news_choose']);
+    Route::post('/open_close',[App\Http\Controllers\BackendController::class,'open_close']);
+    Route::post('/news_choose',[App\Http\Controllers\BackendController::class,'news_choose']);
 
 Route::prefix('backend')->group(function(){
     Route::get('banner',[App\Http\Controllers\BackendController::class,'banner']);
@@ -90,9 +90,9 @@ Route::prefix('backend')->group(function(){
     Route::get('wait_user_edit/{id}',[App\Http\Controllers\BackendController::class,'wait_user_edit']);
     Route::post('wait_user_update/{id}',[App\Http\Controllers\BackendController::class,'wait_user_update']);
     //wait_user
-    
+
     //news
-    
+
     Route::get('news',[App\Http\Controllers\BackendController::class,'news']);
     Route::get('news_destroy/{id}',[App\Http\Controllers\BackendController::class,'news_destroy']);
     Route::get('news_add',[App\Http\Controllers\BackendController::class,'news_add']);
@@ -111,10 +111,13 @@ Route::prefix('backend')->group(function(){
     // ===== Training =====
     Route::get('training',[App\Http\Controllers\TrainingController::class, 'index']);
     Route::get('training/add',[App\Http\Controllers\TrainingController::class,'add']);
-    Route::get('training/create',[App\Http\Controllers\TrainingController::class,'create']);
+    Route::post('training/create',[App\Http\Controllers\TrainingController::class,'insert']);
 });
 
-
+//Ajax
+Route::get('fetch_amphure/{id}',[App\Http\Controllers\BackendController::class, 'get_amphure']);
+Route::get('fetch_district/{id}',[App\Http\Controllers\BackendController::class, 'get_district']);
+Route::get('fetch_postcode/{id}',[App\Http\Controllers\BackendController::class, 'get_postcode']);
 
 // เรียงลำดับ news
 Route::post('/numupdate',[App\Http\Controllers\BackendController::class,'numupdate'])->name('numupdate');
