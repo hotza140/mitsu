@@ -17,6 +17,8 @@ use PDF;
 use App\Models\Customer;
 use App\Models\AirConditioner;
 use App\Models\Training;
+use App\Models\TrainingTurn;
+use App\Models\TrainingList;
 use App\Models\province;
 use App\Models\amphur;
 use App\Models\district;
@@ -81,12 +83,27 @@ class TrainingController extends Controller
             $training->status = $request->status;
             $training->detail = $request->detail;
             $training->date_time = $request->datetime;
-            $training->address = $request->adderss.' '.$district->name_th.' '.$amphure->name_th.' '.$province->name_th.' '.$request->postcode;
+            $training->address = $request->address;
             $training->province = $request->province;
             $training->amphure = $request->amphure;
             $training->district = $request->district;
+
+            $training->save();
+
+            $turn = new TrainingTurn;
+            $turn->training_id = $training->id;
+            $turn->turn = 1;
+            $turn->save();
         }else{
-            //
+            $training = Training::find($id);
+            $training->name = $request->name;
+            $training->status = $request->status;
+            $training->detail = $request->detail;
+            $training->date_time = $request->datetime;
+            $training->address = $request->address;
+            $training->province = $request->province;
+            $training->amphure = $request->amphure;
+            $training->district = $request->district;
         }
 
         if($training->save()){

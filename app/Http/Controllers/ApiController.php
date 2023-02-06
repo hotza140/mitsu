@@ -826,8 +826,18 @@ class ApiController extends Controller
         //================== Traing
 
         public function get_traing_list(){
-            $data = Traning::get();
+            $data = Traning::where('status','on')->get();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success',
+                'result' => [
+                    'data' => $data,
+                ],
+            ]);
         }
+
+        // public function 
 
         public function test_database(){
             $test = DB::connection('pgsql')->table('products')->get();

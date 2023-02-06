@@ -53,6 +53,9 @@
                                                     <td>{{$items->date_time}}</td>
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
+                                                        {{-- <a href="{{url('/backend/training/turn/'.$items->id)}}"
+                                                            class="btn btn-sm btn-success" style="color:white;"><i
+                                                                class="fa fa-sliders"></i>รอบที่เปิด</a> --}}
                                                         <a href="{{url('/backend/training/edit/'.$items->id)}}"
                                                             class="btn btn-sm btn-primary" style="color:white;"><i
                                                                 class="fa fa-gear"></i>Edit</a>

@@ -117,14 +117,14 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">รายละเอียดการฝึกอบรม</label>
-                                                <textarea class="form-control" name="detail" id="" style="height:150px" required=""></textarea>
+                                                <textarea class="form-control" name="detail" id="detail" style="height:150px" required=""></textarea>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">ที่อยู่</label>
-                                                <textarea class="form-control" name="desth" id="" style="height:70px" required=""></textarea>
+                                                <textarea class="form-control" name="address" id="address" style="height:70px" required=""></textarea>
                                             </div>
                                         </div>
 

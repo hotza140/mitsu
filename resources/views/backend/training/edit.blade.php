@@ -81,111 +81,151 @@
                 <!-- Page-header end -->
 
                 <!-- Page body start -->
-                <div class="page-body">
-                    <div class="row">
-                        <div class="col-sm-12">
-                            <!-- Basic Form Inputs card start -->
-                            <div class="card">
-                                <div class="card-header">
+                <div id="faq" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="detail-training" style="height: 56px;">
+                            <h1 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#faq" href="#detailtraining" aria-expanded="false" aria-controls="detailtraining">
+                                รายละเอียดฝึกอบรม
+                                </a>
+                            </h1>
+                          </div>
+                        <div class="page-body panel-collapse collapse" id="detailtraining" role="tabpanel" aria-labelledby="detail-training">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- Basic Form Inputs card start -->
+                                    <div class="card">
+                                        <div class="card-header">
 
+                                        </div>
+
+                                        <div class="card-block">
+
+                                            <form method="post" id="" action="{{ url('/backend/training/update/'.$detail->id) }}"
+                                                enctype="multipart/form-data">
+                                                @csrf
+
+
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="col-form-label">หัวข้อฝึกอบรม</label>
+                                                        <input type="text" name="name" class="form-control" id="name" value="{{$detail->name}}" required="">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-3">
+                                                        <label class="col-form-label">สถานะเปิดอบรม</label><br>
+                                                        <label class="switch">
+                                                            <input type="checkbox" name="status" id="status" @if($detail->status == 'on') checked @endif>
+                                                            <span class="slider round"></span>
+                                                        </label>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="col-form-label">วันที่และเวลา</label>
+                                                        <input type="datetime-local" name="datetime" class="form-control" id="datetime" required="" value="{{$detail->date_time}}">
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-form-label">รายละเอียดการฝึกอบรม</label>
+                                                        <textarea class="form-control" name="detail" id="" style="height:150px" required="">{{$detail->detail}}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-form-label">ที่อยู่</label>
+                                                        <textarea class="form-control" name="desth" id="" style="height:70px" required="">{{$detail->address}}</textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <label class="col-form-label">จังหวัด</label>
+                                                        <select class="form-control" name="province" id="province" required="">
+                                                            <option value="">ระบุจังหวัด</option>
+                                                            @foreach ($provinces as $province)
+                                                            <option value="{{$province->id}}" @if($province->id == $detail->province) selected @endif >{{$province->name_th}}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <label class="col-form-label">อำเภอ</label>
+                                                        <select class="form-control" name="amphure" id="amphure" required="">
+                                                            <option value="">ระบุอำเภอ</option>
+                                                            @foreach ($amphures as $amphure)
+                                                            <option value="{{$amphure->id}}" @if($amphure->id == $detail->amphure) selected @endif>{{$amphure->name_th}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <label class="col-form-label">ตำบล</label>
+                                                        <select class="form-control" name="district" id="district" required="">
+                                                            <option value="">ระบุตำบล</option>
+                                                            @foreach ($districts as $district)
+                                                            <option value="{{$district->id}}" @if($district->id == $detail->district) selected @endif>{{$district->name_th}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <label class="col-form-label">เลขไปรษณีย์</label>
+                                                        <input type="text" id="postcode" name="postcode" class="form-control" required="" value="{{$zipcode->zip_code}}">
+                                                    </div>
+                                                </div>
+
+                                                <p class="text-right">
+                                                    <a href="{{ url('/backend/training') }}" style="color:white;"
+                                                        class="btn btn-success"> <i class="fa fa-share-square-o"></i> Back </a>
+                                                    <button type="submit" class="btn btn-danger " style="color:white;"
+                                                        onclick="return confirm('Confirm!');"> <i
+                                                            class="fa fa-check-circle-o"></i> Save </button>
+                                                </p>
+
+                                            </form>
+                                        </div>
+
+                                    <!-- Input Alignment card end -->
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
 
-                                <div class="card-block">
+                <div id="faq" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="training-turn" style="height: 56px;">
+                            <h1 class="panel-title">
+                                <a data-toggle="collapse" data-parent="#faq" href="#trainingturn" aria-expanded="false" aria-controls="trainingturn">
+                                การเปิดรอบฝึกอบรม
+                                </a>
+                            </h1>
+                          </div>
+                        <div class="page-body panel-collapse collapse" id="trainingturn" role="tabpanel" aria-labelledby="training-turn">
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- Basic Form Inputs card start -->
+                                    <div class="card">
+                                        <div class="card-header">
 
-                                    <form method="post" id="" action="{{ url('/backend/training/update/'.$detail->id) }}"
-                                        enctype="multipart/form-data">
-                                        @csrf
-
-
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">หัวข้อฝึกอบรม</label>
-                                                <input type="text" name="name" class="form-control" id="name" value="{{$detail->name}}" required="">
-                                            </div>
                                         </div>
 
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">สถานะเปิดอบรม</label><br>
-                                                <label class="switch">
-                                                    <input type="checkbox" name="status" id="status" @if($detail->status == 'on') checked @endif>
-                                                     <span class="slider round"></span>
-                                                </label>
-                                            </div>
+                                        <div class="card-block">
+                                            {{--  --}}
                                         </div>
 
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="col-form-label">วันที่และเวลา</label>
-                                                <input type="datetime-local" name="datetime" class="form-control" id="datetime" required="" value="{{$detail->date_time}}">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">รายละเอียดการฝึกอบรม</label>
-                                                <textarea class="form-control" name="detail" id="" style="height:150px" required="">{{$detail->detail}}</textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">ที่อยู่</label>
-                                                <textarea class="form-control" name="desth" id="" style="height:70px" required="">{{$detail->address}}</textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">จังหวัด</label>
-                                                <select class="form-control" name="province" id="province" required="">
-                                                    <option value="">ระบุจังหวัด</option>
-                                                    @foreach ($provinces as $province)
-                                                    <option value="{{$province->id}}" @if($province->id == $detail->province) selected @endif >{{$province->name_th}}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">อำเภอ</label>
-                                                <select class="form-control" name="amphure" id="amphure" required="">
-                                                    <option value="">ระบุอำเภอ</option>
-                                                    @foreach ($amphures as $amphure)
-                                                    <option value="{{$amphure->id}}" @if($amphure->id == $detail->amphure) selected @endif>{{$amphure->name_th}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">ตำบล</label>
-                                                <select class="form-control" name="district" id="district" required="">
-                                                    <option value="">ระบุตำบล</option>
-                                                    @foreach ($districts as $district)
-                                                    <option value="{{$district->id}}" @if($district->id == $detail->district) selected @endif>{{$district->name_th}}</option>
-                                                    @endforeach
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">เลขไปรษณีย์</label>
-                                                <input type="text" id="postcode" name="postcode" class="form-control" required="" value="{{$zipcode->zip_code}}">
-                                            </div>
-                                        </div>
-
-                                        <p class="text-right">
-                                            <a href="{{ url('/backend/training') }}" style="color:white;"
-                                                class="btn btn-success"> <i class="fa fa-share-square-o"></i> Back </a>
-                                            <button type="submit" class="btn btn-danger " style="color:white;"
-                                                onclick="return confirm('Confirm!');"> <i
-                                                    class="fa fa-check-circle-o"></i> Save </button>
-                                        </p>
-
-                                    </form>
+                                    <!-- Input Alignment card end -->
                                 </div>
-
-                            <!-- Input Alignment card end -->
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -233,3 +273,4 @@
         });
     </script>
     @endsection
+
