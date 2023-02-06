@@ -36,44 +36,41 @@
                                         <table id="simpletable" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
-
                                                     <th>#</th>
-                                                    <th>Picture</th>
-                                                    <th>Title</th>
-                                                    <!-- <th>Created_at</th> -->
+                                                    <th>name</th>
+                                                    <th>status</th>
+                                                    <th>date</th>
                                                     <th>Updated_at</th>
                                                     <th>Tool</th>
-
                                                 </tr>
                                             </thead>
                                             <tbody class="sortable">
-                                                {{-- @foreach($item as $key=>$items)
+                                                @foreach($item as $key=>$items)
                                                 <tr class="num" id="{{$items->id}}">
                                                     <td>{{$key+1}}</td>
-                                                    <td><img src="{{asset('/img/upload/'.$items->picture)}}"
-                                                            style="width:200px"></td>
-                                                    <td>{{$items->titleen}}</td>
-                                                    <!-- <td>{{$items->created_at}}</td> -->
+                                                    <td>{{$items->name}}</td>
+                                                    <td>{{$items->status}}</td>
+                                                    <td>{{$items->date_time}}</td>
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
-                                                        <a href="{{url('/backend/news_edit/'.$items->id)}}"
+                                                        <a href="{{url('/backend/training/edit/'.$items->id)}}"
                                                             class="btn btn-sm btn-primary" style="color:white;"><i
                                                                 class="fa fa-gear"></i>Edit</a>
-                                                        <a href="{{url('/backend/news_destroy/'.$items->id)}}"
+                                                        <a href="{{url('/backend/training/destroy/'.$items->id)}}"
                                                             class="btn btn-sm btn-danger"
                                                             onclick="javascript:return confirm('You Want To Delete?')"
                                                             style="color:white;"><i class="fa fa-trash"></i>Delete</a>
                                                     </td>
                                                 </tr>
-                                                @endforeach --}}
+                                                @endforeach
 
                                             </tbody>
                                             <tfoot>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Picture</th>
-                                                    <th>Title</th>
-                                                    <!-- <th>Created_at</th> -->
+                                                    <th>name</th>
+                                                    <th>status</th>
+                                                    <th>date</th>
                                                     <th>Updated_at</th>
                                                     <th>Tool</th>
                                                 </tr>

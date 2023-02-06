@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Training extends Model
 {
-    protected $table="training";
+    protected $table="trainings";
     protected $primarykey="id";
 
     public function province()

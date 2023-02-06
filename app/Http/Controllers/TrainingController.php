@@ -17,6 +17,9 @@ use PDF;
 use App\Models\Customer;
 use App\Models\AirConditioner;
 use App\Models\Training;
+use App\Models\province;
+use App\Models\amphur;
+use App\Models\district;
 
 use App\Mail\Forget_email;
 use Illuminate\Support\Facades\Mail;
@@ -24,15 +27,11 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
 
-use App\Models\province;
-
 class TrainingController extends Controller
 {
     public function index(){
         $data['page'] = 'training';
-
-        $data['item'] = AirConditioner::orderby('id','asc')->with('customer')->get();
-        // return $data['item'];
+        $data['item'] = Training::orderby('id','asc')->get();
         $data['list'] = 'training';
         return view('backend.training.index',$data);
     }
@@ -47,12 +46,16 @@ class TrainingController extends Controller
     public function edit($id){
         $data['detail'] = Training::where('id',$id)->first();
         $data['list'] = 'training';
+        $data['provinces'] = province::orderby('id','asc')->get();
+        $data['amphures'] = amphur::orderby('id','asc')->get();
+        $data['districts'] = district::orderby('id','asc')->get();
+        $data['zipcode'] = district::where('id',$data['detail']->district)->first();
 
         return view('backend.training.edit',$data);
     }
 
     public function destroy($id){
-        $item = Customer::where('id',$id)->first();
+        $item = Training::where('id',$id)->first();
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
@@ -73,12 +76,11 @@ class TrainingController extends Controller
         $district = district::where('id',$request->district)->first();
 
         if($id == null){
-            return $request->datetime;
-            return date('Y-m-d H:i', strtotime($request->datetime));
             $training = new Training;
             $training->name = $request->name;
+            $training->status = $request->status;
             $training->detail = $request->detail;
-            $training->datetime = $request->datetime;
+            $training->date_time = $request->datetime;
             $training->address = $request->adderss.' '.$district->name_th.' '.$amphure->name_th.' '.$province->name_th.' '.$request->postcode;
             $training->province = $request->province;
             $training->amphure = $request->amphure;

@@ -112,6 +112,9 @@ Route::prefix('backend')->group(function(){
     Route::get('training',[App\Http\Controllers\TrainingController::class, 'index']);
     Route::get('training/add',[App\Http\Controllers\TrainingController::class,'add']);
     Route::post('training/create',[App\Http\Controllers\TrainingController::class,'insert']);
+    Route::get('training/edit/{id}',[App\Http\Controllers\TrainingController::class,'edit']);
+    Route::post('training/update/{id}',[App\Http\Controllers\TrainingController::class,'update']);
+    Route::get('training/destroy',[App\Http\Controllers\TrainingController::class,'destroy']);
 });
 
 //Ajax
