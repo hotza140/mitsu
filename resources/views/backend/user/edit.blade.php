@@ -432,12 +432,12 @@
                                                     @foreach($data as $key=>$items)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
-                                                        <td>{{$items->user->name)?? '-'}}</td>
+                                                        <td>{{$items->user->name)}}</td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$items->item->picture)}}" style="width:100px">
                                                         </td>
-                                                        <td>{{($items->item->titleen)?? '-'}}</td>
-                                                        <td>{{($items->item->point)?? '-'}}</td>
+                                                        <td>{{($items->item->titleen)}}</td>
+                                                        <td>{{($items->item->point)}}</td>
                                                         <td>{{$items->date}}</td>
                                                     </tr>
                                                     @endforeach
