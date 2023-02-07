@@ -715,7 +715,7 @@ class BackendController extends Controller
 
 
             public function item_point(){
-                $item=item_point ::orderby('num','asc')->get();
+                $item=item_point ::orderby('id','desc')->get();
                 return view('backend.item_point.index',[
                     'item'=>$item,
                     'page'=>"item_point",
