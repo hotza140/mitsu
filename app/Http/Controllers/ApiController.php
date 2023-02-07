@@ -23,6 +23,7 @@ use App\Models\news;
 use App\Models\Customer;
 use App\Models\AirConditioner;
 use App\Models\Training;
+use App\Models\item_point;
 
 use App\Models\province;
 use App\Models\district;
@@ -506,6 +507,43 @@ class ApiController extends Controller
 
         }
         ///NEWS///
+
+
+            ///item_point///
+            public function api_item_point(Request $r){
+                    $item_point=item_point::orderby('id','desc')->paginate(9);
+    
+                    $message="Success!";
+                    $status=true;
+                    return response()->json([
+                        'results'=>[
+                            'item_point'=>$item_point,
+                        ],
+                        'status' =>  $status,
+                        'message' =>  $message,
+                        'url_picture' => $this->prefix,
+                    ]);
+    
+            }
+            ///item_point///
+
+               ///item_point_detail///
+               public function api_item_point_detail(Request $r){
+                $item_point=item_point::where('id',$r->id)->orderby('id','desc')->first();
+
+                $message="Success!";
+                $status=true;
+                return response()->json([
+                    'results'=>[
+                        'item_point'=>$item_point,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+
+        }
+        ///item_point_detail///
 
 
 
