@@ -549,6 +549,83 @@ class ApiController extends Controller
 
 
 
+          ///Buy Item ///
+          public function api_buy_item(Request $r){
+            $user=User::where('id',$r->id_user)->orderby('id','desc')->first();
+            $item=item_point::where('id',$r->id_item)->orderby('id','desc')->first();
+
+            if($user==null){
+                $message="User Null!";
+                $status=false;
+                return response()->json([
+                    'results'=>[
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ],400);
+            }
+            if($item==null){
+                $message="Item Null!";
+                $status=false;
+                return response()->json([
+                    'results'=>[
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ],400);
+            }
+
+            $cu=$user->point;
+            $ci=$item->point;
+            if($cu>=$ci){
+                $sum=$cu-$ci;
+                $user->point=$sum;
+                $user->save();
+
+                $his = new buy_point();
+                $his->id_user=$user->id;
+                $his->id_item=$item->id;
+                $his->old_point=$cu;
+                $his->buy_point=$ci;
+                $his->bl_point=$sum;
+                $his->date=date('Y-m-d H:i:s');
+                $his->save();
+
+
+                $message="Success!";
+                $status=true;
+                return response()->json([
+                    'results'=>[
+                        'item'=>$item,
+                        'user'=>$user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+            }else{
+                $message="Fail!";
+                $status=false;
+                return response()->json([
+                    'results'=>[
+                        'item'=>$item,
+                        'user'=>$user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ],400);
+            }
+
+          
+
+    }
+     ///Buy Item ///
+
+
+
             ///province///
             public function api_province(){
 
