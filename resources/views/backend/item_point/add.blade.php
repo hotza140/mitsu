@@ -66,7 +66,7 @@
 
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-4">
                                                 <label class="col-form-label">Point</label>
                                                 <input type="number" name="point" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->point;} ?>">
@@ -74,7 +74,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-4">
                                                 <label class="col-form-label">วันที่เริ่มต้น</label>
                                                 <input type="datetime-local" name="date_start" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->date_start;} ?>">
@@ -82,7 +82,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-4">
                                                 <label class="col-form-label">วันที่สิ้นสุด</label>
                                                 <input type="datetime-local" name="date_end" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->date_end;} ?>">
