@@ -425,6 +425,7 @@
                                                         <th>Title</th>
                                                         <th>Point</th>
                                                         <th>Date</th>
+                                                        <th>Status</th>
 
                                                     </tr>
                                                 </thead>
@@ -439,6 +440,11 @@
                                                         <td>{{($itts->item->titleen)?? '-'}}</td>
                                                         <td>{{($itts->item->point)?? '-'}}</td>
                                                         <td>{{$itts->date}}</td>
+                                                        @if($itts->status==0)
+                                                        <td style="color: red;">กำลังรอยืนยัน</td>
+                                                        @else
+                                                        <td style="color: grey;">สำเร็จ</td>
+                                                        @endif
                                                     </tr>
                                                     @endforeach
 
@@ -451,6 +457,7 @@
                                                         <th>Title</th>
                                                         <th>Point</th>
                                                         <th>Date</th>
+                                                        <th>Status</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
