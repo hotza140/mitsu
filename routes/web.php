@@ -36,6 +36,8 @@ Route::group(['middleware' => ['auth']],function(){
 
     Route::post('/open_close',[App\Http\Controllers\BackendController::class,'open_close']);
     Route::post('/news_choose',[App\Http\Controllers\BackendController::class,'news_choose']);
+    Route::post('/item_point_choose',[App\Http\Controllers\BackendController::class,'item_point_choose']);
+
 
 Route::prefix('backend')->group(function(){
     Route::get('banner',[App\Http\Controllers\BackendController::class,'banner']);
