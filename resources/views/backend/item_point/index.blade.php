@@ -40,7 +40,7 @@
                                                     <th>#</th>
                                                     <th>Picture</th>
                                                     <th>Title</th>
-                                                    <th>Point</th>
+                                                    <th style="color: gold;">Point</th>
                                                     <th>วันที่เริ่มต้น</th>
                                                     <th>วันที่สิ้นสุด</th>
                                                     <!-- <th>Created_at</th> -->
@@ -58,7 +58,7 @@
                                                     <td><img src="{{asset('/img/upload/'.$items->picture)}}"
                                                             style="width:200px"></td>
                                                     <td>{{$items->titleen}}</td>
-                                                    <td style="color: gold;">{{$items->point}}</td>
+                                                    <td>{{$items->point}}</td>
                                                     <td>{{$items->date_start}}</td>
                                                     <td>{{$items->date_end}}</td>
                                                     <!-- <td>{{$items->created_at}}</td> -->
