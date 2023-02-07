@@ -58,7 +58,13 @@
     .slider.round:before {
       border-radius: 50%;
     }
+
+    .btn-turn{
+        margin: o 5px 0 5px;
+    }
 </style>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 @extends('layouts.menubar')
 <!-- <style>
     .atm {
@@ -105,7 +111,7 @@
                                                 enctype="multipart/form-data">
                                                 @csrf
 
-
+                                                <input type="hidden" name="training_id" id="training-id" value="{{$detail->id}}">
 
                                                 <div class="form-group row">
                                                     <div class="col-sm-6">
@@ -214,13 +220,27 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <!-- Basic Form Inputs card start -->
+
+                                    {{-- <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> --}}
+
                                     <div class="card">
                                         <div class="card-header">
 
                                         </div>
 
                                         <div class="card-block">
-                                            {{--  --}}
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <button type="button" id="add-traingturn" class="btn btn-success"><i class="fa fa-plus"></i> เพิ่มรอบ</button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12" id="training-turn">
+                                                    @foreach ($detail->trainingturn as $turn)
+                                                    <button type="button" class="btn btn-default btn-turn" rel="{{$turn->id}}">รอบที่ {{$turn->turn}}</button>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
 
                                     <!-- Input Alignment card end -->
@@ -237,11 +257,106 @@
         </div>
     </div>
 
+    {{-- ======= modal ======= --}}
+    <div class="modal" id="training-list" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalLabelLarge">รายชื่อผู้เข้าร่วมอบรม</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="dt-responsive table-responsive">
+                        <table class="table table-striped table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อ - นามสกุล</th>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <th>สังกัดร้าน</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sort-data">
+                                {{--  --}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
 
     @endsection
 
     @section('script')
+
     <script>
+
+        $('#add-traingturn').click(function(){
+            id = $('#training-id').val();
+            $.ajax({
+                type: 'post',
+                url: '{{url("backend/training/create-turn")}}',
+                data: {
+                    '_token': '{{ csrf_token() }}',
+                    'id' : id,
+                },
+                dataType: 'json',
+                success:function(response){
+                    Swal.fire({
+                        title: "สำเร็จ",
+                        text: "ระบบได้ทำการเพิ่มรอบอบรม",
+                        icon: "success",
+                        allowOutsideClick: false,
+                    });
+                    console.log(response);
+                    $('#training-turn').empty();
+                    $.each(response,function(indexArray,value){
+                        $('#training-turn').append('<button type="button" class="btn btn-default btn-turn" rel="'+value.id+'">รอบที่ '+value.turn+'</button>');
+                    });
+                },
+            });
+        });
+
+        $('.btn-turn').click(function(){
+            turn_id = $(this).attr("rel");
+            id = $('#training-id').val();
+            console.log(turn_id,id)
+            $.ajax({
+                type: 'get',
+                url: "{{url('backend/training/get_list/"+id+"/"+turn_id+"')}}",
+                cache: false,
+                processdata: false,
+                contenttype: false,
+                success:function(response){
+                    console.log(response);
+                    $('#sort-data').empty();
+                    if(response != null){
+                        $.each(response,function(indexArray,data){
+                            $('#sort-data').append(
+                                '<tr>'+
+                                    '<td>'+data.full_name+'</td>'+
+                                    '<td>'+data.phone+'</td>'+
+                                    '<td>'+data.agency+'</td>'+
+                                '</tr>'
+                            );
+                        });
+                    }else{
+                        $('#sort-data').append('<tr><td>NuLL</td></tr>');
+                    }
+                    $('#training-list').css('display','block');
+                },
+            });
+        });
+
+        $('.close').click(function(){
+            $('#training-list').hide();
+        });
+
         $('#province').change(function(){
             id = $('#province').val();
             $.get('{{url("fetch_amphure")}}/'+id,function(result){

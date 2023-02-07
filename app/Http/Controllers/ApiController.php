@@ -25,6 +25,8 @@ use App\Models\AirConditioner;
 use App\Models\Training;
 use App\Models\item_point;
 use App\Models\buy_point;
+use App\Models\TrainingTurn;
+use App\Models\TrainingList;
 
 use App\Models\province;
 use App\Models\district;
@@ -514,7 +516,7 @@ class ApiController extends Controller
             public function api_item_point(Request $r){
                     $item_point=item_point::where('choose',0)->orderby('id','desc')->paginate(9);
                     $item_point=item_point::where('choose',1)->orderby('id','desc')->get();
-    
+
                     $message="Success!";
                     $status=true;
                     return response()->json([
@@ -525,7 +527,7 @@ class ApiController extends Controller
                         'message' =>  $message,
                         'url_picture' => $this->prefix,
                     ]);
-    
+
             }
             ///item_point///
 
@@ -619,7 +621,7 @@ class ApiController extends Controller
                 ],400);
             }
 
-          
+
 
     }
      ///Buy Item ///
@@ -954,7 +956,85 @@ class ApiController extends Controller
             ]);
         }
 
-        // public function 
+        public function training_detail($id){
+            $max_turn = TrainingTurn::where('turn','desc')->first();
+            $data = Training::where('id', $id)->with('traininglist','trainingturn')
+            ->wherehas('traininglist','turn_id',$max_turn->id)->first();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success',
+                'result' => [
+                    'data' => $data,
+                ],
+            ]);
+        }
+
+        public function book_training(Request $request, $id=null){
+            if($id!=null){
+                $training = Training::where('id',$id)->first();
+
+                //check status
+                if($training->status == 'off'){
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'The Training is close',
+                    ],400);
+                }
+
+                $user_training_validate = [
+                    'first_name' => 'required',
+                    'last_name' => 'required',
+                    'phone' => 'required',
+                    'agency' => 'required'
+                ];
+
+                $error_validator = [
+                    'first_name:required' => 'กรุณากรอกข้อมูล',
+                    'last_name:required' => 'กรุณากรอกข้อมูล',
+                    'phone:required' => 'กรุณากรอกข้อมูล',
+                    'agency:required' => 'กรุณากรอกข้อมูล'
+                ];
+
+                $validator = Validator::make(
+                    $request->all(),
+                    $user_training_validate,
+                    $error_validator
+                );
+
+                if($validator->fails()){
+                    return response()->json([
+                        'status' => false,
+                        'error' => $validator->errors(),
+                    ],400);
+                }
+
+                //check turn
+                $get_turn_now = TrainingTurn::orderby('turn','desc')->first();
+                if(!empty($get_turn_now)){
+                    $user = new TrainingList;
+                    $user->first_name = $request->first_name;
+                    $user->last_name = $request->last_name;
+                    $user->full_name = $request->first_name.' '.$request->last_name;
+                    $user->phone = $request->phone;
+                    $user->agency = $request->agency;
+
+                    $user->training_id = $id;
+                    $user->turn_id = $get_turn_now->id;
+                    $user->save();
+                }
+
+            }else{
+                $status = false;
+                $message = 'Error For Create';
+
+                return response()->json([
+                    'status' => $status,
+                    'message' => $message,
+                ],400);
+            }
+
+        }
 
         public function test_database(){
             $test = DB::connection('pgsql')->table('products')->get();
