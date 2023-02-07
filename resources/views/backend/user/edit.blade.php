@@ -399,7 +399,7 @@
 
 
                     <!-- --------------------- -->
-                    <?php  $data = App\Models\buy_point::orderby('id','asc')->with('item')->with('user')->get();
+                    <?php  $itt = App\Models\buy_point::orderby('id','asc')->with('item')->with('user')->get();
                     ?>
                     <div class="page-body">
                         <div class="row">
@@ -409,7 +409,7 @@
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10">รายการเครื่องปรับอากาศ</h3>
+                                            <h3 class="m-b-10">ประวัติการแลกเปลี่ยน</h3>
                                         </strong>
 
                                     </div>
@@ -429,16 +429,16 @@
                                                     </tr>
                                                 </thead>
                                                 <tbody>
-                                                    @foreach($data as $key=>$items)
+                                                    @foreach($itt as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
-                                                        <td>{{$items->user->name)}}</td>
+                                                        <td>{{($itts->name)?? '-'}}</td>
                                                         <td>
-                                                        <img src="{{asset('/img/upload/'.$items->item->picture)}}" style="width:100px">
+                                                        <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
-                                                        <td>{{($items->item->titleen)}}</td>
-                                                        <td>{{($items->item->point)}}</td>
-                                                        <td>{{$items->date}}</td>
+                                                        <td>{{($itts->item->titleen)?? '-'}}</td>
+                                                        <td>{{($itts->item->point)?? '-'}}</td>
+                                                        <td>{{$itts->date}}</td>
                                                     </tr>
                                                     @endforeach
 
