@@ -540,6 +540,52 @@
                             <!--Training-->
 
 
+
+                               <!-- item_point-->
+                               <ul class="pcoded-item pcoded-left-item">
+                                <!-- Start-->
+                                @if(isset($page)) @if($page=="item_point") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">จัดการ Item Point</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                    </a>
+
+                                    <!-- item_point -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="item_point") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/item_point')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Item</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- item_point -->
+
+                                    <!-- End-->
+                                </li>
+                            </ul>
+                            <!-- item_point-->
+
+
+
+
+
+
+
+
+
+
                             <br> <br> <br> <br>
                         </div>
                     </nav>

@@ -19,10 +19,12 @@ use App\Models\banner;
 use App\Models\product;
 use App\Models\history_point;
 use App\Models\news;
+use App\Models\item_point;
 
 use App\Models\province;
 use App\Models\district;
 use App\Models\amphur;
+
 
 use App\Mail\Forget_email;
 use Illuminate\Support\Facades\Mail;
@@ -704,5 +706,94 @@ class BackendController extends Controller
 
             return $postcode;
         }
+
+
+
+
+
+            //item_point//
+
+
+            public function item_point(){
+                $item=item_point ::orderby('num','asc')->get();
+                return view('backend.item_point.index',[
+                    'item'=>$item,
+                    'page'=>"item_point",
+                    'list'=>"item_point",
+                ]);
+            }
+            public function item_point_store(Request $r){
+                $item=new item_point();
+                $item->titleth=$r->titleth;
+                $item->titleen=$r->titleen;
+                $item->detailth=$r->detailth;
+                $item->detailen=$r->detailen;
+    
+                $item->desth=$r->desth;
+                $item->desen=$r->desen;
+                $item->point=$r->point;
+    
+                if(isset($r->picture)){
+                    $path =public_path().'/img/upload/'.$item->picture;
+                    if(File::exists($path)){
+                    File::delete($path);
+                    }
+                    $picture = $_FILES['picture']['name'];
+                    $r->picture->move(public_path() . '/img/upload', $picture);
+                    $item->picture = $picture;}
+    
+                $item->save();
+                return redirect()->to('/backend/item_point')->with('success','Sucess!');
+    
+            }
+            public function item_point_update(Request $r,$id){
+                $item=item_point::where('id',$id)->first();
+                $item->titleth=$r->titleth;
+                $item->titleen=$r->titleen;
+                $item->detailth=$r->detailth;
+                $item->detailen=$r->detailen;
+    
+                $item->desth=$r->desth;
+                $item->desen=$r->desen;
+                $item->point=$r->point;
+    
+                if(isset($r->picture)){
+                    $path =public_path().'/img/upload/'.$item->picture;
+                    if(File::exists($path)){
+                    File::delete($path);
+                    }
+                    $picture = $_FILES['picture']['name'];
+                    $r->picture->move(public_path() . '/img/upload', $picture);
+                    $item->picture = $picture;}
+    
+                $item->save();
+                return redirect()->to('/backend/item_point')->with('success','Sucess!');
+            }
+            public function item_point_edit($id){
+                $item=item_point::where('id',$id)->first();
+                return view('backend.item_point.edit',[
+                    'item'=>$item,
+                    'page'=>"item_point",
+                    'list'=>"item_point",
+                ]);
+            }
+            public function item_point_destroy($id){
+                $item=item_point::where('id',$id)->first();
+                $path =public_path().'/img/upload/'.$item->picture;
+                if(File::exists($path)){
+                File::delete($path);
+                }
+                $item->delete();
+                return redirect()->back()->with('success','Sucess!');
+            }
+            public function item_point_add(){
+                return view('backend.item_point.add',[
+                    'page'=>"item_point",
+                    'list'=>"item_point",
+                ]);
+            }
+            //item_point//
+
+
 
 }

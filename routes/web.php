@@ -101,6 +101,16 @@ Route::prefix('backend')->group(function(){
     Route::post('news_update/{id}',[App\Http\Controllers\BackendController::class,'news_update']);
     //news
 
+     //item_point
+
+     Route::get('item_point',[App\Http\Controllers\BackendController::class,'item_point']);
+     Route::get('item_point_destroy/{id}',[App\Http\Controllers\BackendController::class,'item_point_destroy']);
+     Route::get('item_point_add',[App\Http\Controllers\BackendController::class,'item_point_add']);
+     Route::post('item_point_store',[App\Http\Controllers\BackendController::class,'item_point_store']);
+     Route::get('item_point_edit/{id}',[App\Http\Controllers\BackendController::class,'item_point_edit']);
+     Route::post('item_point_update/{id}',[App\Http\Controllers\BackendController::class,'item_point_update']);
+     //item_point
+
     // ===== Conditioner List ====
     Route::get('air_conditioner',[App\Http\Controllers\AirConditionerController::class,'index']);
     Route::get('air_conditioner/{id}',[App\Http\Controllers\AirConditionerController::class,'details']);
