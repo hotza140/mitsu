@@ -24,6 +24,7 @@ use App\Models\Customer;
 use App\Models\AirConditioner;
 use App\Models\Training;
 use App\Models\item_point;
+use App\Models\buy_point;
 
 use App\Models\province;
 use App\Models\district;

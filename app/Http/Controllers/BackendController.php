@@ -20,6 +20,7 @@ use App\Models\product;
 use App\Models\history_point;
 use App\Models\news;
 use App\Models\item_point;
+use App\Models\buy_point;
 
 use App\Models\province;
 use App\Models\district;
