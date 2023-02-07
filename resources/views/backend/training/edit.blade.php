@@ -105,7 +105,7 @@
                                                 enctype="multipart/form-data">
                                                 @csrf
 
-
+                                                <input type="hidden" name="training_id" id="training-id" value="{{$detail->id}}">
 
                                                 <div class="form-group row">
                                                     <div class="col-sm-6">
@@ -214,13 +214,27 @@
                             <div class="row">
                                 <div class="col-sm-12">
                                     <!-- Basic Form Inputs card start -->
+
+                                    {{-- <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}"> --}}
+
                                     <div class="card">
                                         <div class="card-header">
 
                                         </div>
 
                                         <div class="card-block">
-                                            {{--  --}}
+                                            <div class="form-group row">
+                                                <div class="col-sm-12">
+                                                    <button type="button" id="add-traingturn" class="btn btn-success"><i class="fa fa-plus"></i> เพิ่มรอบ</button>
+                                                </div>
+                                            </div>
+                                            <div class="form-group row">
+                                                <div class="col-sm-12" id="btn-turn">
+                                                    @foreach ($detail->trainingturn as $turn)
+                                                    <button type="button" class="btn btn-default">รอบที่ {{$turn->turn}}</button>
+                                                    @endforeach
+                                                </div>
+                                            </div>
                                         </div>
 
                                     <!-- Input Alignment card end -->
@@ -242,6 +256,33 @@
 
     @section('script')
     <script>
+
+        $('#add-traingturn').click(function(){
+            id = $('#training-id').val();
+            $.ajax({
+                type: 'post',
+                url: '{{url("backend/training/create-turn")}}',
+                data: {
+                    _token: '{{ csrf_token() }}',
+                    'id' : id,
+                },
+                dataType: 'json',
+                success:function(response){
+                    Swal.fire({
+                        title: "สำเร็จ",
+                        text: "ระบบได้ทำการเพิ่มรอบอบรม",
+                        icon: "success",
+                        allowOutsideClick: false,
+                    });
+                    console.log(response);
+                    $('#btn-turn').empty();
+                    $.each(response,function(indexArray,value){
+                        $('#btn-turn').append('<button type="button" class="btn btn-default">รอบที่ '+value.turn+'</button>');
+                    });
+                },
+            });
+        });
+
         $('#province').change(function(){
             id = $('#province').val();
             $.get('{{url("fetch_amphure")}}/'+id,function(result){

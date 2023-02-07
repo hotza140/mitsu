@@ -115,6 +115,7 @@ Route::prefix('backend')->group(function(){
     Route::get('training/edit/{id}',[App\Http\Controllers\TrainingController::class,'edit']);
     Route::post('training/update/{id}',[App\Http\Controllers\TrainingController::class,'update']);
     Route::get('training/destroy',[App\Http\Controllers\TrainingController::class,'destroy']);
+    Route::post('training/create-turn',[App\Http\Controllers\TrainingController::class,'add_turn']);
 });
 
 //Ajax

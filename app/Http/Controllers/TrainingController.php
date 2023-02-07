@@ -46,14 +46,28 @@ class TrainingController extends Controller
     }
 
     public function edit($id){
-        $data['detail'] = Training::where('id',$id)->first();
+        $data['detail'] = Training::where('id',$id)->with('trainingturn')->first();
         $data['list'] = 'training';
+        $data['page'] = 'training';
         $data['provinces'] = province::orderby('id','asc')->get();
         $data['amphures'] = amphur::orderby('id','asc')->get();
         $data['districts'] = district::orderby('id','asc')->get();
         $data['zipcode'] = district::where('id',$data['detail']->district)->first();
 
         return view('backend.training.edit',$data);
+    }
+
+    public function add_turn(Request $request){
+        $check_turn = TrainingTurn::where('training_id',$request->id)->get()->count();
+
+        $turn = new TrainingTurn;
+        $turn->training_id = $request->id;
+        $turn->turn = $check_turn+1;
+        $turn->save();
+
+        $training_turn = TrainingTurn::where('training_id',$request->id)->get();
+
+        return response()->json($training_turn);
     }
 
     public function destroy($id){

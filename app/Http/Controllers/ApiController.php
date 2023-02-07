@@ -837,7 +837,29 @@ class ApiController extends Controller
             ]);
         }
 
-        // public function 
+        public function book_training(Request $request, $id=null){
+            if($id!=null){
+                $training = Training::where('id',$id)->first();
+
+                //check status
+                if($training->status == 'off'){
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'The Training is close',
+                    ],400);
+                }
+
+            }else{
+                $status = false;
+                $message = 'Error For Create';
+
+                return response()->json([
+                    'status' => $status,
+                    'message' => $message,
+                ],400);
+            }
+
+        }
 
         public function test_database(){
             $test = DB::connection('pgsql')->table('products')->get();
