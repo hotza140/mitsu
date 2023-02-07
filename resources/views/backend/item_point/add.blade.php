@@ -75,6 +75,39 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
+                                                <label class="col-form-label">วันที่เริ่มต้น</label>
+                                                <input type="datetime-local" name="date_start" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->date_start;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">วันที่สิ้นสุด</label>
+                                                <input type="datetime-local" name="date_end" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->date_end;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Location TH</label>
+                                                <input type="text" name="locationth" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->locationth;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">Location En</label>
+                                                <input type="text" name="locationen" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->locationen;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-12">
                                                 <label class="col-form-label">Ttile TH</label>
                                                 <input type="text" name="titleth" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->titleth;} ?>">

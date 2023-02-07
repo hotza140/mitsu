@@ -732,6 +732,11 @@ class BackendController extends Controller
                 $item->desth=$r->desth;
                 $item->desen=$r->desen;
                 $item->point=$r->point;
+
+                $item->date_start=$r->date_start;
+                $item->date_end=$r->date_end;
+                $item->locationth=$r->locationth;
+                $item->locationen=$r->locationen;
     
                 if(isset($r->picture)){
                     $path =public_path().'/img/upload/'.$item->picture;
@@ -756,6 +761,11 @@ class BackendController extends Controller
                 $item->desth=$r->desth;
                 $item->desen=$r->desen;
                 $item->point=$r->point;
+
+                $item->date_start=$r->date_start;
+                $item->date_end=$r->date_end;
+                $item->locationth=$r->locationth;
+                $item->locationen=$r->locationen;
     
                 if(isset($r->picture)){
                     $path =public_path().'/img/upload/'.$item->picture;
