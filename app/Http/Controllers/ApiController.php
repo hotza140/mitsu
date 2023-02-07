@@ -23,6 +23,8 @@ use App\Models\news;
 use App\Models\Customer;
 use App\Models\AirConditioner;
 use App\Models\Training;
+use App\Models\TrainingTurn;
+use App\Models\TrainingList;
 
 use App\Models\province;
 use App\Models\district;
@@ -837,6 +839,20 @@ class ApiController extends Controller
             ]);
         }
 
+        public function training_detail($id){
+            $max_turn = TrainingTurn::where('turn','desc')->first();
+            $data = Training::where('id', $id)->with('traininglist','trainingturn')
+            ->wherehas('traininglist','turn_id',$max_turn->id)->first();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success',
+                'result' => [
+                    'data' => $data,
+                ],
+            ]);
+        }
+
         public function book_training(Request $request, $id=null){
             if($id!=null){
                 $training = Training::where('id',$id)->first();
@@ -847,6 +863,48 @@ class ApiController extends Controller
                         'status' => false,
                         'message' => 'The Training is close',
                     ],400);
+                }
+
+                $user_training_validate = [
+                    'first_name' => 'required',
+                    'last_name' => 'required',
+                    'phone' => 'required',
+                    'agency' => 'required'
+                ];
+
+                $error_validator = [
+                    'first_name:required' => 'กรุณากรอกข้อมูล',
+                    'last_name:required' => 'กรุณากรอกข้อมูล',
+                    'phone:required' => 'กรุณากรอกข้อมูล',
+                    'agency:required' => 'กรุณากรอกข้อมูล'
+                ];
+
+                $validator = Validator::make(
+                    $request->all(),
+                    $user_training_validate,
+                    $error_validator
+                );
+
+                if($validator->fails()){
+                    return response()->json([
+                        'status' => false,
+                        'error' => $validator->errors(),
+                    ],400);
+                }
+
+                //check turn
+                $get_turn_now = TrainingTurn::orderby('turn','desc')->first();
+                if(!empty($get_turn_now)){
+                    $user = new TrainingList;
+                    $user->first_name = $request->first_name;
+                    $user->last_name = $request->last_name;
+                    $user->full_name = $request->first_name.' '.$request->last_name;
+                    $user->phone = $request->phone;
+                    $user->agency = $request->agency;
+
+                    $user->training_id = $id;
+                    $user->turn_id = $get_turn_now->id;
+                    $user->save();
                 }
 
             }else{

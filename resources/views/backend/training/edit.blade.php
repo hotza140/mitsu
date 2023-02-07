@@ -58,7 +58,13 @@
     .slider.round:before {
       border-radius: 50%;
     }
+
+    .btn-turn{
+        margin: o 5px 0 5px;
+    }
 </style>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
 @extends('layouts.menubar')
 <!-- <style>
     .atm {
@@ -229,9 +235,9 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-12" id="btn-turn">
+                                                <div class="col-sm-12" id="training-turn">
                                                     @foreach ($detail->trainingturn as $turn)
-                                                    <button type="button" class="btn btn-default">รอบที่ {{$turn->turn}}</button>
+                                                    <button type="button" class="btn btn-default btn-turn" rel="{{$turn->id}}">รอบที่ {{$turn->turn}}</button>
                                                     @endforeach
                                                 </div>
                                             </div>
@@ -251,10 +257,43 @@
         </div>
     </div>
 
+    {{-- ======= modal ======= --}}
+    <div class="modal" id="training-list" tabindex="-1" role="dialog" aria-labelledby="modalLabelLarge" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="modalLabelLarge">รายชื่อผู้เข้าร่วมอบรม</h4>
+                </div>
+
+                <div class="modal-body">
+                    <div class="dt-responsive table-responsive">
+                        <table class="table table-striped table-bordered nowrap">
+                            <thead>
+                                <tr>
+                                    <th>ชื่อ - นามสกุล</th>
+                                    <th>เบอร์โทรศัพท์</th>
+                                    <th>สังกัดร้าน</th>
+                                </tr>
+                            </thead>
+                            <tbody id="sort-data">
+                                {{--  --}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+      </div>
 
     @endsection
 
     @section('script')
+
     <script>
 
         $('#add-traingturn').click(function(){
@@ -263,7 +302,7 @@
                 type: 'post',
                 url: '{{url("backend/training/create-turn")}}',
                 data: {
-                    _token: '{{ csrf_token() }}',
+                    '_token': '{{ csrf_token() }}',
                     'id' : id,
                 },
                 dataType: 'json',
@@ -275,12 +314,47 @@
                         allowOutsideClick: false,
                     });
                     console.log(response);
-                    $('#btn-turn').empty();
+                    $('#training-turn').empty();
                     $.each(response,function(indexArray,value){
-                        $('#btn-turn').append('<button type="button" class="btn btn-default">รอบที่ '+value.turn+'</button>');
+                        $('#training-turn').append('<button type="button" class="btn btn-default btn-turn" rel="'+value.id+'">รอบที่ '+value.turn+'</button>');
                     });
                 },
             });
+        });
+
+        $('.btn-turn').click(function(){
+            turn_id = $(this).attr("rel");
+            id = $('#training-id').val();
+            console.log(turn_id,id)
+            $.ajax({
+                type: 'get',
+                url: "{{url('backend/training/get_list/"+id+"/"+turn_id+"')}}",
+                cache: false,
+                processdata: false,
+                contenttype: false,
+                success:function(response){
+                    console.log(response);
+                    $('#sort-data').empty();
+                    if(response != null){
+                        $.each(response,function(indexArray,data){
+                            $('#sort-data').append(
+                                '<tr>'+
+                                    '<td>'+data.full_name+'</td>'+
+                                    '<td>'+data.phone+'</td>'+
+                                    '<td>'+data.agency+'</td>'+
+                                '</tr>'
+                            );
+                        });
+                    }else{
+                        $('#sort-data').append('<tr><td>NuLL</td></tr>');
+                    }
+                    $('#training-list').css('display','block');
+                },
+            });
+        });
+
+        $('.close').click(function(){
+            $('#training-list').hide();
         });
 
         $('#province').change(function(){

@@ -58,11 +58,11 @@ class TrainingController extends Controller
     }
 
     public function add_turn(Request $request){
-        $check_turn = TrainingTurn::where('training_id',$request->id)->get()->count();
+        $check_turn = TrainingTurn::where('training_id',$request->id)->orderby('turn','desc')->first();
 
         $turn = new TrainingTurn;
         $turn->training_id = $request->id;
-        $turn->turn = $check_turn+1;
+        $turn->turn = intval($check_turn->turn)+1;
         $turn->save();
 
         $training_turn = TrainingTurn::where('training_id',$request->id)->get();
@@ -74,6 +74,12 @@ class TrainingController extends Controller
         $item = Training::where('id',$id)->first();
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
+    }
+
+    public function get_list($id,$turn){
+        $list_user = TrainingList::where('training_id',$id)->where('turn_id',$turn)->get();
+
+        return response()->json($list_user);
     }
 
     // Function Insert และ Update
