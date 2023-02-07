@@ -95,7 +95,7 @@
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
                                                     <a href="{{url('/backend/user_edit/'.$items->id)}}" class="btn btn-sm btn-primary" style="color:white;"><i class="fa fa-gear"></i>ตรวจสอบ</a>
-                                                        <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a>
+                                                        <!-- <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a> -->
                                                     </td>
                                                 </tr>
                                                 @endforeach
