@@ -711,6 +711,25 @@ class BackendController extends Controller
 
 
 
+          // Choose item_point
+      public function item_point_choose(Request $r){
+        if($r->ajax()){
+        $item=item_point::where('id',$r->id)->first();
+            if($item->choose==1){
+                $item->choose=0;
+                $item->save();}
+                else{
+                $item->choose=1;
+                $item->save();}
+        $status='success';
+        }else{
+            $status='not';
+        }
+        return response()->json($status);
+    }
+    // Choose item_point
+
+
             //item_point//
 
 

@@ -38,6 +38,7 @@
                                                 <tr>
 
                                                     <th>#</th>
+                                                    <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
                                                     <th>Title</th>
                                                     <th style="color: gold;">Point</th>
@@ -55,6 +56,28 @@
                                                 <!-- <tr class="num" id="{{$items->id}}"> -->
                                                 <tr>
                                                     <td>{{$key+1}}</td>
+
+                                                    @if($items->choose==0)
+                                                    <td>
+                                                    <form  class="FormStatus"  >
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id ">
+                                                            <center><input type="checkbox" class="choose switchery switchery-default"  ></center>
+                                                    </form>
+                                                            </td>
+                                                            
+                                                         @else
+                                                         <td>
+                                                         <form  class="FormStatus"  >
+                                                            <input type="hidden" name="id" value="{{$items->id}}" class="id ">
+                                                            <center><input type="checkbox" class="choose switchery switchery-default" checked ></center>
+                                                        
+                                                         </form>    
+                                                            </td>       
+                                                           
+                                                         @endif 
+
+
+
                                                     <td><img src="{{asset('/img/upload/'.$items->picture)}}"
                                                             style="width:200px"></td>
                                                     <td>{{$items->titleen}}</td>
@@ -79,6 +102,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>#</th>
+                                                    <th>เลือกเพื่อแนะนำ</th>
                                                     <th>Picture</th>
                                                     <th>Title</th>
                                                     <th>Point</th>
@@ -128,6 +152,37 @@
 @endsection
 
 @section('script')
+
+
+<script>
+    $(document).on('change', '.choose', function () {
+
+        var form_tr = $(this).closest('.FormStatus');
+        var id = form_tr.find('.id').val();
+        
+            $.ajax({
+                url: "{!!url('/item_point_choose')!!}",
+                method: "POST",
+                type: "PUT",
+                data: {
+                    "_token": "{{ csrf_token() }}",
+                    id: id,
+                },
+                success: function(status) {
+                    console.log(status);
+                    if(status=='success'){
+                        // alert('save');
+                        // $('#form').submit();
+                    }else{
+                        // alert('error');
+                        // location.reload();
+                    }
+                   
+                },
+            });
+
+    });
+    </script>
 
 
 @endsection
