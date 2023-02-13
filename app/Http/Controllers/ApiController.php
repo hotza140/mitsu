@@ -494,8 +494,7 @@ class ApiController extends Controller
             }elseif($type=='advice'){
                 $news=news::where('choose',1)->orderby('id','desc')->get();
             }else{
-                $news=news::orderby('id','desc')->get();
-                $news = $news->paginate(
+                $news=news::orderby('id','desc')->paginate(
                     9,
                     ['*'],
                     'page',
@@ -521,8 +520,7 @@ class ApiController extends Controller
 
             ///item_point///
             public function api_item_point(Request $r){
-                    $item_point=item_point::where('choose',0)->orderby('id','desc')->get();
-                    $item_point = $item_point->paginate(
+                    $item_point=item_point::where('choose',0)->orderby('id','desc')->paginate(
                         9,
                         ['*'],
                         'page',
