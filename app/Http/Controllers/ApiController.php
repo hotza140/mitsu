@@ -515,13 +515,7 @@ class ApiController extends Controller
             ///item_point///
             public function api_item_point(Request $r){
                     $item_point=item_point::where('choose',0)->orderby('id','desc')->paginate(9);
-<<<<<<< HEAD
                     $item_point_choose=item_point::where('choose',1)->orderby('id','desc')->get();
-    
-=======
-                    $item_point=item_point::where('choose',1)->orderby('id','desc')->get();
-
->>>>>>> 5e9852bc4a2bb1074b66365a40be11f156e71a45
                     $message="Success!";
                     $status=true;
                     return response()->json([
