@@ -23,4 +23,14 @@ class Training extends Model
     {
         return $this->belongsTo('App\Models\amphur', 'district');
     }
+
+    public function traininglist()
+    {
+        return $this->hasMany('App\Models\TrainingList', 'training_id');
+    }
+
+    public function trainingturn()
+    {
+        return $this->hasMany('App\Models\TrainingTurn', 'training_id');
+    }
 }

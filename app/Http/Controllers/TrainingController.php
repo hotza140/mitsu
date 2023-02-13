@@ -46,8 +46,9 @@ class TrainingController extends Controller
     }
 
     public function edit($id){
-        $data['detail'] = Training::where('id',$id)->first();
+        $data['detail'] = Training::where('id',$id)->with('trainingturn')->first();
         $data['list'] = 'training';
+        $data['page'] = 'training';
         $data['provinces'] = province::orderby('id','asc')->get();
         $data['amphures'] = amphur::orderby('id','asc')->get();
         $data['districts'] = district::orderby('id','asc')->get();
@@ -56,10 +57,29 @@ class TrainingController extends Controller
         return view('backend.training.edit',$data);
     }
 
+    public function add_turn(Request $request){
+        $check_turn = TrainingTurn::where('training_id',$request->id)->orderby('turn','desc')->first();
+
+        $turn = new TrainingTurn;
+        $turn->training_id = $request->id;
+        $turn->turn = intval($check_turn->turn)+1;
+        $turn->save();
+
+        $training_turn = TrainingTurn::where('training_id',$request->id)->get();
+
+        return response()->json($training_turn);
+    }
+
     public function destroy($id){
         $item = Training::where('id',$id)->first();
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
+    }
+
+    public function get_list($id,$turn){
+        $list_user = TrainingList::where('training_id',$id)->where('turn_id',$turn)->get();
+
+        return response()->json($list_user);
     }
 
     // Function Insert และ Update

@@ -627,6 +627,7 @@
 
         <!-- เสริม -->
         <script src="{{asset('files/bower_components/sweetalert/js/sweetalert.min.js')}}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="{{asset('files/assets/js/modal.js')}}"></script>
         <!-- sweet alert modal.js intialize js -->
         <!-- modalEffects js nifty modal window effects -->
