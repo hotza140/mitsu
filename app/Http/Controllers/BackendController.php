@@ -75,6 +75,7 @@ class BackendController extends Controller
 
     public function login_backend(Request $r)
     {
+        
         if (Auth::attempt(['email' => $r->email, 'password' => $r->password])){
             if(Auth::user()->type < 5){
                 if(Auth::user()->open == 0){
