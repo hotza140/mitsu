@@ -494,7 +494,13 @@ class ApiController extends Controller
             }elseif($type=='advice'){
                 $news=news::where('choose',1)->orderby('id','desc')->get();
             }else{
-                $news=news::orderby('id','desc')->paginate(9);
+                $news=news::orderby('id','desc')->get();
+                $news = $news->paginate(
+                    9,
+                    ['*'],
+                    'page',
+                    $r->page
+                );
             }
 
                 $message="Success!";
@@ -502,6 +508,7 @@ class ApiController extends Controller
                 return response()->json([
                     'results'=>[
                         'news'=>$news,
+                        'page'=>$r->page,
                     ],
                     'status' =>  $status,
                     'message' =>  $message,
@@ -514,7 +521,13 @@ class ApiController extends Controller
 
             ///item_point///
             public function api_item_point(Request $r){
-                    $item_point=item_point::where('choose',0)->orderby('id','desc')->paginate(9);
+                    $item_point=item_point::where('choose',0)->orderby('id','desc')->get();
+                    $item_point = $item_point->paginate(
+                        9,
+                        ['*'],
+                        'page',
+                        $r->page
+                    );
                     $item_point_choose=item_point::where('choose',1)->orderby('id','desc')->get();
                     $message="Success!";
                     $status=true;
@@ -522,6 +535,7 @@ class ApiController extends Controller
                         'results'=>[
                             'item_point'=>$item_point,
                             'item_point_choose'=>$item_point_choose,
+                            'page'=>$r->page,
                         ],
                         'status' =>  $status,
                         'message' =>  $message,
