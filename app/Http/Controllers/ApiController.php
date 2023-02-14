@@ -609,10 +609,7 @@ class ApiController extends Controller
                     'url_picture' => $this->prefix,
                 ],400);
             }
-
-
-
-    }
+        }
      ///Buy Item ///
 
 
