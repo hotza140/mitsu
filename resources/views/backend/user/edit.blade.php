@@ -399,7 +399,7 @@
 
 
                     <!-- --------------------- -->
-                    <?php  $itt = App\Models\buy_point::orderby('id','asc')->with('item')->with('user')->get();
+                    <?php  $itt = App\Models\buy_point::where('id_user',$item->id)->orderby('id','asc')->with('item')->with('user')->get();
                     ?>
                     <div class="page-body">
                         <div class="row">
