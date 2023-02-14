@@ -43,9 +43,6 @@ Route::group([
     Route::post('/api_register_user','ApiController@api_register_user');
     Route::post('/api_login_user','ApiController@api_login_user');
 
-    Route::post('/api_add_product_user','ApiController@api_add_product_user');
-    Route::post('/api_delete_product_user','ApiController@api_delete_product_user');
-
     Route::post('/api_verify_customer','ApiController@verify_customer');
     Route::post('/api_create_airconditioner','ApiController@add_air_conditioner');
 
