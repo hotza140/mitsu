@@ -613,6 +613,43 @@ class ApiController extends Controller
      ///Buy Item ///
 
 
+        ///CHECK POINT ///
+        public function api_check_point(Request $r){
+            $user=User::where('id',$r->id_user)->orderby('id','desc')->first();
+            $item=item_point::where('id',$r->id_item)->orderby('id','desc')->first();
+
+            $cu=$user->point;
+            $ci=$item->point;
+            
+            if($cu>=$ci){
+                $message="Success!";
+                $status=true;
+                return response()->json([
+                    'results'=>[
+                        'item'=>$item,
+                        'user'=>$user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+            }else{
+                $message="Fail!";
+                $status=false;
+                return response()->json([
+                    'results'=>[
+                        'item'=>$item,
+                        'user'=>$user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ],400);
+            }
+        }
+     ///CHECK POINT ///
+
+
 
             ///province///
             public function api_province(){

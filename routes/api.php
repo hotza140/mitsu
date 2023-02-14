@@ -33,8 +33,9 @@ Route::group([
     Route::get('/api_item_point','ApiController@api_item_point');
     Route::post('/api_item_point_detail','ApiController@api_item_point_detail');
     Route::post('/api_buy_item','ApiController@api_buy_item');
+    Route::post('/api_check_point','ApiController@api_check_point');
     
-
+    
     Route::get('/api_province','ApiController@api_province');
 
     Route::post('/api_edit_user','ApiController@api_edit_user');
