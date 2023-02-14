@@ -521,9 +521,7 @@ class ApiController extends Controller
         ///CHECK POINT ///
         public function api_check_point(Request $r){
             $user=User::where('id',$r->id_user)->orderby('id','desc')->first();
-
-           
-            
+  
             if($user!=null){
                 $point=$user->point;
 
