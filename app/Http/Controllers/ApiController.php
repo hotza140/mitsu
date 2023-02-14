@@ -568,29 +568,6 @@ class ApiController extends Controller
             $user=User::where('id',$r->id_user)->orderby('id','desc')->first();
             $item=item_point::where('id',$r->id_item)->orderby('id','desc')->first();
 
-            if($user==null){
-                $message="User Null!";
-                $status=false;
-                return response()->json([
-                    'results'=>[
-                    ],
-                    'status' =>  $status,
-                    'message' =>  $message,
-                    'url_picture' => $this->prefix,
-                ],400);
-            }
-            if($item==null){
-                $message="Item Null!";
-                $status=false;
-                return response()->json([
-                    'results'=>[
-                    ],
-                    'status' =>  $status,
-                    'message' =>  $message,
-                    'url_picture' => $this->prefix,
-                ],400);
-            }
-
             $cu=$user->point;
             $ci=$item->point;
             if($cu>=$ci){
