@@ -521,18 +521,17 @@ class ApiController extends Controller
         ///CHECK POINT ///
         public function api_check_point(Request $r){
             $user=User::where('id',$r->id_user)->orderby('id','desc')->first();
-            $item=item_point::where('id',$r->id_item)->orderby('id','desc')->first();
 
-            $cu=$user->point;
-            $ci=$item->point;
+           
             
-            if($cu>=$ci){
+            if($user!=null){
+                $point=$user->point;
+
                 $message="Success!";
                 $status=true;
                 return response()->json([
                     'results'=>[
-                        'item'=>$item,
-                        'user'=>$user,
+                        'point'=>$point,
                     ],
                     'status' =>  $status,
                     'message' =>  $message,
@@ -543,8 +542,6 @@ class ApiController extends Controller
                 $status=false;
                 return response()->json([
                     'results'=>[
-                        'item'=>$item,
-                        'user'=>$user,
                     ],
                     'status' =>  $status,
                     'message' =>  $message,
