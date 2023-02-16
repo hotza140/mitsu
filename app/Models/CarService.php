@@ -18,4 +18,9 @@ class CarService extends Model
     {
         return $this->belongsTo('App\User', 'machanic_id');
     }
+
+    public function carPictures()
+    {
+        return $this->hasMany('App\Models\CarPicture', 'car_service_id');
+    }
 }

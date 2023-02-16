@@ -63,7 +63,14 @@ Route::group([
 
     Route::prefix('service')->group(function () {
         Route::prefix('car')->group(function () {
+            Route::post('/', [ApiServiceSetup::class, 'getCarList']);
             Route::post('/add', [ApiServiceSetup::class, 'addCarService']);
+            Route::put('/edit', [ApiServiceSetup::class, 'updateCarService']);
+            Route::delete('/delete', [ApiServiceSetup::class, 'removeCarService']);
+            Route::post('/show', [ApiServiceSetup::class, 'getCarDetail']);
+            Route::post('/picture/add', [ApiServiceSetup::class, 'addCarPicture']);
+            Route::delete('/picture/delete', [ApiServiceSetup::class, 'removeCarPicture']);
+            Route::post('/picture/show', [ApiServiceSetup::class, 'getCarPictureDetail']);
         });
     });
 });
