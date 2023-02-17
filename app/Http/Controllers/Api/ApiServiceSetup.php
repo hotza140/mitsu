@@ -9,6 +9,8 @@ use Illuminate\Http\Request;
 use App\Models\TechnicianService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
+use App\Models\ToolPicture;
+use App\Models\ToolService;
 use Illuminate\Support\Facades\Validator;
 
 class ApiServiceSetup extends Controller
@@ -29,7 +31,7 @@ class ApiServiceSetup extends Controller
                     'model' => 'required|string',
                     'color' => 'required|string',
                     'number_plate' => 'required|string',
-                    'pictures' => 'required',
+                    'pictures' => 'required|array',
                 ];
             $validator = Validator::make($req->all(), $rule);
 
@@ -147,7 +149,7 @@ class ApiServiceSetup extends Controller
             $rule =
                 [
                     'id' => 'required|integer',
-                    'pictures' => 'required',
+                    'pictures' => 'required|array',
                 ];
             $validator = Validator::make($req->all(), $rule);
 
@@ -485,6 +487,248 @@ class ApiServiceSetup extends Controller
         }
     }
 
-
     // Technician Service End
+
+
+    // Tool Service Start
+
+    public function addToolService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'machanic_id' => 'required',
+                    'tool' => 'required|string',
+                    'pictures' => 'required|array',
+
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+            $tool = new ToolService();
+            $tool->machanic_id = $req->machanic_id;
+            $tool->tool = $req->tool;
+            $tool->save();
+
+            foreach ($req->pictures as $key => $picture) {
+                $filePicture = $_FILES['pictures']['name'][$key];
+                $picture->move(public_path() . '/img/upload', $filePicture);
+                $toolPicture = new ToolPicture();
+                $toolPicture->tool_service_id = $tool->id;
+                $toolPicture->picture = $filePicture;
+                $toolPicture->save();
+            }
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Tool created successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function updateToolService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'id' => 'required|integer',
+                    'tool' => 'required|string',
+
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $tool = ToolService::find($req->id);
+            if (!$tool) {
+                throw new Exception('Tool not found');
+            }
+            $tool->tool = $req->tool;
+            $tool->save();
+
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Tool updated successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function getToolService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'machanic_id' => 'required|integer',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $tools = ToolService::with('toolPictures')->whereMachanicId($req->machanic_id)->get();
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'success',
+                'url_picture' => $this->prefix,
+                'results' => [
+                    'tool' => $tools,
+                ]
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+
+    public function removeToolService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'id' => 'required|integer',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $tool = ToolService::find($req->id);
+            if (!$tool) {
+                throw new Exception('Tool not found');
+            }
+
+            $pictures = ToolPicture::whereToolServiceId($tool->id)->get();
+            foreach ($pictures as $key => $picture) {
+                $picture->delete();
+            }
+            $tool->delete();
+
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Tool deleted successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function addToolPicture(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'tool_service_id' => 'required',
+                    'pictures' => 'required|array',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            foreach ($req->pictures as $key => $picture) {
+                $filePicture = $_FILES['pictures']['name'][$key];
+                $picture->move(public_path() . '/img/upload', $filePicture);
+                $toolPicture = new ToolPicture();
+                $toolPicture->tool_service_id = $req->tool_service_id;
+                $toolPicture->picture = $filePicture;
+                $toolPicture->save();
+            }
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Tool picture added successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function removeToolPicture(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'id' => 'required',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $toolPicture = ToolPicture::find($req->id);
+            if (!$toolPicture) {
+                throw new Exception('Tool picture not found');
+            }
+            $toolPicture->delete();
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Tool picture deleted successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    // Tool Service End
 }

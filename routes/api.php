@@ -79,5 +79,14 @@ Route::group([
             Route::put('/edit', [ApiServiceSetup::class, 'updateTechnicianService']);
             Route::delete('/delete', [ApiServiceSetup::class, 'removeTechnicianService']);
         });
+
+        Route::prefix('tool')->group(function () {
+            Route::post('/', [ApiServiceSetup::class, 'getToolService']);
+            Route::post('/add', [ApiServiceSetup::class, 'addToolService']);
+            Route::put('/edit', [ApiServiceSetup::class, 'updateToolService']);
+            Route::delete('/delete', [ApiServiceSetup::class, 'removeToolService']);
+            Route::post('/picture/add', [ApiServiceSetup::class, 'addToolPicture']);
+            Route::delete('/picture/delete', [ApiServiceSetup::class, 'removeToolPicture']);
+        });
     });
 });
