@@ -6,6 +6,7 @@ use Exception;
 use App\Models\CarPicture;
 use App\Models\CarService;
 use Illuminate\Http\Request;
+use App\Models\TechnicianService;
 use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Validator;
 class ApiServiceSetup extends Controller
 {
     protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
+
+
+    // Car Service Start
 
     public function addCarService(Request $req)
     {
@@ -316,4 +320,171 @@ class ApiServiceSetup extends Controller
             ], 400);
         }
     }
+
+    // Car Service End
+
+
+
+    // Technician Service Start
+
+    public function addTechnicianService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'machanic_id' => 'required',
+                    'fname' => 'required|string',
+                    'lname' => 'required|string',
+                    'nick_name' => 'required|string',
+                    'phone' => 'required|string',
+                    'line' => 'required|string',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $technician = new TechnicianService();
+            $technician->machanic_id = $req->machanic_id;
+            $technician->fname = $req->fname;
+            $technician->lname = $req->lname;
+            $technician->nick_name = $req->nick_name;
+            $technician->phone = $req->phone;
+            $technician->line = $req->line;
+            $technician->save();
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Technician created successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function updateTechnicianService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'id' => 'required|integer',
+                    'fname' => 'required|string',
+                    'lname' => 'required|string',
+                    'nick_name' => 'required|string',
+                    'phone' => 'required|string',
+                    'line' => 'required|string',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $technician = TechnicianService::find($req->id);
+            if (!$technician) {
+                throw new Exception('Technician not found');
+            }
+            $technician->fname = $req->fname;
+            $technician->lname = $req->lname;
+            $technician->nick_name = $req->nick_name;
+            $technician->phone = $req->phone;
+            $technician->line = $req->line;
+            $technician->save();
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Technician updated successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function getTechnicianService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'machanic_id' => 'required|integer',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $technicians = TechnicianService::whereMachanicId($req->machanic_id)->get();
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'success',
+                'url_picture' => $this->prefix,
+                'results' => [
+                    'technician' => $technicians,
+                ]
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function removeTechnicianService(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'id' => 'required|integer',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $technician = TechnicianService::find($req->id);
+            if (!$technician) {
+                throw new Exception('Technician not found');
+            }
+            $technician->delete();
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Technician deleted successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+
+    // Technician Service End
 }
