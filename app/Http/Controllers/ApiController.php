@@ -521,7 +521,7 @@ class ApiController extends Controller
         ///CHECK POINT ///
         public function api_check_point(Request $r){
             $user=User::where('id',$r->id_user)->orderby('id','desc')->first();
-  
+
             if($user!=null){
                 $point=$user->point;
 
@@ -868,7 +868,7 @@ class ApiController extends Controller
         //================== Traing
 
         public function get_traing_list(){
-            $data = Traning::where('status','on')->get();
+            $data = Training::where('status','on')->get();
 
             return response()->json([
                 'status' => true,
@@ -880,15 +880,20 @@ class ApiController extends Controller
         }
 
         public function training_detail($id){
-            $max_turn = TrainingTurn::where('turn','desc')->first();
-            $data = Training::where('id', $id)->with('traininglist','trainingturn')
-            ->wherehas('traininglist','turn_id',$max_turn->id)->first();
+            $max_turn = TrainingTurn::where('training_id',$id)->orderby('turn','desc')->first()->id;
+            /*$training = Training::where('id', $id)->with('traininglist','trainingturn')
+            ->whereHas('traininglist','turn_id',$max_turn->id)->get();*/
+            $data = Training::where('id', $id)->with('province','amphure','district')->get();
+
+            $lists = TrainingList::where('training_id',$id)->where('turn_id',$max_turn)->get();
 
             return response()->json([
                 'status' => true,
                 'message' => 'Success',
                 'result' => [
                     'data' => $data,
+                    'turn_id' => $max_turn,
+                    'list' => $lists,
                 ],
             ]);
         }
@@ -896,6 +901,7 @@ class ApiController extends Controller
         public function book_training(Request $request, $id=null){
             if($id!=null){
                 $training = Training::where('id',$id)->first();
+                $get_turn_now = TrainingTurn::where('training_id',$id)->orderby('turn','desc')->first();
 
                 //check status
                 if($training->status == 'off'){
@@ -904,7 +910,9 @@ class ApiController extends Controller
                         'message' => 'The Training is close',
                     ],400);
                 }
+                //check status
 
+                //check validate value
                 $user_training_validate = [
                     'first_name' => 'required',
                     'last_name' => 'required',
@@ -931,20 +939,42 @@ class ApiController extends Controller
                         'error' => $validator->errors(),
                     ],400);
                 }
+                //check validate value
 
-                //check turn
-                $get_turn_now = TrainingTurn::orderby('turn','desc')->first();
-                if(!empty($get_turn_now)){
-                    $user = new TrainingList;
-                    $user->first_name = $request->first_name;
-                    $user->last_name = $request->last_name;
-                    $user->full_name = $request->first_name.' '.$request->last_name;
-                    $user->phone = $request->phone;
-                    $user->agency = $request->agency;
+                try {
+                    if(!empty($get_turn_now)){
+                        $user = new TrainingList;
+                        $user->first_name = $request->first_name;
+                        $user->last_name = $request->last_name;
+                        $user->full_name = $request->first_name.' '.$request->last_name;
+                        $user->phone = $request->phone;
+                        $user->agency = $request->agency;
 
-                    $user->training_id = $id;
-                    $user->turn_id = $get_turn_now->id;
-                    $user->save();
+                        $user->training_id = $id;
+                        $user->turn_id = $get_turn_now->id;
+                        // create & get data
+                        if($user->save()){
+                            $data = Training::where('id',$id)->with('province','amphure','district')->first();
+                            $turn_id = TrainingTurn::where('training_id',$id)->orderby('turn','desc')->first()->id;
+                            $list = TrainingList::where('training_id',$id)->where('turn_id',$turn_id)->get();
+                            return response()->json([
+                                'result' => [
+                                    'data' => $data,
+                                    'turn_id' => $turn_id,
+                                    'list' => $list,
+                                ],
+                                'status' => true,
+                                'message' => 'Success!',
+                            ]);
+                        }
+                    }
+                } catch (Exception $e) {
+                    Log::error($e->getMessage());
+                    return response()->json([
+                        'result' => [],
+                        'status' => false,
+                        'message' => $e->getMessage(),
+                    ],400);
                 }
 
             }else{
@@ -956,7 +986,6 @@ class ApiController extends Controller
                     'message' => $message,
                 ],400);
             }
-
         }
 
         public function test_database(){
