@@ -14,9 +14,9 @@ class Training extends Model
         return $this->belongsTo('App\Models\province', 'province');
     }
 
-    public function amphur()
+    public function amphure()
     {
-        return $this->belongsTo('App\Models\amphur', 'amphur');
+        return $this->belongsTo('App\Models\amphur', 'amphure');
     }
 
     public function district()
