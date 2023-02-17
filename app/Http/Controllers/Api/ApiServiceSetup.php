@@ -20,7 +20,7 @@ class ApiServiceSetup extends Controller
 
             $rule =
                 [
-                    'machanic_id' => 'required|integer',
+                    'machanic_id' => 'required',
                     'brand' => 'required|string',
                     'model' => 'required|string',
                     'color' => 'required|string',
@@ -78,9 +78,7 @@ class ApiServiceSetup extends Controller
                 throw new Exception($validator->errors()->first());
             }
 
-            $carList = CarService::with(['carPictures' => function ($q) {
-                $q->first();
-            }])->get();
+            $carList = CarService::with('carPictures')->get();
             return response()->json([
                 'status' =>  true,
                 'message' =>  'success',
