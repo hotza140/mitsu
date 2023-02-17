@@ -730,5 +730,39 @@ class ApiServiceSetup extends Controller
         }
     }
 
+    public function getToolPicture(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'tool_service_id' => 'required',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $toolPicture = ToolPicture::whereToolServiceId($req->tool_service_id)->get();
+
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'success',
+                'url_picture' => $this->prefix,
+                'results' => [
+                    'tool_picture' => $toolPicture,
+                ]
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
     // Tool Service End
 }

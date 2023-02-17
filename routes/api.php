@@ -87,6 +87,7 @@ Route::group([
             Route::delete('/delete', [ApiServiceSetup::class, 'removeToolService']);
             Route::post('/picture/add', [ApiServiceSetup::class, 'addToolPicture']);
             Route::delete('/picture/delete', [ApiServiceSetup::class, 'removeToolPicture']);
+            Route::post('/picture', [ApiServiceSetup::class, 'getToolPicture']);
         });
     });
 });
