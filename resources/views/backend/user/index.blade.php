@@ -31,12 +31,14 @@
                                 <div class="card-header">
 
                                     <div class="card-block">
-                                        <form method="post" id=""
-                                            action="{{ url('/backend/user_gen) }}"
-                                            enctype="multipart/form-data">
+                                        <form method="post" id="" action="{{ url('/backend/user_gen') }}" enctype="multipart/form-data">
                                             @csrf
-                                            Name<br> <input type="text" name="name" class="m-b-10" value="">
-                                            Last Name<br> <input type="text" name="lastname" class="m-b-10" value="">
+                                            Name<br> <input type="text" name="name" class="m-b-10" >
+                                            Last Name<br> <input type="text" name="lastname" class="m-b-10" >
+                                            <button type="submit" class="btn btn-danger " style="color:white;"
+                                                onclick="return confirm('Confirm!');"> <i
+                                                    class="fa fa-check-circle-o"></i> Save
+                                            </button>
                                         </form>
                                     </div>
 
