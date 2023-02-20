@@ -55,6 +55,7 @@ Route::group([
     Route::get('/api_get_training', 'ApiController@get_traing_list');
     Route::get('/api_get_trainingdetail/{id}', 'ApiController@training_detail');
     Route::post('/api_create_list_training/{id}', 'ApiController@book_training');
+    Route::post('/api_edit_list_training/{id}', 'ApiController@edit_book_training');
 
     Route::post('/api_update_customer', 'ApiController@update_customer');
 

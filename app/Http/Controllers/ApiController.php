@@ -785,7 +785,7 @@ class ApiController extends Controller
 
             if($check_serial_indoor != 0 && $check_serial_outdoor != 0){
                 $air_conditioner = new AirConditioner;
-                $air_conditioner->customer_id = $customer->id;
+                $air_conditioner->customer_id = $request->customer_id;
                 $air_conditioner->indoor_number = $request->indoor_number;
                 $air_conditioner->outdoor_number = $request->outdoor_number;
 
@@ -914,6 +914,7 @@ class ApiController extends Controller
 
                 //check validate value
                 $user_training_validate = [
+                    'user_id' => 'required',
                     'first_name' => 'required',
                     'last_name' => 'required',
                     'phone' => 'required',
@@ -921,6 +922,7 @@ class ApiController extends Controller
                 ];
 
                 $error_validator = [
+                    'user_id' => 'กรุณากรอกข้อมูล',
                     'first_name:required' => 'กรุณากรอกข้อมูล',
                     'last_name:required' => 'กรุณากรอกข้อมูล',
                     'phone:required' => 'กรุณากรอกข้อมูล',
@@ -944,6 +946,7 @@ class ApiController extends Controller
                 try {
                     if(!empty($get_turn_now)){
                         $user = new TrainingList;
+                        $user->user_id = $request->user_id;
                         $user->first_name = $request->first_name;
                         $user->last_name = $request->last_name;
                         $user->full_name = $request->first_name.' '.$request->last_name;
@@ -984,6 +987,82 @@ class ApiController extends Controller
                 return response()->json([
                     'status' => $status,
                     'message' => $message,
+                ],400);
+            }
+        }
+
+        public function edit_book_training(Request $request,$id=null){
+            if($id){
+                $user_training = TrainingList::where('id',$id)->with('training')->first();
+                //check status
+                if($user_training->training->status == 'off'){
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'The Training is close',
+                    ],400);
+                }
+                //check status
+
+                //check validate value
+                $user_training_validate = [
+                    'user_id' => 'required',
+                    'first_name' => 'required',
+                    'last_name' => 'required',
+                    'phone' => 'required',
+                    'agency' => 'required'
+                ];
+
+                $error_validator = [
+                    'user_id' => 'กรุณากรอกข้อมูล',
+                    'first_name:required' => 'กรุณากรอกข้อมูล',
+                    'last_name:required' => 'กรุณากรอกข้อมูล',
+                    'phone:required' => 'กรุณากรอกข้อมูล',
+                    'agency:required' => 'กรุณากรอกข้อมูล'
+                ];
+
+                $validator = Validator::make(
+                    $request->all(),
+                    $user_training_validate,
+                    $error_validator
+                );
+
+                try {
+                    $list = TrainingList::find($id);
+                    $list->first_name = $request->first_name;
+                    $list->last_name = $request->last_name;
+                    $list->user_id = $request->user_id;
+                    $list->phone = $request->phone;
+                    $list->agency = $request->agency;
+                    $list->save();
+
+                    // $training = 
+
+                    return response()->json([
+                        'status' => true,
+                        'message' => success,
+                        // ''
+                    ]);
+
+                } catch (Exception $e) {
+                    Log::error($e->getMessage());
+                    return response()->json([
+                        'result' => [],
+                        'status' => false,
+                        'message' => $e->getMessage(),
+                    ],400);
+                }
+
+                if($validator->fails()){
+                    return response()->json([
+                        'status' => false,
+                        'error' => $validator->errors(),
+                    ],400);
+                }
+                //check validate value
+            }else{
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Not Found User',
                 ],400);
             }
         }
