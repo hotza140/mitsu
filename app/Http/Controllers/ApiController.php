@@ -1026,6 +1026,14 @@ class ApiController extends Controller
                     $error_validator
                 );
 
+                if($validator->fails()){
+                    return response()->json([
+                        'status' => false,
+                        'error' => $validator->errors(),
+                    ],400);
+                }
+                //check validate value
+
                 try {
                     $list = TrainingList::find($id);
                     $list->first_name = $request->first_name;
@@ -1057,13 +1065,6 @@ class ApiController extends Controller
                     ],400);
                 }
 
-                if($validator->fails()){
-                    return response()->json([
-                        'status' => false,
-                        'error' => $validator->errors(),
-                    ],400);
-                }
-                //check validate value
             }else{
                 return response()->json([
                     'status' => false,
