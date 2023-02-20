@@ -1035,12 +1035,17 @@ class ApiController extends Controller
                     $list->agency = $request->agency;
                     $list->save();
 
-                    // $training = 
+                    $training = Training::where('id',$list->training_id)->first();
+                    $turn_id = TrainingTurn::where('training_id',$training->id)->orderby('turn','desc')->first();
 
                     return response()->json([
                         'status' => true,
                         'message' => success,
-                        // ''
+                        'result' => [
+                            'list' => $list,
+                            'data' => $training,
+                            'turn_id' => $turn_id,
+                        ],
                     ]);
 
                 } catch (Exception $e) {
