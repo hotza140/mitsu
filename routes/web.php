@@ -49,6 +49,8 @@ Route::prefix('backend')->group(function(){
     //banner
 
     //admin_user
+    Route::post('user_gen',[App\Http\Controllers\BackendController::class,'user_gen']);
+
     Route::get('admin_user',[App\Http\Controllers\BackendController::class,'admin_user']);
     Route::get('admin_user_destroy/{id}',[App\Http\Controllers\BackendController::class,'admin_user_destroy']);
     Route::get('admin_user_add',[App\Http\Controllers\BackendController::class,'admin_user_add']);

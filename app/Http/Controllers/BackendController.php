@@ -293,6 +293,22 @@ class BackendController extends Controller
 
 
 
+    public function user_gen(Request $r){
+        $item=new User();
+
+        $item->name=$r->name;
+        $item->lastname=$r->lastname;
+
+        $item->type=5;
+        // $item->save();
+
+        return redirect()->to('/backend/user')->with('success','Sucess!');
+
+    }
+
+
+
+
        //user//
        public function user(){
         $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->get();
