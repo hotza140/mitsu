@@ -420,7 +420,7 @@
                                                     <tr>
 
                                                         <th>#</th>
-                                                        <th>ชื่อลูกค้า</th>
+                                                        <!-- <th>ชื่อลูกค้า</th> -->
                                                         <th>Picture</th>
                                                         <th>Title</th>
                                                         <th>Point</th>
@@ -433,7 +433,7 @@
                                                     @foreach($itt as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
-                                                        <td>{{($itts->name)?? '-'}}</td>
+                                                        <!-- <td>{{($itts->name)?? '-'}}</td> -->
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
@@ -452,7 +452,7 @@
                                                 <tfoot>
                                                     <tr>
                                                     <th>#</th>
-                                                        <th>ชื่อลูกค้า</th>
+                                                        <!-- <th>ชื่อลูกค้า</th> -->
                                                         <th>Picture</th>
                                                         <th>Title</th>
                                                         <th>Point</th>
