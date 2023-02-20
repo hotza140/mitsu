@@ -879,13 +879,13 @@ class ApiController extends Controller
             ]);
         }
 
-        public function training_detail($id){
+        public function training_detail($id,$user){
             $max_turn = TrainingTurn::where('training_id',$id)->orderby('turn','desc')->first()->id;
             /*$training = Training::where('id', $id)->with('traininglist','trainingturn')
             ->whereHas('traininglist','turn_id',$max_turn->id)->get();*/
             $data = Training::where('id', $id)->with('province','amphure','district')->get();
 
-            $lists = TrainingList::where('training_id',$id)->where('turn_id',$max_turn)->get();
+            $lists = TrainingList::where('training_id',$id)->where('user_id',$user)->where('turn_id',$max_turn)->get();
 
             return response()->json([
                 'status' => true,
@@ -1035,7 +1035,7 @@ class ApiController extends Controller
                     $list->agency = $request->agency;
                     $list->save();
 
-                    // $training = 
+                    // $training =
 
                     return response()->json([
                         'status' => true,
