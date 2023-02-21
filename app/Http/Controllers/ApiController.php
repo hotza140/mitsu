@@ -834,9 +834,15 @@ class ApiController extends Controller
 
                         // return $dataPrepare;
                     }else{
-                        $dataPrepare = [
-                            $key => $item,
-                        ];
+                        if($item != ''){
+                            $dataPrepare = [
+                                $key => $item,
+                            ];
+                        }else{
+                            $dataPrepare = [
+                                $key => $find_customer->$key,
+                            ];
+                        }
                     }
                     $update_customer = Customer::find($request->id)->update($dataPrepare);
                     $fetch_customer = Customer::where('id',$request->id)->first();
@@ -859,7 +865,7 @@ class ApiController extends Controller
             }else{
                 return response()->json([
                     'status' => false,
-                    'message' => 'Not found Customer in clound!',
+                    'message' => 'Not found Customer in cloud!',
                 ],400);
             }
 
