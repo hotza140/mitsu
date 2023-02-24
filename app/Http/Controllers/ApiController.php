@@ -7,6 +7,7 @@ use DB;
 use PDF;
 use Auth;
 use App\User;
+use Exception;
 use App\Mail\Email;
 use App\Models\news;
 use App\Models\amphur;
@@ -14,8 +15,8 @@ use App\Models\banner;
 use App\Models\product;
 use App\Models\Customer;
 use App\Models\district;
-use App\Models\province;
 
+use App\Models\province;
 use App\Models\Training;
 use App\Models\buy_point;
 use App\Mail\Forget_email;
@@ -26,12 +27,12 @@ use Illuminate\Http\Request;
 use App\Models\history_point;
 use App\Models\AirConditioner;
 use Illuminate\support\carbon;
-use Illuminate\Validation\Rule;
 
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Facades\Hash;
 
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\View;
 use Maatwebsite\Excel\Facades\Excel;
@@ -988,6 +989,32 @@ class ApiController extends Controller
             return response()->json([
                 'status' => $status,
                 'message' => $message,
+            ], 400);
+        }
+    }
+
+    public function removeBooktraing($id)
+    {
+        try {
+            $user_training = TrainingList::where('id', $id)->first();
+            if ($user_training) {
+                $user_training->delete();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success',
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'ไม่พบข้อมูล',
+                ], 400);
+            }
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
             ], 400);
         }
     }
