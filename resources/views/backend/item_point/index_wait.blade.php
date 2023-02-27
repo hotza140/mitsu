@@ -69,14 +69,14 @@
                                                         @if($itts->status==0)
                                                         <td style="color: green;">กำลังรอยืนยัน</td>
                                                         @elseif($itts->status==2)
-                                                        <td style="color: red;">ไม่อณุมัติ</td>
+                                                        <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
                                                         <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-gear" >อณุมัติ</i></a>
+                                                          style="color:white;"><i class="fa fa-gear" >อนุมัติ</i></a>
                                                           <a href="{{url('/backend/wait_not/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-gear">ไม่อณุมัติ</i></a>
+                                                          style="color:white;"><i class="fa fa-gear">ไม่อนุมัติ</i></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -128,7 +128,7 @@
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10" style="color: green;">รายการแลกเปลี่ยนที่อณุมัติ</h3>
+                                            <h3 class="m-b-10" style="color: green;">รายการแลกเปลี่ยนที่อนุมัติ</h3>
                                         </strong>
 
                                     </div>
@@ -163,7 +163,7 @@
                                                         @if($itts->status==0)
                                                         <td style="color: green;">กำลังรอยืนยัน</td>
                                                         @elseif($itts->status==2)
-                                                        <td style="color: red;">ไม่อณุมัติ</td>
+                                                        <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
@@ -218,7 +218,7 @@
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10" style="color: red;">รายการแลกเปลี่ยนรอที่ไม่อณุมันติ</h3>
+                                            <h3 class="m-b-10" style="color: red;">รายการแลกเปลี่ยนที่ไม่อนุมัติ</h3>
                                         </strong>
 
                                     </div>
@@ -253,7 +253,7 @@
                                                         @if($itts->status==0)
                                                         <td style="color: green;">กำลังรอยืนยัน</td>
                                                         @elseif($itts->status==2)
-                                                        <td style="color: red;">ไม่อณุมัติ</td>
+                                                        <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
