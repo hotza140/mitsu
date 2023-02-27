@@ -20,9 +20,6 @@
                 <div class="page-body">
 
 
-
-                    <div class="m-b-10" style="background-color: red;">.</div>
-
                     <!-- --------------------- -->
                     <?php $car=DB::table('car_services')->where('machanic_id',$id)->orderby('id','desc')->get(); ?>
                     <div class="page-body">
@@ -194,7 +191,7 @@
                                     </div>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="simpletable4" class="table table-striped table-bordered nowrap">
+                                            <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
 
