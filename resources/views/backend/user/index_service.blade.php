@@ -45,7 +45,7 @@
 
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                            <table id="simpletable1" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
 
@@ -272,6 +272,13 @@
     @endsection
 
     @section('script')
+
+    <script>
+    var table = $('#simpletable1').DataTable({
+        order: []
+    });;
+    </script>
+
     <script>
     var table = $('#simpletable2').DataTable({
         order: []
