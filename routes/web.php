@@ -61,6 +61,9 @@ Route::prefix('backend')->group(function(){
 
     //user
     Route::get('user_service/{id}',[App\Http\Controllers\BackendController::class,'user_service']);
+    Route::get('car_destroy/{id}',[App\Http\Controllers\BackendController::class,'car_destroy']);
+    Route::get('tool_destroy/{id}',[App\Http\Controllers\BackendController::class,'tool_destroy']);
+    Route::get('tec_destroy/{id}',[App\Http\Controllers\BackendController::class,'tec_destroy']);
 
     Route::get('user',[App\Http\Controllers\BackendController::class,'user']);
     Route::get('user_destroy/{id}',[App\Http\Controllers\BackendController::class,'user_destroy']);

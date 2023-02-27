@@ -26,6 +26,10 @@ use App\Models\province;
 use App\Models\district;
 use App\Models\amphur;
 
+use App\Models\CarService;
+use App\Models\TechnicianService;
+use App\Models\ToolService;
+
 
 use App\Mail\Forget_email;
 use Illuminate\Support\Facades\Mail;
@@ -315,6 +319,21 @@ class BackendController extends Controller
             'list'=>"user",
             'id'=>$id,
         ]);
+    }
+    public function car_destroy($id){
+        $item=CarService::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function tool_destroy($id){
+        $item=ToolService::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function tec_destroy($id){
+        $item=TechnicianService::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
     }
     // SERVICE
 

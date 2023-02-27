@@ -52,6 +52,7 @@
                                                         <th>Color</th>
                                                         <th>Number Plate</th>
                                                         <th>Date</th>
+                                                        <th>Delete</th>
 
                                                     </tr>
                                                 </thead>
@@ -64,6 +65,9 @@
                                                         <td>{{$items->color}}</td>
                                                         <td>{{$items->number_plate}}</td>
                                                         <td>{{$items->created_at}}</td>
+                                                        class="fa fa-gear"></i>ตรวจสอบ</a>
+                                                        <td><a href="{{url('/backend/car_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
 
@@ -76,6 +80,7 @@
                                                         <th>Color</th>
                                                         <th>Number Plate</th>
                                                         <th>Date</th>
+                                                        <th>Delete</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -127,6 +132,7 @@
                                                     <th>#</th>
                                                         <th>Tool</th>
                                                         <th>Date</th>
+                                                        <th>Delete</th>
 
                                                     </tr>
                                                 </thead>
@@ -136,6 +142,8 @@
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$items->tool}}</td>
                                                         <td>{{($items->created_at)}}</td>
+                                                        <td><a href="{{url('/backend/tool_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
 
@@ -145,6 +153,7 @@
                                                     <th>#</th>
                                                         <th>Tool</th>
                                                         <th>Date</th>
+                                                        <th>Delete</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -202,6 +211,7 @@
                                                         <th>Phone</th>
                                                         <th>Line</th>
                                                         <th>Date</th>
+                                                        <th>Delete</th>
 
                                                     </tr>
                                                 </thead>
@@ -215,7 +225,8 @@
                                                         <td>{{($itts->phone)}}</td>
                                                         <td>{{($itts->line)}}</td>
                                                         <td>{{($itts->created_at)}}</td>
-                                                        <td>
+                                                        <td><a href="{{url('/backend/tec_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
 
@@ -229,6 +240,7 @@
                                                         <th>Phone</th>
                                                         <th>Line</th>
                                                         <th>Date</th>
+                                                        <th>Delete</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
