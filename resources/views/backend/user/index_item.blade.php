@@ -46,7 +46,7 @@
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>outdoor number</th>
                                                         <th>indoor number</th>
-                                                        <th>Updated_at</th>
+                                                        <th>Date</th>
                                                         <th>Tool</th>
 
                                                     </tr>
@@ -58,7 +58,7 @@
                                                         <td>{{$items->customer->full_name}}</td>
                                                         <td>{{($items->outdoor_number) ?? '-'}}</td>
                                                         <td>{{($items->indoor_number)?? '-'}}</td>
-                                                        <td>{{$items->updated_at}}</td>
+                                                        <td>{{$items->created_at}}</td>
                                                         <td>
                                                             <a href="{{url('/backend/air_conditioner/'.$items->id.'/'.$id)}}"
                                                                 class="btn btn-sm btn-primary" style="color:white;"><i
@@ -79,7 +79,7 @@
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>outdoor number</th>
                                                         <th>indoor number</th>
-                                                        <th>Updated_at</th>
+                                                        <th>Date</th>
                                                         <th>Tool</th>
                                                     </tr>
                                                 </tfoot>
