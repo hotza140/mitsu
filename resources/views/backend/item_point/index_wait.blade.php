@@ -73,9 +73,9 @@
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
-                                                        <td><a href="{{url('/backend/wait_con/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash" style="color: green;">อณุมัติ</i></a>
-                                                          <a href="{{url('/backend/wait_not/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          <a href="{{url('/backend/wait_not/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash" style="color: red;">ไม่อณุมัติ</i></a>
                                                         </td>
                                                     </tr>
@@ -167,7 +167,7 @@
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
-                                                        <td><a href="{{url('/backend/wait_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
@@ -257,7 +257,7 @@
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
-                                                        <td><a href="{{url('/backend/wait_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
