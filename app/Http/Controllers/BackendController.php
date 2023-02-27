@@ -785,6 +785,30 @@ public function user_item($id){
     // Choose item_point
 
 
+    public function wait_point(){
+        return view('backend.item_point.index_wait',[
+            'page'=>"item_point",
+            'list'=>"wait_point",
+        ]);
+    }
+    public function wait_destroy($id){
+        $item=buy_point::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function wait_con($id){
+        $item=buy_point::where('id',$id)->first();
+        $item->status=1;
+        $item->save();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function wait_not($id){
+        $item=buy_point::where('id',$id)->first();
+        $item->status=2;
+        $item->save();
+        return redirect()->back()->with('success','Sucess!');
+    }
+
             //item_point//
 
 

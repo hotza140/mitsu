@@ -113,6 +113,10 @@ Route::prefix('backend')->group(function(){
     //news
 
      //item_point
+     Route::get('wait_point',[App\Http\Controllers\BackendController::class,'wait_point']);
+     Route::get('wait_destroy/{id}',[App\Http\Controllers\BackendController::class,'wait_destroy']);
+     Route::get('wait_con/{id}',[App\Http\Controllers\BackendController::class,'wait_con']);
+     Route::get('wait_not/{id}',[App\Http\Controllers\BackendController::class,'wait_not']);
 
      Route::get('item_point',[App\Http\Controllers\BackendController::class,'item_point']);
      Route::get('item_point_destroy/{id}',[App\Http\Controllers\BackendController::class,'item_point_destroy']);

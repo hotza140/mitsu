@@ -553,6 +553,9 @@
                                         <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
                                         <span class="pcoded-mtext">จัดการ Item Point</span>
                                         <span class="pcoded-mcaret"></span>
+                                        <?php $dd=DB::table('buy_point')->where('status',0)->get(); $ddr=count($dd); ?>
+                                                @if($ddr!=0)<span
+                                                    class="pcoded-badge label label-danger">{{$ddr}}</span>@endif
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                     </a>
 
@@ -566,6 +569,25 @@
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">Item</span>
                                                 <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- item_point -->
+
+                                    <!-- item_point -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="wait_point") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/wait_point')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">แลกเปลี่ยนรอยืนยัน</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <?php $dd=DB::table('buy_point')->where('status',0)->get(); $ddr=count($dd); ?>
+                                                @if($ddr!=0)<span
+                                                    class="pcoded-badge label label-danger">{{$ddr}}</span>@endif
                                                 <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                             </a>
                                         </li>

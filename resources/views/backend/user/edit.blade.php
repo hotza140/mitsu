@@ -349,7 +349,9 @@
                                                         <td>{{($itts->item->point)?? '-'}}</td>
                                                         <td>{{$itts->date}}</td>
                                                         @if($itts->status==0)
-                                                        <td style="color: red;">กำลังรอยืนยัน</td>
+                                                        <td style="color: green;">กำลังรอยืนยัน</td>
+                                                        @elseif($itts->status==2)
+                                                        <td style="color: red;">ไม่อณุมัติ</td>
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
