@@ -62,9 +62,9 @@
                                                         <td>{{$key+1}}</td>
                                                         <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p1->name)?? '-'}} {{($p1->lastname)?? '-'}}</td>
-                                                        <td>{{($p1->phone)?? '-'}}<br>
-                                                            {{($p1->email)?? '-'}}<br>
-                                                            {{($p1->line)?? '-'}}
+                                                        <td>Phone: {{($1->phone)?? '-'}}<br>
+                                                            Email: {{($1->email)?? '-'}}<br>
+                                                            Line: {{($1->line)?? '-'}}
                                                         </td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
@@ -163,9 +163,9 @@
                                                         <td>{{$key+1}}</td>
                                                         <?php $p2=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p2->name)?? '-'}} {{($p2->lastname)?? '-'}}</td>
-                                                        <td>{{($p2->phone)?? '-'}}<br>
-                                                            {{($p2->email)?? '-'}}<br>
-                                                            {{($p2->line)?? '-'}}
+                                                        <td>Phone: {{($p2->phone)?? '-'}}<br>
+                                                            Email: {{($p2->email)?? '-'}}<br>
+                                                            Line: {{($p2->line)?? '-'}}
                                                         </td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
@@ -260,9 +260,9 @@
                                                         <td>{{$key+1}}</td>
                                                         <?php $p3=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p3->name)?? '-'}} {{($p3->lastname)?? '-'}}</td>
-                                                        <td>{{($p3->phone)?? '-'}}<br>
-                                                            {{($p3->email)?? '-'}}<br>
-                                                            {{($p3->line)?? '-'}}
+                                                        <td>Phone: {{($p3->phone)?? '-'}}<br>
+                                                            Email: {{($p3->email)?? '-'}}<br>
+                                                            Line: {{($p3->line)?? '-'}}
                                                         </td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
