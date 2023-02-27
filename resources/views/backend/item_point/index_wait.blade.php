@@ -73,10 +73,10 @@
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
-                                                        <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-trash" style="color: green;">อณุมัติ</i></a>
+                                                        <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          style="color:white;"><i class="fa fa-gear" >อณุมัติ</i></a>
                                                           <a href="{{url('/backend/wait_not/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-trash" style="color: red;">ไม่อณุมัติ</i></a>
+                                                          style="color:white;"><i class="fa fa-gear">ไม่อณุมัติ</i></a>
                                                         </td>
                                                     </tr>
                                                     @endforeach
@@ -134,7 +134,7 @@
                                     </div>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="simpletable3" class="table table-striped table-bordered nowrap">
+                                            <table id="simpletable" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
 
@@ -224,7 +224,7 @@
                                     </div>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="simpletable3" class="table table-striped table-bordered nowrap">
+                                            <table id="simpletable2" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
 
