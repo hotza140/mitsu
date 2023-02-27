@@ -602,12 +602,12 @@ public function user_item($id){
     public function history_point_destroy($id){
         $item=history_point::where('id',$id)->first();
 
-        $user=User::where('id',$item->id_user)->first();
-        if($user!=null){
-        $point=$user->point;
-        $user->point=$point-$item->point;
-        $user->save();
-        }
+        // $user=User::where('id',$item->id_user)->first();
+        // if($user!=null){
+        // $point=$user->point;
+        // $user->point=$point-$item->point;
+        // $user->save();
+        // }
 
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
