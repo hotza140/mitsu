@@ -804,8 +804,17 @@ public function user_item($id){
     }
     public function wait_not($id){
         $item=buy_point::where('id',$id)->first();
+        $user=User::where('id',$item->id_user)->first();
+        if($user!=null){
+        $point=$user->point;
+        $user->point=$point+$item->buy_point;
+        $user->save();
+        }
+        
         $item->status=2;
         $item->save();
+
+        
         return redirect()->back()->with('success','Sucess!');
     }
 
