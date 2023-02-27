@@ -21,10 +21,6 @@
                 <!-- Page body start -->
                 <div class="page-body">
 
-                    <div class="m-b-10" style="background-color: red;">.</div>
-
-
-
                     <!-- --------------------- -->
                     <?php  $data = App\Models\AirConditioner::orderby('id','asc')->with('customer')->get();
                     ?>
