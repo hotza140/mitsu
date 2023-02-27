@@ -298,11 +298,12 @@ class BackendController extends Controller
 
 
     public function user_gen(Request $r){
+        $num='12345';
         $item=new User();
 
         $item->name=$r->name;
         $item->lastname=$r->lastname;
-
+        $item->password = Hash::make($num);
         $item->type=5;
         // $item->save();
 
