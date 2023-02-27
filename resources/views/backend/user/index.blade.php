@@ -60,7 +60,8 @@
                                                     <th>Phone</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
-                                                    <th>Tool</th>
+                                                    <th>ข้อมูล User</th>
+                                                    <th>ข้อมูลบริการ</th>
 
                                                 </tr>
                                             </thead>
@@ -127,6 +128,13 @@
                                                                 class="fa fa-gear"></i>ตรวจสอบ</a>
                                                         <!-- <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a> -->
                                                     </td>
+                                                    
+                                                    <td>
+                                                        <a href="{{url('/backend/user_service/'.$items->id)}}"
+                                                            class="btn btn-sm btn-warning" style="color:white;"><i
+                                                                class="fa fa-gear"></i>ตรวจสอบ</a>
+                                                        <!-- <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a> -->
+                                                    </td>
                                                 </tr>
                                                 @endforeach
 
@@ -142,7 +150,8 @@
                                                     <th>Phone</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
-                                                    <th>Tool</th>
+                                                    <th>ข้อมูล User</th>
+                                                    <th>ข้อมูลบริการ</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
