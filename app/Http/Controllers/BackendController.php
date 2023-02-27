@@ -313,6 +313,14 @@ class BackendController extends Controller
 
 
 // SERVICE
+public function user_item($id){
+    return view('backend.user.index_item',[
+        'page'=>"user",
+        'list'=>"user",
+        'id'=>$id,
+    ]);
+}
+
     public function user_service($id){
         return view('backend.user.index_service',[
             'page'=>"user",

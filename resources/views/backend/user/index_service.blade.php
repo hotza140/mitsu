@@ -121,6 +121,8 @@
                                         <strong>
                                             <h3 class="m-b-10">Tool Service</h3>
                                         </strong>
+                                        <a style="color:white;" class="btn btn-warning" href="{{url('/backend/user')}}">
+                                            <i class="fa fa-arrow-left"></i> Back</a>
 
                                     </div>
                                     <div class="card-block">
@@ -196,6 +198,8 @@
                                         <strong>
                                             <h3 class="m-b-10">Technician Service</h3>
                                         </strong>
+                                        <a style="color:white;" class="btn btn-warning" href="{{url('/backend/user')}}">
+                                            <i class="fa fa-arrow-left"></i> Back</a>
 
                                     </div>
                                     <div class="card-block">

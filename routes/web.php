@@ -60,6 +60,8 @@ Route::prefix('backend')->group(function(){
     //admin_user
 
     //user
+    Route::get('user_item/{id}',[App\Http\Controllers\BackendController::class,'user_item']);
+
     Route::get('user_service/{id}',[App\Http\Controllers\BackendController::class,'user_service']);
     Route::get('car_destroy/{id}',[App\Http\Controllers\BackendController::class,'car_destroy']);
     Route::get('tool_destroy/{id}',[App\Http\Controllers\BackendController::class,'tool_destroy']);
