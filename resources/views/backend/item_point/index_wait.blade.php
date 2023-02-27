@@ -59,7 +59,7 @@
                                                     @foreach($data as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
-                                                        <?php $p1=User::where('id',$itts->id_user)->first();  ?>
+                                                        <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p1->name)?? '-'}}</td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
@@ -154,7 +154,7 @@
                                                     @foreach($data1 as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
-                                                        <?php $p2=User::where('id',$itts->id_user)->first();  ?>
+                                                        <?php $p2=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p2->name)?? '-'}}</td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
@@ -245,7 +245,7 @@
                                                     @foreach($data2 as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
-                                                        <?php $p3=User::where('id',$itts->id_user)->first();  ?>
+                                                        <?php $p3=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p3->name)?? '-'}}</td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
