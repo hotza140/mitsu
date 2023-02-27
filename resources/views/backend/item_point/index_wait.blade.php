@@ -46,6 +46,7 @@
 
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
+                                                        <th>ข้อมูลติดต่อ</th>
                                                         <th>Picture</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
@@ -60,7 +61,11 @@
                                                     <tr>
                                                         <td>{{$key+1}}</td>
                                                         <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
-                                                        <td>{{($p1->name)?? '-'}} {{($p1->last)?? '-'}}</td>
+                                                        <td>{{($p1->name)?? '-'}} {{($p1->lastname)?? '-'}}</td>
+                                                        <td>{{($p1->phone)?? '-'}}<br>
+                                                            {{($p1->email)?? '-'}}<br>
+                                                            {{($p1->line)?? '-'}}
+                                                        </td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
@@ -87,6 +92,7 @@
                                                     <tr>
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
+                                                        <th>ข้อมูลติดต่อ</th>
                                                         <th>Picture</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
@@ -141,6 +147,7 @@
 
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
+                                                        <th>ข้อมูลติดต่อ</th>
                                                         <th>Picture</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
@@ -156,6 +163,10 @@
                                                         <td>{{$key+1}}</td>
                                                         <?php $p2=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p2->name)?? '-'}} {{($p2->lastname)?? '-'}}</td>
+                                                        <td>{{($p2->phone)?? '-'}}<br>
+                                                            {{($p2->email)?? '-'}}<br>
+                                                            {{($p2->line)?? '-'}}
+                                                        </td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
@@ -179,6 +190,7 @@
                                                     <tr>
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
+                                                        <th>ข้อมูลติดต่อ</th>
                                                         <th>Picture</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
@@ -232,6 +244,7 @@
 
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
+                                                        <th>ข้อมูลติดต่อ</th>
                                                         <th>Picture</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
@@ -247,6 +260,10 @@
                                                         <td>{{$key+1}}</td>
                                                         <?php $p3=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p3->name)?? '-'}} {{($p3->lastname)?? '-'}}</td>
+                                                        <td>{{($p3->phone)?? '-'}}<br>
+                                                            {{($p3->email)?? '-'}}<br>
+                                                            {{($p3->line)?? '-'}}
+                                                        </td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
@@ -270,6 +287,7 @@
                                                     <tr>
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
+                                                        <th>ข้อมูลติดต่อ</th>
                                                         <th>Picture</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
