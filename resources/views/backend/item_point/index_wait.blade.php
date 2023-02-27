@@ -47,7 +47,7 @@
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
@@ -63,10 +63,7 @@
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
-                                                        <?php $ti3 = $itts->item->titlee;
-                                                            $ti33 = substr($ti3,0,12);
-                                                            ?>
-                                                        <td>{{$ti33}}</td>
+                                                        <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
                                                         <td>{{$itts->date}}</td>
                                                         @if($itts->status==0)
@@ -90,7 +87,7 @@
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
@@ -144,7 +141,7 @@
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
@@ -160,10 +157,7 @@
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
-                                                        <?php $ti2 = $itts->item->titlee;
-                                                            $ti22 = substr($ti22,0,12);
-                                                            ?>
-                                                        <td>{{$ti22}}</td>
+                                                        <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
                                                         <td>{{$itts->date}}</td>
                                                         @if($itts->status==0)
@@ -184,7 +178,7 @@
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
@@ -237,7 +231,7 @@
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
@@ -253,10 +247,7 @@
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
-                                                        <?php $ti = $itts->item->titlee;
-                                                            $ti1 = substr($ti,0,12);
-                                                            ?>
-                                                        <td>{{$ti1}}</td>
+                                                        <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
                                                         <td>{{$itts->date}}</td>
                                                         @if($itts->status==0)
@@ -277,7 +268,7 @@
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
