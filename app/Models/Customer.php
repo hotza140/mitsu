@@ -8,6 +8,7 @@ class Customer extends Model
 {
     protected $table="customers";
     protected $primarykey="id";
+    protected $guarded = [];
 
     public function airconditioner()
     {
