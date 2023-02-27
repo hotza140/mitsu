@@ -11,8 +11,7 @@
                         <strong>
                             <h5 class="m-b-10">รายการแลกเปลี่ยน</h5>
                         </strong>
-                        <a href="{{ url('/backend/user') }}" style="color:white;" class="btn btn-warning">
-                                        <i class="fa fa-share-square-o"></i> Back </a>
+                       
 
                     </div>
                 </div>
