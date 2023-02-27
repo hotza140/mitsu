@@ -24,7 +24,7 @@
                     <div class="m-b-10" style="background-color: red;">.</div>
 
                     <!-- --------------------- -->
-                    <?php $car=DB::table('car_services')->where('machanic_id',$item->id)->orderby('id','desc')->get(); ?>
+                    <?php $car=DB::table('car_services')->where('machanic_id',$id)->orderby('id','desc')->get(); ?>
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">
@@ -108,7 +108,7 @@
 
 
                     <!-- --------------------- -->
-                    <?php $tool=DB::table('tool_services')->where('machanic_id',$item->id)->orderby('id','desc')->get(); ?>
+                    <?php $tool=DB::table('tool_services')->where('machanic_id',$id)->orderby('id','desc')->get(); ?>
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">
@@ -179,7 +179,7 @@
 
 
                     <!-- --------------------- -->
-                    <?php $tec=DB::table('technician')->where('machanic_id',$item->id)->orderby('id','desc')->get(); ?>
+                    <?php $tec=DB::table('technician')->where('machanic_id',$id)->orderby('id','desc')->get(); ?>
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">
