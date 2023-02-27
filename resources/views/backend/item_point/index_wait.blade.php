@@ -60,7 +60,7 @@
                                                     <tr>
                                                         <td>{{$key+1}}</td>
                                                         <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
-                                                        <td>{{($p1->name)?? '-'}}</td>
+                                                        <td>{{($p1->name)?? '-'}} {{($p1->last)?? '-'}}</td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
@@ -155,7 +155,7 @@
                                                     <tr>
                                                         <td>{{$key+1}}</td>
                                                         <?php $p2=App\User::where('id',$itts->id_user)->first();  ?>
-                                                        <td>{{($p2->name)?? '-'}}</td>
+                                                        <td>{{($p2->name)?? '-'}} {{($p2->lastname)?? '-'}}</td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
@@ -246,7 +246,7 @@
                                                     <tr>
                                                         <td>{{$key+1}}</td>
                                                         <?php $p3=App\User::where('id',$itts->id_user)->first();  ?>
-                                                        <td>{{($p3->name)?? '-'}}</td>
+                                                        <td>{{($p3->name)?? '-'}} {{($p3->lastname)?? '-'}}</td>
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
