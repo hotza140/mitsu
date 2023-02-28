@@ -33,6 +33,10 @@
                             <div class="card">
                                 <div class="card-header">
 
+
+                                <a style="color:white;" class="btn btn-warning" href="{{url('/backend/user_service/'.$user)}}">
+                                            <i class="fa fa-arrow-left"></i> Back</a>
+
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">

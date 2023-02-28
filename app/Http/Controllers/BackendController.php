@@ -331,12 +331,13 @@ public function user_item($id){
             'id'=>$id,
         ]);
     }
-    public function service_gal($type,$id){
+    public function gal_service($type,$id,$user){
         return view('backend.user.index_service_gal',[
             'page'=>"user",
             'list'=>"user",
             'id'=>$id,
             'type'=>$type,
+            'user'=>$user,
         ]);
     }
     public function service_gal_destroy($type,$id){

@@ -66,8 +66,8 @@
                                                         <td>{{$items->color}}</td>
                                                         <td>{{$items->number_plate}}</td>
                                                         <td>{{$items->created_at}}</td>
-                                                        <td><a href="{{url('/backend/gal_service/1/'.$items->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-picture"></i></a></td>
+                                                        <td><a href="{{url('/backend/gal_service/1/'.$items->id.'/'.$items->machanic_id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          style="color:white;"><i class="fa fa-picture-o"></i></a></td>
                                                         <td><a href="{{url('/backend/car_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
@@ -148,8 +148,8 @@
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$items->tool}}</td>
                                                         <td>{{($items->created_at)}}</td>
-                                                        <td><a href="{{url('/backend/gal_service/2/'.$items->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-picture"></i></a></td>
+                                                        <td><a href="{{url('/backend/gal_service/2/'.$items->id.'/'.$items->machanic_id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          style="color:white;"><i class="fa fa-picture-o"></i></a></td>
                                                         <td><a href="{{url('/backend/tool_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
@@ -237,8 +237,8 @@
                                                         <td>{{($itts->phone)}}</td>
                                                         <td>{{($itts->line)}}</td>
                                                         <td>{{($itts->created_at)}}</td>
-                                                        <td><a href="{{url('/backend/gal_service/3/'.$itts->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-picture"></i></a></td>
+                                                        <td><a href="{{url('/backend/gal_service/3/'.$itts->id.'/'.$itts->machanic_id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          style="color:white;"><i class="fa fa-picture-o"></i></a></td>
                                                         <td><a href="{{url('/backend/tec_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
