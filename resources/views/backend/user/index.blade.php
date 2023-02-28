@@ -60,9 +60,7 @@
                                                     <th>Phone</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
-                                                    <th>ข้อมูล User</th>
-                                                    <th>ข้อมูลบริการ</th>
-                                                    <th>เครื่องปรับอากาศ</th>
+                                                    <th>Tool</th>
 
                                                 </tr>
                                             </thead>
@@ -126,18 +124,16 @@
                                                     <td>
                                                         <a href="{{url('/backend/user_edit/'.$items->id)}}"
                                                             class="btn btn-sm btn-primary" style="color:white;"><i
-                                                                class="fa fa-gear"></i>ตรวจสอบ</a>
-                                                    </td>
-                                                    
-                                                    <td>
+                                                                class="fa fa-gear"></i>ข้อมูล User</a>
+                                                                <br>
                                                         <a href="{{url('/backend/user_service/'.$items->id)}}"
                                                             class="btn btn-sm btn-warning" style="color:white;"><i
-                                                                class="fa fa-gear"></i>ตรวจสอบ</a>
-                                                    </td>
-                                                    <td>
+                                                                class="fa fa-gear"></i>ข้อมูลบริการ</a>
+                                                                <br>
                                                         <a href="{{url('/backend/user_item/'.$items->id)}}"
                                                             class="btn btn-sm btn-success" style="color:white;"><i
-                                                                class="fa fa-gear"></i>ตรวจสอบ</a>
+                                                                class="fa fa-gear"></i>เครื่องปรับอากาศ</a>
+                                                                <br>
                                                         <!-- <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a> -->
                                                     </td>
                                                 </tr>
@@ -155,9 +151,7 @@
                                                     <th>Phone</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
-                                                    <th>ข้อมูล User</th>
-                                                    <th>ข้อมูลบริการ</th>
-                                                    <th>เครื่องปรับอากาศ</th>
+                                                    <th>Tool</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
