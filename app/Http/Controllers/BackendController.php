@@ -32,6 +32,8 @@ use App\Models\ToolService;
 
 
 use App\Mail\Forget_email;
+use App\Models\ToolPicture;
+use App\Models\CarPicture;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -329,6 +331,25 @@ public function user_item($id){
             'id'=>$id,
         ]);
     }
+    public function service_gal($type,$id){
+        return view('backend.user.index_service_gal',[
+            'page'=>"user",
+            'list'=>"user",
+            'id'=>$id,
+            'type'=>$type,
+        ]);
+    }
+    public function service_gal_destroy($type,$id){
+        if($type==1){
+            $item=CarPicture::where('id',$id)->first();
+        }else{
+            $item=ToolPicture::where('id',$id)->first();
+        }
+        
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    
     public function car_destroy($id){
         $item=CarService::where('id',$id)->first();
         $item->delete();
