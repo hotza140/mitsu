@@ -52,8 +52,7 @@
                                                         <th>Color</th>
                                                         <th>Number Plate</th>
                                                         <th>Date</th>
-                                                        <th>Gallery</th>
-                                                        <th>Delete</th>
+                                                        <th>Tool</th>
 
                                                     </tr>
                                                 </thead>
@@ -66,9 +65,9 @@
                                                         <td>{{$items->color}}</td>
                                                         <td>{{$items->number_plate}}</td>
                                                         <td>{{$items->created_at}}</td>
-                                                        <td><a href="{{url('/backend/gal_service/1/'.$items->id.'/'.$items->machanic_id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-picture-o"></i></a></td>
-                                                        <td><a href="{{url('/backend/car_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/gal_service/1/'.$items->id.'/'.$items->machanic_id)}}" class="btn btn-sm btn-success" 
+                                                          style="color:white;"><i class="fa fa-picture-o"></i></a>
+                                                        <a href="{{url('/backend/car_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
@@ -82,8 +81,7 @@
                                                         <th>Color</th>
                                                         <th>Number Plate</th>
                                                         <th>Date</th>
-                                                        <th>Gallery</th>
-                                                        <th>Delete</th>
+                                                        <th>Tool</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -137,8 +135,7 @@
                                                     <th>#</th>
                                                         <th>Tool</th>
                                                         <th>Date</th>
-                                                        <th>Gallery</th>
-                                                        <th>Delete</th>
+                                                        <th>Tool</th>
 
                                                     </tr>
                                                 </thead>
@@ -148,9 +145,9 @@
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$items->tool}}</td>
                                                         <td>{{($items->created_at)}}</td>
-                                                        <td><a href="{{url('/backend/gal_service/2/'.$items->id.'/'.$items->machanic_id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-picture-o"></i></a></td>
-                                                        <td><a href="{{url('/backend/tool_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/gal_service/2/'.$items->id.'/'.$items->machanic_id)}}" class="btn btn-sm btn-success" 
+                                                          style="color:white;"><i class="fa fa-picture-o"></i></a>
+                                                        <a href="{{url('/backend/tool_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
@@ -161,8 +158,7 @@
                                                     <th>#</th>
                                                         <th>Tool</th>
                                                         <th>Date</th>
-                                                        <th>Gallery</th>
-                                                        <th>Delete</th>
+                                                        <th>Tool</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -222,8 +218,7 @@
                                                         <th>Phone</th>
                                                         <th>Line</th>
                                                         <th>Date</th>
-                                                        <th>Gallery</th>
-                                                        <th>Delete</th>
+                                                        <th>Tool</th>
 
                                                     </tr>
                                                 </thead>
@@ -237,9 +232,9 @@
                                                         <td>{{($itts->phone)}}</td>
                                                         <td>{{($itts->line)}}</td>
                                                         <td>{{($itts->created_at)}}</td>
-                                                        <td><a href="{{url('/backend/gal_service/3/'.$itts->id.'/'.$itts->machanic_id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
-                                                          style="color:white;"><i class="fa fa-picture-o"></i></a></td>
-                                                        <td><a href="{{url('/backend/tec_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/gal_service/3/'.$itts->id.'/'.$itts->machanic_id)}}" class="btn btn-sm btn-success"
+                                                          style="color:white;"><i class="fa fa-picture-o"></i></a>
+                                                        <a href="{{url('/backend/tec_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
@@ -254,8 +249,7 @@
                                                         <th>Phone</th>
                                                         <th>Line</th>
                                                         <th>Date</th>
-                                                        <th>Gallery</th>
-                                                        <th>Delete</th>
+                                                        <th>Tool</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
