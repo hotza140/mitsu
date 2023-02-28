@@ -78,9 +78,9 @@
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
-                                                        <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-gear" >อนุมัติ</i></a>
-                                                          <a href="{{url('/backend/wait_not/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                          <a href="{{url('/backend/wait_not/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-gear">ไม่อนุมัติ</i></a>
                                                         </td>
                                                     </tr>
@@ -179,7 +179,7 @@
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
-                                                        <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
@@ -276,7 +276,7 @@
                                                         @else
                                                         <td style="color: grey;">สำเร็จ</td>
                                                         @endif
-                                                        <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
+                                                        <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
                                                     @endforeach
