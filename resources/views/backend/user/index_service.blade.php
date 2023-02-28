@@ -65,7 +65,6 @@
                                                         <td>{{$items->color}}</td>
                                                         <td>{{$items->number_plate}}</td>
                                                         <td>{{$items->created_at}}</td>
-                                                        class="fa fa-gear"></i>ตรวจสอบ</a>
                                                         <td><a href="{{url('/backend/car_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
