@@ -124,16 +124,16 @@
                                                     <td>
                                                         <a href="{{url('/backend/user_edit/'.$items->id)}}"
                                                             class="btn btn-sm btn-primary" style="color:white;"><i
-                                                                class="fa fa-gear"></i></a>ข้อมูล User
-                                                                <br>
+                                                                class="fa fa-gear"></i></a> ข้อมูล User
+                                                                <br><br>
                                                         <a href="{{url('/backend/user_service/'.$items->id)}}"
                                                             class="btn btn-sm btn-warning" style="color:white;"><i
-                                                                class="fa fa-gear"></i></a>ข้อมูลบริการ
-                                                                <br>
+                                                                class="fa fa-gear"></i></a> ข้อมูลบริการ
+                                                                <br><br>
                                                         <a href="{{url('/backend/user_item/'.$items->id)}}"
                                                             class="btn btn-sm btn-success" style="color:white;"><i
-                                                                class="fa fa-gear"></i></a>เครื่องปรับอากาศ
-                                                                <br>
+                                                                class="fa fa-gear"></i></a> เครื่องปรับอากาศ
+                                                                <br><br>
                                                         <!-- <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a> -->
                                                     </td>
                                                 </tr>
