@@ -232,8 +232,9 @@
                                                         <td>{{($itts->phone)}}</td>
                                                         <td>{{($itts->line)}}</td>
                                                         <td>{{($itts->created_at)}}</td>
-                                                        <td><a href="{{url('/backend/gal_service/3/'.$itts->id.'/'.$itts->machanic_id)}}" class="btn btn-sm btn-success"
-                                                          style="color:white;"><i class="fa fa-picture-o"></i></a>
+                                                        <td>
+                                                            <!-- <a href="{{url('/backend/gal_service/3/'.$itts->id.'/'.$itts->machanic_id)}}" class="btn btn-sm btn-success"
+                                                          style="color:white;"><i class="fa fa-picture-o"></i></a> -->
                                                         <a href="{{url('/backend/tec_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
                                                     </tr>
