@@ -80,6 +80,9 @@ Route::group([
             Route::post('/add', [ApiServiceSetup::class, 'addTechnicianService']);
             Route::put('/edit', [ApiServiceSetup::class, 'updateTechnicianService']);
             Route::delete('/delete', [ApiServiceSetup::class, 'removeTechnicianService']);
+            Route::post('/picture/add', [ApiServiceSetup::class, 'addTechnicianPicture']);
+            Route::delete('/picture/delete', [ApiServiceSetup::class, 'removeTechnicianPicture']);
+            Route::post('/picture', [ApiServiceSetup::class, 'getTechnicianPicture']);
         });
 
         Route::prefix('tool')->group(function () {
