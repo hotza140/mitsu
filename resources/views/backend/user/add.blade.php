@@ -99,7 +99,8 @@
                                             </div>
                                         </div>
 
-                                        <!-- <div class="form-group row">
+                                        
+                                        <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Province</label>
                                                 <input  type="text" name="province" class="form-control" id=""
@@ -124,7 +125,7 @@
                                                 <input  type="text" name="zipcode" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->zipcode;} ?>">
                                             </div>
-                                        </div> -->
+                                        </div>
 
 
                                         <div class="form-group row">

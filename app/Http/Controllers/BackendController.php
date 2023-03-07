@@ -429,22 +429,22 @@ public function user_item($id){
                 $item->condo = $r->condo;
                 $item->road = $r->road;
 
-                // $item->zipcode = $r->zipcode;
-                // $p = province::where('name_th', $r->province)->first();
-                // if ($p != null) {
-                //     $item->id_p = $p->id;
-                //     $item->province = $r->province;
-                // }
-                // $d = district::where('name_th', $r->district)->first();
-                // if ($d != null) {
-                //     $item->id_d = $d->id;
-                //     $item->district = $r->district;
-                // }
-                // $a = amphur::where('name_th', $r->amphur)->first();
-                // if ($a != null) {
-                //     $item->id_a = $a->id;
-                //     $item->amphur = $r->amphur;
-                // }
+                $item->zipcode = $r->zipcode;
+                $p = province::where('name_th',"LIKE","%{$r->province}%",)->first();
+                if ($p != null) {
+                    $item->id_p = $p->id;
+                    $item->province = $r->province;
+                }
+                $d = district::where('name_th',"LIKE","%{$r->district}%",)->first();
+                if ($d != null) {
+                    $item->id_d = $d->id;
+                    $item->district = $r->district;
+                }
+                $a = amphur::where('name_th',"LIKE","%{$r->amphur}%",)->first();
+                if ($a != null) {
+                    $item->id_a = $a->id;
+                    $item->amphur = $r->amphur;
+                }
 
 
         $item->picture = 'no_img.png';
