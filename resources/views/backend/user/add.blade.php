@@ -80,6 +80,12 @@
                                                 <input  type="text" name="line" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->line;} ?>" >
                                             </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Marget</label>
+                                                <input  type="text" name="marget" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->marget;} ?>">
+                                            </div>
                                         </div>
 
                                         <!-- <div class="form-group row">
@@ -90,14 +96,7 @@
                                             </div>
                                         </div> -->
 
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">Marget</label>
-                                                <input  type="text" name="marget" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->marget;} ?>">
-                                            </div>
-                                        </div>
+                                        <br><br>
 
                                         
                                         <div class="form-group row">
