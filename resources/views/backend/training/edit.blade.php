@@ -235,7 +235,7 @@
                                                 </div>
                                             </div>
                                             <div class="form-group row">
-                                                <div class="col-sm-12" id="training-turn">
+                                                <div class="col-sm-12" id="training-turn-num">
                                                     @foreach ($detail->trainingturn as $turn)
                                                     <button type="button" class="btn btn-default btn-turn" rel="{{$turn->id}}">รอบที่ {{$turn->turn}}</button>
                                                     @endforeach
@@ -314,9 +314,9 @@
                         allowOutsideClick: false,
                     });
                     console.log(response);
-                    $('#training-turn').empty();
+                    $('#training-turn-num').empty();
                     $.each(response,function(indexArray,value){
-                        $('#training-turn').append('<button type="button" class="btn btn-default btn-turn" rel="'+value.id+'">รอบที่ '+value.turn+'</button>');
+                        $('#training-turn-num').append('<button type="button" class="btn btn-default btn-turn" rel="'+value.id+'">รอบที่ '+value.turn+'</button>');
                     });
                 },
             });
