@@ -420,8 +420,6 @@ public function user_item($id){
                         $item->amphur = $r->amphur;
                     }
     
-    
-            $item->picture = 'no_img.png';
 
         $item->type=5;
         $item->save();
@@ -473,8 +471,6 @@ public function user_item($id){
                     $item->amphur = $r->amphur;
                 }
 
-
-        $item->picture = 'no_img.png';
 
         $item->save();
         return redirect()->back()->with('success','Sucess!');
