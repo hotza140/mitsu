@@ -869,7 +869,7 @@ class ApiController extends Controller
 
     public function get_traing_list()
     {
-        $data = Training::where('status', 'on')->get();
+        $data = Training::with('province')->where('status', 'on')->get();
 
         return response()->json([
             'status' => true,
