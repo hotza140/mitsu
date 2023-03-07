@@ -421,6 +421,7 @@ public function user_item($id){
                     }
     
 
+        $item->status=1;
         $item->type=5;
         $item->save();
 
