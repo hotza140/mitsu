@@ -330,7 +330,7 @@
                                                         <th>#</th>
                                                         <!-- <th>ชื่อลูกค้า</th> -->
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
@@ -345,7 +345,7 @@
                                                         <td>
                                                         <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
                                                         </td>
-                                                        <td>{{($itts->item->titleen)?? '-'}}</td>
+                                                        <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
                                                         <td>{{$itts->date}}</td>
                                                         @if($itts->status==0)
@@ -364,7 +364,7 @@
                                                     <th>#</th>
                                                         <!-- <th>ชื่อลูกค้า</th> -->
                                                         <th>Picture</th>
-                                                        <th>Title</th>
+                                                        <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
                                                         <th>Status</th>
