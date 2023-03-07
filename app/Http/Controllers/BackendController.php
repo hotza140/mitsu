@@ -353,11 +353,37 @@ public function user_item($id){
     
     public function car_destroy($id){
         $item=CarService::where('id',$id)->first();
+
+        $gal=CarPicture::where('car_service_id',$id)->get();
+  
+
+		foreach($gal as $gals){
+			$gg=CarPicture::where('id',$gals->id)->first();
+			$path =public_path().'/img/upload/'.$gg->picture;
+			 if(File::exists($path)){
+            File::delete($path);
+            }
+			$gg->delete();
+		}
+
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
     public function tool_destroy($id){
         $item=ToolService::where('id',$id)->first();
+
+        $gal=ToolPicture::where('tool_service_id',$id)->get();
+  
+
+		foreach($gal as $gals){
+			$gg=ToolPicture::where('id',$gals->id)->first();
+			$path =public_path().'/img/upload/'.$gg->picture;
+			 if(File::exists($path)){
+            File::delete($path);
+            }
+			$gg->delete();
+		}
+
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
