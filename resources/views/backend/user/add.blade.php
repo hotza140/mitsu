@@ -41,12 +41,12 @@
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Nickname</label>
-                                                <input  type="text" name="nickname" class="form-control" id=""
+                                                <input  type="text" name="nickname" class="form-control" id="" 
                                                     value="<?php if(isset($item)){echo $item->nickname;} ?>">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Name</label>
-                                                <input  type="text" name="name" class="form-control" id="" required
+                                                <input  type="text" name="name" class="form-control" id="" required placeholder="ต้องใส่"
                                                     value="<?php if(isset($item)){echo $item->name;} ?>">
                                             </div>
                                             <div class="col-sm-3">
@@ -64,13 +64,13 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Email</label>
-                                                <input  type="email" name="email" class="form-control" id=""
+                                                <input  type="email" name="email" class="form-control" id="" placeholder="ต้องใส่"
                                                     value="<?php if(isset($item)){echo $item->email;} ?>" required>
                                             </div>
 
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Password</label>
-                                                <input  type="text" name="password" class="form-control" id=""
+                                                <input  type="text" name="password" class="form-control" id="" placeholder="ต้องใส่"
                                                     value="<?php if(isset($item)){echo $item->email;} ?>" required>
                                             </div>
 
