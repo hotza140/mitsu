@@ -38,18 +38,18 @@
                                         <!-- -------EDIT---------- -->
 
 
-
-
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Nickname</label>
+                                                <input  type="text" name="nickname" class="form-control" id="" 
+                                                    value="<?php if(isset($item)){echo $item->nickname;} ?>">
+                                            </div>
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Name</label>
-                                                <input type="text" name="name" class="form-control" id=""
+                                                <input  type="text" name="name" class="form-control" id="" required placeholder="ต้องใส่"
                                                     value="<?php if(isset($item)){echo $item->name;} ?>">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Lastname</label>
                                                 <input  type="text" name="lastname" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->lastname;} ?>">
@@ -57,41 +57,55 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Phone</label>
                                                 <input  type="text" name="phone" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->phone;} ?>">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">New Password</label>
-                                                <input type="text" name="password" class="form-control" id=""
-                                                    value="" required>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Email</label>
+                                                <input  type="email" name="email" class="form-control" id="" placeholder="ต้องใส่"
+                                                    value="<?php if(isset($item)){echo $item->email;} ?>" required>
                                             </div>
-                                        </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Password</label>
+                                                <input  type="text" name="password" class="form-control" id="" placeholder="ต้องใส่"
+                                                    value="<?php if(isset($item)){echo $item->email;} ?>" required>
+                                            </div>
 
 
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">LINE</label>
+                                                <input  type="text" name="line" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->line;} ?>" >
+                                            </div>
+
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Marget</label>
                                                 <input  type="text" name="marget" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->marget;} ?>">
                                             </div>
                                         </div>
 
-                                        <div class="form-group row">
+                                        <!-- <div class="form-group row">
                                             <div class="col-sm-12">
+                                                <label class="col-form-label">New
+                                                    Password(หากไม่ต้องการเปลี่ยนให้เว้นว่างเอาไว้)</label>
+                                                <input  type="text" name="password" class="form-control" id="" value="">
+                                            </div>
+                                        </div> -->
+
+                                        <br><br>
+
+                                        
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Province</label>
                                                 <input  type="text" name="province" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->province;} ?>">
                                             </div>
-                                        </div>
-
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">District</label>
                                                 <input  type="text" name="district" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->district;} ?>">
@@ -100,15 +114,12 @@
 
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Amphur</label>
                                                 <input  type="text" name="amphur" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->amphur;} ?>">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Zipcode</label>
                                                 <input  type="text" name="zipcode" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->zipcode;} ?>">
@@ -117,15 +128,12 @@
 
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">บ้านเลขที่</label>
                                                 <input  type="text" name="house" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->house;} ?>">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">หมู่ที่</label>
                                                 <input  type="text" name="moo" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->moo;} ?>">
@@ -133,20 +141,18 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">หมู่บ้าน/คอนโด</label>
                                                 <input  type="text" name="condo" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->condo;} ?>">
                                             </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">ถนน</label>
                                                 <input  type="text" name="road" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->road;} ?>">
                                             </div>
                                         </div>
+
 
 
 

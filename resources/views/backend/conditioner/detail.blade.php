@@ -81,7 +81,7 @@
                                         <p class="text-right">
 
                                         @if(isset($item))
-                                            <a href="{{ url('/backend/user_edit/'.$item) }}"
+                                            <a href="{{ url('/backend/user_item/'.$item) }}"
                                                 style="color:white;" class="btn btn-success"> <i
                                                     class="fa fa-share-square-o"></i> Back </a>
                                                     @else

@@ -26,8 +26,14 @@ use App\Models\province;
 use App\Models\district;
 use App\Models\amphur;
 
+use App\Models\CarService;
+use App\Models\TechnicianService;
+use App\Models\ToolService;
+
 
 use App\Mail\Forget_email;
+use App\Models\ToolPicture;
+use App\Models\CarPicture;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
@@ -294,11 +300,12 @@ class BackendController extends Controller
 
 
     public function user_gen(Request $r){
+        $num='12345';
         $item=new User();
 
         $item->name=$r->name;
         $item->lastname=$r->lastname;
-
+        $item->password = Hash::make($num);
         $item->type=5;
         // $item->save();
 
@@ -308,6 +315,84 @@ class BackendController extends Controller
 
 
 
+// SERVICE
+public function user_item($id){
+    return view('backend.user.index_item',[
+        'page'=>"user",
+        'list'=>"user",
+        'id'=>$id,
+    ]);
+}
+
+    public function user_service($id){
+        return view('backend.user.index_service',[
+            'page'=>"user",
+            'list'=>"user",
+            'id'=>$id,
+        ]);
+    }
+    public function gal_service($type,$id,$user){
+        return view('backend.user.index_service_gal',[
+            'page'=>"user",
+            'list'=>"user",
+            'id'=>$id,
+            'type'=>$type,
+            'user'=>$user,
+        ]);
+    }
+    public function service_gal_destroy($type,$id){
+        if($type==1){
+            $item=CarPicture::where('id',$id)->first();
+        }else{
+            $item=ToolPicture::where('id',$id)->first();
+        }
+        
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    
+    public function car_destroy($id){
+        $item=CarService::where('id',$id)->first();
+
+        $gal=CarPicture::where('car_service_id',$id)->get();
+  
+
+		foreach($gal as $gals){
+			$gg=CarPicture::where('id',$gals->id)->first();
+			$path =public_path().'/img/upload/'.$gg->picture;
+			 if(File::exists($path)){
+            File::delete($path);
+            }
+			$gg->delete();
+		}
+
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function tool_destroy($id){
+        $item=ToolService::where('id',$id)->first();
+
+        $gal=ToolPicture::where('tool_service_id',$id)->get();
+  
+
+		foreach($gal as $gals){
+			$gg=ToolPicture::where('id',$gals->id)->first();
+			$path =public_path().'/img/upload/'.$gg->picture;
+			 if(File::exists($path)){
+            File::delete($path);
+            }
+			$gg->delete();
+		}
+
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function tec_destroy($id){
+        $item=TechnicianService::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    // SERVICE
 
        //user//
        public function user(){
@@ -326,18 +411,44 @@ class BackendController extends Controller
             return redirect()->back()->with('success','Email Same in Data!');
             }
 
-        $item->name=$r->name;
-        $item->email=$r->email;
-        if($r->password!=null){
-            $item->password=Hash::make($r->password);
-        }
+            if($r->password!=null){
+                $item->password=Hash::make($r->password);
+            }
+    
+                    $item->market = $r->market;
+                    $item->nickname = $r->nickname;
+                    $item->name = $r->name;
+                    $item->lastname = $r->lastname;
+                    $item->email = $r->email;
+                    $item->phone = $r->phone;
+                    $item->line = $r->line;
+    
+                  
+                    $item->house = $r->house;
+                    $item->moo = $r->moo;
+                    $item->condo = $r->condo;
+                    $item->road = $r->road;
+    
+                    $item->zipcode = $r->zipcode;
+                    $p = province::where('name_th',"LIKE","%{$r->province}%",)->first();
+                    if ($p != null) {
+                        $item->id_p = $p->id;
+                        $item->province = $r->province;
+                    }
+                    $d = district::where('name_th',"LIKE","%{$r->district}%",)->first();
+                    if ($d != null) {
+                        $item->id_d = $d->id;
+                        $item->district = $r->district;
+                    }
+                    $a = amphur::where('name_th',"LIKE","%{$r->amphur}%",)->first();
+                    if ($a != null) {
+                        $item->id_a = $a->id;
+                        $item->amphur = $r->amphur;
+                    }
+    
 
+        $item->status=1;
         $item->type=5;
-
-        // if($r->picture!=null){
-        //     $picture = $_FILES['picture']['name'];
-        //     $r->picture->move(public_path() . '/img/upload', $picture);
-        //     $item->picture = $picture;}
         $item->save();
 
         return redirect()->to('/backend/user')->with('success','Sucess!');
@@ -351,20 +462,42 @@ class BackendController extends Controller
             return redirect()->back()->with('success','Email Same in Data!');
         }
 
-        $item->name=$r->name;
-        $item->email=$r->email;
+
         if($r->password!=null){
             $item->password=Hash::make($r->password);
         }
 
-        // if(isset($r->picture)){
-        //     $path =public_path().'/img/upload/'.$item->picture;
-        //     if(File::exists($path)){
-        //     File::delete($path);
-        //     }
-        //     $picture = $_FILES['picture']['name'];
-        //     $r->picture->move(public_path() . '/img/upload', $picture);
-        //     $item->picture = $picture;}
+                $item->market = $r->market;
+                $item->nickname = $r->nickname;
+                $item->name = $r->name;
+                $item->lastname = $r->lastname;
+                $item->email = $r->email;
+                $item->phone = $r->phone;
+                $item->line = $r->line;
+
+              
+                $item->house = $r->house;
+                $item->moo = $r->moo;
+                $item->condo = $r->condo;
+                $item->road = $r->road;
+
+                $item->zipcode = $r->zipcode;
+                $p = province::where('name_th',"LIKE","%{$r->province}%",)->first();
+                if ($p != null) {
+                    $item->id_p = $p->id;
+                    $item->province = $r->province;
+                }
+                $d = district::where('name_th',"LIKE","%{$r->district}%",)->first();
+                if ($d != null) {
+                    $item->id_d = $d->id;
+                    $item->district = $r->district;
+                }
+                $a = amphur::where('name_th',"LIKE","%{$r->amphur}%",)->first();
+                if ($a != null) {
+                    $item->id_a = $a->id;
+                    $item->amphur = $r->amphur;
+                }
+
 
         $item->save();
         return redirect()->back()->with('success','Sucess!');
@@ -565,12 +698,12 @@ class BackendController extends Controller
     public function history_point_destroy($id){
         $item=history_point::where('id',$id)->first();
 
-        $user=User::where('id',$item->id_user)->first();
-        if($user!=null){
-        $point=$user->point;
-        $user->point=$point-$item->point;
-        $user->save();
-        }
+        // $user=User::where('id',$item->id_user)->first();
+        // if($user!=null){
+        // $point=$user->point;
+        // $user->point=$point-$item->point;
+        // $user->save();
+        // }
 
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
@@ -747,6 +880,39 @@ class BackendController extends Controller
     }
     // Choose item_point
 
+
+    public function wait_point(){
+        return view('backend.item_point.index_wait',[
+            'page'=>"item_point",
+            'list'=>"wait_point",
+        ]);
+    }
+    public function wait_destroy($id){
+        $item=buy_point::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function wait_con($id){
+        $item=buy_point::where('id',$id)->first();
+        $item->status=1;
+        $item->save();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function wait_not($id){
+        $item=buy_point::where('id',$id)->first();
+        $user=User::where('id',$item->id_user)->first();
+        if($user!=null){
+        $point=$user->point;
+        $user->point=$point+$item->buy_point;
+        $user->save();
+        }
+        
+        $item->status=2;
+        $item->save();
+
+        
+        return redirect()->back()->with('success','Sucess!');
+    }
 
             //item_point//
 

@@ -60,6 +60,16 @@ Route::prefix('backend')->group(function(){
     //admin_user
 
     //user
+    Route::get('user_item/{id}',[App\Http\Controllers\BackendController::class,'user_item']);
+
+    Route::get('gal_service/{type}/{id}/{user}',[App\Http\Controllers\BackendController::class,'gal_service']);
+    Route::get('service_gal_destroy/{type}/{id}',[App\Http\Controllers\BackendController::class,'service_gal_destroy']);
+
+    Route::get('user_service/{id}',[App\Http\Controllers\BackendController::class,'user_service']);
+    Route::get('car_destroy/{id}',[App\Http\Controllers\BackendController::class,'car_destroy']);
+    Route::get('tool_destroy/{id}',[App\Http\Controllers\BackendController::class,'tool_destroy']);
+    Route::get('tec_destroy/{id}',[App\Http\Controllers\BackendController::class,'tec_destroy']);
+
     Route::get('user',[App\Http\Controllers\BackendController::class,'user']);
     Route::get('user_destroy/{id}',[App\Http\Controllers\BackendController::class,'user_destroy']);
     Route::get('user_add',[App\Http\Controllers\BackendController::class,'user_add']);
@@ -106,6 +116,10 @@ Route::prefix('backend')->group(function(){
     //news
 
      //item_point
+     Route::get('wait_point',[App\Http\Controllers\BackendController::class,'wait_point']);
+     Route::get('wait_destroy/{id}',[App\Http\Controllers\BackendController::class,'wait_destroy']);
+     Route::get('wait_con/{id}',[App\Http\Controllers\BackendController::class,'wait_con']);
+     Route::get('wait_not/{id}',[App\Http\Controllers\BackendController::class,'wait_not']);
 
      Route::get('item_point',[App\Http\Controllers\BackendController::class,'item_point']);
      Route::get('item_point_destroy/{id}',[App\Http\Controllers\BackendController::class,'item_point_destroy']);
