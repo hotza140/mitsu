@@ -46,7 +46,7 @@
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Name</label>
-                                                <input  type="text" name="name" class="form-control" id=""
+                                                <input  type="text" name="name" class="form-control" id="" required
                                                     value="<?php if(isset($item)){echo $item->name;} ?>">
                                             </div>
                                             <div class="col-sm-3">
