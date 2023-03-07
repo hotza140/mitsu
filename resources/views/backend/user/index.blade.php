@@ -30,7 +30,7 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    <div class="card-block">
+                                    <!-- <div class="card-block">
                                         <form method="post" id="" action="{{ url('/backend/user_gen') }}" enctype="multipart/form-data">
                                             @csrf
                                             <br> <input type="text" name="name" class="m-b-10" > Name
@@ -40,9 +40,9 @@
                                                     class="fa fa-check-circle-o"></i> Save
                                             </button>
                                         </form>
-                                    </div>
+                                    </div> -->
 
-                                    <!-- <a style="color:white;" class="btn btn-success" href="{{url('/backend/user_add')}}"> <i class="fa fa-plus"></i> Add</a> -->
+                                    <a style="color:white;" class="btn btn-success" href="{{url('/backend/user_add')}}"> <i class="fa fa-plus"></i> Add</a>
 
                                 </div>
                                 <div class="card-block">
