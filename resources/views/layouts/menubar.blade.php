@@ -467,6 +467,43 @@
                             </ul>
                             <!-- NEWS-->
 
+
+                              <!-- MARKET-->
+                              <ul class="pcoded-item pcoded-left-item">
+                                <!-- Start-->
+                                @if(isset($page)) @if($page=="market") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">MARKET</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                    </a>
+
+                                    <!-- market -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="market") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/market')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">MARKET</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- market -->
+
+                                    <!-- End-->
+                                </li>
+                            </ul>
+                            <!-- MARKET-->
+
                             <!-- Air Conditioner-->
                             <ul class="pcoded-item pcoded-left-item">
                                 <!-- Start-->

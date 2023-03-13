@@ -40,6 +40,8 @@ use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 
+use App\Models\market;
+
 
 class ApiController extends Controller
 
@@ -93,8 +95,15 @@ class ApiController extends Controller
             $user->status = 0;
 
             $user->lastname = $r->lastname;
-            $user->market = $r->market;
             $user->phone = $r->phone;
+
+            // MARKET
+            $user->id_market = $r->market;
+            $mm = market::where('id', $r->market)->first();
+            if($mm){
+                $user->market = $mm->titleen;
+            }
+            // MARKET
 
             $length = 12;
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -423,6 +432,26 @@ class ApiController extends Controller
         ]);
     }
     ///NEWS///
+
+
+
+     ///market///
+     public function api_market()
+     {
+        $market = market::orderby('id', 'desc')->get();
+ 
+         $message = "Success!";
+         $status = true;
+         return response()->json([
+             'results' => [
+                 'market' => $market,
+             ],
+             'status' =>  $status,
+             'message' =>  $message,
+             'url_picture' => $this->prefix,
+         ]);
+     }
+     ///market///
 
 
     ///item_point///

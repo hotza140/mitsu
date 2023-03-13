@@ -15,6 +15,8 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use PDF;
 
+use App\Models\market;
+
 use App\Models\banner;
 use App\Models\product;
 use App\Models\history_point;
@@ -834,6 +836,64 @@ public function user_item($id){
             ]);
         }
         //news//
+
+
+
+
+
+
+            //market//
+
+
+            public function market(){
+                $item=market ::orderby('num','asc')->get();
+                return view('backend.market.index',[
+                    'item'=>$item,
+                    'page'=>"market",
+                    'list'=>"market",
+                ]);
+            }
+            public function market_store(Request $r){
+                $item=new market();
+                $item->titleth=$r->titleth;
+                $item->titleen=$r->titleen;
+    
+                $item->save();
+                return redirect()->to('/backend/market')->with('success','Sucess!');
+    
+            }
+            public function market_update(Request $r,$id){
+                $item=market::where('id',$id)->first();
+                $item->titleth=$r->titleth;
+                $item->titleen=$r->titleen;
+    
+                $item->save();
+                return redirect()->to('/backend/market')->with('success','Sucess!');
+            }
+            public function market_edit($id){
+                $item=market::where('id',$id)->first();
+                return view('backend.market.edit',[
+                    'item'=>$item,
+                    'page'=>"market",
+                    'list'=>"market",
+                ]);
+            }
+            public function market_destroy($id){
+                $item=market::where('id',$id)->first();
+                $path =public_path().'/img/upload/'.$item->picture;
+                if(File::exists($path)){
+                File::delete($path);
+                }
+                $item->delete();
+                return redirect()->back()->with('success','Sucess!');
+            }
+            public function market_add(){
+                return view('backend.market.add',[
+                    'page'=>"market",
+                    'list'=>"market",
+                ]);
+            }
+            //market//
 
 
         //================ AJAX ===================

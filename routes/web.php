@@ -115,6 +115,17 @@ Route::prefix('backend')->group(function(){
     Route::post('news_update/{id}',[App\Http\Controllers\BackendController::class,'news_update']);
     //news
 
+
+     //market
+
+     Route::get('market',[App\Http\Controllers\BackendController::class,'market']);
+     Route::get('market_destroy/{id}',[App\Http\Controllers\BackendController::class,'market_destroy']);
+     Route::get('market_add',[App\Http\Controllers\BackendController::class,'market_add']);
+     Route::post('market_store',[App\Http\Controllers\BackendController::class,'market_store']);
+     Route::get('market_edit/{id}',[App\Http\Controllers\BackendController::class,'market_edit']);
+     Route::post('market_update/{id}',[App\Http\Controllers\BackendController::class,'market_update']);
+     //market
+
      //item_point
      Route::get('wait_point',[App\Http\Controllers\BackendController::class,'wait_point']);
      Route::get('wait_destroy/{id}',[App\Http\Controllers\BackendController::class,'wait_destroy']);

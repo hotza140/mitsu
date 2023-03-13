@@ -27,6 +27,9 @@ Route::group([
     Route::get('/api_user/{id}', 'ApiController@api_user');
 
 
+    Route::get('/api_market', 'ApiController@api_market');
+
+
     Route::post('/api_change_password', 'ApiController@api_change_password');
 
     Route::post('/api_news', 'ApiController@api_news');
