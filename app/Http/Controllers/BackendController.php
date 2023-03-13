@@ -396,7 +396,7 @@ public function user_item($id){
 
        //user//
        public function user(){
-        $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->get();
+        $item=User ::where('type','>=',2)->where('status',1)->orderby('id','desc')->get();
         return view('backend.user.index',[
             'item'=>$item,
             'page'=>"user",
@@ -405,7 +405,7 @@ public function user_item($id){
     }
     public function user_store(Request $r){
         $item=new User();
-        $ch=User::where('email',$r->email)->where('type','>',2)->first();
+        $ch=User::where('email',$r->email)->where('type','>=',2)->first();
 
         if($ch!=null){
             return redirect()->back()->with('success','Email Same in Data!');
@@ -536,7 +536,7 @@ public function user_item($id){
 
         //wait_user//
         public function wait_user(){
-            $item=User ::where('type','>',2)->where('status',0)->orderby('id','desc')->get();
+            $item=User ::where('type','>=',2)->where('status',0)->orderby('id','desc')->get();
             return view('backend.wait_user.index',[
                 'item'=>$item,
                 'page'=>"user",
@@ -545,7 +545,7 @@ public function user_item($id){
         }
         public function wait_user_store(Request $r){
             $item=new User();
-            $ch=User::where('email',$r->email)->where('type','>',2)->first();
+            $ch=User::where('email',$r->email)->where('type','>=',2)->first();
             $item->status=1;
 
             $item->save();
