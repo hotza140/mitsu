@@ -339,7 +339,7 @@ class ApiController extends Controller
     {
         $check = User::where('email', $r->email)->where('type', 5)->first();
         if ($check) {
-            $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->first();
+            $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->where('status',1)->first();
             if ($confirm) {
                 if (!Hash::check($r->password, $confirm->password)) {
                     $password = "";

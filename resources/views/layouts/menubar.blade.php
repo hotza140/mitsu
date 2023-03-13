@@ -351,12 +351,12 @@
                                         <span class="pcoded-mtext">USER</span>
                                         <span class="pcoded-mcaret"></span>
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
-                                        <!-- <?php $num=DB::table('users')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
-                                        @if($nums!=0)<span class="pcoded-badge label label-danger">{{$nums}}</span>@endif -->
+                                        <?php $num=DB::table('users')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
+                                        @if($nums!=0)<span class="pcoded-badge label label-danger">{{$nums}}</span>@endif
                                     </a>
 
                                        <!-- USER -->
-                                       <!-- <ul class="pcoded-submenu">
+                                       <ul class="pcoded-submenu">
                                         @if(isset($list)) @if($list=="wait_user") <li class="active"> @else
                                         <li class=""> @endif
                                             @else
@@ -369,7 +369,7 @@
                                                 <span class="pcoded-badge label label-danger">{{$nums}}</span>
                                             </a>
                                         </li>
-                                    </ul> -->
+                                    </ul>
                                     <!-- USER -->
 
 
