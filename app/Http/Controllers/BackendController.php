@@ -846,7 +846,7 @@ public function user_item($id){
 
 
             public function market(){
-                $item=market ::orderby('num','asc')->get();
+                $item=market ::orderby('id','desc')->get();
                 return view('backend.market.index',[
                     'item'=>$item,
                     'page'=>"market",
