@@ -107,12 +107,16 @@
                                         </div> -->
 
 
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">Marget</label>
-                                                <input disabled type="text" name="marget" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->marget;} ?>">
-                                            </div>
+                                        <div class="form-group col-md-4">
+                                            <label for="">Marget</label>
+                                            <?php $mm=DB::table('market')->orderby('id','desc')->get(); ?>
+                                            <select name="marget" id="" class="form-control"  disabled >
+                                                @foreach($mm as $mms)
+                                                <option <?php if(isset($item)){ if($item->id_market == $mms->id){echo 'selected';} } ?>
+                                                    value="{{$mms->id}}">{{$mms->titleen}}</option>
+                                                    @endforeach
+
+                                            </select>
                                         </div>
 
                                         <div class="form-group row">

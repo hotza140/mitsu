@@ -469,7 +469,14 @@ public function user_item($id){
             $item->password=Hash::make($r->password);
         }
 
-                $item->market = $r->market;
+            // MARKET
+            $item->id_market = $r->market;
+            $mm = market::where('id', $r->market)->first();
+            if($mm){
+                $item->market = $mm->titleen;
+            }
+            // MARKET
+
                 $item->nickname = $r->nickname;
                 $item->name = $r->name;
                 $item->lastname = $r->lastname;
