@@ -868,7 +868,7 @@ public function user_item($id){
                 $item->titleth=$r->titleth;
                 $item->titleen=$r->titleen;
                 
-                if($jj==$r->titleen){
+                if($jj!=$r->titleen){
                     $user=DB::table('users')->where('id_market',$id)->update(['market' => $r->titleen]);
                 }
 
