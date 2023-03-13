@@ -366,7 +366,7 @@
                                                 <span class="pcoded-mtext">USER รอการยืนยัน</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <?php $num=DB::table('users')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
-                                                <span class="pcoded-badge label label-danger">{{$nums}}</span>
+                                                @if($nums!=0)<span class="pcoded-badge label label-danger">{{$nums}}</span>@endif
                                             </a>
                                         </li>
                                     </ul>
