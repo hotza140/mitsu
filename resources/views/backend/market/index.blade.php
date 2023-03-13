@@ -27,7 +27,7 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    <a style="color:white;" class="btn btn-success" href="{{url('/backend/news_add')}}">
+                                    <a style="color:white;" class="btn btn-success" href="{{url('/backend/market_add')}}">
                                         <i class="fa fa-plus"></i> Add</a>
 
                                 </div>
@@ -56,10 +56,10 @@
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
-                                                        <a href="{{url('/backend/news_edit/'.$items->id)}}"
+                                                        <a href="{{url('/backend/market_edit/'.$items->id)}}"
                                                             class="btn btn-sm btn-primary" style="color:white;"><i
                                                                 class="fa fa-gear"></i>Edit</a>
-                                                        <a href="{{url('/backend/news_destroy/'.$items->id)}}"
+                                                        <a href="{{url('/backend/market_destroy/'.$items->id)}}"
                                                             class="btn btn-sm btn-danger"
                                                             onclick="javascript:return confirm('You Want To Delete?')"
                                                             style="color:white;"><i class="fa fa-trash"></i>Delete</a>
@@ -125,7 +125,7 @@
         var id = form_tr.find('.id').val();
         
             $.ajax({
-                url: "{!!url('/news_choose')!!}",
+                url: "{!!url('/market_choose')!!}",
                 method: "POST",
                 type: "PUT",
                 data: {
