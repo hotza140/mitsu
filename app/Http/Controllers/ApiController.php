@@ -81,7 +81,14 @@ class ApiController extends Controller
             $user = new User();
             $user->name = $r->name;
             $user->email = $r->email;
-            $user->password = Hash::make($r->password);
+
+            if($r->password==null){
+                $na=$r->name.'12345';
+                $user->password = Hash::make($na);
+            }else{
+                $user->password = Hash::make($r->password);
+            }
+            
             $user->type = 5;
             $user->status = 1;
 
