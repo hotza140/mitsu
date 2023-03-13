@@ -90,7 +90,7 @@ class ApiController extends Controller
             }
             
             $user->type = 5;
-            $user->status = 1;
+            $user->status = 0;
 
             $user->lastname = $r->lastname;
             $user->market = $r->market;
