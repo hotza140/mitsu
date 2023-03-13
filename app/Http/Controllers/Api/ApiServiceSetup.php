@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\CertificateServicePicture;
+use App\EducationServicePicture;
 use Exception;
 use App\Models\CarPicture;
 use App\Models\CarService;
@@ -340,6 +342,8 @@ class ApiServiceSetup extends Controller
                     'nick_name' => 'required|string',
                     'phone' => 'required|string',
                     'line' => 'required|string',
+                    'picturesEducate' => 'required|array',
+                    'picturesCer' => 'required|array',
                 ];
             $validator = Validator::make($req->all(), $rule);
 
@@ -355,10 +359,158 @@ class ApiServiceSetup extends Controller
             $technician->phone = $req->phone;
             $technician->line = $req->line;
             $technician->save();
-
+            foreach ($req->picturesEducate as $key => $picture) {
+                $filePicture = $_FILES['pictures']['name'][$key];
+                $picture->move(public_path() . '/img/upload', $filePicture);
+                $educate = new EducationServicePicture();
+                $educate->technician_id = $technician->id;
+                $educate->picture = $filePicture;
+                $educate->save();
+            }
+            foreach ($req->picturesCer as $key => $picture) {
+                $filePicture = $_FILES['pictures']['name'][$key];
+                $picture->move(public_path() . '/img/upload', $filePicture);
+                $cer = new CertificateServicePicture();
+                $cer->technician_id = $technician->id;
+                $cer->picture = $filePicture;
+                $cer->save();
+            }
             return response()->json([
                 'status' =>  true,
                 'message' =>  'Technician created successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function getTechnicianPicture($id)
+    {
+        try {
+            $technician = TechnicianService::find($id);
+            if (!$technician) {
+                throw new Exception('Technician not found');
+            }
+            $educate = EducationServicePicture::whereTechnicianId($id)->get();
+            $cer = CertificateServicePicture::whereTechnicianId($id)->get();
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'success',
+                'url_picture' => $this->prefix,
+                'results' => [
+                    'educate' => $educate,
+                    'cer' => $cer,
+                ]
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function addTechnicianPicture(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'id' => 'required',
+                    'type' => 'required',
+                    'pictures' => 'required|array',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $technician = TechnicianService::find($req->id);
+            if (!$technician) {
+                throw new Exception('Technician not found');
+            }
+            if ($req->type == 'educate') {
+                foreach ($req->pictures as $key => $picture) {
+                    $filePicture = $_FILES['pictures']['name'][$key];
+                    $picture->move(public_path() . '/img/upload', $filePicture);
+                    $educate = new EducationServicePicture();
+                    $educate->technician_id = $req->id;
+                    $educate->picture = $filePicture;
+                    $educate->save();
+                }
+            } else {
+                foreach ($req->pictures as $key => $picture) {
+                    $filePicture = $_FILES['pictures']['name'][$key];
+                    $picture->move(public_path() . '/img/upload', $filePicture);
+                    $cer = new CertificateServicePicture();
+                    $cer->technician_id = $req->id;
+                    $cer->picture = $filePicture;
+                    $cer->save();
+                }
+            }
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Picture added successfully',
+                'url_picture' => $this->prefix,
+                'results' => []
+            ], 200);
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'results' => [],
+                'status' =>  false,
+                'message' =>  $e->getMessage(),
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+
+    public function removeTechnicianPicture(Request $req)
+    {
+        try {
+            $rule =
+                [
+                    'id' => 'required',
+                    'type' => 'required|string',
+                    'picture_id' => 'required',
+                ];
+            $validator = Validator::make($req->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $technician = TechnicianService::find($req->id);
+            if (!$technician) {
+                throw new Exception('Technician not found');
+            }
+            if ($req->type == 'educate') {
+                $educate = EducationServicePicture::find($req->picture_id);
+                if (!$educate) {
+                    throw new Exception('Picture not found');
+                }
+                $educate->delete();
+            } else {
+                $cer = CertificateServicePicture::find($req->picture_id);
+                if (!$cer) {
+                    throw new Exception('Picture not found');
+                }
+                $cer->delete();
+            }
+            return response()->json([
+                'status' =>  true,
+                'message' =>  'Picture removed successfully',
                 'url_picture' => $this->prefix,
                 'results' => []
             ], 200);
@@ -468,6 +620,14 @@ class ApiServiceSetup extends Controller
             $technician = TechnicianService::find($req->id);
             if (!$technician) {
                 throw new Exception('Technician not found');
+            }
+            $educate = EducationServicePicture::whereTechnicianServiceId($req->id)->get();
+            foreach ($educate as $key => $value) {
+                $value->delete();
+            }
+            $cer = CertificateServicePicture::whereTechnicianServiceId($req->id)->get();
+            foreach ($cer as $key => $value) {
+                $value->delete();
             }
             $technician->delete();
             return response()->json([
