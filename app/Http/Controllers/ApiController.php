@@ -90,7 +90,7 @@ class ApiController extends Controller
             }else{
                 $user->password = Hash::make($r->password);
             }
-            
+
             $user->type = 5;
             $user->status = 0;
 
@@ -439,7 +439,7 @@ class ApiController extends Controller
      public function api_market()
      {
         $market = market::orderby('id', 'desc')->get();
- 
+
          $message = "Success!";
          $status = true;
          return response()->json([
@@ -1132,6 +1132,41 @@ class ApiController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Not Found User',
+            ], 400);
+        }
+    }
+
+    public function approve_training_list(Request $request,$id=null){
+        if($id){
+            $training_id = $id;
+
+            //Check Validate
+            $check_validate = [
+                'user_id' => 'required',
+                'status_approve' => 'required',
+            ];
+
+            $error_validator = [
+                'user_id' => 'กรุณากรอกข้อมูล',
+                'first_name:required' => 'กรุณากรอกข้อมูล',
+            ];
+
+            $validator = Validator::make(
+                $request->all(),
+                $user_training_validate,
+                $error_validator
+            );
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'error' => $validator->errors(),
+                ], 400);
+            }
+        }else{
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found Training'
             ], 400);
         }
     }
