@@ -360,7 +360,7 @@ class ApiServiceSetup extends Controller
             $technician->line = $req->line;
             $technician->save();
             foreach ($req->picturesEducate as $key => $picture) {
-                $filePicture = $_FILES['pictures']['name'][$key];
+                $filePicture = $_FILES['picturesEducate']['name'][$key];
                 $picture->move(public_path() . '/img/upload', $filePicture);
                 $educate = new EducationServicePicture();
                 $educate->technician_id = $technician->id;
@@ -368,7 +368,7 @@ class ApiServiceSetup extends Controller
                 $educate->save();
             }
             foreach ($req->picturesCer as $key => $picture) {
-                $filePicture = $_FILES['pictures']['name'][$key];
+                $filePicture = $_FILES['picturesCer']['name'][$key];
                 $picture->move(public_path() . '/img/upload', $filePicture);
                 $cer = new CertificateServicePicture();
                 $cer->technician_id = $technician->id;
@@ -392,13 +392,23 @@ class ApiServiceSetup extends Controller
         }
     }
 
-    public function getTechnicianPicture($id)
+    public function getTechnicianPicture(Request $request)
     {
         try {
-            $technician = TechnicianService::find($id);
-            if (!$technician) {
-                throw new Exception('Technician not found');
+            $rule =
+                [
+                    'id' => 'required',
+                ];
+            $validator = Validator::make($request->all(), $rule);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
             }
+            $id = $request->id;
+            // $technician = TechnicianService::find($id);
+            // if (!$technician) {
+            //     throw new Exception('Technician not found');
+            // }
             $educate = EducationServicePicture::whereTechnicianId($id)->get();
             $cer = CertificateServicePicture::whereTechnicianId($id)->get();
             return response()->json([
@@ -436,10 +446,10 @@ class ApiServiceSetup extends Controller
                 throw new Exception($validator->errors()->first());
             }
 
-            $technician = TechnicianService::find($req->id);
-            if (!$technician) {
-                throw new Exception('Technician not found');
-            }
+            // $technician = TechnicianService::find($req->id);
+            // if (!$technician) {
+            //     throw new Exception('Technician not found');
+            // }
             if ($req->type == 'educate') {
                 foreach ($req->pictures as $key => $picture) {
                     $filePicture = $_FILES['pictures']['name'][$key];
@@ -481,7 +491,6 @@ class ApiServiceSetup extends Controller
         try {
             $rule =
                 [
-                    'id' => 'required',
                     'type' => 'required|string',
                     'picture_id' => 'required',
                 ];
@@ -489,11 +498,6 @@ class ApiServiceSetup extends Controller
 
             if ($validator->fails()) {
                 throw new Exception($validator->errors()->first());
-            }
-
-            $technician = TechnicianService::find($req->id);
-            if (!$technician) {
-                throw new Exception('Technician not found');
             }
             if ($req->type == 'educate') {
                 $educate = EducationServicePicture::find($req->picture_id);

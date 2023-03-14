@@ -98,10 +98,10 @@ class ApiController extends Controller
             $user->phone = $r->phone;
 
             // MARKET
-            $user->id_market = $r->market;
-            $mm = market::where('id', $r->market)->first();
+            $user->market = $r->market;
+            $mm = market::where('titleth', $r->market)->first();
             if($mm){
-                $user->market = $mm->titleen;
+                $user->id_market = $mm->id;
             }
             // MARKET
 
