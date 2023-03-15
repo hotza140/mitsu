@@ -1138,7 +1138,7 @@ class ApiController extends Controller
 
     public function approve_training_list(Request $request,$id=null){
         if($id){
-            $training_id = $id;
+            // $training_id = $id;
 
             //Check Validate
             $check_validate = [
@@ -1147,8 +1147,8 @@ class ApiController extends Controller
             ];
 
             $error_validator = [
-                'user_id' => 'กรุณากรอกข้อมูล',
-                'first_name:required' => 'กรุณากรอกข้อมูล',
+                'user_id:required' => 'กรุณากรอกข้อมูล',
+                'status_approve:required' => 'กรุณากรอกข้อมูล',
             ];
 
             $validator = Validator::make(
@@ -1163,6 +1163,29 @@ class ApiController extends Controller
                     'error' => $validator->errors(),
                 ], 400);
             }
+
+            $training = Training::where('id', $id)->first();
+            $turn_id = TrainingTurn::where('training_id', $id)->orderby('turn', 'desc')->first();
+
+            $turn_list = TrainingList::where('user_id',$request->user_id)->where('turn_id',$turn_id->id)->where('training_id',$id)->get();
+
+            foreach($turn_list as $traning_list){
+                $list = TrainingList::find($traning_list->id);
+                $list->status_approve = $request->status;
+                $list->save();
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success!',
+                'data' => [
+                    'training' => $training,
+                    'list' => $turn_list,
+                    'turn' => $turn_id->turn,
+                ]
+            ]);
+
+
         }else{
             return response()->json([
                 'status' => false,
