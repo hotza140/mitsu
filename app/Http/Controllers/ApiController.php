@@ -84,10 +84,10 @@ class ApiController extends Controller
             $user->name = $r->name;
             $user->email = $r->email;
 
-            if($r->password==null){
-                $na=$r->name.'12345';
+            if ($r->password == null) {
+                $na = $r->name . '12345';
                 $user->password = Hash::make($na);
-            }else{
+            } else {
                 $user->password = Hash::make($r->password);
             }
 
@@ -100,7 +100,7 @@ class ApiController extends Controller
             // MARKET
             $user->market = $r->market;
             $mm = market::where('titleth', $r->market)->first();
-            if($mm){
+            if ($mm) {
                 $user->id_market = $mm->id;
             }
             // MARKET
@@ -355,7 +355,7 @@ class ApiController extends Controller
     {
         $check = User::where('email', $r->email)->where('type', 5)->first();
         if ($check) {
-            $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->where('status',1)->first();
+            $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->where('status', 1)->first();
             if ($confirm) {
                 if (!Hash::check($r->password, $confirm->password)) {
                     $password = "";
@@ -435,23 +435,23 @@ class ApiController extends Controller
 
 
 
-     ///market///
-     public function api_market()
-     {
+    ///market///
+    public function api_market()
+    {
         $market = market::orderby('id', 'desc')->get();
 
-         $message = "Success!";
-         $status = true;
-         return response()->json([
-             'results' => [
-                 'market' => $market,
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
-     }
-     ///market///
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'market' => $market,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///market///
 
 
     ///item_point///
@@ -1136,8 +1136,9 @@ class ApiController extends Controller
         }
     }
 
-    public function approve_training_list(Request $request,$id=null){
-        if($id){
+    public function approve_training_list(Request $request, $id = null)
+    {
+        if ($id) {
             // $training_id = $id;
 
             //Check Validate
@@ -1153,7 +1154,7 @@ class ApiController extends Controller
 
             $validator = Validator::make(
                 $request->all(),
-                $user_training_validate,
+                $check_validate,
                 $error_validator
             );
 
@@ -1167,9 +1168,9 @@ class ApiController extends Controller
             $training = Training::where('id', $id)->first();
             $turn_id = TrainingTurn::where('training_id', $id)->orderby('turn', 'desc')->first();
 
-            $turn_list = TrainingList::where('user_id',$request->user_id)->where('turn_id',$turn_id->id)->where('training_id',$id)->get();
+            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $id)->get();
 
-            foreach($turn_list as $traning_list){
+            foreach ($turn_list as $traning_list) {
                 $list = TrainingList::find($traning_list->id);
                 $list->status_approve = $request->status;
                 $list->save();
@@ -1184,9 +1185,7 @@ class ApiController extends Controller
                     'turn' => $turn_id->turn,
                 ]
             ]);
-
-
-        }else{
+        } else {
             return response()->json([
                 'status' => false,
                 'message' => 'Not Found Training'
