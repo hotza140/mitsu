@@ -1144,12 +1144,12 @@ class ApiController extends Controller
             //Check Validate
             $check_validate = [
                 'user_id' => 'required',
-                'status_approve' => 'required',
+                'status' => 'required',
             ];
 
             $error_validator = [
                 'user_id:required' => 'กรุณากรอกข้อมูล',
-                'status_approve:required' => 'กรุณากรอกข้อมูล',
+                'status:required' => 'กรุณากรอกข้อมูล',
             ];
 
             $validator = Validator::make(
