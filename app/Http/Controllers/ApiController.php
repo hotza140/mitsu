@@ -1074,7 +1074,7 @@ class ApiController extends Controller
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'phone' => 'required',
-                'agency' => 'required'
+                // 'agency' => 'required'
             ];
 
             $error_validator = [
@@ -1082,7 +1082,7 @@ class ApiController extends Controller
                 'first_name:required' => 'กรุณากรอกข้อมูล',
                 'last_name:required' => 'กรุณากรอกข้อมูล',
                 'phone:required' => 'กรุณากรอกข้อมูล',
-                'agency:required' => 'กรุณากรอกข้อมูล'
+                // 'agency:required' => 'กรุณากรอกข้อมูล'
             ];
 
             $validator = Validator::make(
@@ -1105,7 +1105,7 @@ class ApiController extends Controller
                 $list->last_name = $request->last_name;
                 $list->user_id = $request->user_id;
                 $list->phone = $request->phone;
-                $list->agency = $request->agency;
+                // $list->agency = $request->agency;
                 $list->save();
 
                 $training = Training::where('id', $list->training_id)->first();
