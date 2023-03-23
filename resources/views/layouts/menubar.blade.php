@@ -674,15 +674,33 @@
 
 
 
-<!-- ไม่เรียงตามตัวแรก Table -->
-    <script type="text/javascript">
+<!-- จัดการ DATATABLE -->
+<script type="text/javascript">
         $(document).ready(function() {
             $('#simpletable').dataTable({
-                order:[]
+                order:[],
+                stateSave: true,
+                stateSaveCallback: function(settings,data) {
+                localStorage.setItem( 'DataTables_' + settings.sInstance, JSON.stringify(data) )
+                },
+                stateLoadCallback: function(settings) {
+                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
+                }
             });
         } );
     </script>
-    <!-- ไม่เรียงตามตัวแรก Table -->
+
+      <!-- <script>
+        $(document).ready(function () {
+    $('#simpletable').DataTable({
+        paging: false,
+        ordering: false,
+        info: false,
+    });
+});
+    </script> -->
+
+    <!-- จัดการ DATATABLE -->
 
         <!-- เสริม -->
         <script src="{{asset('files/bower_components/sweetalert/js/sweetalert.min.js')}}"></script>

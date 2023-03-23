@@ -294,19 +294,40 @@
 
     <script>
     var table = $('#simpletable1').DataTable({
-        order: []
+        order: [],
+        stateSave: true,
+                stateSaveCallback: function(settings,data) {
+                localStorage.setItem( 'DataTables_' + settings.sInstance, JSON.stringify(data) )
+                },
+                stateLoadCallback: function(settings) {
+                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
+                }
     });;
     </script>
 
     <script>
     var table = $('#simpletable2').DataTable({
-        order: []
+        order: [],
+        stateSave: true,
+                stateSaveCallback: function(settings,data) {
+                localStorage.setItem( 'DataTables_' + settings.sInstance, JSON.stringify(data) )
+                },
+                stateLoadCallback: function(settings) {
+                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
+                }
     });;
     </script>
 
     <script>
     var table = $('#simpletable55').DataTable({
-        order: []
+        order: [],
+        stateSave: true,
+                stateSaveCallback: function(settings,data) {
+                localStorage.setItem( 'DataTables_' + settings.sInstance, JSON.stringify(data) )
+                },
+                stateLoadCallback: function(settings) {
+                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
+                }
     });;
     </script>
 
