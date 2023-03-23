@@ -84,13 +84,13 @@ class ApiController extends Controller
             $user->name = $r->name;
             $user->email = $r->email;
 
-            if($r->password==null){
-                $na=$r->name.'12345';
+            if ($r->password == null) {
+                $na = $r->name . '12345';
                 $user->password = Hash::make($na);
-            }else{
+            } else {
                 $user->password = Hash::make($r->password);
             }
-            
+
             $user->type = 5;
             $user->status = 0;
 
@@ -100,7 +100,7 @@ class ApiController extends Controller
             // MARKET
             $user->market = $r->market;
             $mm = market::where('titleth', $r->market)->first();
-            if($mm){
+            if ($mm) {
                 $user->id_market = $mm->id;
             }
             // MARKET
@@ -355,7 +355,7 @@ class ApiController extends Controller
     {
         $check = User::where('email', $r->email)->where('type', 5)->first();
         if ($check) {
-            $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->where('status',1)->first();
+            $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->where('status', 1)->first();
             if ($confirm) {
                 if (!Hash::check($r->password, $confirm->password)) {
                     $password = "";
@@ -435,23 +435,23 @@ class ApiController extends Controller
 
 
 
-     ///market///
-     public function api_market()
-     {
+    ///market///
+    public function api_market()
+    {
         $market = market::orderby('id', 'desc')->get();
- 
-         $message = "Success!";
-         $status = true;
-         return response()->json([
-             'results' => [
-                 'market' => $market,
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
-     }
-     ///market///
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'market' => $market,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///market///
 
 
     ///item_point///
@@ -957,7 +957,7 @@ class ApiController extends Controller
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'phone' => 'required',
-                'agency' => 'required'
+                // 'agency' => 'required'
             ];
 
             $error_validator = [
@@ -965,7 +965,7 @@ class ApiController extends Controller
                 'first_name:required' => 'กรุณากรอกข้อมูล',
                 'last_name:required' => 'กรุณากรอกข้อมูล',
                 'phone:required' => 'กรุณากรอกข้อมูล',
-                'agency:required' => 'กรุณากรอกข้อมูล'
+                // 'agency:required' => 'กรุณากรอกข้อมูล'
             ];
 
             $validator = Validator::make(
@@ -990,7 +990,7 @@ class ApiController extends Controller
                     $user->last_name = $request->last_name;
                     $user->full_name = $request->first_name . ' ' . $request->last_name;
                     $user->phone = $request->phone;
-                    $user->agency = $request->agency;
+                    // $user->agency = $request->agency;
 
                     $user->training_id = $id;
                     $user->turn_id = $get_turn_now->id;
@@ -1074,7 +1074,7 @@ class ApiController extends Controller
                 'first_name' => 'required',
                 'last_name' => 'required',
                 'phone' => 'required',
-                'agency' => 'required'
+                // 'agency' => 'required'
             ];
 
             $error_validator = [
@@ -1082,7 +1082,7 @@ class ApiController extends Controller
                 'first_name:required' => 'กรุณากรอกข้อมูล',
                 'last_name:required' => 'กรุณากรอกข้อมูล',
                 'phone:required' => 'กรุณากรอกข้อมูล',
-                'agency:required' => 'กรุณากรอกข้อมูล'
+                // 'agency:required' => 'กรุณากรอกข้อมูล'
             ];
 
             $validator = Validator::make(
@@ -1105,7 +1105,7 @@ class ApiController extends Controller
                 $list->last_name = $request->last_name;
                 $list->user_id = $request->user_id;
                 $list->phone = $request->phone;
-                $list->agency = $request->agency;
+                // $list->agency = $request->agency;
                 $list->save();
 
                 $training = Training::where('id', $list->training_id)->first();
@@ -1132,6 +1132,63 @@ class ApiController extends Controller
             return response()->json([
                 'status' => false,
                 'message' => 'Not Found User',
+            ], 400);
+        }
+    }
+
+    public function approve_training_list(Request $request, $id = null)
+    {
+        if ($id) {
+            // $training_id = $id;
+
+            //Check Validate
+            $check_validate = [
+                'user_id' => 'required',
+                'status' => 'required',
+            ];
+
+            $error_validator = [
+                'user_id:required' => 'กรุณากรอกข้อมูล',
+                'status:required' => 'กรุณากรอกข้อมูล',
+            ];
+
+            $validator = Validator::make(
+                $request->all(),
+                $check_validate,
+                $error_validator
+            );
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'error' => $validator->errors(),
+                ], 400);
+            }
+
+            $training = Training::where('id', $id)->first();
+            $turn_id = TrainingTurn::where('training_id', $id)->orderby('turn', 'desc')->first();
+
+            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $id)->get();
+
+            foreach ($turn_list as $traning_list) {
+                $list = TrainingList::find($traning_list->id);
+                $list->status_approve = $request->status;
+                $list->save();
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success!',
+                'data' => [
+                    'training' => $training,
+                    'list' => $turn_list,
+                    'turn' => $turn_id->turn,
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found Training'
             ], 400);
         }
     }

@@ -60,6 +60,7 @@ Route::group([
     Route::post('/api_create_list_training/{id}', 'ApiController@book_training');
     Route::post('/api_edit_list_training/{id}', 'ApiController@edit_book_training');
     Route::get('/api_remove_list_training/{id}', 'ApiController@removeBooktraing');
+    Route::post('/api_approve_training/{id}', 'ApiController@approve_training_list');
 
     Route::post('/api_update_customer', 'ApiController@update_customer');
 
