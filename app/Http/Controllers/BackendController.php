@@ -792,6 +792,20 @@ public function user_item($id){
                 $r->picture->move(public_path() . '/img/upload', $picture);
                 $item->picture = $picture;}
 
+
+                //            if(isset($r->picture)){
+//				
+//			$file = $r->file('picture');
+//			$fileName = $_FILES['picture']['name'];
+//			$filePath = 'file/upload/' . $fileName;
+//			Storage::disk('s3')->put($filePath, file_get_contents($file));
+//			$urlPath = Storage::disk('s3')->url($filePath);
+//				
+//			$item->picture =$urlPath;
+//			}
+//
+//            $item->save();
+
             $item->save();
             return redirect()->to('/backend/news')->with('success','Sucess!');
 
