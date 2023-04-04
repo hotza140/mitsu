@@ -809,6 +809,10 @@ public function user_item($id){
 // $ex = Storage::disk('s3')->exists($filePath);
 // $de = Storage::disk('s3')->delete($filePath);
 
+// if(Storage::disk('s3')->exists($filePath)){
+//     Storage::disk('s3')->delete($filePath);
+// }
+
 
             $item->save();
             return redirect()->to('/backend/news')->with('success','Sucess!');
