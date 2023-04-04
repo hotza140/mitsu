@@ -152,7 +152,7 @@ class BackendController extends Controller
         $item->detailth=$r->detailth;
         $item->detailen=$r->detailen;
 
-        if(isset($r->picture)){
+        if($r->picture){
             $path =public_path().'/img/upload/'.$item->picture;
             if(File::exists($path)){
             File::delete($path);
@@ -641,7 +641,7 @@ public function user_item($id){
         $item->desth=$r->desth;
         $item->price=$r->price;
 
-        if(isset($r->picture)){
+        if($r->picture){
             $path =public_path().'/img/upload/'.$item->picture;
             if(File::exists($path)){
             File::delete($path);
@@ -783,7 +783,7 @@ public function user_item($id){
             $item->desen=$r->desen;
             $item->link=$r->link;
 
-            if(isset($r->picture)){
+            if($r->picture){
                 $path =public_path().'/img/upload/'.$item->picture;
                 if(File::exists($path)){
                 File::delete($path);
@@ -793,7 +793,7 @@ public function user_item($id){
                 $item->picture = $picture;}
 
 
-                //            if(isset($r->picture)){
+                //            if($r->picture){
 //				
 //			$file = $r->file('picture');
 //			$fileName = $_FILES['picture']['name'];
@@ -829,7 +829,7 @@ public function user_item($id){
             $item->desen=$r->desen;
             $item->link=$r->link;
 
-            if(isset($r->picture)){
+            if($r->picture){
                 $path =public_path().'/img/upload/'.$item->picture;
                 if(File::exists($path)){
                 File::delete($path);
@@ -1036,7 +1036,7 @@ public function user_item($id){
                 $item->locationth=$r->locationth;
                 $item->locationen=$r->locationen;
     
-                if(isset($r->picture)){
+                if($r->picture){
                     $path =public_path().'/img/upload/'.$item->picture;
                     if(File::exists($path)){
                     File::delete($path);
@@ -1065,7 +1065,7 @@ public function user_item($id){
                 $item->locationth=$r->locationth;
                 $item->locationen=$r->locationen;
     
-                if(isset($r->picture)){
+                if($r->picture){
                     $path =public_path().'/img/upload/'.$item->picture;
                     if(File::exists($path)){
                     File::delete($path);
