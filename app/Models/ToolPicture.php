@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ToolPicture extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     protected $table = "tool_pictures";
     protected $fillable = [

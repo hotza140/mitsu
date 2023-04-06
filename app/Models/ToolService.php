@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class ToolService extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     protected $table = "tool_services";
     protected $fillable = [
