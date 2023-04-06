@@ -52,7 +52,7 @@
 
                                         @if($item->picture!=null)
                                         <br>
-                                        <center><img src="{{$items->picture)}}" width="200px">
+                                        <center><img src="{{$item->picture)}}" width="200px">
                                         </center>
                                         <br>
                                         @else
