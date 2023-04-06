@@ -51,7 +51,7 @@ class ApiController extends Controller
     //  protected $prefix = 'http://www.mitsuheavyth.com/img/upload/';
     // protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
 
-    protected $prefix = 'Null';
+    protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
 
 
 

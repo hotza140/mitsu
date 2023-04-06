@@ -57,7 +57,7 @@
                                                 @foreach($item as $key=>$items)
                                                 <tr>
                                                     <td>{{$key+1}}</td>
-                                                    <td><img src="{{$items->picture}}"
+                                                    <td><img src="{{asset('/img/upload/'.$items->picture)}}"
                                                             style="width:200px"></td>
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
