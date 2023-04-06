@@ -347,7 +347,11 @@
                                                         <td>{{$key+1}}</td>
                                                         <!-- <td>{{($itts->name)?? '-'}}</td> -->
                                                         <td>
-                                                        <img src="{{asset('$itts->picture')}}" style="width:100px">
+                                                        <img <?php    $filePath = 'file/upload/' . $itts->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+src="{{$picture}}" style="width:100px">
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>

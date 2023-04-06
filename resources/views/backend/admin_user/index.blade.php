@@ -86,7 +86,6 @@
                                                     @else
                                                     <td style="color: #d712b5;" >ADMIN</td>
                                                     @endif
-                                                    <!-- <td><img src="{{asset('$items->picture')}}" style="width:200px"></td> -->
                                                     <td>{{$items->name}}</td>
                                                     <td>{{$items->email}}</td>
                                                     <!-- <td>{{$items->created_at}}</td> -->

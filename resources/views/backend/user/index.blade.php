@@ -110,7 +110,11 @@
 
                                                     <td>{{$items->code}}</td>
                                                     @if($items->picture!=null)
-                                                    <td><img src="{{asset('$items->picture')}}"
+                                                    <td><img <?php    $filePath = 'file/upload/' . $item->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+src="{{$picture}}"
                                                             style="width:100px"></td>
                                                     @else
                                                     <td><img src="{{asset('/img/no_img.png')}}" style="width:100px">
