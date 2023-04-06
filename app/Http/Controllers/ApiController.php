@@ -316,9 +316,11 @@ class ApiController extends Controller
                 if (!$file->isValid()) {
                     return response()->json(['invalid_file_upload'], 400);
                 }
-                $picture = $_FILES['picture']['name'];
-                $r->picture->move(public_path() . '/img/upload', $picture);
-                $user->picture = $picture;
+                $fileName = $_FILES['picture']['name'];
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $urlPath = Storage::disk('s3')->url($filePath);
+                $user->picture = $urlPath;
             }
 
 
