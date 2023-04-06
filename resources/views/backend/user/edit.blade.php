@@ -52,7 +52,7 @@
 
                                         @if($item->picture!=null)
                                         <br>
-                                        <center><img src="{{asset('img/upload/'.$item->picture)}}" width="200px">
+                                        <center><img src="{{$items->picture)}}" width="200px">
                                         </center>
                                         <br>
                                         @else
@@ -347,7 +347,7 @@
                                                         <td>{{$key+1}}</td>
                                                         <!-- <td>{{($itts->name)?? '-'}}</td> -->
                                                         <td>
-                                                        <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
+                                                        <img src="{{$itts->picture)}}" style="width:100px">
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>

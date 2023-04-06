@@ -66,7 +66,7 @@
                                                             Line: {{($p1->line)?? '-'}}
                                                         </td>
                                                         <td>
-                                                        <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
+                                                        <img src="{{$itts->picture)}}" style="width:100px">
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
@@ -167,7 +167,7 @@
                                                             Line: {{($p2->line)?? '-'}}
                                                         </td>
                                                         <td>
-                                                        <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
+                                                        <img src="{{$itts->picture)}}" style="width:100px">
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
@@ -264,7 +264,7 @@
                                                             Line: {{($p3->line)?? '-'}}
                                                         </td>
                                                         <td>
-                                                        <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
+                                                        <img src="{{$itts->picture)}}" style="width:100px">
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>

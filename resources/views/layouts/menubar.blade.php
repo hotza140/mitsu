@@ -198,8 +198,6 @@
 </head>
 
 <body>
-
-<?php   $url = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';  ?>
     <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="loader-track">
