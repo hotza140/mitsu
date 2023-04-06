@@ -136,10 +136,19 @@ class BackendController extends Controller
         $item->detailth=$r->detailth;
         $item->detailen=$r->detailen;
 
-        if($r->picture!=null){
-            $picture = $_FILES['picture']['name'];
-            $r->picture->move(public_path() . '/img/upload', $picture);
-            $item->picture = $picture;}
+        if($r->picture){
+            $check = 'file/upload/' . $item->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
+            }
+            $file = $r->file('picture');
+            $fileName = $_FILES['picture']['name'];
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $urlPath = Storage::disk('s3')->url($filePath);
+            $item->picture =$urlPath;
+            }
 
         $item->save();
         return redirect()->to('/backend/banner')->with('success','Sucess!');
@@ -153,13 +162,18 @@ class BackendController extends Controller
         $item->detailen=$r->detailen;
 
         if($r->picture){
-            $path =public_path().'/img/upload/'.$item->picture;
-            if(File::exists($path)){
-            File::delete($path);
+            $check = 'file/upload/' . $item->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
             }
-            $picture = $_FILES['picture']['name'];
-            $r->picture->move(public_path() . '/img/upload', $picture);
-            $item->picture = $picture;}
+            $file = $r->file('picture');
+            $fileName = $_FILES['picture']['name'];
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $urlPath = Storage::disk('s3')->url($filePath);
+            $item->picture =$urlPath;
+            }
 
         $item->save();
         return redirect()->to('/backend/banner')->with('success','Sucess!');
@@ -174,10 +188,11 @@ class BackendController extends Controller
     }
     public function banner_destroy($id){
         $item=banner::where('id',$id)->first();
-        $path =public_path().'/img/upload/'.$item->picture;
-        if(File::exists($path)){
-        File::delete($path);
-        }
+        $check = 'file/upload/' . $item->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
+            }
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
@@ -361,12 +376,14 @@ public function user_item($id){
 
 		foreach($gal as $gals){
 			$gg=CarPicture::where('id',$gals->id)->first();
-			$path =public_path().'/img/upload/'.$gg->picture;
-			 if(File::exists($path)){
-            File::delete($path);
+            $check = 'file/upload/' . $gg->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
             }
 			$gg->delete();
 		}
+
 
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
@@ -379,9 +396,10 @@ public function user_item($id){
 
 		foreach($gal as $gals){
 			$gg=ToolPicture::where('id',$gals->id)->first();
-			$path =public_path().'/img/upload/'.$gg->picture;
-			 if(File::exists($path)){
-            File::delete($path);
+            $check = 'file/upload/' . $gg->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
             }
 			$gg->delete();
 		}
@@ -624,10 +642,19 @@ public function user_item($id){
 
         $item->id_user=$r->id_user;
 
-        if($r->picture!=null){
-            $picture = $_FILES['picture']['name'];
-            $r->picture->move(public_path() . '/img/upload', $picture);
-            $item->picture = $picture;}
+        if($r->picture){
+            $check = 'file/upload/' . $item->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
+            }
+            $file = $r->file('picture');
+            $fileName = $_FILES['picture']['name'];
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $urlPath = Storage::disk('s3')->url($filePath);
+            $item->picture =$urlPath;
+            }
 
         $item->save();
         return redirect()->to('/backend/user_edit/'.$item->id_user)->with('success','Sucess!');
@@ -642,13 +669,18 @@ public function user_item($id){
         $item->price=$r->price;
 
         if($r->picture){
-            $path =public_path().'/img/upload/'.$item->picture;
-            if(File::exists($path)){
-            File::delete($path);
+            $check = 'file/upload/' . $item->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
             }
-            $picture = $_FILES['picture']['name'];
-            $r->picture->move(public_path() . '/img/upload', $picture);
-            $item->picture = $picture;}
+            $file = $r->file('picture');
+            $fileName = $_FILES['picture']['name'];
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $urlPath = Storage::disk('s3')->url($filePath);
+            $item->picture =$urlPath;
+            }
 
         $item->save();
         return redirect()->to('/backend/user_edit/'.$item->id_user)->with('success','Sucess!');
@@ -665,10 +697,11 @@ public function user_item($id){
     }
     public function product_destroy($id){
         $item=product::where('id',$id)->first();
-        $path =public_path().'/img/upload/'.$item->picture;
-        if(File::exists($path)){
-        File::delete($path);
-        }
+        $check = 'file/upload/' . $item->picture;
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
+            }
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
@@ -907,10 +940,6 @@ public function user_item($id){
             }
             public function market_destroy($id){
                 $item=market::where('id',$id)->first();
-                $path =public_path().'/img/upload/'.$item->picture;
-                if(File::exists($path)){
-                File::delete($path);
-                }
                 $item->delete();
                 return redirect()->back()->with('success','Sucess!');
             }
@@ -1029,13 +1058,18 @@ public function user_item($id){
                 $item->locationen=$r->locationen;
     
                 if($r->picture){
-                    $path =public_path().'/img/upload/'.$item->picture;
-                    if(File::exists($path)){
-                    File::delete($path);
+                    $check = 'file/upload/' . $item->picture;
+                    $uc = Storage::disk('s3')->url($check);
+                    if(Storage::disk('s3')->exists($uc)){
+                    Storage::disk('s3')->delete($uc);
                     }
-                    $picture = $_FILES['picture']['name'];
-                    $r->picture->move(public_path() . '/img/upload', $picture);
-                    $item->picture = $picture;}
+                    $file = $r->file('picture');
+                    $fileName = $_FILES['picture']['name'];
+                    $filePath = 'file/upload/' . $fileName;
+                    Storage::disk('s3')->put($filePath, file_get_contents($file));
+                    $urlPath = Storage::disk('s3')->url($filePath);
+                    $item->picture =$urlPath;
+                    }
     
                 $item->save();
                 return redirect()->to('/backend/item_point')->with('success','Sucess!');
@@ -1058,13 +1092,18 @@ public function user_item($id){
                 $item->locationen=$r->locationen;
     
                 if($r->picture){
-                    $path =public_path().'/img/upload/'.$item->picture;
-                    if(File::exists($path)){
-                    File::delete($path);
+                    $check = 'file/upload/' . $item->picture;
+                    $uc = Storage::disk('s3')->url($check);
+                    if(Storage::disk('s3')->exists($uc)){
+                    Storage::disk('s3')->delete($uc);
                     }
-                    $picture = $_FILES['picture']['name'];
-                    $r->picture->move(public_path() . '/img/upload', $picture);
-                    $item->picture = $picture;}
+                    $file = $r->file('picture');
+                    $fileName = $_FILES['picture']['name'];
+                    $filePath = 'file/upload/' . $fileName;
+                    Storage::disk('s3')->put($filePath, file_get_contents($file));
+                    $urlPath = Storage::disk('s3')->url($filePath);
+                    $item->picture =$urlPath;
+                    }
     
                 $item->save();
                 return redirect()->to('/backend/item_point')->with('success','Sucess!');
@@ -1079,10 +1118,11 @@ public function user_item($id){
             }
             public function item_point_destroy($id){
                 $item=item_point::where('id',$id)->first();
-                $path =public_path().'/img/upload/'.$item->picture;
-                if(File::exists($path)){
-                File::delete($path);
-                }
+                $check = 'file/upload/' . $item->picture;
+                    $uc = Storage::disk('s3')->url($check);
+                    if(Storage::disk('s3')->exists($uc)){
+                    Storage::disk('s3')->delete($uc);
+                    }
                 $item->delete();
                 return redirect()->back()->with('success','Sucess!');
             }
