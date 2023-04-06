@@ -239,6 +239,12 @@ $picture= Storage::disk('s3')->url($filePath);
 
                                         </form>
 
+                                        <br>
+                                        <strong>
+                                            <h3 class="m-b-10">ประวัติการได้รับแต้ม Point
+                                            </h3>
+                                        </strong>
+
                                     </div>
 
 
