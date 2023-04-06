@@ -78,7 +78,7 @@
 
 
 
-                                                    <td><img src="{{$items->picture)}}"
+                                                    <td><img src="{{$items->picture}}"
                                                             style="width:200px"></td>
                                                     <!-- <td>{{$items->titleen}}</td> -->
                                                     <td>{{$items->point}}</td>

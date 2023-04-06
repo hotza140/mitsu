@@ -110,7 +110,7 @@
 
                                                     <td>{{$items->code}}</td>
                                                     @if($items->picture!=null)
-                                                    <td><img src="{{$items->picture)}}"
+                                                    <td><img src="{{$items->picture}}"
                                                             style="width:100px"></td>
                                                     @else
                                                     <td><img src="{{asset('/img/no_img.png')}}" style="width:100px">

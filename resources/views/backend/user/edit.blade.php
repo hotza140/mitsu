@@ -347,7 +347,7 @@
                                                         <td>{{$key+1}}</td>
                                                         <!-- <td>{{($itts->name)?? '-'}}</td> -->
                                                         <td>
-                                                        <img src="{{$itts->picture)}}" style="width:100px">
+                                                        <img src="{{$itts->picture}}" style="width:100px">
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
