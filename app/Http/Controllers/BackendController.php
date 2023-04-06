@@ -351,9 +351,11 @@ public function user_item($id){
         if($type==1){
             $item=CarPicture::where('id',$id)->first();
         }else{
-            $item=ToolPicture::where('id',$id)->first();
+            $item=ToolPicture::where('id',$id)->first();;
         }
-        
+        $check= 'file/upload/' . $item->picture;
+        Storage::disk('s3')->delete($check);
+       
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
