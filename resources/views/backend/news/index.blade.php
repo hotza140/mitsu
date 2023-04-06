@@ -74,7 +74,7 @@
                                                          @endif 
 
 
-                                                    <td><img src="{{asset('/img/upload/'.$items->picture)}}"
+                                                    <td><img src="{{$items->picture}}"
                                                             style="width:200px"></td>
                                                     <!-- <td>{{$items->titleen}}</td> -->
                                                     <!-- <td>{{$items->created_at}}</td> -->

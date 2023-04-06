@@ -783,35 +783,20 @@ public function user_item($id){
             $item->desen=$r->desen;
             $item->link=$r->link;
 
+
+
             if($r->picture){
-                $path =public_path().'/img/upload/'.$item->picture;
-                if(File::exists($path)){
-                File::delete($path);
-                }
-                $picture = $_FILES['picture']['name'];
-                $r->picture->move(public_path() . '/img/upload', $picture);
-                $item->picture = $picture;}
-
-
-                //            if($r->picture){
-//				
-//			$file = $r->file('picture');
-//			$fileName = $_FILES['picture']['name'];
-//			$filePath = 'file/upload/' . $fileName;
-//			Storage::disk('s3')->put($filePath, file_get_contents($file));
-//			$urlPath = Storage::disk('s3')->url($filePath);
-//				
-//			$item->picture =$urlPath;
-//			}
-//
-//            $item->save();
-
-// $ex = Storage::disk('s3')->exists($filePath);
-// $de = Storage::disk('s3')->delete($filePath);
-
-// if(Storage::disk('s3')->exists($filePath)){
-//     Storage::disk('s3')->delete($filePath);
-// }
+            $check = 'file/upload/' . $$item->picture;
+            if(Storage::disk('s3')->exists($check)){
+            Storage::disk('s3')->delete($check);
+            }
+			$file = $r->file('picture');
+			$fileName = $_FILES['picture']['name'];
+			$filePath = 'file/upload/' . $fileName;
+			Storage::disk('s3')->put($filePath, file_get_contents($file));
+			$urlPath = Storage::disk('s3')->url($filePath);
+			$item->picture =$urlPath;
+			}
 
 
             $item->save();
@@ -830,13 +815,17 @@ public function user_item($id){
             $item->link=$r->link;
 
             if($r->picture){
-                $path =public_path().'/img/upload/'.$item->picture;
-                if(File::exists($path)){
-                File::delete($path);
+                $check = 'file/upload/' . $$item->picture;
+                if(Storage::disk('s3')->exists($check)){
+                Storage::disk('s3')->delete($check);
                 }
-                $picture = $_FILES['picture']['name'];
-                $r->picture->move(public_path() . '/img/upload', $picture);
-                $item->picture = $picture;}
+                $file = $r->file('picture');
+                $fileName = $_FILES['picture']['name'];
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $urlPath = Storage::disk('s3')->url($filePath);
+                $item->picture =$urlPath;
+                }
 
             $item->save();
             return redirect()->to('/backend/news')->with('success','Sucess!');
@@ -851,9 +840,9 @@ public function user_item($id){
         }
         public function news_destroy($id){
             $item=news::where('id',$id)->first();
-            $path =public_path().'/img/upload/'.$item->picture;
-            if(File::exists($path)){
-            File::delete($path);
+            $check = 'file/upload/' . $$item->picture;
+            if(Storage::disk('s3')->exists($check)){
+            Storage::disk('s3')->delete($check);
             }
             $item->delete();
             return redirect()->back()->with('success','Sucess!');
