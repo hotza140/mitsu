@@ -78,7 +78,7 @@
 
 
 
-                                                    <td><img <?php    $filePath = 'file/upload/' . $item->picture;  
+                                                    <td><img <?php    $filePath = 'file/upload/' . $items->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 

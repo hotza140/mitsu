@@ -57,7 +57,7 @@
                                                 @foreach($item as $key=>$items)
                                                 <tr>
                                                     <td>{{$key+1}}</td>
-                                                    <td><img <?php    $filePath = 'file/upload/' . $item->picture;  
+                                                    <td><img <?php    $filePath = 'file/upload/' . $items->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 

@@ -42,7 +42,11 @@
 
                                         @if($item->picture!=null)
                                         <br>
-                                        <center><img src="{{asset('$item->picture')}}" width="200px"></center>
+                                        <?php    $filePath = 'file/upload/' . $item->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+<center><img src="{{$picture}}" width="200px"></center>
                                         <br>
                                         @endif
 
