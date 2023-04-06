@@ -137,13 +137,13 @@ class BackendController extends Controller
         $item->detailen=$r->detailen;
 
         if($r->picture){
-              Storage::disk('s3')->delete($item->picture);
+              $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
-            $urlPath = Storage::disk('s3')->url($filePath);
-            $item->picture =$urlPath;
+            $item->picture = $fileName;
             }
 
         $item->save();
@@ -158,13 +158,14 @@ class BackendController extends Controller
         $item->detailen=$r->detailen;
 
         if($r->picture){
-              Storage::disk('s3')->delete($item->picture);
+              $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
-            $urlPath = Storage::disk('s3')->url($filePath);
-            $item->picture =$urlPath;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->picture = $fileName;
             }
 
         $item->save();
@@ -180,7 +181,8 @@ class BackendController extends Controller
     }
     public function banner_destroy($id){
         $item=banner::where('id',$id)->first();
-          Storage::disk('s3')->delete($item->picture);
+          $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
@@ -364,7 +366,8 @@ public function user_item($id){
 
 		foreach($gal as $gals){
 			$gg=CarPicture::where('id',$gals->id)->first();
-               Storage::disk('s3')->delete($gg->picture);
+            $check= 'file/upload/' . $gg->picture;
+            Storage::disk('s3')->delete($check);
 			$gg->delete();
 		}
 
@@ -380,7 +383,8 @@ public function user_item($id){
 
 		foreach($gal as $gals){
 			$gg=ToolPicture::where('id',$gals->id)->first();
-               Storage::disk('s3')->delete($gg->picture);
+            $check= 'file/upload/' . $gg->picture;
+            Storage::disk('s3')->delete($check);
 			$gg->delete();
 		}
 
@@ -619,13 +623,14 @@ public function user_item($id){
         $item->id_user=$r->id_user;
 
         if($r->picture){
-              Storage::disk('s3')->delete($item->picture);
+              $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
-            $urlPath = Storage::disk('s3')->url($filePath);
-            $item->picture =$urlPath;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->picture = $fileName;
             }
 
         $item->save();
@@ -641,13 +646,14 @@ public function user_item($id){
         $item->price=$r->price;
 
         if($r->picture){
-              Storage::disk('s3')->delete($item->picture);
+              $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
-            $urlPath = Storage::disk('s3')->url($filePath);
-            $item->picture =$urlPath;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->picture = $fileName;
             }
 
         $item->save();
@@ -665,7 +671,8 @@ public function user_item($id){
     }
     public function product_destroy($id){
         $item=product::where('id',$id)->first();
-          Storage::disk('s3')->delete($item->picture);
+          $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
@@ -783,13 +790,13 @@ public function user_item($id){
 
 
             if($r->picture){
-                   Storage::disk('s3')->delete($item->picture);
+                   $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
                 $file = $r->file('picture');
                 $fileName = $_FILES['picture']['name'];
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
-                $urlPath = Storage::disk('s3')->url($filePath);
-                $item->picture =$urlPath;
+                $item->picture = $fileName;
                 }
 
 
@@ -809,13 +816,13 @@ public function user_item($id){
             $item->link=$r->link;
 
             if($r->picture){
-                   Storage::disk('s3')->delete($item->picture);
+                   $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
                 $file = $r->file('picture');
                 $fileName = $_FILES['picture']['name'];
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
-                $urlPath = Storage::disk('s3')->url($filePath);
-                $item->picture =$urlPath;
+            $item->picture = $fileName;
                 }
 
             $item->save();
@@ -831,7 +838,8 @@ public function user_item($id){
         }
         public function news_destroy($id){
             $item=news::where('id',$id)->first();
-            Storage::disk('s3')->delete($item->picture);
+            $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
             $item->delete();
             return redirect()->back()->with('success','Sucess!');
         }
@@ -1010,13 +1018,13 @@ public function user_item($id){
                 $item->locationen=$r->locationen;
 
                 if($r->picture){
-                    Storage::disk('s3')->delete($item->picture);
+                    $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
                     $file = $r->file('picture');
                     $fileName = $_FILES['picture']['name'];
                     $filePath = 'file/upload/' . $fileName;
                     Storage::disk('s3')->put($filePath, file_get_contents($file));
-                    $urlPath = Storage::disk('s3')->url($filePath);
-                    $item->picture =$urlPath;
+            $item->picture = $fileName;
                     }
     
                 $item->save();
@@ -1040,13 +1048,13 @@ public function user_item($id){
                 $item->locationen=$r->locationen;
     
                 if($r->picture){
-                    Storage::disk('s3')->delete($item->picture);
+                    $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
                     $file = $r->file('picture');
                     $fileName = $_FILES['picture']['name'];
                     $filePath = 'file/upload/' . $fileName;
                     Storage::disk('s3')->put($filePath, file_get_contents($file));
-                    $urlPath = Storage::disk('s3')->url($filePath);
-                    $item->picture =$urlPath;
+            $item->picture = $fileName;
                     }
     
                 $item->save();
@@ -1062,7 +1070,8 @@ public function user_item($id){
             }
             public function item_point_destroy($id){
                 $item=item_point::where('id',$id)->first();
-                Storage::disk('s3')->delete($item->picture);
+                $check= 'file/upload/' . $item->picture;
+                    Storage::disk('s3')->delete($check);
                 $item->delete();
                 return redirect()->back()->with('success','Sucess!');
             }

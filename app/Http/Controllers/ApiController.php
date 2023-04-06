@@ -319,8 +319,7 @@ class ApiController extends Controller
                 $fileName = $_FILES['picture']['name'];
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
-                $urlPath = Storage::disk('s3')->url($filePath);
-                $user->picture = $urlPath;
+                $user->picture = $fileName;
             }
 
 
