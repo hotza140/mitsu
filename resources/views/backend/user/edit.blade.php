@@ -351,7 +351,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                         <td>{{$key+1}}</td>
                                                         <!-- <td>{{($itts->name)?? '-'}}</td> -->
                                                         <td>
-                                                        <img <?php    $filePath = 'file/upload/' . $itts->picture;  
+                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 

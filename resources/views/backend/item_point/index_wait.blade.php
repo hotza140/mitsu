@@ -66,7 +66,7 @@
                                                             Line: {{($p1->line)?? '-'}}
                                                         </td>
                                                         <td>
-                                                        <img <?php    $filePath = 'file/upload/' . $itts->picture;  
+                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
@@ -171,7 +171,7 @@ src="{{$picture}}" style="width:100px">
                                                             Line: {{($p2->line)?? '-'}}
                                                         </td>
                                                         <td>
-                                                        <img <?php    $filePath = 'file/upload/' . $itts->picture;  
+                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
@@ -272,7 +272,7 @@ src="{{$picture}}" style="width:100px">
                                                             Line: {{($p3->line)?? '-'}}
                                                         </td>
                                                         <td>
-                                                        <img <?php    $filePath = 'file/upload/' . $itts->picture;  
+                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
