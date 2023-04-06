@@ -786,17 +786,18 @@ public function user_item($id){
 
 
             if($r->picture){
-            $check = 'file/upload/' . $$item->picture;
-            if(Storage::disk('s3')->exists($check)){
-            Storage::disk('s3')->delete($check);
-            }
-			$file = $r->file('picture');
-			$fileName = $_FILES['picture']['name'];
-			$filePath = 'file/upload/' . $fileName;
-			Storage::disk('s3')->put($filePath, file_get_contents($file));
-			$urlPath = Storage::disk('s3')->url($filePath);
-			$item->picture =$urlPath;
-			}
+                $check = 'file/upload/' . $$item->picture;
+                $uc = Storage::disk('s3')->url($check);
+                if(Storage::disk('s3')->exists($uc)){
+                Storage::disk('s3')->delete($uc);
+                }
+                $file = $r->file('picture');
+                $fileName = $_FILES['picture']['name'];
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $urlPath = Storage::disk('s3')->url($filePath);
+                $item->picture =$urlPath;
+                }
 
 
             $item->save();
@@ -816,8 +817,9 @@ public function user_item($id){
 
             if($r->picture){
                 $check = 'file/upload/' . $$item->picture;
-                if(Storage::disk('s3')->exists($check)){
-                Storage::disk('s3')->delete($check);
+                $uc = Storage::disk('s3')->url($check);
+                if(Storage::disk('s3')->exists($uc)){
+                Storage::disk('s3')->delete($uc);
                 }
                 $file = $r->file('picture');
                 $fileName = $_FILES['picture']['name'];
@@ -841,8 +843,9 @@ public function user_item($id){
         public function news_destroy($id){
             $item=news::where('id',$id)->first();
             $check = 'file/upload/' . $$item->picture;
-            if(Storage::disk('s3')->exists($check)){
-            Storage::disk('s3')->delete($check);
+            $uc = Storage::disk('s3')->url($check);
+            if(Storage::disk('s3')->exists($uc)){
+            Storage::disk('s3')->delete($uc);
             }
             $item->delete();
             return redirect()->back()->with('success','Sucess!');
