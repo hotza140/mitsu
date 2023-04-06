@@ -164,7 +164,6 @@ class BackendController extends Controller
             $fileName = $_FILES['picture']['name'];
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
-            Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
             }
 
@@ -631,7 +630,6 @@ public function user_item($id){
             $fileName = $_FILES['picture']['name'];
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
-            Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
             }
 
@@ -653,7 +651,6 @@ public function user_item($id){
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
             $filePath = 'file/upload/' . $fileName;
-            Storage::disk('s3')->put($filePath, file_get_contents($file));
             Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
             }
