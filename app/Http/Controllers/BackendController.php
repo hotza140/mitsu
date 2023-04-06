@@ -786,7 +786,7 @@ public function user_item($id){
 
 
             if($r->picture){
-                $check = 'file/upload/' . $$item->picture;
+                $check = 'file/upload/' . $item->picture;
                 $uc = Storage::disk('s3')->url($check);
                 if(Storage::disk('s3')->exists($uc)){
                 Storage::disk('s3')->delete($uc);
@@ -816,7 +816,7 @@ public function user_item($id){
             $item->link=$r->link;
 
             if($r->picture){
-                $check = 'file/upload/' . $$item->picture;
+                $check = 'file/upload/' . $item->picture;
                 $uc = Storage::disk('s3')->url($check);
                 if(Storage::disk('s3')->exists($uc)){
                 Storage::disk('s3')->delete($uc);
@@ -842,7 +842,7 @@ public function user_item($id){
         }
         public function news_destroy($id){
             $item=news::where('id',$id)->first();
-            $check = 'file/upload/' . $$item->picture;
+            $check = 'file/upload/' . $item->picture;
             $uc = Storage::disk('s3')->url($check);
             if(Storage::disk('s3')->exists($uc)){
             Storage::disk('s3')->delete($uc);
