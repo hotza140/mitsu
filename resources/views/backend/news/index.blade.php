@@ -79,7 +79,7 @@ $picture= Storage::disk('s3')->url($filePath);
 ?>
 
 src="{{$picture}}"
-                                                            style="width:200px"></td>
+                                                            style="width:100px"></td>
                                                     <!-- <td>{{$items->titleen}}</td> -->
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <td>{{$items->updated_at}}</td>
