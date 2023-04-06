@@ -52,7 +52,7 @@
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
-href="{{picture}}" target="_blank">
+href="{{$picture}}" target="_blank">
                                                 <img src="{{$picture}}" width="400px"
                                                     id="imgA"></a></div>
                                         @else
