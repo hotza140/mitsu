@@ -43,8 +43,8 @@
 
                                         @if(isset($item)) 
                                         @if($item->picture!=null)
-                                        <br><div><a href="{{$item->picture}}" target="_blank">
-                                        <img src="{{$item->picture}}" width="400px" id="imgA"></a></div>
+                                        <br><div><a href="{{asset('$item->picture')}}" target="_blank">
+                                        <img src="{{asset('$item->picture')}}" width="400px" id="imgA"></a></div>
                                         @else
                                         <br><div><img src="#" width="400px" id="imgA"></div>
                                         @endif 
