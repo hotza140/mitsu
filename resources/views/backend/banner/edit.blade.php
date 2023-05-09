@@ -42,8 +42,12 @@
 
                                         @if(isset($item)) 
                                         @if($item->picture!=null)
-                                        <br><div><a href="{{asset('img/upload/'.$item->picture)}}" target="_blank">
-                                        <img src="{{asset('img/upload/'.$item->picture)}}" width="400px" id="imgA"></a></div>
+                                        <br><div><a <?php    $filePath = 'file/upload/' . $item->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+href="{{$picture}}" target="_blank">
+                                        <img src="{{$picture}}" width="400px" id="imgA"></a></div>
                                         @else
                                         <br><div><img src="#" width="400px" id="imgA"></div>
                                         @endif 

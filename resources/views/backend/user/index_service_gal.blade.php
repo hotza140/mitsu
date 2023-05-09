@@ -57,8 +57,12 @@
                                                 @foreach($item as $key=>$items)
                                                 <tr>
                                                     <td>{{$key+1}}</td>
-                                                    <td><img src="{{asset('/img/upload/'.$items->picture)}}"
-                                                            style="width:200px"></td>
+                                                    <td><img <?php    $filePath = 'file/upload/' . $items->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+src="{{$picture}}"
+                                                            style="width:100px"></td>
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
                                                         @if($type==1)

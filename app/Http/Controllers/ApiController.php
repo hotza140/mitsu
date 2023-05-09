@@ -49,8 +49,9 @@ class ApiController extends Controller
 
     // URL PICTURE
     //  protected $prefix = 'http://www.mitsuheavyth.com/img/upload/';
-    protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
+    // protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
 
+    protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
 
 
 
@@ -315,9 +316,10 @@ class ApiController extends Controller
                 if (!$file->isValid()) {
                     return response()->json(['invalid_file_upload'], 400);
                 }
-                $picture = $_FILES['picture']['name'];
-                $r->picture->move(public_path() . '/img/upload', $picture);
-                $user->picture = $picture;
+                $fileName = $_FILES['picture']['name'];
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $user->picture = $fileName;
             }
 
 
