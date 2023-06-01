@@ -121,35 +121,5 @@
 
 @section('script')
 
-<script>
-$(document).on('change', '.choose', function() {
-
-    var form_tr = $(this).closest('.FormStatus');
-    var id = form_tr.find('.id').val();
-
-    $.ajax({
-        url: "{!!url('/air_model_choose')!!}",
-        method: "POST",
-        type: "PUT",
-        data: {
-            "_token": "{{ csrf_token() }}",
-            id: id,
-        },
-        success: function(status) {
-            console.log(status);
-            if (status == 'success') {
-                // alert('save');
-                // $('#form').submit();
-            } else {
-                // alert('error');
-                // location.reload();
-            }
-
-        },
-    });
-
-});
-</script>
-
 
 @endsection
