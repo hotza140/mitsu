@@ -38,7 +38,7 @@
                                         <!-- -------EDIT---------- -->
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-6">
                                                 <label class="col-form-label">Name</label>
                                                 <input type="text" name="model_name" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->model_name;} ?>">
@@ -46,7 +46,7 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
+                                            <div class="col-sm-6">
                                                 <label class="col-form-label">Type</label>
                                                 <input type="text" name="model_type" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->model_type;} ?>">
