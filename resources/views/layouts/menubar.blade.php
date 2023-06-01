@@ -535,6 +535,21 @@
                                     </ul>
                                     <!-- Air Conditioner -->
 
+                                     <!-- Air Conditioner -->
+                                     <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="air_model") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/air_model')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Air Models</span>
+                                                <span class="pcoded-mcaret"></span>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- Air Conditioner -->
+
                                     <!-- End-->
                                 </li>
                             </ul>

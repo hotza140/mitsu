@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 class AirModel extends Model
 {
     use SoftDeletes;
-    protected $table = "wo";
+    protected $table = "air_models";
     protected $primarykey = "id";
 }
