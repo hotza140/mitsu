@@ -18,7 +18,7 @@ class AirModelController extends Controller
 
 
     public function air_model(){
-        $item=AirModel ::orderby('id','asc')->get();
+        $item=AirModel ::orderby('id','desc')->get();
         return view('backend.air_model.index',[
             'item'=>$item,
             'page'=>"air_conditioner",
