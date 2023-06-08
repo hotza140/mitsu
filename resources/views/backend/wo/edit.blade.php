@@ -166,8 +166,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <label for="picture1" class="btn btn-warning " style="color:white;">
-                                            <i class="fa fa-picture-o"></i>Upload Picture</label><br><br>
+                                       <br><br>
 
 
 
