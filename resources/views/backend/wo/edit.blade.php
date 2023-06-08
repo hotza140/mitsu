@@ -48,13 +48,13 @@
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Date</label>
-                                                <input type="text" name="wo_date" class="form-control" id="pic"
+                                                <input type="date" name="wo_date" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_date;} ?>">
                                             </div>
 
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Time</label>
-                                                <input type="text" name="wo_time" class="form-control" id="pic"
+                                                <input type="time" name="wo_time" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_time;} ?>">
                                             </div>
                                         </div>
@@ -102,9 +102,9 @@
 
 
                                         <div class="form-group row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">ราคาค่าบริการ</label>
-                                                <input type="text" name="wo_price" class="form-control" id="pic"
+                                                <input type="number" name="wo_price" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_price;} ?>">
                                             </div>
                                         </div>
