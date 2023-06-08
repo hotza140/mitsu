@@ -431,6 +431,44 @@
                             <!-- Home Page-->
 
 
+
+                             <!-- "WORK"-->
+                             <ul class="pcoded-item pcoded-left-item">
+                                <!-- Start-->
+                                @if(isset($page)) @if($page==""wo"") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">"WORK"</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                    </a>
+
+                                    <!-- "WORK" -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list==""wo"") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/wo')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">"WORK"</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- "WORK" -->
+
+                                    <!-- End-->
+                                </li>
+                            </ul>
+                            <!-- MARKET-->
+
+
                              <!-- NEWS-->
                              <ul class="pcoded-item pcoded-left-item">
                                 <!-- Start-->

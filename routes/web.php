@@ -78,6 +78,16 @@ Route::prefix('backend')->group(function(){
     Route::post('user_update/{id}',[App\Http\Controllers\BackendController::class,'user_update']);
     //user
 
+
+    //wo
+    Route::get('wo',[App\Http\Controllers\WOController::class,'wo']);
+    Route::get('wo_destroy/{id}',[App\Http\Controllers\WOController::class,'wo_destroy']);
+    Route::get('wo_add',[App\Http\Controllers\WOController::class,'wo_add']);
+    Route::post('wo_store',[App\Http\Controllers\WOController::class,'wo_store']);
+    Route::get('wo_edit/{id}',[App\Http\Controllers\WOController::class,'wo_edit']);
+    Route::post('wo_update/{id}',[App\Http\Controllers\WOController::class,'wo_update']);
+    //wo
+
     //product
     Route::get('product',[App\Http\Controllers\BackendController::class,'product']);
     Route::get('product_destroy/{id}',[App\Http\Controllers\BackendController::class,'product_destroy']);
@@ -106,7 +116,6 @@ Route::prefix('backend')->group(function(){
     //wait_user
 
     //news
-
     Route::get('news',[App\Http\Controllers\BackendController::class,'news']);
     Route::get('news_destroy/{id}',[App\Http\Controllers\BackendController::class,'news_destroy']);
     Route::get('news_add',[App\Http\Controllers\BackendController::class,'news_add']);
@@ -117,7 +126,6 @@ Route::prefix('backend')->group(function(){
 
 
      //market
-
      Route::get('market',[App\Http\Controllers\BackendController::class,'market']);
      Route::get('market_destroy/{id}',[App\Http\Controllers\BackendController::class,'market_destroy']);
      Route::get('market_add',[App\Http\Controllers\BackendController::class,'market_add']);
@@ -142,7 +150,6 @@ Route::prefix('backend')->group(function(){
 
 
      //air_model
-
     Route::get('air_model',[App\Http\Controllers\AirModelController::class,'air_model']);
     Route::get('air_model_destroy/{id}',[App\Http\Controllers\AirModelController::class,'air_model_destroy']);
     Route::get('air_model_add',[App\Http\Controllers\AirModelController::class,'air_model_add']);

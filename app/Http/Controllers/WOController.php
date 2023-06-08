@@ -6,6 +6,12 @@ use App\WO;
 use Illuminate\Http\Request;
 use App\Http\Requests\WOCreateRequest;
 
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Support\Facades\View;
+
 class WOController extends Controller
 {
     /**
@@ -112,4 +118,94 @@ class WOController extends Controller
     {
         //
     }
+
+
+
+
+
+
+
+
+
+    //wo//
+
+
+    public function wo(){
+        $item=WO ::orderby('id','desc')->get();
+        return view('backend.wo.index',[
+            'item'=>$item,
+            'page'=>"wo",
+            'list'=>"wo",
+        ]);
+    }
+    public function wo_store(Request $r){
+        $item=new WO();
+
+        $year_4 = date("Y");
+        $year_2 = date("y");
+        $month_2 = date("m");
+
+        $number_id = WO::whereRaw('YEAR(created_at)=' . $year_4)->whereRaw('MONTH(created_at)=' . $month_2)->count() + 1;
+        $format = "WO" . $year_2 . $month_2 . "%'.07d";
+
+        $ans=sprintf($format, $number_id);
+
+        $item->wo_number=$ans;
+        $item->wo_date=$r->wo_date;
+        $item->wo_time= $r->wo_time;
+        $item->wo_type= $r->wo_type;
+        $item->wo_breakdown= $r->wo_breakdown;
+        $item->air_model= $r->air_model;
+        $item->error_code= $r->error_code;
+        $item->wo_price= $r->wo_price;
+        $item->customer_id= $r->customer_id;
+
+
+        $item->save();
+        return redirect()->to('/backend/wo')->with('success','Sucess!');
+
+    }
+    public function wo_update(Request $r,$id){
+        $item=WO::where('id',$id)->first();
+      
+        $item->wo_date=$r->wo_date;
+        $item->wo_time= $r->wo_time;
+        $item->wo_type= $r->wo_type;
+        $item->wo_breakdown= $r->wo_breakdown;
+        $item->air_model= $r->air_model;
+        $item->error_code= $r->error_code;
+        $item->wo_price= $r->wo_price;
+
+        $item->save();
+        return redirect()->to('/backend/wo')->with('success','Sucess!');
+    }
+    public function wo_edit($id){
+        $item=WO::where('id',$id)->first();
+        return view('backend.wo.edit',[
+            'item'=>$item,
+            'page'=>"wo",
+            'list'=>"wo",
+        ]);
+    }
+    public function wo_destroy($id){
+        $item=WO::where('id',$id)->first();
+        $check= 'file/upload/' . $item->wo_picture;
+                Storage::disk('s3')->delete($check);
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function wo_add(){
+        return view('backend.wo.add',[
+            'page'=>"wo",
+            'list'=>"wo",
+        ]);
+    }
+    //wo//
+
+
+
+
+
+
+
 }
