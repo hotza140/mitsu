@@ -188,15 +188,6 @@ class ApiController extends Controller
             }
             if ($r->review != null) {
                 $wo->review = $r->review;
-                
-                $star=WO::where('technician_id',$wo->technician_id)->where('wo_status',1)->where('wo_time_end','!=',null)
-                ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
-                if($star==null or $star==0){$star=5;}
-                $rrr=User::where('id',$wo->technician_id)->first();
-                if($rrr!=null){
-                    $rrr->rate=$star;
-                    $rrr->save();
-                }
             }
 
             if ($r->wo_picture != null) {
@@ -214,6 +205,17 @@ class ApiController extends Controller
             }
 
             $wo->save();
+
+
+            if ($r->review != null) {
+            $star=WO::where('technician_id',$wo->technician_id)->where('wo_status',1)->where('wo_time_end','!=',null)
+            ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
+            if($star==null or $star==0){$star=5;}
+            $rrr=User::where('id',$wo->technician_id)->first();
+            if($rrr!=null){
+                $rrr->rate=$star;
+                $rrr->save();
+            }}
 
             $message = "Success!";
             $status = true;
