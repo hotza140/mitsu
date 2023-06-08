@@ -28,7 +28,7 @@
                                 <div class="card-header">
 
                                 </div>
-                                
+
                                 <div class="card-block">
 
                                     <form method="post" id="" action="{{ url('/backend/wo_update/'.$item->id) }}"
@@ -44,24 +44,134 @@
                                         @endif
                                         <!-- -------EDIT---------- -->
 
-                                        
+
                                         <div class="form-group row">
-                                            <div class="col-sm-6">
-                                                <label class="col-form-label">Name</label>
-                                                <input type="text" name="model_name" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->model_name;} ?>">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Date</label>
+                                                <input type="text" name="wo_date" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_date;} ?>">
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Time</label>
+                                                <input type="text" name="wo_time" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_time;} ?>">
                                             </div>
                                         </div>
 
+
+
+
+
                                         <div class="form-group row">
-                                            <div class="col-sm-6">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Type</label>
-                                                <input type="text" name="model_type" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->model_type;} ?>">
+                                                <input type="text" name="wo_type" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_type;} ?>">
                                             </div>
                                         </div>
 
-                                   
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">อาการเสีย</label>
+                                                <input type="text" name="wo_breakdown" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_breakdown;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Air Models</label>
+                                                <input type="text" name="air_model" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->air_model;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">รหัสข้อผิดพลาด</label>
+                                                <input type="text" name="	error_code" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->	error_code;} ?>">
+                                            </div>
+                                        </div>
+
+
+
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">ราคาค่าบริการ</label>
+                                                <input type="text" name="wo_price" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_price;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">id technician</label>
+                                                <input type="text" name="technician_id" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->technician_id;} ?>">
+                                            </div>
+
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">customer_id</label>
+                                                <input type="text" name="customer_id" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->customer_id;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">สถานะงาน</label>
+                                                <input type="text" name="wo_status" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_status;} ?>">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">หมายเหตุ</label>
+                                                <input type="text" name="wo_remark" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_remark;} ?>">
+                                            </div>
+                                        </div>
+
+
+
+                                        @if(isset($item))
+                                        @if($item->picture!=null)
+                                        <br>
+                                        <div><a <?php    $filePath = 'file/upload/' . $item->wo_picture;  
+                                            $wo_picture= Storage::disk('s3')->url($filePath);
+                                            ?> href="{{$wo_picture}}" target="_blank">
+                                                <img src="{{$wo_picture}}" width="400px" id="imgA"></a></div>
+                                        @else
+                                        <br>
+                                        <div><img src="#" width="400px" id="imgA"></div>
+                                        @endif
+                                        @else
+                                        <br>
+                                        <div><img src="#" width="400px" id="imgA"></div>
+                                        @endif
+                                        <div>
+                                            <input type="file" name="wo_picture" id="picture1" class="hidden"
+                                                onchange="readURL(this, '#imgA');">
+                                            <div class="sm:grid grid-cols-3 gap-2">
+                                                <div class="input-group mt-2 sm:mt-0">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <h6 style="color: red;">(รายละเอียดรูปภาพที่ควรลง ขนาด Width 1052px Height 560px
+                                            นามสกุลไฟล์ png,jpg,jpeg)</h6>
+                                        <label for="picture1" class="btn btn-warning " style="color:white;">
+                                            <i class="fa fa-picture-o"></i>Upload Picture</label><br><br>
+
+
 
 
                                         <p class="text-right">
@@ -75,21 +185,21 @@
                                     </form>
                                 </div>
 
-                            <!-- Input Alignment card end -->
+                                <!-- Input Alignment card end -->
+                            </div>
                         </div>
                     </div>
+                    <!-- Page body end -->
                 </div>
-                <!-- Page body end -->
+            </div>
+            <div id="styleSelector">
+
             </div>
         </div>
-        <div id="styleSelector">
-
-        </div>
-    </div>
 
 
-    @endsection
+        @endsection
 
-    @section('script')
+        @section('script')
 
-    @endsection
+        @endsection
