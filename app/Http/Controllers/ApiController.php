@@ -136,6 +136,33 @@ class ApiController extends Controller
          ]);
      }
      ///WORK DETAIL///
+
+
+
+      ///WORK งานที่รับของแต่ละคน///
+      public function api_work_list(Request $r)
+      {
+        $date=date('Y-m-d');
+        if($r->date==null){
+            $wo = WO::where('technician_id',$r->id)->where('wo_date',$date)->orderby('wo_time','asc')->get();
+        }else{
+            $wo = WO::where('technician_id',$r->id)->where('wo_date',$r->date)->orderby('wo_time','asc')->get();
+            $date=$r->date;
+        }
+  
+          $message = "Success!";
+          $status = true;
+          return response()->json([
+              'results' => [
+                  'wo' => $wo,
+                  'date'=>$date,
+              ],
+              'status' =>  $status,
+              'message' =>  $message,
+              'url_picture' => $this->prefix,
+          ]);
+      }
+      ///WORK งานที่รับของแต่ละคน///
  
 
 

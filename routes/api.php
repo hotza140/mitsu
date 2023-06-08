@@ -35,6 +35,8 @@ Route::group([
     Route::get('/api_work', 'ApiController@api_work');
     Route::get('/api_work_detail/{id}', 'ApiController@api_work_detail');
 
+    Route::post('/api_work_list', 'ApiController@api_work_list');
+
 
 
     Route::post('/api_change_password', 'ApiController@api_change_password');
