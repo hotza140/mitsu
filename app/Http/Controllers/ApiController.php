@@ -28,6 +28,9 @@ use App\Models\history_point;
 use App\Models\AirConditioner;
 use Illuminate\support\carbon;
 
+use App\AirModel;
+use App\WO;
+
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
@@ -72,6 +75,50 @@ class ApiController extends Controller
         ]);
     }
     ///user///
+
+
+
+     ///WORK///
+     public function api_work()
+     {
+         $wo = WO::where('technician_id',null)->orderby('wo_date','desc')->get();
+ 
+         $message = "Success!";
+         $status = true;
+         return response()->json([
+             'results' => [
+                 'wo' => $wo,
+             ],
+             'status' =>  $status,
+             'message' =>  $message,
+             'url_picture' => $this->prefix,
+         ]);
+     }
+     ///WORK///
+
+     ///WORK DETAIL///
+     public function api_work_detail($id)
+     {
+         $wo = WO::where('id',$id)->first();
+ 
+         $message = "Success!";
+         $status = true;
+         return response()->json([
+             'results' => [
+                 'wo' => $wo,
+             ],
+             'status' =>  $status,
+             'message' =>  $message,
+             'url_picture' => $this->prefix,
+         ]);
+     }
+     ///WORK DETAIL///
+ 
+
+
+
+
+
 
 
 

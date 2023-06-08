@@ -30,6 +30,11 @@ Route::group([
     Route::get('/api_market', 'ApiController@api_market');
 
 
+    Route::get('/api_work', 'ApiController@api_work');
+    Route::get('/api_work_detail/{id}', 'ApiController@api_work_detail');
+
+
+
     Route::post('/api_change_password', 'ApiController@api_change_password');
 
     Route::post('/api_news', 'ApiController@api_news');
