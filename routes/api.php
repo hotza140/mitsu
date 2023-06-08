@@ -30,6 +30,8 @@ Route::group([
     Route::get('/api_market', 'ApiController@api_market');
 
 
+    Route::get('/api_air_model', 'ApiController@api_air_model');
+
     Route::get('/api_work', 'ApiController@api_work');
     Route::get('/api_work_detail/{id}', 'ApiController@api_work_detail');
 

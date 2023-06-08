@@ -78,6 +78,29 @@ class ApiController extends Controller
 
 
 
+
+
+
+    ///air_model///
+    public function api_air_model()
+    {
+        $air_model = AirModel::orderby('model_name','asc')->get();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'air_model' => $air_model,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///air_model///
+
+
+
      ///WORK///
      public function api_work()
      {
