@@ -166,8 +166,6 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <h6 style="color: red;">(รายละเอียดรูปภาพที่ควรลง ขนาด Width 1052px Height 560px
-                                            นามสกุลไฟล์ png,jpg,jpeg)</h6>
                                         <label for="picture1" class="btn btn-warning " style="color:white;">
                                             <i class="fa fa-picture-o"></i>Upload Picture</label><br><br>
 
