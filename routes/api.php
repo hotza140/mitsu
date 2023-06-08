@@ -37,6 +37,8 @@ Route::group([
 
     Route::post('/api_work_list', 'ApiController@api_work_list');
 
+    Route::post('/api_end_work', 'ApiController@api_end_work');
+
 
 
     Route::post('/api_change_password', 'ApiController@api_change_password');

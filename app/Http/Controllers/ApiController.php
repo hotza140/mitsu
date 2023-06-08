@@ -28,6 +28,8 @@ use App\Models\history_point;
 use App\Models\AirConditioner;
 use Illuminate\support\carbon;
 
+use App\Models\TechnicianService;
+
 use App\AirModel;
 use App\WO;
 
@@ -163,6 +165,78 @@ class ApiController extends Controller
           ]);
       }
       ///WORK งานที่รับของแต่ละคน///
+
+
+
+
+
+
+        ///END WORK///
+    public function api_end_work(Request $r)
+    {
+        $wo = wo::where('id', $r->id)->first();
+        if ($wo != null) {
+
+            if ($r->wo_status != null) {
+                $wo->wo_status = $r->wo_status;
+            }
+            if ($r->wo_time_end != null) {
+                $wo->wo_time_end = $r->wo_time_end;
+            }
+            if ($r->wo_remark != null) {
+                $wo->wo_remark = $r->wo_remark;
+            }
+            if ($r->review != null) {
+                $wo->review = $r->review;
+                
+                $star=WO::where('technician_id',$wo->technician_id)->where('wo_status',1)->where('wo_time_end','!=',null)
+                ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
+                if($star==null or $star==0){$star=5;}
+                $rrr=User::where('id',$wo->technician_id)->first();
+                if($rrr!=null){
+                    $rrr->rate=$star;
+                    $rrr->save();
+                }
+            }
+
+            if ($r->wo_picture != null) {
+                if (!$r->hasFile('wo_picture')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('wo_picture');
+                if (!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $fileName = $_FILES['wo_picture']['name'];
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $wo->wo_picture = $fileName;
+            }
+
+            $wo->save();
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'wo' => $wo,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "There is an ID on the server!";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+    ///END WORK///
  
 
 
