@@ -88,8 +88,8 @@
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">รหัสข้อผิดพลาด</label>
-                                                <input type="text" name="	error_code" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->	error_code;} ?>">
+                                                <input type="text" name="error_code" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->error_code;} ?>">
                                             </div>
                                         </div>
 
