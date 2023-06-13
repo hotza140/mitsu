@@ -175,6 +175,7 @@ class WOController extends Controller
         $item->air_model= $r->air_model;
         $item->error_code= $r->error_code;
         $item->wo_price= $r->wo_price;
+        $item->wo_status= $r->wo_status;
 
         $item->save();
         return redirect()->to('/backend/wo')->with('success','Sucess!');
