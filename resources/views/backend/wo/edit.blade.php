@@ -134,8 +134,14 @@
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">สถานะงาน</label>
-                                                <input type="text" name="wo_status" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->wo_status;} ?>">
+                                            <select id="" class="col-form-label" name="wo_status">
+                                            <option value="0" @if(isset($item))
+                                                @if($item->wo_status==0) selected @endif @endif >งานยังไม่เสร็จ
+                                            </option>
+                                            <option value="1" @if(isset($item))
+                                                @if($item->wo_status==1) selected @endif @endif >งานสำเร็จ
+                                            </option>
+                                        </select>
                                             </div>
                                         </div>
 
