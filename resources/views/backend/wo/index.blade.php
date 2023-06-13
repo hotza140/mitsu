@@ -42,6 +42,7 @@
                                                     <th>Air Models</th>
                                                     <th>รหัสข้อผิดพลาด</th>
                                                     <th>ราคาค่าบริการ</th>
+                                                     <th>วันที่/เวลา</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <th>มีคนรับรึยัง</th>
                                                     <th>สถานะงาน</th>
@@ -67,6 +68,8 @@
                                                     
                                                     <td>{{$items->error_code}}</td>
                                                     <td>{{$items->wo_price}}</td>
+                                                     <td>{{$items->wo_date}}<br>{{$items->wo_time}}</td>
+
                                                     @if($items->technician_id==null)
                                                     <td style="color:red">ยังไม่มีผู้รับ</td>
                                                     @else
@@ -101,6 +104,7 @@
                                                     <th>Air Models</th>
                                                     <th>รหัสข้อผิดพลาด</th>
                                                     <th>ราคาค่าบริการ</th>
+                                                    <th>วันที่/เวลา</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <th>มีคนรับรึยัง</th>
                                                     <th>สถานะงาน</th>
