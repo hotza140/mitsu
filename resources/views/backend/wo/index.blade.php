@@ -66,7 +66,12 @@
                                                     <?php $aaa=App\User::where('id',$items->technician_id)->first(); ?>
                                                     <td>ผู้รับงาน {{$aaa->name}}</td>
                                                     @endif
-                                                    <td>{{$items->wo_status}}</td>
+
+                                                    @if($items->wo_status==0)
+                                                    <td>งานยังไม่เสร็จ</td>
+                                                    @else
+                                                    <td>งานสำเร็จ</td>
+                                                    @endif
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
