@@ -68,22 +68,22 @@
                                                     <td>{{$items->error_code}}</td>
                                                     <td>{{$items->wo_price}}</td>
                                                     @if($items->technician_id==null)
-                                                    <td>ยังไม่มีผู้รับ</td>
+                                                    <td style="color:red">ยังไม่มีผู้รับ</td>
                                                     @else
                                                     <?php $aaa=App\User::where('id',$items->technician_id)->first(); ?>
-                                                    <td>ผู้รับงาน {{$aaa->name}}</td>
+                                                    <td style="color:#20E850">ผู้รับงาน {{$aaa->name}}</td>
                                                     @endif
 
                                                     @if($items->wo_status==0)
-                                                    <td>งานยังไม่เสร็จ</td>
+                                                    <td style="color:red">งานยังไม่เสร็จ</td>
                                                     @else
-                                                    <td>งานสำเร็จ</td>
+                                                    <td style="color:#20E850">งานสำเร็จ</td>
                                                     @endif
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
                                                         <a href="{{url('/backend/wo_edit/'.$items->id)}}"
-                                                            class="btn btn-sm btn-primary" style="color:white;"><i
+                                                            class="btn btn-sm btn-warning" style="color:white;"><i
                                                                 class="fa fa-eye"></i>View</a>
                                                         <!-- <a href="{{url('/backend/wo_destroy/'.$items->id)}}"
                                                             class="btn btn-sm btn-danger"
