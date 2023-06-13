@@ -170,6 +170,30 @@ class ApiController extends Controller
 
 
 
+       ///WORK submit///
+     public function api_work_submit(Request $r)
+     {
+         $wo = WO::where('id',$r->id_work)->first();
+         $wo->technician_id=$r->id;
+         $wo->save();
+ 
+         $message = "Success!";
+         $status = true;
+         return response()->json([
+             'results' => [
+                 'wo' => $wo,
+             ],
+             'status' =>  $status,
+             'message' =>  $message,
+             'url_picture' => $this->prefix,
+         ]);
+     }
+     ///WORK submit///
+
+
+
+
+
 
         ///END WORK///
     public function api_end_work(Request $r)

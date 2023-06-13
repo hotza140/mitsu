@@ -27,8 +27,8 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                    <!-- <a style="color:white;" class="btn btn-success" href="{{url('/backend/wo_add')}}">
-                                        <i class="fa fa-plus"></i> Add</a> -->
+                                    <a style="color:white;" class="btn btn-success" href="{{url('/backend/wo_add')}}">
+                                        <i class="fa fa-plus"></i> Add</a>
 
                                 </div>
                                 <div class="card-block">

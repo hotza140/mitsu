@@ -174,9 +174,9 @@
                                         <p class="text-right">
                                             <a href="{{ url('/backend/wo') }}" style="color:white;"
                                                 class="btn btn-success"> <i class="fa fa-share-square-o"></i> Back </a>
-                                            <!-- <button type="submit" class="btn btn-danger " style="color:white;"
+                                            <button type="submit" class="btn btn-danger " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
-                                                    class="fa fa-check-circle-o"></i> Save </button> -->
+                                                    class="fa fa-check-circle-o"></i> Save </button>
                                         </p>
 
                                     </form>
