@@ -57,7 +57,14 @@
                                                 <tr>
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$items->wo_type}}</td>
-                                                    <td>{{$items->air_model}}</td>
+
+                                                    <?php $aii=App\AirModel::where('id',$items->air_model)->first(); ?>
+                                                    @if($aii==null)
+                                                    <td>-</td>
+                                                    @else
+                                                    <td>{{$aii->model_name}}</td>
+                                                    @endif
+                                                    
                                                     <td>{{$items->error_code}}</td>
                                                     <td>{{$items->wo_price}}</td>
                                                     @if($items->technician_id==null)
