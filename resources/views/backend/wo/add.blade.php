@@ -139,7 +139,7 @@
 
 
 
-                                        @if(isset($item))
+                                        <!-- @if(isset($item))
                                         @if($item->picture!=null)
                                         <br>
                                         <div><a <?php    $filePath = 'file/upload/' . $item->wo_picture;  
@@ -162,7 +162,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                       <br><br>
+                                       <br><br> -->
 
 
                                         <p class="text-right">
