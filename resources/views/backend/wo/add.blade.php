@@ -85,7 +85,7 @@
 
                                                 <select id="" class="col-form-label" name="air_model">
                                             @foreach($aii as $aai)
-                                            <option value="{{$aai->id}}" @if(isset($item!))
+                                            <option value="{{$aai->id}}" @if(isset($item))
                                                 @if($item->air_model==$aai->id) selected @endif @endif >{{$aai->model_name}}
                                             </option>
                                             @endforeach
