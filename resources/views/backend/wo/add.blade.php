@@ -106,11 +106,11 @@
                                         </div>
 
                                         <div class="form-group row">
-                                            <div class="col-sm-3">
+                                            <!-- <div class="col-sm-3">
                                                 <label class="col-form-label">id technician</label>
                                                 <input type="text" name="technician_id" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->technician_id;} ?>">
-                                            </div>
+                                            </div> -->
 
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">customer_id</label>
