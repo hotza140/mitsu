@@ -60,7 +60,12 @@
                                                     <td>{{$items->air_model}}</td>
                                                     <td>{{$items->error_code}}</td>
                                                     <td>{{$items->wo_price}}</td>
-                                                    <td>{{$items->technician_id}}</td>
+                                                    @if($items->technician_id==null)
+                                                    <td>ยังไม่มีผู้รับ</td>
+                                                    @else
+                                                    <?php $aaa=App\User::where('id',$items->technician_id)->first(); ?>
+                                                    <td>ผู้รับงาน {{$aaa->name}}</td>
+                                                    @endif
                                                     <td>{{$items->wo_status}}</td>
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <!-- <td>{{$items->updated_at}}</td> -->
