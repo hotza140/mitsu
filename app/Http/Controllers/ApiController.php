@@ -181,7 +181,7 @@ class ApiController extends Controller
                 $wo->technician_id=$r->id;
                 $wo->save();
                 }else{
-                   $message = "Someone already took the job.";
+                   $message = "Someone already took this job.";
                    $status = false;
                    return response()->json([
                        'results' => [],
@@ -190,9 +190,9 @@ class ApiController extends Controller
                        'url_picture' => $this->prefix,
                    ], 400);
                 }
-                
+
          }else{
-            $message = "Someone already took the job.";
+            $message = "Someone already took this job.";
             $status = false;
             return response()->json([
                 'results' => [],
