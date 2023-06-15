@@ -143,9 +143,10 @@
                                         </div> -->
 
 
+                                        <br>
                                         <?php $cus=App\Models\Customer::orderby('first_name','asc')->get(); ?>
                                         <div class="form-group row">
-                                            <div class="col-sm-8">
+                                            <div class="col-sm-6">
                                                 <label class="col-form-label">เลือก Customer</label>
                                                 <select id="" class="col-form-label select_2" name="customer_id">
                                             @foreach($cus as $cuss)
@@ -156,6 +157,7 @@
                                         </select>
                                             </div>
                                         </div>
+                                        <br>
 
 
 
