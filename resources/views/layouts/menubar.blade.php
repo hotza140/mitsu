@@ -132,7 +132,7 @@
 
 
 
-    <!-- SELECT2 -->
+    <!-- SELECT_2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
@@ -143,15 +143,15 @@
     /* padding: 8px 30px 8px 20px; */
     }
     </style>
-<!-- SELECT2 -->
+<!-- SELECT_2 -->
 
 
 
     <!-- SELECT2 -->
     <!-- <select name="position" id="" class="form-control select2-single" multiple="multiple"> -->
-    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" /> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" />
 
-    <!-- <style>
+    <style>
     .select2-container--default .select2-selection--multiple .select2-selection__choice span {
         color: #060606;
     }
@@ -1013,13 +1013,13 @@
         <!-- เรียงลำดับ news-->
 
 
-        <!-- SELECT 2 -->
+        <!-- SELECT_2 -->
         <script>
             $(document).ready(function() {
     $('.select_2').select2();
     });
         </script>
-        <!-- SELECT 2 -->
+        <!-- SELECT_2 -->
 
 
         @yield('script')
