@@ -106,7 +106,7 @@ class ApiController extends Controller
      ///WORK///
      public function api_work()
      {
-         $wo = WO::where('technician_id',null)->orderby('wo_date','desc')->get();
+         $wo = WO::where('technician_id',null)->with('customer')->orderby('wo_date','desc')->get();
  
          $message = "Success!";
          $status = true;
@@ -146,9 +146,9 @@ class ApiController extends Controller
       {
         $date=date('Y-m-d');
         if($r->date==null){
-            $wo = WO::where('technician_id',$r->id)->where('wo_date',$date)->orderby('wo_time','asc')->get();
+            $wo = WO::where('technician_id',$r->id)->where('wo_date',$date)->with('customer')->orderby('wo_time','asc')->get();
         }else{
-            $wo = WO::where('technician_id',$r->id)->where('wo_date',$r->date)->orderby('wo_time','asc')->get();
+            $wo = WO::where('technician_id',$r->id)->where('wo_date',$r->date)->with('customer')->orderby('wo_time','asc')->get();
             $date=$r->date;
         }
   
@@ -173,9 +173,21 @@ class ApiController extends Controller
        ///WORK submit///
      public function api_work_submit(Request $r)
      {
-         $wo = WO::where('id',$r->id_work)->first();
+         $wo = WO::where('id',$r->id_work)->with('customer')->first();
+
+         if($wo->technician_id==null){
          $wo->technician_id=$r->id;
          $wo->save();
+         }else{
+            $message = "Someone already took the job.";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ], 400);
+         }
  
          $message = "Success!";
          $status = true;
@@ -198,7 +210,7 @@ class ApiController extends Controller
         ///END WORK///
     public function api_end_work(Request $r)
     {
-        $wo = wo::where('id', $r->id)->first();
+        $wo = wo::where('id', $r->id)->with('customer')->first();
         if ($wo != null) {
 
             if ($r->wo_status != null) {

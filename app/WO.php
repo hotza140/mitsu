@@ -24,4 +24,10 @@ class WO extends Model
         'wo_remark',
         'wo_picture',
     ];
+
+    public function customer()
+    {
+        return $this->belongsTo('App\Models\Customer', 'customer_id');
+    }
+
 }

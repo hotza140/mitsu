@@ -131,6 +131,22 @@
                                             </div>
                                         </div> -->
 
+
+                                        <?php $cus=App\Models\Customer::orderby('first_name','asc')->get(); ?>
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Air Models</label>
+                                                <select id="" class="col-form-label" name="customer">
+                                            @foreach($cus as $cuss)
+                                            <option value="{{$cuss->id}}" @if(isset($item))
+                                                @if($item->customer==$cuss->id) selected @endif @endif >{{$cuss->first_name}} {{$cuss->last_name}}
+                                            </option>
+                                            @endforeach
+                                        </select>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">สถานะงาน</label>
