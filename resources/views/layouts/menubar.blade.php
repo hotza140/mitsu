@@ -137,8 +137,10 @@
 <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
 <style>
-    .select_2{
-        color: #0fb3c2;
+   .select2-container--default .select2-selection--single .select2-selection__rendered {
+    background-color: #eee;
+    color: #fff;
+    padding: 8px 30px 8px 20px;
     }
     </style>
 <!-- SELECT2 -->
