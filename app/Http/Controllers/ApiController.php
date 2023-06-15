@@ -176,8 +176,21 @@ class ApiController extends Controller
          $wo = WO::where('id',$r->id_work)->with('customer')->first();
 
          if($wo->technician_id==null){
-         $wo->technician_id=$r->id;
-         $wo->save();
+         
+            if($wo->technician_id==null){
+                $wo->technician_id=$r->id;
+                $wo->save();
+                }else{
+                   $message = "Someone already took the job.";
+                   $status = false;
+                   return response()->json([
+                       'results' => [],
+                       'status' =>  $status,
+                       'message' =>  $message,
+                       'url_picture' => $this->prefix,
+                   ], 400);
+                }
+                
          }else{
             $message = "Someone already took the job.";
             $status = false;
