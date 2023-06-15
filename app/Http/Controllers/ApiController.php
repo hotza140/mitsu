@@ -124,7 +124,7 @@ class ApiController extends Controller
      ///WORK DETAIL///
      public function api_work_detail($id)
      {
-         $wo = WO::where('id',$id)->first();
+         $wo = WO::where('id',$id)->with('customer')->first();
  
          $message = "Success!";
          $status = true;
