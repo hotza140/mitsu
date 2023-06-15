@@ -127,13 +127,13 @@ src="{{$picture}}"
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
                                                         <a href="{{url('/backend/user_edit/'.$items->id)}}"
-                                                            class="btn btn-sm btn-primary" style="color:white;">ข้อมูล User</a> 
+                                                            >ข้อมูล User</a> 
                                                                 <br>
                                                         <a href="{{url('/backend/user_service/'.$items->id)}}"
-                                                            class="btn btn-sm btn-warning" style="color:white;">ข้อมูลบริการ</a> 
+                                                            >ข้อมูลบริการ</a> 
                                                                 <br>
                                                         <a href="{{url('/backend/user_item/'.$items->id)}}"
-                                                            class="btn btn-sm btn-success" style="color:white;">เครื่องปรับอากาศ</a> 
+                                                            >เครื่องปรับอากาศ</a> 
                                                                 <br>
                                                         <!-- <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a> -->
                                                     </td>
