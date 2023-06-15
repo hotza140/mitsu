@@ -139,8 +139,8 @@
 <style>
    .select2-container--default .select2-selection--single .select2-selection__rendered {
     background-color: #eee;
-    color: #fff;
-    padding: 8px 30px 8px 20px;
+    /* color: #fff; */
+    /* padding: 8px 30px 8px 20px; */
     }
     </style>
 <!-- SELECT2 -->
