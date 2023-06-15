@@ -147,10 +147,10 @@
                                         <div class="form-group row">
                                             <div class="col-sm-8">
                                                 <label class="col-form-label">เลือก Customer</label>
-                                                <select id="" class="col-form-label" name="customer">
+                                                <select id="" class="col-form-label" name="customer_id">
                                             @foreach($cus as $cuss)
                                             <option value="{{$cuss->id}}" @if(isset($item))
-                                                @if($item->customer==$cuss->id) selected @endif @endif >{{$cuss->first_name}} {{$cuss->last_name}}
+                                                @if($item->customer_id==$cuss->id) selected @endif @endif >{{$cuss->first_name}} {{$cuss->last_name}}
                                             </option>
                                             @endforeach
                                         </select>
