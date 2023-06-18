@@ -86,7 +86,7 @@ class ApiController extends Controller
     ///air_model///
     public function api_air_model()
     {
-        $air_model = AirModel::orderby('model_name','asc')->get();
+        $air_model = AirModel::orderby('model_name', 'asc')->get();
 
         $message = "Success!";
         $status = true;
@@ -103,95 +103,94 @@ class ApiController extends Controller
 
 
 
-     ///WORK///
-     public function api_work()
-     {
-         $wo = WO::where('technician_id',null)->with('customer')->orderby('wo_date','desc')->get();
- 
-         $message = "Success!";
-         $status = true;
-         return response()->json([
-             'results' => [
-                 'wo' => $wo,
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
-     }
-     ///WORK///
+    ///WORK///
+    public function api_work()
+    {
+        $wo = WO::where('technician_id', null)->with('customer')->orderby('wo_date', 'desc')->get();
 
-     ///WORK DETAIL///
-     public function api_work_detail($id)
-     {
-         $wo = WO::where('id',$id)->with('customer')->first();
- 
-         $message = "Success!";
-         $status = true;
-         return response()->json([
-             'results' => [
-                 'wo' => $wo,
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
-     }
-     ///WORK DETAIL///
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK///
+
+    ///WORK DETAIL///
+    public function api_work_detail($id)
+    {
+        $wo = WO::where('id', $id)->with('customer')->first();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK DETAIL///
 
 
 
-      ///WORK งานที่รับของแต่ละคน///
-      public function api_work_list(Request $r)
-      {
-        $date=date('Y-m-d');
-        if($r->date==null){
-            $wo = WO::where('technician_id',$r->id)->where('wo_date',$date)->with('customer')->orderby('wo_time','asc')->get();
-        }else{
-            $wo = WO::where('technician_id',$r->id)->where('wo_date',$r->date)->with('customer')->orderby('wo_time','asc')->get();
-            $date=$r->date;
+    ///WORK งานที่รับของแต่ละคน///
+    public function api_work_list(Request $r)
+    {
+        $date = date('Y-m-d');
+        if ($r->date == null || $r->date == "null") {
+            $wo = WO::where('technician_id', $r->id)->where('wo_date', $date)->with('customer')->orderby('wo_time', 'asc')->get();
+        } else {
+            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->with('customer')->orderby('wo_time', 'asc')->get();
+            $date = $r->date;
         }
-  
-          $message = "Success!";
-          $status = true;
-          return response()->json([
-              'results' => [
-                  'wo' => $wo,
-                  'date'=>$date,
-              ],
-              'status' =>  $status,
-              'message' =>  $message,
-              'url_picture' => $this->prefix,
-          ]);
-      }
-      ///WORK งานที่รับของแต่ละคน///
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+                'date' => $date,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK งานที่รับของแต่ละคน///
 
 
 
 
 
-       ///WORK submit///
-     public function api_work_submit(Request $r)
-     {
-         $wo = WO::where('id',$r->id_work)->with('customer')->first();
+    ///WORK submit///
+    public function api_work_submit(Request $r)
+    {
+        $wo = WO::where('id', $r->id_work)->with('customer')->first();
 
-         if($wo->technician_id==null){
-         
-            if($wo->technician_id==null){
-                $wo->technician_id=$r->id;
+        if ($wo->technician_id == null) {
+
+            if ($wo->technician_id == null) {
+                $wo->technician_id = $r->id;
                 $wo->save();
-                }else{
-                   $message = "Someone already took this job.";
-                   $status = false;
-                   return response()->json([
-                       'results' => [],
-                       'status' =>  $status,
-                       'message' =>  $message,
-                       'url_picture' => $this->prefix,
-                   ], 400);
-                }
-
-         }else{
+            } else {
+                $message = "Someone already took this job.";
+                $status = false;
+                return response()->json([
+                    'results' => [],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
+            }
+        } else {
             $message = "Someone already took this job.";
             $status = false;
             return response()->json([
@@ -200,27 +199,27 @@ class ApiController extends Controller
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
             ], 400);
-         }
- 
-         $message = "Success!";
-         $status = true;
-         return response()->json([
-             'results' => [
-                 'wo' => $wo,
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
-     }
-     ///WORK submit///
+        }
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK submit///
 
 
 
 
 
 
-        ///END WORK///
+    ///END WORK///
     public function api_end_work(Request $r)
     {
         $wo = wo::where('id', $r->id)->with('customer')->first();
@@ -257,14 +256,17 @@ class ApiController extends Controller
 
 
             if ($r->review != null) {
-            $star=WO::where('technician_id',$wo->technician_id)->where('wo_status',1)->where('wo_time_end','!=',null)
-            ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
-            if($star==null or $star==0){$star=5;}
-            $rrr=User::where('id',$wo->technician_id)->first();
-            if($rrr!=null){
-                $rrr->rate=$star;
-                $rrr->save();
-            }}
+                $star = WO::where('technician_id', $wo->technician_id)->where('wo_status', 1)->where('wo_time_end', '!=', null)
+                    ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
+                if ($star == null or $star == 0) {
+                    $star = 5;
+                }
+                $rrr = User::where('id', $wo->technician_id)->first();
+                if ($rrr != null) {
+                    $rrr->rate = $star;
+                    $rrr->save();
+                }
+            }
 
             $message = "Success!";
             $status = true;
@@ -288,7 +290,7 @@ class ApiController extends Controller
         }
     }
     ///END WORK///
- 
+
 
 
 
