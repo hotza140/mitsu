@@ -240,6 +240,7 @@ class WOController extends Controller
         $item->title=$r->title;
         $item->number=$r->number;
         $item->value=$r->value;
+        dd('adss');
 
         $item->status=$r->status;
 

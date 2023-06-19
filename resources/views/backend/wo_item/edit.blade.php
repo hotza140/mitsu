@@ -50,20 +50,20 @@
 
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Title</label>
-                                                <input type="text" name="title" class="form-control" id="pic"
+                                                <input type="text" name="title" class="form-control" id="pic" required
                                                     value="<?php if(isset($item)){echo $item->title;} ?>">
                                             </div>
 
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">จำนวน</label>
-                                                <input type="number" name="number" class="form-control" id="pic"
+                                                <input type="number" name="number" class="form-control" id="pic" required
                                                     value="<?php if(isset($item)){echo $item->number;} ?>">
                                             </div>
 
 
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">ราคาต่อหน่วย</label>
-                                                <input type="number" name="value" class="form-control" id="pic"
+                                                <input type="number" name="value" class="form-control" id="pic" required
                                                     value="<?php if(isset($item)){echo $item->value;} ?>">
                                             </div>
                                         </div>
