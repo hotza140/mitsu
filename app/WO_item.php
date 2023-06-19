@@ -21,6 +21,11 @@ class WO_item extends Model
         return $this->belongsTo('App\Models\TechnicianService', 'id_tech');
     }
 
+    public function work()
+    {
+        return $this->belongsTo('App\WO', 'id_wo');
+    }
+
     
 
 }
