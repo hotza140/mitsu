@@ -219,7 +219,7 @@ class WOController extends Controller
             'item'=>$item,
             'id'=>$id,
             'page'=>"wo",
-            'list'=>"wo_item",
+            'list'=>"wo",
         ]);
     }
     public function wo_item_store(Request $r){
@@ -247,7 +247,7 @@ class WOController extends Controller
         return view('backend.wo_item.edit',[
             'item'=>$item,
             'page'=>"wo",
-            'list'=>"wo_item",
+            'list'=>"wo",
         ]);
     }
     public function wo_item_destroy($id){
@@ -259,7 +259,7 @@ class WOController extends Controller
         return view('backend.wo_item.add',[
             'id'=>$id,
             'page'=>"wo",
-            'list'=>"wo_item",
+            'list'=>"wo",
         ]);
     }
     //wo//

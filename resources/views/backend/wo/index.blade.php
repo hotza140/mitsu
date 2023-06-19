@@ -88,6 +88,10 @@
                                                         <a href="{{url('/backend/wo_edit/'.$items->id)}}"
                                                             class="btn btn-sm btn-warning" style="color:white;"><i
                                                                 class="fa fa-eye"></i>View</a>
+
+                                                                <a href="{{url('/backend/wo_item/'.$items->id)}}"
+                                                            class="btn btn-sm btn-success" style="color:white;"><i
+                                                                class="fa fa-pencil"></i>Add item</a>
                                                         <!-- <a href="{{url('/backend/wo_destroy/'.$items->id)}}"
                                                             class="btn btn-sm btn-danger"
                                                             onclick="javascript:return confirm('You Want To Delete?')"
