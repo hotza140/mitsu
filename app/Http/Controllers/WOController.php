@@ -229,6 +229,8 @@ class WOController extends Controller
         $item->number=$r->number;
         $item->value=$r->value;
 
+        $item->status=$r->status;
+
         $item->save();
         return redirect()->to('/backend/wo_item/'.$r->id)->with('success','Sucess!');
 
@@ -238,6 +240,8 @@ class WOController extends Controller
         $item->title=$r->title;
         $item->number=$r->number;
         $item->value=$r->value;
+
+        $item->status=$r->status;
 
         $item->save();
         return redirect()->to('/backend/wo_item/'.$item->wo_id)->with('success','Sucess!');

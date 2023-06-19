@@ -69,6 +69,21 @@
                                         </div>
 
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Status</label>
+                                            <select id="" class="col-form-label" name="status">
+                                            <option value="0" @if(isset($item))
+                                                @if($item->status==0) selected @endif @endif >ใช้งาน
+                                            </option>
+                                            <option value="1" @if(isset($item))
+                                                @if($item->status==1) selected @endif @endif >ไม่ใช้งาน
+                                            </option>
+                                        </select>
+                                            </div>
+                                        </div>
+
+
 
                                         <p class="text-right">
                                             <a href="{{ url('/backend/wo_item/'.$item->id_wo) }}" style="color:white;"
