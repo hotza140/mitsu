@@ -164,6 +164,28 @@ class ApiController extends Controller
         }
         ///WORK_item///
 
+
+         ///WORK ITEM SUBMIT///
+    public function api_work_item_submit(Request $r)
+    {
+        $item = WO::where('id',$r->id)->first();
+        $item->service_item_price=$r->sum;
+        $item->save();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK ITEM SUBMIT///
+    
+
     ///WORK DETAIL///
     public function api_work_detail($id)
     {

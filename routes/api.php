@@ -37,6 +37,7 @@ Route::group([
 
     Route::get('/api_work_item/{id}', 'ApiController@api_work_item');
     Route::post('/api_work_item_delete', 'ApiController@api_work_item_delete');
+    Route::post('/api_work_item_submit', 'ApiController@api_work_item_submit');
 
     Route::post('/api_work_list', 'ApiController@api_work_list');
 
