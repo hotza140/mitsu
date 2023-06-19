@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\WO;
+use App\WO_item;
 use Illuminate\Http\Request;
 use App\Http\Requests\WOCreateRequest;
 
@@ -200,6 +201,65 @@ class WOController extends Controller
         return view('backend.wo.add',[
             'page'=>"wo",
             'list'=>"wo",
+        ]);
+    }
+    //wo//
+
+
+
+
+
+
+
+      //wo_item//
+
+      public function wo_item($id){
+        $item=WO_item ::where('id_wo',$id)->orderby('id','desc')->get();
+        return view('backend.wo_item.index',[
+            'item'=>$item,
+            'id'=>$id,
+            'page'=>"wo",
+            'list'=>"wo_item",
+        ]);
+    }
+    public function wo_item_store(Request $r){
+        $item=new WO_item();
+        $item->id_wo=$r->id;
+        $item->title=$r->title;
+        $item->number=$r->number;
+        $item->value=$r->value;
+
+        $item->save();
+        return redirect()->to('/backend/wo_item')->with('success','Sucess!');
+
+    }
+    public function wo_item_update(Request $r,$id){
+        $item=WO_item::where('id',$id)->first();
+        $item->title=$r->title;
+        $item->number=$r->number;
+        $item->value=$r->value;
+
+        $item->save();
+        return redirect()->to('/backend/wo_item')->with('success','Sucess!');
+    }
+    public function wo_item_edit($id){
+        $item=WO_item::where('id',$id)->first();
+        return view('backend.wo_item.edit',[
+            'item'=>$item,
+            'page'=>"wo",
+            'list'=>"wo_item",
+        ]);
+    }
+    public function wo_item_destroy($id){
+        $item=WO_item::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function wo_item_add($id){
+        return view('backend.wo_item.add',[
+            'id'=>$id,
+            'page'=>"wo",
+            'list'=>"wo_item",
         ]);
     }
     //wo//

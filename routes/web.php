@@ -87,6 +87,14 @@ Route::prefix('backend')->group(function(){
     Route::get('wo_edit/{id}',[App\Http\Controllers\WOController::class,'wo_edit']);
     Route::post('wo_update/{id}',[App\Http\Controllers\WOController::class,'wo_update']);
     //wo
+     //wo_item
+     Route::get('wo_item/{id}',[App\Http\Controllers\WOController::class,'wo_item']);
+     Route::get('wo_item_destroy/{id}',[App\Http\Controllers\WOController::class,'wo_item_destroy']);
+     Route::get('wo_item_add/{id}',[App\Http\Controllers\WOController::class,'wo_item_add']);
+     Route::post('wo_item_store',[App\Http\Controllers\WOController::class,'wo_item_store']);
+     Route::get('wo_item_edit/{id}',[App\Http\Controllers\WOController::class,'wo_item_edit']);
+     Route::post('wo_item_update/{id}',[App\Http\Controllers\WOController::class,'wo_item_update']);
+     //wo_item
 
     //product
     Route::get('product',[App\Http\Controllers\BackendController::class,'product']);
