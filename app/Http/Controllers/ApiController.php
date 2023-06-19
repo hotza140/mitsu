@@ -145,9 +145,9 @@ class ApiController extends Controller
 
 
         ///WORK_item///
-        public function api_work_item_delete($id)
+        public function api_work_item_delete(Request $r)
         {
-            $item = WO_item::where('id',$id)->first();
+            $item = WO_item::where('id',$r->id)->first();
             $item->status=1;
             $item->save();
     
