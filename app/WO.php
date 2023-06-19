@@ -30,4 +30,11 @@ class WO extends Model
         return $this->belongsTo('App\Models\Customer', 'customer_id');
     }
 
+    public function model()
+    {
+        return $this->belongsTo('App\AirModel', 'air_model');
+    }
+
+    
+
 }

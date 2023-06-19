@@ -106,7 +106,7 @@ class ApiController extends Controller
     ///WORK///
     public function api_work()
     {
-        $wo = WO::where('technician_id', null)->with('customer')->orderby('wo_date', 'desc')->get();
+        $wo = WO::where('technician_id', null)->with('customer')->with('model')->orderby('wo_date', 'desc')->get();
 
         $message = "Success!";
         $status = true;
@@ -124,7 +124,7 @@ class ApiController extends Controller
     ///WORK DETAIL///
     public function api_work_detail($id)
     {
-        $wo = WO::where('id', $id)->with('customer')->first();
+        $wo = WO::where('id', $id)->with('customer')->with('model')->first();
 
         $message = "Success!";
         $status = true;
@@ -146,9 +146,9 @@ class ApiController extends Controller
     {
         $date = date('Y-m-d');
         if ($r->date == null || $r->date == "null") {
-            $wo = WO::where('technician_id', $r->id)->with('customer')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id', $r->id)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         } else {
-            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->with('customer')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
             $date = $r->date;
         }
 
@@ -173,7 +173,7 @@ class ApiController extends Controller
     ///WORK submit///
     public function api_work_submit(Request $r)
     {
-        $wo = WO::where('id', $r->id_work)->with('customer')->first();
+        $wo = WO::where('id', $r->id_work)->with('customer')->with('model')->first();
 
         if ($wo->technician_id == null) {
 
@@ -222,7 +222,7 @@ class ApiController extends Controller
     ///END WORK///
     public function api_end_work(Request $r)
     {
-        $wo = wo::where('id', $r->id)->with('customer')->first();
+        $wo = wo::where('id', $r->id)->with('customer')->with('model')->first();
         if ($wo != null) {
 
             if ($r->wo_status != null) {
