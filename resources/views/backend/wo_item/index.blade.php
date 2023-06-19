@@ -43,6 +43,7 @@
                                                     <th>Title</th>
                                                     <th>จำนวน</th>
                                                     <th>ราคาต่อหน่วย</th>
+                                                    <th>Status</th>
                                                     <th>Tool</th>
 
                                                 </tr>
@@ -56,6 +57,12 @@
                                                     <td>{{$items->title}}</td>
                                                     <td>{{$items->number}}</td>
                                                     <td>{{$items->value}}</td>
+
+                                                    @if($items->status==0)
+                                                    <td style="color:#20E850">ถูกใช้งาน</td>
+                                                    @else
+                                                    <td style="color:red">ไม่ถูกใช้งาน</td>
+                                                    @endif
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
@@ -77,6 +84,7 @@
                                                     <th>Title</th>
                                                     <th>จำนวน</th>
                                                     <th>ราคาต่อหน่วย</th>
+                                                    <th>Status</th>
                                                     <th>Tool</th>
                                                 </tr>
                                             </tfoot>

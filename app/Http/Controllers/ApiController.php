@@ -127,7 +127,7 @@ class ApiController extends Controller
        public function api_work_item($id)
        {
         $wo = WO::where('id',$id)->with('customer')->with('model')->first();
-           $item = WO_item::where('id_wo',$id)->first();
+           $item = WO_item::where('id_wo',$id)->where('status',0)->get();
    
            $message = "Success!";
            $status = true;
