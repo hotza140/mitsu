@@ -143,6 +143,27 @@ class ApiController extends Controller
        }
        ///WORK_item///
 
+
+        ///WORK_item///
+        public function api_work_item_delete($id)
+        {
+            $item = WO_item::where('id',$id)->first();
+            $item->status=1;
+            $item->save();
+    
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'item' => $item,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+        ///WORK_item///
+
     ///WORK DETAIL///
     public function api_work_detail($id)
     {
