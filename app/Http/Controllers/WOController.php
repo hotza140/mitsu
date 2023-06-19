@@ -230,7 +230,7 @@ class WOController extends Controller
         $item->value=$r->value;
 
         $item->save();
-        return redirect()->to('/backend/wo_item')->with('success','Sucess!');
+        return redirect()->to('/backend/wo_item/'.$r->id)->with('success','Sucess!');
 
     }
     public function wo_item_update(Request $r,$id){
@@ -240,7 +240,7 @@ class WOController extends Controller
         $item->value=$r->value;
 
         $item->save();
-        return redirect()->to('/backend/wo_item')->with('success','Sucess!');
+        return redirect()->to('/backend/wo_item/'.$item->wo_id)->with('success','Sucess!');
     }
     public function wo_item_edit($id){
         $item=WO_item::where('id',$id)->first();
