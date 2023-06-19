@@ -78,6 +78,24 @@ Route::prefix('backend')->group(function(){
     Route::post('user_update/{id}',[App\Http\Controllers\BackendController::class,'user_update']);
     //user
 
+
+    //wo
+    Route::get('wo',[App\Http\Controllers\WOController::class,'wo']);
+    Route::get('wo_destroy/{id}',[App\Http\Controllers\WOController::class,'wo_destroy']);
+    Route::get('wo_add',[App\Http\Controllers\WOController::class,'wo_add']);
+    Route::post('wo_store',[App\Http\Controllers\WOController::class,'wo_store']);
+    Route::get('wo_edit/{id}',[App\Http\Controllers\WOController::class,'wo_edit']);
+    Route::post('wo_update/{id}',[App\Http\Controllers\WOController::class,'wo_update']);
+    //wo
+     //wo_item
+     Route::get('wo_item/{id}',[App\Http\Controllers\WOController::class,'wo_item']);
+     Route::get('wo_item_destroy/{id}',[App\Http\Controllers\WOController::class,'wo_item_destroy']);
+     Route::get('wo_item_add/{id}',[App\Http\Controllers\WOController::class,'wo_item_add']);
+     Route::post('wo_item_store',[App\Http\Controllers\WOController::class,'wo_item_store']);
+     Route::get('wo_item_edit/{id}',[App\Http\Controllers\WOController::class,'wo_item_edit']);
+     Route::post('wo_item_update/{id}',[App\Http\Controllers\WOController::class,'wo_item_update']);
+     //wo_item
+
     //product
     Route::get('product',[App\Http\Controllers\BackendController::class,'product']);
     Route::get('product_destroy/{id}',[App\Http\Controllers\BackendController::class,'product_destroy']);
@@ -106,7 +124,6 @@ Route::prefix('backend')->group(function(){
     //wait_user
 
     //news
-
     Route::get('news',[App\Http\Controllers\BackendController::class,'news']);
     Route::get('news_destroy/{id}',[App\Http\Controllers\BackendController::class,'news_destroy']);
     Route::get('news_add',[App\Http\Controllers\BackendController::class,'news_add']);
@@ -117,7 +134,6 @@ Route::prefix('backend')->group(function(){
 
 
      //market
-
      Route::get('market',[App\Http\Controllers\BackendController::class,'market']);
      Route::get('market_destroy/{id}',[App\Http\Controllers\BackendController::class,'market_destroy']);
      Route::get('market_add',[App\Http\Controllers\BackendController::class,'market_add']);
@@ -139,6 +155,16 @@ Route::prefix('backend')->group(function(){
      Route::get('item_point_edit/{id}',[App\Http\Controllers\BackendController::class,'item_point_edit']);
      Route::post('item_point_update/{id}',[App\Http\Controllers\BackendController::class,'item_point_update']);
      //item_point
+
+
+     //air_model
+    Route::get('air_model',[App\Http\Controllers\AirModelController::class,'air_model']);
+    Route::get('air_model_destroy/{id}',[App\Http\Controllers\AirModelController::class,'air_model_destroy']);
+    Route::get('air_model_add',[App\Http\Controllers\AirModelController::class,'air_model_add']);
+    Route::post('air_model_store',[App\Http\Controllers\AirModelController::class,'air_model_store']);
+    Route::get('air_model_edit/{id}',[App\Http\Controllers\AirModelController::class,'air_model_edit']);
+    Route::post('air_model_update/{id}',[App\Http\Controllers\AirModelController::class,'air_model_update']);
+    //air_model
 
     // ===== Conditioner List ====
     Route::get('air_conditioner',[App\Http\Controllers\AirConditionerController::class,'index']);

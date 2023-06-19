@@ -30,6 +30,22 @@ Route::group([
     Route::get('/api_market', 'ApiController@api_market');
 
 
+    Route::get('/api_air_model', 'ApiController@api_air_model');
+
+    Route::get('/api_work', 'ApiController@api_work');
+    Route::get('/api_work_detail/{id}', 'ApiController@api_work_detail');
+
+    Route::get('/api_work_item/{id}', 'ApiController@api_work_item');
+    Route::post('/api_work_item_delete', 'ApiController@api_work_item_delete');
+    Route::post('/api_work_item_submit', 'ApiController@api_work_item_submit');
+
+    Route::post('/api_work_list', 'ApiController@api_work_list');
+
+    Route::post('/api_work_submit', 'ApiController@api_work_submit');
+    Route::post('/api_end_work', 'ApiController@api_end_work');
+
+
+
     Route::post('/api_change_password', 'ApiController@api_change_password');
 
     Route::post('/api_news', 'ApiController@api_news');

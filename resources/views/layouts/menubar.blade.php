@@ -132,15 +132,30 @@
 
 
 
+    <!-- SELECT_2 -->
+    <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
+
+<style>
+   .select2-container--default .select2-selection--single .select2-selection__rendered {
+    background-color: #eee;
+    /* color: #fff; */
+    /* padding: 8px 30px 8px 20px; */
+    }
+    </style>
+<!-- SELECT_2 -->
+
+
+
     <!-- SELECT2 -->
     <!-- <select name="position" id="" class="form-control select2-single" multiple="multiple"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" />
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.1.0-rc.0/css/select2.min.css" />
 
     <style>
     .select2-container--default .select2-selection--multiple .select2-selection__choice span {
         color: #060606;
     }
-    </style>
+    </style> -->
     <!-- SELECT2 -->
 
     <style>
@@ -431,6 +446,44 @@
                             <!-- Home Page-->
 
 
+
+                             <!-- "WORK"-->
+                             <ul class="pcoded-item pcoded-left-item">
+                                <!-- Start-->
+                                @if(isset($page)) @if($page=="wo") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">WORK</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                    </a>
+
+                                    <!-- "WORK" -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="wo") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/wo')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">WORK</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- "WORK" -->
+
+                                    <!-- End-->
+                                </li>
+                            </ul>
+                            <!-- MARKET-->
+
+
                              <!-- NEWS-->
                              <ul class="pcoded-item pcoded-left-item">
                                 <!-- Start-->
@@ -530,6 +583,21 @@
                                                 <span class="pcoded-mtext">ข้อมูล</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- Air Conditioner -->
+
+                                     <!-- Air Conditioner -->
+                                     <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="air_model") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/air_model')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">Air Models</span>
+                                                <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
                                     </ul>
@@ -945,7 +1013,13 @@
         <!-- เรียงลำดับ news-->
 
 
-
+        <!-- SELECT_2 -->
+        <script>
+            $(document).ready(function() {
+    $('.select_2').select2();
+    });
+        </script>
+        <!-- SELECT_2 -->
 
 
         @yield('script')

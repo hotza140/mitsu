@@ -110,7 +110,11 @@
 
                                                     <td>{{$items->code}}</td>
                                                     @if($items->picture!=null)
-                                                    <td><img src="{{asset('/img/upload/'.$items->picture)}}"
+                                                    <td><img <?php    $filePath = 'file/upload/' . $items->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+src="{{$picture}}"
                                                             style="width:100px"></td>
                                                     @else
                                                     <td><img src="{{asset('/img/no_img.png')}}" style="width:100px">
@@ -123,17 +127,14 @@
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
                                                         <a href="{{url('/backend/user_edit/'.$items->id)}}"
-                                                            class="btn btn-sm btn-primary" style="color:white;"><i
-                                                                class="fa fa-gear"></i></a> ข้อมูล User
-                                                                <br><br>
+                                                            >ข้อมูล User</a> 
+                                                                <br>
                                                         <a href="{{url('/backend/user_service/'.$items->id)}}"
-                                                            class="btn btn-sm btn-warning" style="color:white;"><i
-                                                                class="fa fa-gear"></i></a> ข้อมูลบริการ
-                                                                <br><br>
+                                                            >ข้อมูลบริการ</a> 
+                                                                <br>
                                                         <a href="{{url('/backend/user_item/'.$items->id)}}"
-                                                            class="btn btn-sm btn-success" style="color:white;"><i
-                                                                class="fa fa-gear"></i></a> เครื่องปรับอากาศ
-                                                                <br><br>
+                                                            >เครื่องปรับอากาศ</a> 
+                                                                <br>
                                                         <!-- <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a> -->
                                                     </td>
                                                 </tr>

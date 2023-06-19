@@ -28,6 +28,12 @@ use App\Models\history_point;
 use App\Models\AirConditioner;
 use Illuminate\support\carbon;
 
+use App\Models\TechnicianService;
+
+use App\AirModel;
+use App\WO;
+use App\WO_item;
+
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
@@ -49,8 +55,9 @@ class ApiController extends Controller
 
     // URL PICTURE
     //  protected $prefix = 'http://www.mitsuheavyth.com/img/upload/';
-    protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
+    // protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
 
+    protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
 
 
 
@@ -71,6 +78,289 @@ class ApiController extends Controller
         ]);
     }
     ///user///
+
+
+
+
+
+
+    ///air_model///
+    public function api_air_model()
+    {
+        $air_model = AirModel::orderby('model_name', 'asc')->get();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'air_model' => $air_model,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///air_model///
+
+
+
+    ///WORK///
+    public function api_work()
+    {
+        $wo = WO::where('technician_id', null)->with('customer')->with('model')->orderby('wo_date', 'desc')->get();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK///
+
+
+       ///WORK_item///
+       public function api_work_item($id)
+       {
+        $wo = WO::where('id',$id)->with('customer')->with('model')->first();
+           $item = WO_item::where('id_wo',$id)->where('status',0)->get();
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'wo' => $wo,
+                   'item' => $item,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+       }
+       ///WORK_item///
+
+
+        ///WORK_item///
+        public function api_work_item_delete(Request $r)
+        {
+            $item = WO_item::where('id',$r->id)->first();
+            $item->status=1;
+            $item->save();
+    
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'item' => $item,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+        ///WORK_item///
+
+
+         ///WORK ITEM SUBMIT///
+    public function api_work_item_submit(Request $r)
+    {
+        $item = WO::where('id',$r->id)->first();
+        $item->service_item_price=$r->sum;
+        $item->save();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK ITEM SUBMIT///
+    
+
+    ///WORK DETAIL///
+    public function api_work_detail($id)
+    {
+        $wo = WO::where('id', $id)->with('customer')->with('model')->first();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK DETAIL///
+
+
+
+    ///WORK งานที่รับของแต่ละคน///
+    public function api_work_list(Request $r)
+    {
+        $date = date('Y-m-d');
+        if ($r->date == null || $r->date == "null") {
+            $wo = WO::where('technician_id', $r->id)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+        } else {
+            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $date = $r->date;
+        }
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+                'date' => $date,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK งานที่รับของแต่ละคน///
+
+
+
+
+
+    ///WORK submit///
+    public function api_work_submit(Request $r)
+    {
+        $wo = WO::where('id', $r->id_work)->with('customer')->with('model')->first();
+
+        if ($wo->technician_id == null) {
+
+            if ($wo->technician_id == null) {
+                $wo->technician_id = $r->id;
+                $wo->save();
+            } else {
+                $message = "Someone already took this job.";
+                $status = false;
+                return response()->json([
+                    'results' => [],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
+            }
+        } else {
+            $message = "Someone already took this job.";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK submit///
+
+
+
+
+
+
+    ///END WORK///
+    public function api_end_work(Request $r)
+    {
+        $wo = wo::where('id', $r->id)->with('customer')->with('model')->first();
+        if ($wo != null) {
+
+            if ($r->wo_status != null) {
+                $wo->wo_status = $r->wo_status;
+            }
+            if ($r->wo_time_end != null) {
+                $wo->wo_time_end = $r->wo_time_end;
+            }
+            if ($r->wo_remark != null) {
+                $wo->wo_remark = $r->wo_remark;
+            }
+            if ($r->review != null) {
+                $wo->review = $r->review;
+            }
+
+            if ($r->wo_picture != null) {
+                if (!$r->hasFile('wo_picture')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('wo_picture');
+                if (!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $fileName = $_FILES['wo_picture']['name'];
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $wo->wo_picture = $fileName;
+            }
+
+            $wo->save();
+
+
+            if ($r->review != null) {
+                $star = WO::where('technician_id', $wo->technician_id)->where('wo_status', 1)->where('wo_time_end', '!=', null)
+                    ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
+                if ($star == null or $star == 0) {
+                    $star = 5;
+                }
+                $rrr = User::where('id', $wo->technician_id)->first();
+                if ($rrr != null) {
+                    $rrr->rate = $star;
+                    $rrr->save();
+                }
+            }
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'wo' => $wo,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "There is an ID on the server!";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+    ///END WORK///
+
+
+
+
+
+
 
 
 
@@ -315,9 +605,10 @@ class ApiController extends Controller
                 if (!$file->isValid()) {
                     return response()->json(['invalid_file_upload'], 400);
                 }
-                $picture = $_FILES['picture']['name'];
-                $r->picture->move(public_path() . '/img/upload', $picture);
-                $user->picture = $picture;
+                $fileName = $_FILES['picture']['name'];
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $user->picture = $fileName;
             }
 
 

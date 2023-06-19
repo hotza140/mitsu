@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class CarService extends Model
 {
-    use SoftDeletes;
+    // use SoftDeletes;
 
     protected $table = "car_services";
     protected $fillable = [

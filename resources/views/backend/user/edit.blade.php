@@ -52,7 +52,11 @@
 
                                         @if($item->picture!=null)
                                         <br>
-                                        <center><img src="{{asset('img/upload/'.$item->picture)}}" width="200px">
+                                        <?php    $filePath = 'file/upload/' . $item->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+<center><img src="{{$picture}}" width="200px">
                                         </center>
                                         <br>
                                         @else
@@ -235,6 +239,12 @@
 
                                         </form>
 
+                                        <br>
+                                        <strong>
+                                            <h3 class="m-b-10">ประวัติการได้รับแต้ม Point
+                                            </h3>
+                                        </strong>
+
                                     </div>
 
 
@@ -347,7 +357,11 @@
                                                         <td>{{$key+1}}</td>
                                                         <!-- <td>{{($itts->name)?? '-'}}</td> -->
                                                         <td>
-                                                        <img src="{{asset('/img/upload/'.$itts->item->picture)}}" style="width:100px">
+                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
+$picture= Storage::disk('s3')->url($filePath);
+?>
+
+src="{{$picture}}" style="width:100px">
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
