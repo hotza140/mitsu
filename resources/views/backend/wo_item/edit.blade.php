@@ -49,7 +49,7 @@
                                         <div class="form-group row">
 
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Time</label>
+                                                <label class="col-form-label">Title</label>
                                                 <input type="text" name="title" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->title;} ?>">
                                             </div>
