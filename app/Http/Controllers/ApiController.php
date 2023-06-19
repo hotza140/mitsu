@@ -32,6 +32,7 @@ use App\Models\TechnicianService;
 
 use App\AirModel;
 use App\WO;
+use App\WO_item;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
@@ -120,6 +121,27 @@ class ApiController extends Controller
         ]);
     }
     ///WORK///
+
+
+       ///WORK_item///
+       public function api_work_item($id)
+       {
+        $wo = WO::where('id',$id)->with('customer')->with('model')->first();
+           $item = WO_item::where('id_wo',$id)->first();
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'wo' => $wo,
+                   'item' => $item,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+       }
+       ///WORK_item///
 
     ///WORK DETAIL///
     public function api_work_detail($id)
