@@ -185,7 +185,7 @@
 
 
                                         @if(isset($item))
-                                        @if($item->picture!=null)
+                                        @if($item->wo_picture!=null)
                                         <br>
                                         <div><a <?php    $filePath = 'file/upload/' . $item->wo_picture;  
                                             $wo_picture= Storage::disk('s3')->url($filePath);
