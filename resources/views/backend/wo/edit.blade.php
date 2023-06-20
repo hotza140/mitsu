@@ -65,6 +65,15 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-3">
+                                                <label class="col-form-label">Work Number</label>
+                                                <input type="text" name="wo_number" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->wo_number;} ?>" disabled>
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Type</label>
                                                 <input type="text" name="wo_type" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_type;} ?>">

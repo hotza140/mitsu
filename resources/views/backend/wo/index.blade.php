@@ -38,6 +38,7 @@
                                                 <tr>
 
                                                 <th>#</th>
+                                                <th>Work Number</th>
                                                     <th>ประเภทงาน</th>
                                                     <th>Air Models</th>
                                                     <th>รหัสข้อผิดพลาด</th>
@@ -57,6 +58,7 @@
                                                 <!-- <tr class="num" id="{{$items->id}}"> -->
                                                 <tr>
                                                     <td>{{$key+1}}</td>
+                                                    <td>{{$items->wo_number}}</td>
                                                     <td>{{$items->wo_type}}</td>
 
                                                     <?php $aii=App\AirModel::where('id',$items->air_model)->first(); ?>
@@ -104,6 +106,7 @@
                                             <tfoot>
                                                 <tr>
                                                 <th>#</th>
+                                                <th>Work Number</th>
                                                     <th>ประเภทงาน</th>
                                                     <th>Air Models</th>
                                                     <th>รหัสข้อผิดพลาด</th>
