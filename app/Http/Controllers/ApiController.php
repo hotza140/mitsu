@@ -127,7 +127,7 @@ class ApiController extends Controller
        public function api_work_item($id)
        {
         $wo = WO::where('id',$id)->with('customer')->with('model')->first();
-           $item = WO_item::where('id_wo',$id)->where('status',0)->get();
+           $item = WO_item::where('id_wo',$id)->get();
    
            $message = "Success!";
            $status = true;
@@ -148,8 +148,14 @@ class ApiController extends Controller
         public function api_work_item_delete(Request $r)
         {
             $item = WO_item::where('id',$r->id)->first();
+
+            if($item->status==0){
             $item->status=1;
             $item->save();
+            }else{
+            $item->status=0;
+            $item->save();
+            }
     
             $message = "Success!";
             $status = true;
