@@ -318,7 +318,7 @@ class ApiController extends Controller
                     return response()->json(['invalid_file_upload'], 400);
                 }
                 $fileName = $_FILES['wo_picture']['name'];
-                $fileName = $fileName.'_'.date('YmdHis');
+                 $fileName = date('YmdHis').'_'.$fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
                 $wo->wo_picture = $fileName;
@@ -613,7 +613,7 @@ class ApiController extends Controller
                     return response()->json(['invalid_file_upload'], 400);
                 }
                 $fileName = $_FILES['picture']['name'];
-                $fileName = $fileName.'_'.date('YmdHis');
+                $fileName = date('YmdHis').'_'.$fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
                 $user->picture = $fileName;
