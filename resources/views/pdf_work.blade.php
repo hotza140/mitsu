@@ -76,16 +76,16 @@
                                     <?php $cus=App\Models\Customer::where('id',$data->customer_id)->first(); ?>
                                     <div class="form-group row">
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">ชื่อ</label>
-                                                <p><?php if(isset($cus)){echo $cus->name.' '.$cus->lastname;} ?></p>
+                                                <label class="col-form-label">ชื่อ : <?php if(isset($cus)){echo $cus->first_name.' '.$cus->last_name;} ?></label>
+                                            
                                             </div>
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">เบอร์ติดต่อ</label>
-                                                <p><?php if(isset($cus)){echo $cus->phone;} ?></p>
+                                                <label class="col-form-label">เบอร์ติดต่อ : <?php if(isset($cus)){echo $cus->phone;} ?></label>
+                                             
                                             </div>
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">ที่อยู่</label>
-                                                <p><?php if(isset($cus)){echo $cus->address.' '.$cus->more_address;} ?></p>
+                                                <label class="col-form-label">ที่อยู่ : <?php if(isset($cus)){echo $cus->address.' '.$cus->more_address;} ?></label>
+                                              
                                             </div>
                                         </div>
 
