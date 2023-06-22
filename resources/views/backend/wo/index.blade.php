@@ -47,6 +47,7 @@
                                                     <!-- <th>Created_at</th> -->
                                                     <th>มีคนรับรึยัง</th>
                                                     <th>สถานะงาน</th>
+                                                    <th>ใบงาน</th>
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
 
@@ -99,6 +100,12 @@
                                                             onclick="javascript:return confirm('You Want To Delete?')"
                                                             style="color:white;"><i class="fa fa-trash"></i>Delete</a>
                                                     </td>
+
+                                                    <td>
+                                                        <a href="{{url('/backend/pdf_work')}}"
+                                                            class="btn btn-sm btn-danger" style="color:white;"><i
+                                                                class="fa fa-eye"></i>View</a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
 
@@ -117,6 +124,7 @@
                                                     <th>สถานะงาน</th>
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
+                                                    <th>ใบงาน</th>
                                                 </tr>
                                             </tfoot>
                                         </table>

@@ -46,6 +46,37 @@
 
     </head>
     <body>
-       <center>ไทย</center>
+
+
+    <div class="page-body">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <!-- Zero config.table start -->
+                            <div class="card">
+                                <div class="card-header">
+                                </div>
+                                <div class="card-block">
+                                    <div class="dt-responsive table-responsive">
+                                    <center><img src="{{asset('img/back.jpg')}}" width="200px"></center>
+                                    <br><br>
+                                       <center><h2>เลขที่ใบงาน : NAV27042566</h2></center>
+                                    </div>
+                                </div>
+
+                                
+                            </div>
+                            <!-- Zero config.table end -->
+                            <!-- Default ordering table start -->
+
+
+                            <!-- Default ordering table end -->
+                            <!-- Multi-column table start -->
+
+                            <!-- Language - Comma Decimal Place table end -->
+                        </div>
+                    </div>
+    </div>
+
+
     </body>
 </html>
