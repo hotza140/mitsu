@@ -11,7 +11,7 @@
         <!-- Styles -->
 
 <style>
-        @font-face {
+        /* @font-face {
             font-family: 'THSarabunNew';
             font-style: normal;
             font-weight: normal;
@@ -37,6 +37,10 @@
         }
         html, body {
             font-family: "THSarabunNew";
+        } */
+
+        html, body {
+            font-family: "Garuda";
         }
     </style>
 
