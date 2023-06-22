@@ -107,7 +107,7 @@ class ApiController extends Controller
     ///WORK///
     public function api_work()
     {
-        $wo = WO::where('technician_id', null)->with('customer')->with('model')->orderby('wo_date', 'desc')->get();
+        $wo = WO::where('technician_id', null)->where('d_status',0)->with('customer')->with('model')->orderby('wo_date', 'desc')->get();
 
         $message = "Success!";
         $status = true;
@@ -126,7 +126,7 @@ class ApiController extends Controller
        ///WORK_item///
        public function api_work_item($id)
        {
-        $wo = WO::where('id',$id)->with('customer')->with('model')->first();
+        $wo = WO::where('id',$id)->where('d_status',0)->with('customer')->with('model')->first();
            $item = WO_item::where('id_wo',$id)->get();
    
            $message = "Success!";
@@ -147,7 +147,7 @@ class ApiController extends Controller
         ///WORK_item///
         public function api_work_item_delete(Request $r)
         {
-            $item = WO_item::where('id',$r->id)->first();
+            $item = WO_item::where('id',$r->id)->where('d_status',0)->first();
 
             if($item->status==0){
             $item->status=1;
@@ -174,7 +174,7 @@ class ApiController extends Controller
          ///WORK ITEM SUBMIT///
     public function api_work_item_submit(Request $r)
     {
-        $item = WO::where('id',$r->id)->first();
+        $item = WO::where('id',$r->id)->where('d_status',0)->first();
         $item->service_item_price=$r->sum;
         $item->save();
 
@@ -195,7 +195,7 @@ class ApiController extends Controller
     ///WORK DETAIL///
     public function api_work_detail($id)
     {
-        $wo = WO::where('id', $id)->with('customer')->with('model')->first();
+        $wo = WO::where('id', $id)->where('d_status',0)->with('customer')->with('model')->first();
 
         $message = "Success!";
         $status = true;
@@ -217,9 +217,9 @@ class ApiController extends Controller
     {
         $date = date('Y-m-d');
         if ($r->date == null || $r->date == "null") {
-            $wo = WO::where('technician_id', $r->id)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id', $r->id)->where('d_status',0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         } else {
-            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->where('d_status',0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
             $date = $r->date;
         }
 
@@ -244,7 +244,7 @@ class ApiController extends Controller
     ///WORK submit///
     public function api_work_submit(Request $r)
     {
-        $wo = WO::where('id', $r->id_work)->with('customer')->with('model')->first();
+        $wo = WO::where('id', $r->id_work)->where('d_status',0)->with('customer')->with('model')->first();
 
         if ($wo->technician_id == null) {
 
@@ -293,7 +293,7 @@ class ApiController extends Controller
     ///END WORK///
     public function api_end_work(Request $r)
     {
-        $wo = wo::where('id', $r->id)->with('customer')->with('model')->first();
+        $wo = wo::where('id', $r->id)->where('d_status',0)->with('customer')->with('model')->first();
         if ($wo != null) {
 
             if ($r->wo_status != null) {
@@ -328,7 +328,7 @@ class ApiController extends Controller
 
 
             if ($r->review != null) {
-                $star = WO::where('technician_id', $wo->technician_id)->where('wo_status', 1)->where('wo_time_end', '!=', null)
+                $star = WO::where('technician_id', $wo->technician_id)->where('d_status',0)->where('wo_status', 1)->where('wo_time_end', '!=', null)
                     ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
                 if ($star == null or $star == 0) {
                     $star = 5;

@@ -145,7 +145,7 @@ class WOController extends Controller
 
 
     public function wo(){
-        $item=WO ::orderby('id','desc')->get();
+        $item=WO ::where('d_status',0)->orderby('id','desc')->get();
         return view('backend.wo.index',[
             'item'=>$item,
             'page'=>"wo",
@@ -205,9 +205,11 @@ class WOController extends Controller
     }
     public function wo_destroy($id){
         $item=WO::where('id',$id)->first();
-        $check= 'file/upload/' . $item->wo_picture;
-                Storage::disk('s3')->delete($check);
-        $item->delete();
+        // $check= 'file/upload/' . $item->wo_picture;
+        //         Storage::disk('s3')->delete($check);
+        // $item->delete();
+        $item->d_status=1;
+        $item->save();
         return redirect()->back()->with('success','Sucess!');
     }
     public function wo_add(){
@@ -227,7 +229,7 @@ class WOController extends Controller
       //wo_item//
 
       public function wo_item($id){
-        $item=WO_item ::where('id_wo',$id)->orderby('id','desc')->get();
+        $item=WO_item ::where('id_wo',$id)->where('d_status',0)->orderby('id','desc')->get();
         return view('backend.wo_item.index',[
             'item'=>$item,
             'id'=>$id,
@@ -268,7 +270,9 @@ class WOController extends Controller
     }
     public function wo_item_destroy($id){
         $item=WO_item::where('id',$id)->first();
-        $item->delete();
+        // $item->delete();
+        $item->d_status=1;
+        $item->save();
         return redirect()->back()->with('success','Sucess!');
     }
     public function wo_item_add($id){
