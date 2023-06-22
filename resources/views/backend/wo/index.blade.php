@@ -47,9 +47,9 @@
                                                     <!-- <th>Created_at</th> -->
                                                     <th>มีคนรับรึยัง</th>
                                                     <th>สถานะงาน</th>
-                                                    <th>ใบงาน</th>
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
+                                                    <th>ใบงาน</th>
 
                                                 </tr>
                                             </thead>
