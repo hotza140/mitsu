@@ -103,7 +103,7 @@
 
                                                     <td>
                                                         <a href="{{url('/backend/pdf_work')}}" target="_blank"
-                                                            class="btn btn-sm btn-danger" style="color:white;"><i
+                                                            class="btn btn-sm btn-primary" style="color:white;"><i
                                                                 class="fa fa-eye"></i>View</a>
                                                     </td>
                                                 </tr>
