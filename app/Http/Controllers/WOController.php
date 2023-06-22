@@ -138,8 +138,8 @@ class WOController extends Controller
     //wo//
     // $pdf=PDF::loadview('pdf_work',['id'=>$id]);
      ///pdf---------------
-     public function pdf_work(){
-        $pdf=PDF::loadview('pdf_work');
+     public function pdf_work($id){
+        $pdf=PDF::loadview('pdf_work',['id'=>$id]);
         return @$pdf->stream();
     }
 

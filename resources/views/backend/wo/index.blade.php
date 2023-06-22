@@ -102,7 +102,7 @@
                                                     </td>
 
                                                     <td>
-                                                        <a href="{{url('/backend/pdf_work')}}" target="_blank"
+                                                        <a href="{{url('/backend/pdf_work/'.$items->id)}}" target="_blank"
                                                             class="btn btn-sm btn-primary" style="color:white;"><i
                                                                 class="fa fa-eye"></i>View</a>
                                                     </td>

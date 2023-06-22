@@ -47,35 +47,43 @@
     </head>
     <body>
 
+    <?php  $data=App\WO::where('id',$id)->first();  ?>
 
+    @if($data)
     <div class="page-body">
                     <div class="row">
+
                         <div class="col-sm-12">
-                            <!-- Zero config.table start -->
                             <div class="card">
+
+
                                 <div class="card-header">
                                 </div>
+
+
                                 <div class="card-block">
-                                    <div class="dt-responsive table-responsive">
+
+                                    <div class="dt-responsive table-responsive text-center">
                                     <center><img src="{{asset('img/back.jpg')}}" width="200px"></center>
                                     <br><br>
-                                       <center><h2>เลขที่ใบงาน : NAV27042566</h2></center>
                                     </div>
+
+                                    <div class="text-right">
+                                    <p>เลขที่ใบงาน : NAV27042566</p>
+                                    </div>
+
                                 </div>
 
                                 
                             </div>
-                            <!-- Zero config.table end -->
-                            <!-- Default ordering table start -->
-
-
-                            <!-- Default ordering table end -->
-                            <!-- Multi-column table start -->
-
-                            <!-- Language - Comma Decimal Place table end -->
                         </div>
+
                     </div>
     </div>
+    @else
+
+    <center><h2>ไม่พบข้อมูลงาน?!</h2></center>
+    @endif
 
 
     </body>
