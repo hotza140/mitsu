@@ -46,6 +46,7 @@ class BackendController extends Controller
 
 {
 
+
        ///Welcome---------------
        public function welcome(){
         return view('backend.welcome');

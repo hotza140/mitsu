@@ -13,6 +13,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
+use Illuminate\support\carbon;
+
+use PDF;
+
 class WOController extends Controller
 {
     /**
@@ -129,6 +136,12 @@ class WOController extends Controller
 
 
     //wo//
+    // $pdf=PDF::loadview('pdf_work',['id'=>$id]);
+     ///pdf---------------
+     public function pdf_work(){
+        $pdf=PDF::loadview('pdf_work');
+        return @$pdf->stream();
+    }
 
 
     public function wo(){

@@ -80,6 +80,8 @@ Route::prefix('backend')->group(function(){
 
 
     //wo
+    Route::get('pdf_work',[App\Http\Controllers\WOController::class,'pdf_work']);
+
     Route::get('wo',[App\Http\Controllers\WOController::class,'wo']);
     Route::get('wo_destroy/{id}',[App\Http\Controllers\WOController::class,'wo_destroy']);
     Route::get('wo_add',[App\Http\Controllers\WOController::class,'wo_add']);
