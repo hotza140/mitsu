@@ -1,8 +1,9 @@
 !DOCTYPE html>
 <html lang="TH">
     <head>
-        <meta charset="utf-8">
+    <META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
 
         <title>PDF WORK</title>
 
@@ -22,6 +23,6 @@
         </style>
     </head>
     <body>
-       <center>adssdadsdasdsd</center>
+       <center>ไทย</center>
     </body>
 </html>
