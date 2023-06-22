@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\WO;
 use App\WO_item;
+use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\WOCreateRequest;
 

@@ -68,9 +68,26 @@
                                     <br><br>
                                     </div>
 
-                                    <div class="text-right">
-                                    <p>เลขที่ใบงาน : NAV27042566</p>
+                                    <div align="right">
+                                    <p>เลขที่ใบงาน : {{$data->wo_number}}</p>
                                     </div>
+                                    <br>
+
+                                    <?php $cus=App\Models\Customer::where('id',$data->customer_id)->first(); ?>
+                                    <div class="form-group row">
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">ชื่อ</label>
+                                                <p><?php if(isset($cus)){echo $cus->name.' '.$cus->lastname;} ?></p>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">เบอร์ติดต่อ</label>
+                                                <p><?php if(isset($cus)){echo $cus->phone;} ?></p>
+                                            </div>
+                                            <div class="col-sm-12">
+                                                <label class="col-form-label">ที่อยู่</label>
+                                                <p><?php if(isset($cus)){echo $cus->address.' '.$cus->more_address;} ?></p>
+                                            </div>
+                                        </div>
 
                                 </div>
 
