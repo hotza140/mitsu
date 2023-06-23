@@ -12,10 +12,10 @@
     <!-- Styles -->
 
     <style>
-        @page {
+        /* @page {
             size: 58mm;
             margin: 0;
-        }
+        } */
 
         /* @font-face {
             font-family: 'THSarabunNew';

@@ -138,23 +138,30 @@ class WOController extends Controller
 
     //wo//
     // $pdf=PDF::loadview('pdf_work',['id'=>$id]);
-     ///pdf---------------
-     public function pdf_work($id){
-        $pdf=PDF::loadview('pdf_work',['id'=>$id]);
+    ///pdf---------------
+    public function pdf_work($id)
+    {
+        $papersize = array(0, 0, 1000, 205);
+        $pdf = PDF::loadview('pdf_work', ['id' => $id], [], [
+            'orientation' => 'P',
+            'format' => [58, 1000]
+        ]);
         return @$pdf->stream();
     }
 
 
-    public function wo(){
-        $item=WO ::where('d_status',0)->orderby('id','desc')->get();
-        return view('backend.wo.index',[
-            'item'=>$item,
-            'page'=>"wo",
-            'list'=>"wo",
+    public function wo()
+    {
+        $item = WO::where('d_status', 0)->orderby('id', 'desc')->get();
+        return view('backend.wo.index', [
+            'item' => $item,
+            'page' => "wo",
+            'list' => "wo",
         ]);
     }
-    public function wo_store(Request $r){
-        $item=new WO();
+    public function wo_store(Request $r)
+    {
+        $item = new WO();
 
         $year_4 = date("Y");
         $year_2 = date("y");
@@ -163,60 +170,63 @@ class WOController extends Controller
         $number_id = WO::whereRaw('YEAR(created_at)=' . $year_4)->whereRaw('MONTH(created_at)=' . $month_2)->count() + 1;
         $format = "WO" . $year_2 . $month_2 . "%'.07d";
 
-        $ans=sprintf($format, $number_id);
+        $ans = sprintf($format, $number_id);
 
-        $item->wo_number=$ans;
-        $item->wo_date=$r->wo_date;
-        $item->wo_time= $r->wo_time;
-        $item->wo_type= $r->wo_type;
-        $item->wo_breakdown= $r->wo_breakdown;
-        $item->air_model= $r->air_model;
-        $item->error_code= $r->error_code;
-        $item->wo_price= $r->wo_price;
-        $item->customer_id= $r->customer_id;
+        $item->wo_number = $ans;
+        $item->wo_date = $r->wo_date;
+        $item->wo_time = $r->wo_time;
+        $item->wo_type = $r->wo_type;
+        $item->wo_breakdown = $r->wo_breakdown;
+        $item->air_model = $r->air_model;
+        $item->error_code = $r->error_code;
+        $item->wo_price = $r->wo_price;
+        $item->customer_id = $r->customer_id;
 
-
-        $item->save();
-        return redirect()->to('/backend/wo')->with('success','Sucess!');
-
-    }
-    public function wo_update(Request $r,$id){
-        $item=WO::where('id',$id)->first();
-      
-        $item->wo_date=$r->wo_date;
-        $item->wo_time= $r->wo_time;
-        $item->wo_type= $r->wo_type;
-        $item->wo_breakdown= $r->wo_breakdown;
-        $item->air_model= $r->air_model;
-        $item->error_code= $r->error_code;
-        $item->wo_price= $r->wo_price;
-        $item->wo_status= $r->wo_status;
-        $item->customer_id= $r->customer_id;
 
         $item->save();
-        return redirect()->to('/backend/wo')->with('success','Sucess!');
+        return redirect()->to('/backend/wo')->with('success', 'Sucess!');
     }
-    public function wo_edit($id){
-        $item=WO::where('id',$id)->first();
-        return view('backend.wo.edit',[
-            'item'=>$item,
-            'page'=>"wo",
-            'list'=>"wo",
+    public function wo_update(Request $r, $id)
+    {
+        $item = WO::where('id', $id)->first();
+
+        $item->wo_date = $r->wo_date;
+        $item->wo_time = $r->wo_time;
+        $item->wo_type = $r->wo_type;
+        $item->wo_breakdown = $r->wo_breakdown;
+        $item->air_model = $r->air_model;
+        $item->error_code = $r->error_code;
+        $item->wo_price = $r->wo_price;
+        $item->wo_status = $r->wo_status;
+        $item->customer_id = $r->customer_id;
+
+        $item->save();
+        return redirect()->to('/backend/wo')->with('success', 'Sucess!');
+    }
+    public function wo_edit($id)
+    {
+        $item = WO::where('id', $id)->first();
+        return view('backend.wo.edit', [
+            'item' => $item,
+            'page' => "wo",
+            'list' => "wo",
         ]);
     }
-    public function wo_destroy($id){
-        $item=WO::where('id',$id)->first();
+    public function wo_destroy($id)
+    {
+        $item = WO::where('id', $id)->first();
         // $check= 'file/upload/' . $item->wo_picture;
         //         Storage::disk('s3')->delete($check);
         // $item->delete();
-        $item->d_status=1;
+        $item->d_status = 1;
         $item->save();
-        return redirect()->back()->with('success','Sucess!');
+        return redirect()->back()->with('success', 'Sucess!');
     }
-    public function wo_add(){
-        return view('backend.wo.add',[
-            'page'=>"wo",
-            'list'=>"wo",
+    public function wo_add()
+    {
+        return view('backend.wo.add', [
+            'page' => "wo",
+            'list' => "wo",
         ]);
     }
     //wo//
@@ -227,60 +237,65 @@ class WOController extends Controller
 
 
 
-      //wo_item//
+    //wo_item//
 
-      public function wo_item($id){
-        $item=WO_item ::where('id_wo',$id)->where('d_status',0)->orderby('id','desc')->get();
-        return view('backend.wo_item.index',[
-            'item'=>$item,
-            'id'=>$id,
-            'page'=>"wo",
-            'list'=>"wo",
+    public function wo_item($id)
+    {
+        $item = WO_item::where('id_wo', $id)->where('d_status', 0)->orderby('id', 'desc')->get();
+        return view('backend.wo_item.index', [
+            'item' => $item,
+            'id' => $id,
+            'page' => "wo",
+            'list' => "wo",
         ]);
     }
-    public function wo_item_store(Request $r){
-        $item=new WO_item();
-        $item->id_wo=$r->id;
-        $item->title=$r->title;
-        $item->number=$r->number;
-        $item->value=$r->value;
+    public function wo_item_store(Request $r)
+    {
+        $item = new WO_item();
+        $item->id_wo = $r->id;
+        $item->title = $r->title;
+        $item->number = $r->number;
+        $item->value = $r->value;
 
-        $item->status=$r->status;
+        $item->status = $r->status;
 
         $item->save();
-        return redirect()->to('/backend/wo_item/'.$r->id)->with('success','Sucess!');
-
+        return redirect()->to('/backend/wo_item/' . $r->id)->with('success', 'Sucess!');
     }
-    public function wo_item_update(Request $r,$id){
-        $item=WO_item::where('id',$id)->first();
-        $item->title=$r->title;
-        $item->number=$r->number;
-        $item->value=$r->value;
+    public function wo_item_update(Request $r, $id)
+    {
+        $item = WO_item::where('id', $id)->first();
+        $item->title = $r->title;
+        $item->number = $r->number;
+        $item->value = $r->value;
 
-        $item->status=$r->status;
+        $item->status = $r->status;
         $item->save();
-        return redirect()->to('/backend/wo_item/'.$item->id_wo)->with('success','Sucess!');
+        return redirect()->to('/backend/wo_item/' . $item->id_wo)->with('success', 'Sucess!');
     }
-    public function wo_item_edit($id){
-        $item=WO_item::where('id',$id)->first();
-        return view('backend.wo_item.edit',[
-            'item'=>$item,
-            'page'=>"wo",
-            'list'=>"wo",
+    public function wo_item_edit($id)
+    {
+        $item = WO_item::where('id', $id)->first();
+        return view('backend.wo_item.edit', [
+            'item' => $item,
+            'page' => "wo",
+            'list' => "wo",
         ]);
     }
-    public function wo_item_destroy($id){
-        $item=WO_item::where('id',$id)->first();
+    public function wo_item_destroy($id)
+    {
+        $item = WO_item::where('id', $id)->first();
         // $item->delete();
-        $item->d_status=1;
+        $item->d_status = 1;
         $item->save();
-        return redirect()->back()->with('success','Sucess!');
+        return redirect()->back()->with('success', 'Sucess!');
     }
-    public function wo_item_add($id){
-        return view('backend.wo_item.add',[
-            'id'=>$id,
-            'page'=>"wo",
-            'list'=>"wo",
+    public function wo_item_add($id)
+    {
+        return view('backend.wo_item.add', [
+            'id' => $id,
+            'page' => "wo",
+            'list' => "wo",
         ]);
     }
     //wo//
