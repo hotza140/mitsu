@@ -34,6 +34,8 @@ use App\AirModel;
 use App\WO;
 use App\WO_item;
 
+use App\OTP;
+
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\File;
@@ -58,6 +60,54 @@ class ApiController extends Controller
     // protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
 
     protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
+
+
+
+     ///otp///
+     public function api_otp(Request $r)
+     {
+        $api_key='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw';
+
+        $otp=rand(1000,9999);
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://thsms.com/api/send-sms',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => '{
+                "sender": "' . env('SMS_SENDER') . '",
+                "msisdn": ["' . $req->telephone . '"],
+                "message": "OTP= ' . $otp->token . ' เพื่อทำการสมัครแอป My Trainer กรุณายืนยัน OTP ภายใน 5 นาที ห้ามบอก OTP นี้แก่ผู้อื่นไม่ว่ากรณีใด"
+            }',
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: Bearer ' . env('SMS_TOKEN') . '',
+                'Content-Type: application/json'
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+ 
+         $message = "Success!";
+         $status = true;
+         return response()->json([
+             'results' => [
+                 'otp' => $otp,
+             ],
+             'status' =>  $status,
+             'message' =>  $message,
+             'url_picture' => $this->prefix,
+         ]);
+     }
+     ///otp///
 
 
 
