@@ -63,6 +63,19 @@ class ApiController extends Controller
 
 
 
+    // PDF WORK
+    public function api_pdf_work($id)
+    {
+        $papersize = array(0, 0, 1000, 205);
+        $pdf = PDF::loadview('pdf_work', ['id' => $id], [], [
+            'orientation' => 'P',
+            'format' => [58, 1000]
+        ]);
+        return @$pdf->stream();
+    }
+      // PDF WORK
+
+
      ///otp_register///
      public function api_otp_register(Request $r)
      {
