@@ -12,7 +12,12 @@
     <!-- Styles -->
 
     <style>
-    /* @font-face {
+        /* @page {
+            size: 58mm;
+            margin: 0;
+        } */
+
+        /* @font-face {
             font-family: 'THSarabunNew';
             font-style: normal;
             font-weight: normal;
@@ -40,10 +45,10 @@
             font-family: "THSarabunNew";
         } */
 
-    html,
-    body {
-        font-family: "Garuda";
-    }
+        html,
+        body {
+            font-family: "Garuda";
+        }
     </style>
 
 </head>
@@ -75,15 +80,21 @@
                         <?php $cus=App\Models\Customer::where('id',$data->customer_id)->first(); ?>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <label class="col-form-label">ชื่อ : <?php if(isset($cus)){echo $cus->first_name.' '.$cus->last_name;} ?></label>
+                                <label class="col-form-label">ชื่อ :
+                                    <?php if(isset($cus)){echo $cus->first_name.' '.$cus->last_name;} ?>
+                                </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">เบอร์ติดต่อ : <?php if(isset($cus)){echo $cus->phone;} ?></label>
+                                <label class="col-form-label">เบอร์ติดต่อ :
+                                    <?php if(isset($cus)){echo $cus->phone;} ?>
+                                </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">ที่อยู่ : <?php if(isset($cus)){echo $cus->address.' '.$cus->more_address;} ?></label>
+                                <label class="col-form-label">ที่อยู่ :
+                                    <?php if(isset($cus)){echo $cus->address.' '.$cus->more_address;} ?>
+                                </label>
 
                             </div>
                         </div>
@@ -98,49 +109,79 @@
                         <div class="form-group row">
                             <table>
                                 <tr>
-                                    <td><b><center>รายการที่</center></b></td>
-                                    <td><b><center>รายละเอียด</center></b></td>
-                                    <td><b><center>จำนวน</center></b></td>
-                                    <td><b><center>บาท</center></b></td>
+                                    <td><b>
+                                            <center>รายการที่</center>
+                                        </b></td>
+                                    <td><b>
+                                            <center>รายละเอียด</center>
+                                        </b></td>
+                                    <td><b>
+                                            <center>จำนวน</center>
+                                        </b></td>
+                                    <td><b>
+                                            <center>บาท</center>
+                                        </b></td>
                                 </tr>
 
                                 @foreach($pro as $key=> $pros)
                                 <tr>
                                     <td>{{$key+1}}</td>
-                                    <td><center>{{$pros->title}}</center></td>
-                                    <td><center>{{$pros->number}}</center></td>
+                                    <td>
+                                        <center>{{$pros->title}}</center>
+                                    </td>
+                                    <td>
+                                        <center>{{$pros->number}}</center>
+                                    </td>
 
                                     <?php $pp1=$pros->value;  $p1=number_format($pp1,2);   ?>
-                                    <td><center>{{$p1}}</center></td>
+                                    <td>
+                                        <center>{{$p1}}</center>
+                                    </td>
                                 </tr>
                                 @endforeach
 
                                 <tr>
                                     <td></td>
-                                    <td><center>รวม</center></td>
+                                    <td>
+                                        <center>รวม</center>
+                                    </td>
                                     <td></td>
-                                    
+
                                     <?php $dd1=$data->service_item_price;  $d1=number_format($dd1,2);   ?>
-                                    <td><center>{{$d1}}</center></td>
+                                    <td>
+                                        <center>{{$d1}}</center>
+                                    </td>
                                 </tr>
 
                                 <tr>
                                     <td></td>
-                                    <td><center>ส่วนลดเคลม</center></td>
+                                    <td>
+                                        <center>ส่วนลดเคลม</center>
+                                    </td>
                                     <td></td>
-                                    <td><center>0</center></td>
+                                    <td>
+                                        <center>0</center>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><center>ส่วนลดการค้า</center></td>
+                                    <td>
+                                        <center>ส่วนลดการค้า</center>
+                                    </td>
                                     <td></td>
-                                    <td><center>0</center></td>
+                                    <td>
+                                        <center>0</center>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <td></td>
-                                    <td><center>รวมทั้งหมด</center></td>
+                                    <td>
+                                        <center>รวมทั้งหมด</center>
+                                    </td>
                                     <td></td>
-                                    <td><center>{{$d1}}</center></td>
+                                    <td>
+                                        <center>{{$d1}}</center>
+                                    </td>
                                 </tr>
 
                             </table>
@@ -150,22 +191,28 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <label class="col-form-label">สถานะงาน : <?php if(isset($data)){ if($data->wo_status==0){echo 'งานยังไม่เสร็จ';}else{ echo 'งานสำเร็จ'; } } ?></label>
+                                <label class="col-form-label">สถานะงาน :
+                                    <?php if(isset($data)){ if($data->wo_status==0){echo 'งานยังไม่เสร็จ';}else{ echo 'งานสำเร็จ'; } } ?>
+                                </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">เวลาส่งมอบ : <?php if(isset($data)){echo $data->wo_date.' เวลา '.$data->wo_time;} ?></label>
+                                <label class="col-form-label">เวลาส่งมอบ :
+                                    <?php if(isset($data)){echo $data->wo_date.' เวลา '.$data->wo_time;} ?>
+                                </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">หมายเหตุ : <?php if(isset($data)){if($data->remark){ echo $data->remark; }else{ echo '-'; } } ?></label>
+                                <label class="col-form-label">หมายเหตุ :
+                                    <?php if(isset($data)){if($data->remark){ echo $data->remark; }else{ echo '-'; } } ?>
+                                </label>
 
                             </div>
                         </div>
                         <br>
 
                         <div class="dt-responsive table-responsive text-center">
-                        <?php    $filePath = 'file/upload/' . $data->wo_picture;   $wo_picture= Storage::disk('s3')->url($filePath); ?>   
+                            <?php    $filePath = 'file/upload/' . $data->wo_picture;   $wo_picture= Storage::disk('s3')->url($filePath); ?>
                             <center><img src="{{$wo_picture}}" width="200px"></center>
                         </div>
 
