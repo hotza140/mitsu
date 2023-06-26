@@ -34,7 +34,7 @@ use App\AirModel;
 use App\WO;
 use App\WO_item;
 
-use App\OTP;
+use App\Models\OTP;
 
 use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Log;
@@ -63,51 +63,113 @@ class ApiController extends Controller
 
 
 
-     ///otp///
-     public function api_otp(Request $r)
+     ///otp_register///
+     public function api_otp_register(Request $r)
      {
-        $api_key='eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw';
+        $phone=$r->phone;
+        $pass_check=$r->pass_check;
+        $datenow=date('Y-m-d H:i:s');
 
-        $otp=rand(1000,9999);
+        $check=OTP::where('phone',$phone)->first();
 
+        if($check != null){
+            if($datenow > $check->endtime){
+              $del=OTP::destroy($check->id);
+              $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
+              $endtime=$date->addMinutes(5)->format('Y-m-d H:i:s');
+              $otp=rand(1000,9999);
+              
+              $ot=new OTP;
+              $ot->phone=$phone;
+              $ot->otp=$otp;
+              $ot->pass_check=$pass_check;
+              $ot->endtime=$endtime;
+              $ot->save();
+            }else{
+              $otp=$check->otp;
+              $pass_check=$check->pass_check;
+            }
+            
+          }
+          else{
+          $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
+          $endtime=$date->addMinutes(5)->format('Y-m-d H:i:s');
+          $otp=rand(1000,9999);
+
+          $ot=new OTP;
+          $ot->phone=$phone;
+          $ot->otp=$otp;
+          $ot->pass_check=$pass_check;
+          $ot->endtime=$endtime;
+          $ot->save();
+        }
+
+
+        try{
+            
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-            CURLOPT_URL => 'https://thsms.com/api/send-sms',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => '{
-                "sender": "' . env('SMS_SENDER') . '",
-                "msisdn": ["' . $req->telephone . '"],
-                "message": "OTP= ' . $otp->token . ' เพื่อทำการสมัครแอป My Trainer กรุณายืนยัน OTP ภายใน 5 นาที ห้ามบอก OTP นี้แก่ผู้อื่นไม่ว่ากรณีใด"
-            }',
-            CURLOPT_HTTPHEADER => array(
-                'Authorization: Bearer ' . env('SMS_TOKEN') . '',
-                'Content-Type: application/json'
-            ),
+          CURLOPT_URL => 'https://thsms.com/api/send-sms',
+          CURLOPT_RETURNTRANSFER => true,
+          CURLOPT_ENCODING => '',
+          CURLOPT_MAXREDIRS => 10,
+          CURLOPT_TIMEOUT => 0,
+          CURLOPT_FOLLOWLOCATION => true,
+          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+          CURLOPT_CUSTOMREQUEST => 'POST',
+          CURLOPT_POSTFIELDS =>'{
+            "sender": "RTB",
+            "msisdn": ["'. $phone.'"],
+            "message": "รหัส OTP ของคุณคือ '.$otp.' รหัสอ้างอิง '.$pass_check.' รหัสมีอายุการใช้งาน 5 นาที ห้ามบอก OTP นี้แก่ผู้อื่นไม่ว่ากรณีใด"
+        }',
+          CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json',
+            'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
+          ),
+          
         ));
-
+        
         $response = curl_exec($curl);
-
         curl_close($curl);
- 
-         $message = "Success!";
-         $status = true;
-         return response()->json([
-             'results' => [
-                 'otp' => $otp,
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'otp' => $otp,
+                'phone'=>$phone,
+                'pass_check'=>$pass_check,
+
+                'data'=>$response,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    
+        }catch(\Exception $e){
+            $message = "Error.";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+
+                'otp' => $otp,
+                'phone'=>$phone,
+                'pass_check'=>$pass_check,
+
+                'data'=>$response,
+
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
      }
-     ///otp///
+     ///otp_register///
+
+
+
 
 
 
