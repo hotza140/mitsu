@@ -173,8 +173,6 @@ class ApiController extends Controller
                 'phone'=>$phone,
                 'pass_check'=>$pass_check,
 
-                'data'=>$response,
-
                 'url_picture' => $this->prefix,
             ], 400);
         }
