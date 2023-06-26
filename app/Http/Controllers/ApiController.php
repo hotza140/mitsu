@@ -497,6 +497,43 @@ class ApiController extends Controller
     ///Register  User///
     public function api_register_user(Request $r)
     {
+        // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
+        $dff=date('Y-m-d H:i:s');
+        $otp = OTP::where('phone', $r->phone)->first();
+        if($otp==null){
+            $message = "OTP Phonenumber Wrong!";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ], 400);
+        }else{
+            if($otp->otp!=$r->otp){
+                $message = "OTP Wrong!";
+                $status = false;
+                return response()->json([
+                    'results' => [],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
+            }else{
+                if($dff>$otp->endtime){
+                    $message = "OTP out of time!";
+                    $status = false;
+                    return response()->json([
+                        'results' => [],
+                        'status' =>  $status,
+                        'message' =>  $message,
+                        'url_picture' => $this->prefix,
+                    ], 400);
+                }
+            }
+        }
+        // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
+
         $year = date('Y');
         $check = User::where('email', $r->email)->first();
         if ($check == null) {
