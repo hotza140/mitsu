@@ -117,8 +117,6 @@ class ApiController extends Controller
           $ot->save();
         }
 
-
-        try{
             
         $curl = curl_init();
 
@@ -146,6 +144,8 @@ class ApiController extends Controller
         $response = curl_exec($curl);
         curl_close($curl);
 
+
+        if($response->success=='true'){
         $message = "Success!";
         $status = true;
         return response()->json([
@@ -161,7 +161,7 @@ class ApiController extends Controller
             'url_picture' => $this->prefix,
         ]);
     
-        }catch(\Exception $e){
+        }else{
             $message = "Error.";
             $status = false;
             return response()->json([
