@@ -132,7 +132,7 @@ class ApiController extends Controller
           CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
           CURLOPT_CUSTOMREQUEST => 'POST',
           CURLOPT_POSTFIELDS =>'{
-            "sender": "RTB",
+            "sender": "Mitsu",
             "msisdn": ["'. $phone.'"],
             "message": "รหัส OTP ของคุณคือ '.$otp.' รหัสอ้างอิง '.$pass_check.' รหัสมีอายุการใช้งาน 5 นาที ห้ามบอก OTP นี้แก่ผู้อื่นไม่ว่ากรณีใด"
         }',
