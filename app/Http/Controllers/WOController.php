@@ -220,6 +220,9 @@ class WOController extends Controller
         // $item->delete();
         $item->d_status = 1;
         $item->save();
+
+        $wo_item=DB::table('wo_item')->where('id_wo',$id)->update(['d_status' => 1]);
+
         return redirect()->back()->with('success', 'Sucess!');
     }
     public function wo_add()
