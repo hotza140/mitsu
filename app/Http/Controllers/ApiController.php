@@ -85,6 +85,7 @@ class ApiController extends Controller
         $otp=rand(1000,9999);
 
         $check=OTP::where('phone',$phone)->first();
+        $check=OTP::where('phone',$phone)->first();
 
         if($check != null){
             if($datenow > $check->endtime){
