@@ -82,17 +82,16 @@ class ApiController extends Controller
         $phone=$r->phone;
         $pass_check=$r->pass_check;
         $datenow=date('Y-m-d H:i:s');
+        $otp=rand(1000,9999);
 
         $check=OTP::where('phone',$phone)->first();
 
         if($check != null){
             if($datenow > $check->endtime){
-              $del=OTP::destroy($check->id);
+              $ot=OTP::where('id',$check->id)->first();
               $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
               $endtime=$date->addMinutes(5)->format('Y-m-d H:i:s');
-              $otp=rand(1000,9999);
               
-              $ot=new OTP;
               $ot->phone=$phone;
               $ot->otp=$otp;
               $ot->pass_check=$pass_check;
@@ -107,7 +106,7 @@ class ApiController extends Controller
           else{
           $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
           $endtime=$date->addMinutes(5)->format('Y-m-d H:i:s');
-          $otp=rand(1000,9999);
+          
 
           $ot=new OTP;
           $ot->phone=$phone;
