@@ -54,7 +54,7 @@
                                                     <th>#</th>
                                                     <th>Open/Close</th>
                                                     <th>Code</th>
-                                                    <th>Picture</th>
+                                                    <!-- <th>Picture</th> -->
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
@@ -109,7 +109,7 @@
                                                     @endif
 
                                                     <td>{{$items->code}}</td>
-                                                    @if($items->picture!=null)
+                                                    <!-- @if($items->picture!=null)
                                                     <td><img <?php    $filePath = 'file/upload/' . $items->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
@@ -119,7 +119,7 @@ src="{{$picture}}"
                                                     @else
                                                     <td><img src="{{asset('/img/no_img.png')}}" style="width:100px">
                                                     </td>
-                                                    @endif
+                                                    @endif -->
                                                     <td>{{$items->name}}</td>
                                                     <td>{{$items->email}}</td>
                                                     <td>{{$items->phone}}</td>
@@ -146,7 +146,7 @@ src="{{$picture}}"
                                                     <th>#</th>
                                                     <th>Open/Close</th>
                                                     <th>Code</th>
-                                                    <th>Picture</th>
+                                                    <!-- <th>Picture</th> -->
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>

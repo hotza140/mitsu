@@ -38,6 +38,7 @@
                                                 <tr>
 
                                                 <th>#</th>
+                                                <th>Work Number</th>
                                                     <th>ประเภทงาน</th>
                                                     <th>Air Models</th>
                                                     <th>รหัสข้อผิดพลาด</th>
@@ -48,6 +49,7 @@
                                                     <th>สถานะงาน</th>
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
+                                                    <th>ใบงาน</th>
 
                                                 </tr>
                                             </thead>
@@ -57,6 +59,7 @@
                                                 <!-- <tr class="num" id="{{$items->id}}"> -->
                                                 <tr>
                                                     <td>{{$key+1}}</td>
+                                                    <td>{{$items->wo_number}}</td>
                                                     <td>{{$items->wo_type}}</td>
 
                                                     <?php $aii=App\AirModel::where('id',$items->air_model)->first(); ?>
@@ -97,6 +100,12 @@
                                                             onclick="javascript:return confirm('You Want To Delete?')"
                                                             style="color:white;"><i class="fa fa-trash"></i>Delete</a>
                                                     </td>
+
+                                                    <td>
+                                                        <a href="{{url('/backend/pdf_work/'.$items->id)}}" target="_blank"
+                                                            class="btn btn-sm btn-primary" style="color:white;"><i
+                                                                class="fa fa-eye"></i>View</a>
+                                                    </td>
                                                 </tr>
                                                 @endforeach
 
@@ -104,6 +113,7 @@
                                             <tfoot>
                                                 <tr>
                                                 <th>#</th>
+                                                <th>Work Number</th>
                                                     <th>ประเภทงาน</th>
                                                     <th>Air Models</th>
                                                     <th>รหัสข้อผิดพลาด</th>
@@ -114,6 +124,7 @@
                                                     <th>สถานะงาน</th>
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
+                                                    <th>ใบงาน</th>
                                                 </tr>
                                             </tfoot>
                                         </table>

@@ -128,7 +128,7 @@ src="{{$picture}}" style="width:100px">
 
                     <div class="m-b-10" style="background-color: red;">.</div>
                      <!-- --------------------- -->
-                     <?php   $data1 = App\Models\buy_point::where('status',1)->with('item')->with('user')->orderby('id','desc')->get();
+                     <?php   $data1 = App\Models\buy_point::where('status',1)->with('item')->with('user')->orderby('id','desc')->limit(10)->get();
                     ?>
                     <div class="page-body">
                         <div class="row">
@@ -138,13 +138,14 @@ src="{{$picture}}" style="width:100px">
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10" style="color: green;">รายการแลกเปลี่ยนที่อนุมัติ</h3>
+                                            <h3 class="m-b-10" style="color: green;">รายการแลกเปลี่ยนที่อนุมัติ 10 รายการล่าสุด</h3>
                                         </strong>
 
                                     </div>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                            <!-- <table id="simpletable" class="table table-striped table-bordered nowrap"> -->
+                                            <table id="" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
 
@@ -229,7 +230,7 @@ src="{{$picture}}" style="width:100px">
 
                     <div class="m-b-10" style="background-color: red;">.</div>
                      <!-- --------------------- -->
-                     <?php   $data2 = App\Models\buy_point::where('status',2)->with('item')->with('user')->orderby('id','desc')->get();
+                     <?php   $data2 = App\Models\buy_point::where('status',2)->with('item')->with('user')->orderby('id','desc')->limit(10)->get();
                     ?>
                     <div class="page-body">
                         <div class="row">
@@ -239,13 +240,14 @@ src="{{$picture}}" style="width:100px">
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10" style="color: red;">รายการแลกเปลี่ยนที่ไม่อนุมัติ</h3>
+                                            <h3 class="m-b-10" style="color: red;">รายการแลกเปลี่ยนที่ไม่อนุมัติ 10 รายการล่าสุด</h3>
                                         </strong>
 
                                     </div>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="simpletable2" class="table table-striped table-bordered nowrap">
+                                            <!-- <table id="simpletable2" class="table table-striped table-bordered nowrap"> -->
+                                            <table id="" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
 

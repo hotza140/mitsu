@@ -24,6 +24,10 @@ Route::group([
     // 'middleware' => 'api.token',
     'prefix' => 'common',
 ], function () {
+
+    Route::post('/api_otp_register', 'ApiController@api_otp_register');
+    Route::get('/api_pdf_work/{id}', 'ApiController@api_pdf_work');
+
     Route::get('/api_user/{id}', 'ApiController@api_user');
 
 

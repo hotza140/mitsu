@@ -46,6 +46,7 @@ class BackendController extends Controller
 
 {
 
+
        ///Welcome---------------
        public function welcome(){
         return view('backend.welcome');
@@ -141,6 +142,7 @@ class BackendController extends Controller
                     Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
+             $fileName = date('YmdHis').'_'.$fileName;
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
@@ -162,6 +164,7 @@ class BackendController extends Controller
                     Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
+             $fileName = date('YmdHis').'_'.$fileName;
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
@@ -628,6 +631,7 @@ public function user_item($id){
                     Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
+             $fileName = date('YmdHis').'_'.$fileName;
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
@@ -650,6 +654,7 @@ public function user_item($id){
                     Storage::disk('s3')->delete($check);
             $file = $r->file('picture');
             $fileName = $_FILES['picture']['name'];
+             $fileName = date('YmdHis').'_'.$fileName;
             $filePath = 'file/upload/' . $fileName;
             Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
@@ -793,6 +798,7 @@ public function user_item($id){
                     Storage::disk('s3')->delete($check);
                 $file = $r->file('picture');
                 $fileName = $_FILES['picture']['name'];
+                 $fileName = date('YmdHis').'_'.$fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
                 $item->picture = $fileName;
@@ -819,6 +825,7 @@ public function user_item($id){
                     Storage::disk('s3')->delete($check);
                 $file = $r->file('picture');
                 $fileName = $_FILES['picture']['name'];
+                 $fileName = date('YmdHis').'_'.$fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
@@ -1021,6 +1028,7 @@ public function user_item($id){
                     Storage::disk('s3')->delete($check);
                     $file = $r->file('picture');
                     $fileName = $_FILES['picture']['name'];
+                     $fileName = date('YmdHis').'_'.$fileName;
                     $filePath = 'file/upload/' . $fileName;
                     Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
@@ -1051,6 +1059,7 @@ public function user_item($id){
                     Storage::disk('s3')->delete($check);
                     $file = $r->file('picture');
                     $fileName = $_FILES['picture']['name'];
+                     $fileName = date('YmdHis').'_'.$fileName;
                     $filePath = 'file/upload/' . $fileName;
                     Storage::disk('s3')->put($filePath, file_get_contents($file));
             $item->picture = $fileName;
