@@ -1110,7 +1110,7 @@ class ApiController extends Controller
     public function get_customer($id)
     {
         $customer = Customer::where('id', $id)->with('airconditioner')->first();
-
+        dd($customer);
         if (!empty($customer)) {
             return response()->json([
                 'status' => true,
