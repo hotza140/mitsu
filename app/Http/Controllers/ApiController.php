@@ -1087,7 +1087,7 @@ class ApiController extends Controller
         if ($name == null) {
             $get_customer = Customer::where('mechanic_id', $mechanic_id)->orderby('full_name', 'asc')->get();
         } else {
-            $get_customer = Customer::where('mechanic_id', $mechanic_id)->where('full_name', 'like', $name)->get();
+            $get_customer = Customer::where('mechanic_id', $mechanic_id)->where('full_name', 'like', '%' . $name . '%')->get();
         }
 
         if ($get_customer->count() != 0) {
