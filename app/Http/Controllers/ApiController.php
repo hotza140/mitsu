@@ -73,95 +73,92 @@ class ApiController extends Controller
         ]);
         return @$pdf->stream();
     }
-      // PDF WORK
+    // PDF WORK
 
 
-     ///otp_register///
-     public function api_otp_register(Request $r)
-     {
-        $phone=$r->phone;
-        $pass_check=$r->pass_check;
-        $datenow=date('Y-m-d H:i:s');
-        $otp=rand(1000,9999);
+    ///otp_register///
+    public function api_otp_register(Request $r)
+    {
+        $phone = $r->phone;
+        $pass_check = $r->pass_check;
+        $datenow = date('Y-m-d H:i:s');
+        $otp = rand(1000, 9999);
 
-        $check=OTP::where('phone',$phone)->first();
-        $check=OTP::where('phone',$phone)->first();
+        $check = OTP::where('phone', $phone)->first();
+        $check = OTP::where('phone', $phone)->first();
 
-        if($check != null){
-            if($datenow > $check->endtime){
-              $ot=OTP::where('id',$check->id)->first();
-              $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
-              $endtime=$date->addMinutes(5)->format('Y-m-d H:i:s');
-              
-              $ot->phone=$phone;
-              $ot->otp=$otp;
-              $ot->pass_check=$pass_check;
-              $ot->endtime=$endtime;
-              $ot->save();
-            }else{
-              $otp=$check->otp;
-              $pass_check=$check->pass_check;
+        if ($check != null) {
+            if ($datenow > $check->endtime) {
+                $ot = OTP::where('id', $check->id)->first();
+                $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
+                $endtime = $date->addMinutes(5)->format('Y-m-d H:i:s');
+
+                $ot->phone = $phone;
+                $ot->otp = $otp;
+                $ot->pass_check = $pass_check;
+                $ot->endtime = $endtime;
+                $ot->save();
+            } else {
+                $otp = $check->otp;
+                $pass_check = $check->pass_check;
             }
-            
-          }
-          else{
-          $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
-          $endtime=$date->addMinutes(5)->format('Y-m-d H:i:s');
-          
+        } else {
+            $date = Carbon::createFromFormat('Y-m-d H:i:s', $datenow);
+            $endtime = $date->addMinutes(5)->format('Y-m-d H:i:s');
 
-          $ot=new OTP;
-          $ot->phone=$phone;
-          $ot->otp=$otp;
-          $ot->pass_check=$pass_check;
-          $ot->endtime=$endtime;
-          $ot->save();
+
+            $ot = new OTP;
+            $ot->phone = $phone;
+            $ot->otp = $otp;
+            $ot->pass_check = $pass_check;
+            $ot->endtime = $endtime;
+            $ot->save();
         }
 
 
-        try{
-            
-        $curl = curl_init();
+        try {
 
-        curl_setopt_array($curl, array(
-          CURLOPT_URL => 'https://thsms.com/api/send-sms',
-          CURLOPT_RETURNTRANSFER => true,
-          CURLOPT_ENCODING => '',
-          CURLOPT_MAXREDIRS => 10,
-          CURLOPT_TIMEOUT => 0,
-          CURLOPT_FOLLOWLOCATION => true,
-          CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-          CURLOPT_CUSTOMREQUEST => 'POST',
-          CURLOPT_POSTFIELDS =>'{
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://thsms.com/api/send-sms',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => '{
             "sender": "Mitsu",
-            "msisdn": ["'. $phone.'"],
-            "message": "รหัส OTP ของคุณคือ '.$otp.' รหัสอ้างอิง '.$pass_check.' รหัสมีอายุการใช้งาน 5 นาที ห้ามบอก OTP นี้แก่ผู้อื่นไม่ว่ากรณีใด"
+            "msisdn": ["' . $phone . '"],
+            "message": "รหัส OTP ของคุณคือ ' . $otp . ' รหัสอ้างอิง ' . $pass_check . ' รหัสมีอายุการใช้งาน 5 นาที ห้ามบอก OTP นี้แก่ผู้อื่นไม่ว่ากรณีใด"
         }',
-          CURLOPT_HTTPHEADER => array(
-            'Content-Type: application/json',
-            'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
-          ),
-          
-        ));
-        
-        $response = curl_exec($curl);
-        curl_close($curl);
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/json',
+                    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
+                ),
 
-        $message = "Success!";
-        $status = true;
-        return response()->json([
-            'results' => [
-                'otp' => $otp,
-                'phone'=>$phone,
-                'pass_check'=>$pass_check,
+            ));
 
-                'data'=>$response,
-            ],
-            'status' =>  $status,
-            'message' =>  $message,
-            'url_picture' => $this->prefix,
-        ]);
-    
-        }catch(\Exception $e){
+            $response = curl_exec($curl);
+            curl_close($curl);
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'otp' => $otp,
+                    'phone' => $phone,
+                    'pass_check' => $pass_check,
+
+                    'data' => $response,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } catch (\Exception $e) {
             $message = "Error.";
             $status = false;
             return response()->json([
@@ -170,14 +167,14 @@ class ApiController extends Controller
                 'message' =>  $message,
 
                 'otp' => $otp,
-                'phone'=>$phone,
-                'pass_check'=>$pass_check,
+                'phone' => $phone,
+                'pass_check' => $pass_check,
 
                 'url_picture' => $this->prefix,
             ], 400);
         }
-     }
-     ///otp_register///
+    }
+    ///otp_register///
 
 
 
@@ -230,7 +227,7 @@ class ApiController extends Controller
     ///WORK///
     public function api_work()
     {
-        $wo = WO::where('technician_id', null)->where('d_status',0)->with('customer')->with('model')->orderby('wo_date', 'desc')->get();
+        $wo = WO::where('technician_id', null)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'desc')->get();
 
         $message = "Success!";
         $status = true;
@@ -246,59 +243,59 @@ class ApiController extends Controller
     ///WORK///
 
 
-       ///WORK_item///
-       public function api_work_item($id)
-       {
-        $wo = WO::where('id',$id)->where('d_status',0)->with('customer')->with('model')->first();
-           $item = WO_item::where('id_wo',$id)->get();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'wo' => $wo,
-                   'item' => $item,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-       }
-       ///WORK_item///
+    ///WORK_item///
+    public function api_work_item($id)
+    {
+        $wo = WO::where('id', $id)->where('d_status', 0)->with('customer')->with('model')->first();
+        $item = WO_item::where('id_wo', $id)->get();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK_item///
 
 
-        ///WORK_item///
-        public function api_work_item_delete(Request $r)
-        {
-            $item = WO_item::where('id',$r->id)->where('d_status',0)->first();
+    ///WORK_item///
+    public function api_work_item_delete(Request $r)
+    {
+        $item = WO_item::where('id', $r->id)->where('d_status', 0)->first();
 
-            if($item->status==0){
-            $item->status=1;
+        if ($item->status == 0) {
+            $item->status = 1;
             $item->save();
-            }else{
-            $item->status=0;
+        } else {
+            $item->status = 0;
             $item->save();
-            }
-    
-            $message = "Success!";
-            $status = true;
-            return response()->json([
-                'results' => [
-                    'item' => $item,
-                ],
-                'status' =>  $status,
-                'message' =>  $message,
-                'url_picture' => $this->prefix,
-            ]);
         }
-        ///WORK_item///
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK_item///
 
 
-         ///WORK ITEM SUBMIT///
+    ///WORK ITEM SUBMIT///
     public function api_work_item_submit(Request $r)
     {
-        $item = WO::where('id',$r->id)->where('d_status',0)->first();
-        $item->service_item_price=$r->sum;
+        $item = WO::where('id', $r->id)->where('d_status', 0)->first();
+        $item->service_item_price = $r->sum;
         $item->save();
 
         $message = "Success!";
@@ -313,12 +310,12 @@ class ApiController extends Controller
         ]);
     }
     ///WORK ITEM SUBMIT///
-    
+
 
     ///WORK DETAIL///
     public function api_work_detail($id)
     {
-        $wo = WO::where('id', $id)->where('d_status',0)->with('customer')->with('model')->first();
+        $wo = WO::where('id', $id)->where('d_status', 0)->with('customer')->with('model')->first();
 
         $message = "Success!";
         $status = true;
@@ -340,9 +337,9 @@ class ApiController extends Controller
     {
         $date = date('Y-m-d');
         if ($r->date == null || $r->date == "null") {
-            $wo = WO::where('technician_id', $r->id)->where('d_status',0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id', $r->id)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         } else {
-            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->where('d_status',0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
             $date = $r->date;
         }
 
@@ -367,7 +364,7 @@ class ApiController extends Controller
     ///WORK submit///
     public function api_work_submit(Request $r)
     {
-        $wo = WO::where('id', $r->id_work)->where('d_status',0)->with('customer')->with('model')->first();
+        $wo = WO::where('id', $r->id_work)->where('d_status', 0)->with('customer')->with('model')->first();
 
         if ($wo->technician_id == null) {
 
@@ -416,7 +413,7 @@ class ApiController extends Controller
     ///END WORK///
     public function api_end_work(Request $r)
     {
-        $wo = wo::where('id', $r->id)->where('d_status',0)->with('customer')->with('model')->first();
+        $wo = wo::where('id', $r->id)->where('d_status', 0)->with('customer')->with('model')->first();
         if ($wo != null) {
 
             if ($r->wo_status != null) {
@@ -441,7 +438,7 @@ class ApiController extends Controller
                     return response()->json(['invalid_file_upload'], 400);
                 }
                 $fileName = $_FILES['wo_picture']['name'];
-                 $fileName = date('YmdHis').'_'.$fileName;
+                $fileName = date('YmdHis') . '_' . $fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
                 $wo->wo_picture = $fileName;
@@ -451,7 +448,7 @@ class ApiController extends Controller
 
 
             if ($r->review != null) {
-                $star = WO::where('technician_id', $wo->technician_id)->where('d_status',0)->where('wo_status', 1)->where('wo_time_end', '!=', null)
+                $star = WO::where('technician_id', $wo->technician_id)->where('d_status', 0)->where('wo_status', 1)->where('wo_time_end', '!=', null)
                     ->selectRaw('SUM(review)/COUNT(id) AS avg_rating')->first()->avg_rating;
                 if ($star == null or $star == 0) {
                     $star = 5;
@@ -498,9 +495,9 @@ class ApiController extends Controller
     public function api_register_user(Request $r)
     {
         // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
-        $dff=date('Y-m-d H:i:s');
+        $dff = date('Y-m-d H:i:s');
         $otp = OTP::where('phone', $r->phone)->first();
-        if($otp==null){
+        if ($otp == null) {
             $message = "OTP Phonenumber Wrong!";
             $status = false;
             return response()->json([
@@ -509,8 +506,8 @@ class ApiController extends Controller
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
             ], 400);
-        }else{
-            if($otp->otp!=$r->otp){
+        } else {
+            if ($otp->otp != $r->otp) {
                 $message = "OTP Wrong!";
                 $status = false;
                 return response()->json([
@@ -519,8 +516,8 @@ class ApiController extends Controller
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
                 ], 400);
-            }else{
-                if($dff>$otp->endtime){
+            } else {
+                if ($dff > $otp->endtime) {
                     $message = "OTP out of time!";
                     $status = false;
                     return response()->json([
@@ -773,7 +770,7 @@ class ApiController extends Controller
                     return response()->json(['invalid_file_upload'], 400);
                 }
                 $fileName = $_FILES['picture']['name'];
-                $fileName = date('YmdHis').'_'.$fileName;
+                $fileName = date('YmdHis') . '_' . $fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
                 $user->picture = $fileName;
@@ -1170,8 +1167,8 @@ class ApiController extends Controller
         }
 
         $air_conditioner_validator = [
-            'indoor_number' => 'required|unique:air_conditioners,indoor_number',
-            'indoor_number' => 'required|unique:air_conditioners,outdoor_number',
+            'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
+            'indoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
             'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
             'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
             /*'indoor_number' => [
@@ -1205,7 +1202,8 @@ class ApiController extends Controller
         }
 
         //Find Serial number in database
-        $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
+        if ($request->indoor_number != null)
+            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
 
         if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
