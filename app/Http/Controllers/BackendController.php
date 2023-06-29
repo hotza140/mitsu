@@ -256,7 +256,7 @@ class BackendController extends Controller
             return redirect()->to('/backend')->with('success','You NOT Super Admin!');
         }
         $item=User::where('id',$id)->first();
-        $ch=User ::where('email',$r->email)->orderby('id','desc')->first();
+        $ch=User ::where('id','!=',$id)->where('email',$r->email)->orderby('id','desc')->first();
 
         if($ch!=null){
             return redirect()->back()->with('success','Email Same in Data!');
