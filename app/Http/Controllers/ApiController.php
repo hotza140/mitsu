@@ -1288,8 +1288,8 @@ class ApiController extends Controller
 
         $check_validate = [
             'customer_id' => 'required',
-            'indoor_number' => 'required|unique:air_conditioners,indoor_number',
-            'indoor_number' => 'required|unique:air_conditioners,outdoor_number',
+            'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
+            'indoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
             'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
             'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
         ];
@@ -1312,36 +1312,69 @@ class ApiController extends Controller
             ], 400);
         }
 
-        $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
+        if ($request->indoor_number != null && !isEmpty($request->indoor_number) && $request->indoor_number != '' && isset($request->indoor_number)) {
+            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
+        }
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
 
-        if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
-            $air_conditioner = new AirConditioner;
-            $air_conditioner->customer_id = $request->customer_id;
-            $air_conditioner->indoor_number = $request->indoor_number;
-            $air_conditioner->outdoor_number = $request->outdoor_number;
+        if (isset($check_serial_indoor)) {
+            if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+                $air_conditioner = new AirConditioner;
+                $air_conditioner->customer_id = $request->customer_id;
+                $air_conditioner->indoor_number = $request->indoor_number;
+                $air_conditioner->outdoor_number = $request->outdoor_number;
 
-            if ($air_conditioner->save()) {
-                $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Success!',
-                    'result' => [
-                        'customer' => $customer,
-                    ],
-                    'url_picture' => $this->prefix,
-                ]);
+                if ($air_conditioner->save()) {
+                    $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'result' => [
+                            'customer' => $customer,
+                        ],
+                        'url_picture' => $this->prefix,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Can Not Update'
+                    ], 400);
+                }
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Can Not Update'
+                    'message' => 'Not Found Air Conditioner in Data.'
                 ], 400);
             }
         } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'Not Found Air Conditioner in Data.'
-            ], 400);
+            if ($check_serial_outdoor != 0) {
+                $air_conditioner = new AirConditioner;
+                $air_conditioner->customer_id = $request->customer_id;
+                $air_conditioner->indoor_number = $request->indoor_number;
+                $air_conditioner->outdoor_number = $request->outdoor_number;
+
+                if ($air_conditioner->save()) {
+                    $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'result' => [
+                            'customer' => $customer,
+                        ],
+                        'url_picture' => $this->prefix,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Can Not Update'
+                    ], 400);
+                }
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Not Found Air Conditioner in Data.'
+                ], 400);
+            }
         }
     }
 
