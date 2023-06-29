@@ -1202,8 +1202,9 @@ class ApiController extends Controller
         }
 
         //Find Serial number in database
-        if ($request->indoor_number != null)
+        if ($request->indoor_number != null && !isEmpty($request->indoor_number) && $request->indoor_number != '' && isset($request->indoor_number)) {
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
+        }
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
 
         if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
