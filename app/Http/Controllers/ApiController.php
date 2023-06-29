@@ -1207,7 +1207,7 @@ class ApiController extends Controller
         }
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
 
-        if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+        if (isset($check_serial_indoor) && $check_serial_indoor != 0 && $check_serial_outdoor != 0) {
             $customer = new Customer();
             $customer->mechanic_id = $request->mechanic_id;
             $customer->first_name = $request->first_name;
