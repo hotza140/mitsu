@@ -1160,9 +1160,7 @@ class ApiController extends Controller
         if ($check_name_customer != 0) {
             return response()->json([
                 'status' => false,
-                'error' => [
-                    'customer' => 'A Customer Name has already been taken.'
-                ],
+                'message' => 'A Customer Name has already been taken.',
             ], 400);
         }
 
