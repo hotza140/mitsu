@@ -1206,43 +1206,82 @@ class ApiController extends Controller
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
         }
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
+        if (isset($check_serial_indoor)) {
+            if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+                $customer = new Customer();
+                $customer->mechanic_id = $request->mechanic_id;
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->full_name = $request->first_name . ' ' . $request->last_name;
+                $customer->phone = $request->phone;
+                $customer->line = $request->line;
+                $customer->address = $request->address;
+                $customer->more_address = $request->more_address;
+                $customer->latitude = $request->latitude;
+                $customer->longitude = $request->longitude;
+                $customer->save();
 
-        if (isset($check_serial_indoor) && $check_serial_indoor != 0 && $check_serial_outdoor != 0) {
-            $customer = new Customer();
-            $customer->mechanic_id = $request->mechanic_id;
-            $customer->first_name = $request->first_name;
-            $customer->last_name = $request->last_name;
-            $customer->full_name = $request->first_name . ' ' . $request->last_name;
-            $customer->phone = $request->phone;
-            $customer->line = $request->line;
-            $customer->address = $request->address;
-            $customer->more_address = $request->more_address;
-            $customer->latitude = $request->latitude;
-            $customer->longitude = $request->longitude;
-            $customer->save();
+                $air_conditioner = new AirConditioner();
+                $air_conditioner->customer_id = $customer->id;
+                $air_conditioner->indoor_number = $request->indoor_number;
+                $air_conditioner->outdoor_number = $request->outdoor_number;
 
-            $air_conditioner = new AirConditioner();
-            $air_conditioner->customer_id = $customer->id;
-            $air_conditioner->indoor_number = $request->indoor_number;
-            $air_conditioner->outdoor_number = $request->outdoor_number;
-
-            if ($air_conditioner->save()) {
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Success!',
-                    'url_picture' => $this->prefix,
-                ]);
+                if ($air_conditioner->save()) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'url_picture' => $this->prefix,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Data cannot be saved!'
+                    ], 400);
+                }
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Data cannot be saved!'
+                    'message' => 'Not Found Air Conditioner in Data.'
                 ], 400);
             }
         } else {
-            return response()->json([
-                'status' => false,
-                'message' => 'Not Found Air Conditioner in Data.'
-            ], 400);
+            if ($check_serial_outdoor != 0) {
+                $customer = new Customer();
+                $customer->mechanic_id = $request->mechanic_id;
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->full_name = $request->first_name . ' ' . $request->last_name;
+                $customer->phone = $request->phone;
+                $customer->line = $request->line;
+                $customer->address = $request->address;
+                $customer->more_address = $request->more_address;
+                $customer->latitude = $request->latitude;
+                $customer->longitude = $request->longitude;
+                $customer->save();
+
+                $air_conditioner = new AirConditioner();
+                $air_conditioner->customer_id = $customer->id;
+                $air_conditioner->indoor_number = null;
+                $air_conditioner->outdoor_number = $request->outdoor_number;
+
+                if ($air_conditioner->save()) {
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'url_picture' => $this->prefix,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Data cannot be saved!'
+                    ], 400);
+                }
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'Not Found Air Conditioner in Data.'
+                ], 400);
+            }
         }
     }
 
