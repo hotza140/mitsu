@@ -355,7 +355,7 @@
         $('.btn-turn').click(function(){
             turn_id = $(this).attr("rel");
             id = $('#training-id').val();
-            console.log(turn_id,id)
+            console.log(id,turn_id)
             $.ajax({
                 type: 'get',
                 url: "{{url('backend/training/get_list/"+id+"/"+turn_id+"')}}",

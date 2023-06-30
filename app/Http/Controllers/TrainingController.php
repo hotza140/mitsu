@@ -83,7 +83,7 @@ class TrainingController extends Controller
 
     public function get_list($id, $turn)
     {
-        $list_user = TrainingList::where('training_id', $turn)->where('turn_id', $id)->get();
+        $list_user = TrainingList::where('training_id', $id)->where('turn_id', $turn)->get();
 
         return response()->json($list_user);
     }
