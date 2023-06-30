@@ -367,7 +367,7 @@ class ApiServiceSetup extends Controller
             $technician->line = $req->line;
             // $technician->save();
             foreach ($req->picturesEducate as $key => $picture) {
-                dd($key);
+                dd($_FILES['pictures']['name'][$key]);
                 $file = $picture;
                 $filePicture = $_FILES['pictures']['name'][$key];
                 $filePath = 'file/upload/' . $filePicture;
