@@ -367,9 +367,9 @@ class ApiServiceSetup extends Controller
             $technician->line = $req->line;
             // $technician->save();
             foreach ($req->picturesEducate as $key => $picture) {
-                dd($_FILES['pictures']['name'][$key]);
+                dd($_FILES['picturesEducate']['name'][$key]);
                 $file = $picture;
-                $filePicture = $_FILES['pictures']['name'][$key];
+                $filePicture = $_FILES['picturesEducate']['name'][$key];
                 $filePath = 'file/upload/' . $filePicture;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
 
