@@ -368,7 +368,7 @@ class ApiServiceSetup extends Controller
             $technician->save();
             foreach ($req->picturesEducate as $key => $picture) {
                 $file = $picture;
-                $filePicture = $_FILES['pictures']['name'][$key];
+                $filePicture = $_FILES['picturesEducate']['name'][$key];
                 $filePath = 'file/upload/' . $filePicture;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
 
@@ -378,8 +378,11 @@ class ApiServiceSetup extends Controller
                 $educate->save();
             }
             foreach ($req->picturesCer as $key => $picture) {
+                $file = $picture;
                 $filePicture = $_FILES['picturesCer']['name'][$key];
-                $picture->move(public_path() . '/img/upload', $filePicture);
+                $filePath = 'file/upload/' . $filePicture;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+
                 $cer = new CertificateServicePicture();
                 $cer->technician_id = $technician->id;
                 $cer->picture = $filePicture;
@@ -462,10 +465,10 @@ class ApiServiceSetup extends Controller
             // }
             if ($req->type == 'educate') {
                 foreach ($req->pictures as $key => $picture) {
-                     $file = $picture;
-                $filePicture = $_FILES['pictures']['name'][$key];
-                $filePath = 'file/upload/' . $filePicture;
-                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                    $file = $picture;
+                    $filePicture = $_FILES['pictures']['name'][$key];
+                    $filePath = 'file/upload/' . $filePicture;
+                    Storage::disk('s3')->put($filePath, file_get_contents($file));
 
                     $educate = new EducationServicePicture();
                     $educate->technician_id = $req->id;
@@ -474,11 +477,11 @@ class ApiServiceSetup extends Controller
                 }
             } else {
                 foreach ($req->pictures as $key => $picture) {
-                   $file = $picture;
-                $filePicture = $_FILES['pictures']['name'][$key];
-                $filePath = 'file/upload/' . $filePicture;
-                Storage::disk('s3')->put($filePath, file_get_contents($file));
-                
+                    $file = $picture;
+                    $filePicture = $_FILES['pictures']['name'][$key];
+                    $filePath = 'file/upload/' . $filePicture;
+                    Storage::disk('s3')->put($filePath, file_get_contents($file));
+
                     $cer = new CertificateServicePicture();
                     $cer->technician_id = $req->id;
                     $cer->picture = $filePicture;
@@ -856,7 +859,7 @@ class ApiServiceSetup extends Controller
                 $filePicture = $_FILES['pictures']['name'][$key];
                 $filePath = 'file/upload/' . $filePicture;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
-                
+
                 $toolPicture = new ToolPicture();
                 $toolPicture->tool_service_id = $req->tool_service_id;
                 $toolPicture->picture = $filePicture;

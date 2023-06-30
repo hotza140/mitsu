@@ -1520,7 +1520,8 @@ class ApiController extends Controller
                     $user->last_name = $request->last_name;
                     $user->full_name = $request->first_name . ' ' . $request->last_name;
                     $user->phone = $request->phone;
-                    // $user->agency = $request->agency;
+                    $usersResult = User::find($request->user_id);
+                    $user->agency = $usersResult->market;
 
                     $user->training_id = $id;
                     $user->turn_id = $get_turn_now->id;
@@ -1633,6 +1634,7 @@ class ApiController extends Controller
                 $list = TrainingList::find($id);
                 $list->first_name = $request->first_name;
                 $list->last_name = $request->last_name;
+                $list->full_name = $request->first_name . ' ' . $request->last_name;
                 $list->user_id = $request->user_id;
                 $list->phone = $request->phone;
                 // $list->agency = $request->agency;
