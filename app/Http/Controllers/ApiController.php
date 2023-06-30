@@ -1517,7 +1517,8 @@ class ApiController extends Controller
                     $user->last_name = $request->last_name;
                     $user->full_name = $request->first_name . ' ' . $request->last_name;
                     $user->phone = $request->phone;
-                    // $user->agency = $request->agency;
+                    $usersResult = User::find($request->user_id);
+                    $user->agency = $usersResult->market;
 
                     $user->training_id = $id;
                     $user->turn_id = $get_turn_now->id;
