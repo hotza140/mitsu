@@ -124,7 +124,10 @@ class TrainingController extends Controller
         } else {
             $training = Training::find($id);
             $training->name = $request->name;
-            $training->status = $request->status;
+            if ($request->status)
+                $training->status = $request->status;
+            else
+                $training->status = "off";
             $training->detail = $request->detail;
             $training->date_time = $request->datetime;
             $training->address = $request->address;
