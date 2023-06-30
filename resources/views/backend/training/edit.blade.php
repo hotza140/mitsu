@@ -358,7 +358,7 @@
             console.log(id,turn_id)
             $.ajax({
                 type: 'get',
-                url: "{{url('backend/training/get_list/"+id+"/"+turn_id+"')}}",
+                url: `{{url('backend/training/get_list/${id}/${turn_id}')}}`,
                 cache: false,
                 processdata: false,
                 contenttype: false,
