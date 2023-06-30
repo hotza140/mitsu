@@ -122,6 +122,7 @@ class TrainingController extends Controller
             $turn->turn = 1;
             $turn->save();
         } else {
+            dd($request);
             $training = Training::find($id);
             $training->name = $request->name;
             if ($request->status != null)
