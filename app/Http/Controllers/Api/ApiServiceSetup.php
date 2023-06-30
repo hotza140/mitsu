@@ -378,8 +378,11 @@ class ApiServiceSetup extends Controller
                 $educate->save();
             }
             foreach ($req->picturesCer as $key => $picture) {
+                $file = $picture;
                 $filePicture = $_FILES['picturesCer']['name'][$key];
-                $picture->move(public_path() . '/img/upload', $filePicture);
+                $filePath = 'file/upload/' . $filePicture;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+
                 $cer = new CertificateServicePicture();
                 $cer->technician_id = $technician->id;
                 $cer->picture = $filePicture;
