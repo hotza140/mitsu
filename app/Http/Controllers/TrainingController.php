@@ -31,53 +31,59 @@ use Illuminate\support\carbon;
 
 class TrainingController extends Controller
 {
-    public function index(){
+    public function index()
+    {
         $data['page'] = 'training';
-        $data['item'] = Training::orderby('id','asc')->get();
+        $data['item'] = Training::orderby('id', 'asc')->get();
         $data['list'] = 'training';
-        return view('backend.training.index',$data);
+        return view('backend.training.index', $data);
     }
 
-    public function add(){
+    public function add()
+    {
         $data['page'] = 'training';
         $data['list'] = 'training';
-        $data['provinces'] = province::orderby('id','asc')->get();
-        return view('backend.training.add',$data);
+        $data['provinces'] = province::orderby('id', 'asc')->get();
+        return view('backend.training.add', $data);
     }
 
-    public function edit($id){
-        $data['detail'] = Training::where('id',$id)->with('trainingturn')->first();
+    public function edit($id)
+    {
+        $data['detail'] = Training::where('id', $id)->with('trainingturn')->first();
         $data['list'] = 'training';
         $data['page'] = 'training';
-        $data['provinces'] = province::orderby('id','asc')->get();
-        $data['amphures'] = amphur::orderby('id','asc')->get();
-        $data['districts'] = district::orderby('id','asc')->get();
-        $data['zipcode'] = district::where('id',$data['detail']->district)->first();
+        $data['provinces'] = province::orderby('id', 'asc')->get();
+        $data['amphures'] = amphur::orderby('id', 'asc')->get();
+        $data['districts'] = district::orderby('id', 'asc')->get();
+        $data['zipcode'] = district::where('id', $data['detail']->district)->first();
 
-        return view('backend.training.edit',$data);
+        return view('backend.training.edit', $data);
     }
 
-    public function add_turn(Request $request){
-        $check_turn = TrainingTurn::where('training_id',$request->id)->orderby('turn','desc')->first();
+    public function add_turn(Request $request)
+    {
+        $check_turn = TrainingTurn::where('training_id', $request->id)->orderby('turn', 'desc')->first();
 
         $turn = new TrainingTurn;
         $turn->training_id = $request->id;
-        $turn->turn = intval($check_turn->turn)+1;
+        $turn->turn = intval($check_turn->turn) + 1;
         $turn->save();
 
-        $training_turn = TrainingTurn::where('training_id',$request->id)->get();
+        $training_turn = TrainingTurn::where('training_id', $request->id)->get();
 
         return response()->json($training_turn);
     }
 
-    public function destroy($id){
-        $item = Training::where('id',$id)->first();
+    public function destroy($id)
+    {
+        $item = Training::where('id', $id)->first();
         $item->delete();
-        return redirect()->back()->with('success','Sucess!');
+        return redirect()->back()->with('success', 'Sucess!');
     }
 
-    public function get_list($id,$turn){
-        $list_user = TrainingList::where('training_id',$id)->where('turn_id',$turn)->get();
+    public function get_list($id, $turn)
+    {
+        $list_user = TrainingList::where('training_id', $turn)->where('turn_id', $id)->get();
 
         return response()->json($list_user);
     }
@@ -85,19 +91,20 @@ class TrainingController extends Controller
     // Function Insert และ Update
     public function insert(Request $request)
     {
-        return $this->store($request,$id=null);
+        return $this->store($request, $id = null);
     }
-    public function update(Request $request, $id=null)
+    public function update(Request $request, $id = null)
     {
-        return $this->store($request,$id);
+        return $this->store($request, $id);
     }
 
-    public function store(Request $request,$id = null){
-        $province = province::where('id',$request->province)->first();
-        $amphure = amphur::where('id',$request->amphure)->first();
-        $district = district::where('id',$request->district)->first();
+    public function store(Request $request, $id = null)
+    {
+        $province = province::where('id', $request->province)->first();
+        $amphure = amphur::where('id', $request->amphure)->first();
+        $district = district::where('id', $request->district)->first();
 
-        if($id == null){
+        if ($id == null) {
             $training = new Training;
             $training->name = $request->name;
             $training->status = $request->status;
@@ -114,7 +121,7 @@ class TrainingController extends Controller
             $turn->training_id = $training->id;
             $turn->turn = 1;
             $turn->save();
-        }else{
+        } else {
             $training = Training::find($id);
             $training->name = $request->name;
             $training->status = $request->status;
@@ -126,9 +133,8 @@ class TrainingController extends Controller
             $training->district = $request->district;
         }
 
-        if($training->save()){
-            return redirect()->to('/backend/training')->with('success','Sucess!');
+        if ($training->save()) {
+            return redirect()->to('/backend/training')->with('success', 'Sucess!');
         }
     }
-
 }
