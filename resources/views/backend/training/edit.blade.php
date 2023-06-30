@@ -157,7 +157,7 @@
                                                 <div class="form-group row">
                                                     <div class="col-sm-12">
                                                         <label class="col-form-label">ที่อยู่</label>
-                                                        <textarea class="form-control" name="desth" id=""
+                                                        <textarea class="form-control" name="address" id=""
                                                             style="height:70px"
                                                             required="">{{$detail->address}}</textarea>
                                                     </div>
