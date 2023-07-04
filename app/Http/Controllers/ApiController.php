@@ -711,8 +711,11 @@ class ApiController extends Controller
             }
             //    ------------------
 
-            if ($r->email != null) {
+            if ($r->email != null or $r->email!='-') {
+                $check = User::where('id','!=',$r->id_user)->where('email', $r->email)->first();
+                if($check==null){
                 $user->email = $r->email;
+                }
             }
             if ($r->phone != null) {
                 $user->phone = $r->phone;
