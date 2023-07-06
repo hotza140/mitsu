@@ -70,7 +70,9 @@
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
+@if($picture)
 src="{{$picture}}" style="width:100px">
+@endif
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
@@ -176,7 +178,9 @@ src="{{$picture}}" style="width:100px">
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
+@if($picture)
 src="{{$picture}}" style="width:100px">
+@endif
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
@@ -277,8 +281,9 @@ src="{{$picture}}" style="width:100px">
                                                         <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
-
+@if($picture)
 src="{{$picture}}" style="width:100px">
+@endif
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
