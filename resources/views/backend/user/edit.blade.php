@@ -369,7 +369,7 @@ src="{{$picture}}" style="width:100px">
 @endif
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
-                                                        <td>{{($itts->item->point)?? '-'}}</td>
+                                                        <td>{{$itts->buy_point}}</td>
                                                         <td>{{$itts->date}}</td>
                                                         @if($itts->status==0)
                                                         <td style="color: green;">กำลังรอยืนยัน</td>

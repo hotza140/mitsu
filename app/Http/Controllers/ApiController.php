@@ -974,6 +974,9 @@ class ApiController extends Controller
             $his = new buy_point();
             $his->id_user = $user->id;
             $his->id_item = $item->id;
+
+            $his->title = $item->titleth;
+
             $his->old_point = $cu;
             $his->buy_point = $ci;
             $his->bl_point = $sum;
