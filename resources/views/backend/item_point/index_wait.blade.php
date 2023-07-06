@@ -66,11 +66,16 @@
                                                             Line: {{($p1->line)?? '-'}}
                                                         </td>
                                                         <td>
+                                                        @if(isset($itts->item->picture))
                                                         <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
 src="{{$picture}}" style="width:100px">
+@else
+{{$itts->title}}
+
+@endif
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
@@ -172,11 +177,16 @@ src="{{$picture}}" style="width:100px">
                                                             Line: {{($p2->line)?? '-'}}
                                                         </td>
                                                         <td>
+                                                        @if(isset($itts->item->picture))
                                                         <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
 src="{{$picture}}" style="width:100px">
+@else
+{{$itts->title}}
+
+@endif
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
@@ -274,11 +284,16 @@ src="{{$picture}}" style="width:100px">
                                                             Line: {{($p3->line)?? '-'}}
                                                         </td>
                                                         <td>
+                                                        @if(isset($itts->item->picture))
                                                         <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
 $picture= Storage::disk('s3')->url($filePath);
 ?>
 
 src="{{$picture}}" style="width:100px">
+@else
+{{$itts->title}}
+
+@endif
                                                         </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{($itts->item->point)?? '-'}}</td>
