@@ -77,7 +77,7 @@
                                                     <td style="color:red">ยังไม่มีผู้รับ</td>
                                                     @else
                                                     <?php $aaa=App\User::where('id',$items->technician_id)->first(); ?>
-                                                    <td style="color:#20E850">ผู้รับงาน {{$aaa->name}}</td>
+                                                    <td style="color:#20E850">ผู้รับงาน {{@$aaa->name}}</td>
                                                     @endif
 
                                                     @if($items->wo_status==0)
