@@ -1356,7 +1356,7 @@ class ApiController extends Controller
 
                         return response()->json([
                             'status' => true,
-                            'message' => 'Success Receive'.$a2.' Point!',
+                            'message' => 'Success Receive '.$a2.' Point!',
                             'result' => [
                                 'customer' => $customer,
                             ],
@@ -1421,7 +1421,7 @@ class ApiController extends Controller
 
                         return response()->json([
                             'status' => true,
-                            'message' => 'Success Receive'.$a2.' Point!',
+                            'message' => 'Success Receive '.$a2.' Point!',
                             'result' => [
                                 'customer' => $customer,
                             ],
