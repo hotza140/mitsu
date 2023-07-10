@@ -36,7 +36,6 @@ class AirModelController extends Controller
         if($request->file!=null){
             try {     
                 Excel::import(new ModelImport, $request->file);
-                $check=openModel::where('id','!=',1)->first();
                 return redirect()->back()->with('success', 'Data Imported Successfully');
                 } catch(Exception $e) {
                 return redirect()->back()->with('success', 'Data Imported Fail.');
