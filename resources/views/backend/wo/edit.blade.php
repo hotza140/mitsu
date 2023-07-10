@@ -95,7 +95,7 @@
                                                 <!-- <input type="text" name="air_model" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->air_model;} ?>"> -->
 
-                                                <select id="" class="col-form-label" name="air_model">
+                                                <select id="" class="col-form-label select_2" name="air_model">
                                             @foreach($aii as $aai)
                                             <option value="{{$aai->id}}" @if(isset($item))
                                                 @if($item->air_model==$aai->id) selected @endif @endif >{{$aai->model_name}}
