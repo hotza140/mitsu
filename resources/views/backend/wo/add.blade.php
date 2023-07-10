@@ -78,7 +78,7 @@
 
                                         <?php $aii=App\AirModel::orderby('id','desc')->get(); ?>
                                         <div class="form-group row">
-                                            <div class="col-sm-4">
+                                            <div class="col-sm-3">
                                                 <label class="col-form-label">Air Models</label>
                                                 <!-- <input type="text" name="air_model" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->air_model;} ?>"> -->
