@@ -24,7 +24,7 @@ class ModelImport implements ToModel,  WithStartRow
     */
     public function model(array $row)
     {
-        $check=AirModel::groupby('model_name')->where('model_name',$row[0])->first();
+        $check=AirModel::where('model_name',$row[0])->first();
 
         if($row[0]!=null and $row[1]!=null and $row[11]!=null){
 
