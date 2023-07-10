@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\AirModelCreateRequest;
 use Illuminate\Http\Request;
 use App\AirModel;
+use DB;
 
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;

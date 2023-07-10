@@ -1331,6 +1331,26 @@ class ApiController extends Controller
 
                 if ($air_conditioner->save()) {
                     $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+
+                    // if($customer){
+                    //     $air = AirModel::where('id',null)->first();
+                    //     if($air){
+                    //     $user = User::where('id', $customer->mechanic_id)->first();
+                    //     if($user){
+                    //     $a1=$user->point;
+                    //     $a2=$model->point;
+                    //     $sum=$a1+$a2;
+                    //     $user->point=$sum;
+                    //     $user->save();
+
+                    //     $his=new history_point();
+                    //     $his->title='ได้รับ Point จากการทำรายการ';
+                    //     $his->point=$a2;
+                    //     $his->id_user=$user->id;
+                    //     $his->date=date('Y-m-d H:i:s');
+                    //     $his->save();
+                    //     }
+                    // }}
                     return response()->json([
                         'status' => true,
                         'message' => 'Success!',
