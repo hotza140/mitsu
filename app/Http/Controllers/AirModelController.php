@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
+use Maatwebsite\Excel\Facades\Excel;
+
 use App\Imports\ModelImport;
 
 class AirModelController extends Controller
