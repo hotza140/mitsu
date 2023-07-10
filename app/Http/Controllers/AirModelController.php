@@ -28,7 +28,10 @@ class AirModelController extends Controller
     public function air_model_store(Request $r){
         $item=new AirModel();
         $item->model_name=$r->model_name;
-        $item->model_type=$r->model_type;
+        // $item->model_type=$r->model_type;
+
+        $item->des=$r->des;
+        $item->point=$r->point;
 
 
         $item->save();
@@ -38,7 +41,10 @@ class AirModelController extends Controller
     public function air_model_update(Request $r,$id){
         $item=AirModel::where('id',$id)->first();
         $item->model_name=$r->model_name;
-        $item->model_type=$r->model_type;
+        // $item->model_type=$r->model_type;
+
+        $item->des=$r->des;
+        $item->point=$r->point;
 
         $item->save();
         return redirect()->to('/backend/air_model')->with('success','Sucess!');

@@ -39,7 +39,7 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-6">
-                                                <label class="col-form-label">Name</label>
+                                                <label class="col-form-label">Name (No.)</label>
                                                 <input type="text" name="model_name" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->model_name;} ?>">
                                             </div>
@@ -47,11 +47,27 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-6">
+                                                <label class="col-form-label">Description</label>
+                                                <input type="text" name="des" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->des;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">Point</label>
+                                                <input type="number" name="point" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->point;} ?>">
+                                            </div>
+                                        </div>
+
+                                        <!-- <div class="form-group row">
+                                            <div class="col-sm-6">
                                                 <label class="col-form-label">Type</label>
                                                 <input type="text" name="model_type" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->model_type;} ?>">
                                             </div>
-                                        </div>
+                                        </div> -->
 
 
                                         <p class="text-right">

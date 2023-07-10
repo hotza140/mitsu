@@ -38,8 +38,10 @@
                                                 <tr>
 
                                                     <th>#</th>
-                                                    <th>Name</th>
-                                                    <th>Type</th>
+                                                    <th>Name (No.)</th>
+                                                    <th>Description</th>
+                                                    <th>Point</th>
+                                                    <!-- <th>Type</th> -->
                                                     <!-- <th>Title</th> -->
                                                     <!-- <th>Created_at</th> -->
                                                     <th>Updated_at</th>
@@ -54,7 +56,9 @@
                                                 <tr>
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$items->model_name}}</td>
-                                                    <td>{{$items->model_type}}</td>
+                                                    <td>{{$items->des}}</td>
+                                                    <td>{{$items->point}}</td>
+                                                    <!-- <td>{{$items->model_type}}</td> -->
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
@@ -73,8 +77,10 @@
                                             <tfoot>
                                                 <tr>
                                                 <th>#</th>
-                                                    <th>Name</th>
-                                                    <th>Type</th>
+                                                <th>Name (No.)</th>
+                                                    <th>Description</th>
+                                                    <th>Point</th>
+                                                    <!-- <th>Type</th> -->
                                                     <!-- <th>Title</th> -->
                                                     <!-- <th>Created_at</th> -->
                                                     <th>Updated_at</th>
