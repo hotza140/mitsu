@@ -1332,6 +1332,8 @@ class ApiController extends Controller
                 if ($air_conditioner->save()) {
                     $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
 
+
+                    // ส่วนเช็ค Model รับ POINT
                     // if($customer){
                     //     $air = AirModel::where('id',null)->first();
                     //     if($air){
@@ -1351,6 +1353,8 @@ class ApiController extends Controller
                     //     $his->save();
                     //     }
                     // }}
+                    // ส่วนเช็ค Model รับ POINT
+
                     return response()->json([
                         'status' => true,
                         'message' => 'Success!',
