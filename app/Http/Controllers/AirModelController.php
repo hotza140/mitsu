@@ -12,6 +12,8 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\View;
 
+use App\Imports\ModelImport;
+
 class AirModelController extends Controller
 {
     //air_model//
@@ -25,6 +27,24 @@ class AirModelController extends Controller
             'list'=>"air_model",
         ]);
     }
+
+    
+
+    public function air_model_excel(Request $request){
+        if($request->file!=null){
+            try {     
+                Excel::import(new ModelImport, $request->file);
+                $check=openModel::where('id','!=',1)->first();
+                return redirect()->back()->with('success', 'Data Imported Successfully');
+                } catch(Exception $e) {
+                return redirect()->back()->with('success', 'Data Imported Fail.');
+                }
+        
+        }else{
+            return redirect()->back()->with('success', 'Data Imported Fail Please Choose File!');
+        }
+    }
+
     public function air_model_store(Request $r){
         $item=new AirModel();
         $item->model_name=$r->model_name;

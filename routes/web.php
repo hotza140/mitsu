@@ -157,9 +157,11 @@ Route::prefix('backend')->group(function(){
      Route::get('item_point_edit/{id}',[App\Http\Controllers\BackendController::class,'item_point_edit']);
      Route::post('item_point_update/{id}',[App\Http\Controllers\BackendController::class,'item_point_update']);
      //item_point
-
+     
 
      //air_model
+     Route::post('air_model_excel',[App\Http\Controllers\AirModelController::class,'air_model_excel']);
+
     Route::get('air_model',[App\Http\Controllers\AirModelController::class,'air_model']);
     Route::get('air_model_destroy/{id}',[App\Http\Controllers\AirModelController::class,'air_model_destroy']);
     Route::get('air_model_add',[App\Http\Controllers\AirModelController::class,'air_model_add']);
