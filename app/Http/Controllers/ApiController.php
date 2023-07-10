@@ -1353,6 +1353,16 @@ class ApiController extends Controller
                         $his->id_user=$user->id;
                         $his->date=date('Y-m-d H:i:s');
                         $his->save();
+
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'Success Receive'.$a2.'!',
+                            'result' => [
+                                'customer' => $customer,
+                            ],
+                            'url_picture' => $this->prefix,
+                        ]);
+                        
                         }
                     }}
                     }
@@ -1408,6 +1418,16 @@ class ApiController extends Controller
                         $his->id_user=$user->id;
                         $his->date=date('Y-m-d H:i:s');
                         $his->save();
+
+                        return response()->json([
+                            'status' => true,
+                            'message' => 'Success Receive'.$a2.'!',
+                            'result' => [
+                                'customer' => $customer,
+                            ],
+                            'url_picture' => $this->prefix,
+                        ]);
+
                         }
                     }}
                     }
