@@ -1356,13 +1356,13 @@ class ApiController extends Controller
 
                         return response()->json([
                             'status' => true,
-                            'message' => 'Success Receive'.$a2.'!',
+                            'message' => 'Success Receive'.$a2.' Point!',
                             'result' => [
                                 'customer' => $customer,
                             ],
                             'url_picture' => $this->prefix,
                         ]);
-                        
+
                         }
                     }}
                     }
@@ -1421,7 +1421,7 @@ class ApiController extends Controller
 
                         return response()->json([
                             'status' => true,
-                            'message' => 'Success Receive'.$a2.'!',
+                            'message' => 'Success Receive'.$a2.' Point!',
                             'result' => [
                                 'customer' => $customer,
                             ],
