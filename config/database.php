@@ -74,13 +74,22 @@ return [
             ]) : [],
         ],
 
+        // 'pgsql' => [
+        //     'driver'    => env('DB_CONNECTION_PGSQL'),
+        //     'host'      => env('DB_HOST_PGSQL'),
+        //     'port'      => env('DB_PORT_PGSQL'),
+        //     'database'  => env('DB_DATABASE_PGSQL'),
+        //     'username'  => env('DB_USERNAME_PGSQL'),
+        //     'password'  => env('DB_PASSWORD_PGSQL'),
+        // ],
+
         'pgsql' => [
-            'driver'    => env('DB_CONNECTION_PGSQL'),
-            'host'      => env('DB_HOST_PGSQL'),
-            'port'      => env('DB_PORT_PGSQL'),
-            'database'  => env('DB_DATABASE_PGSQL'),
-            'username'  => env('DB_USERNAME_PGSQL'),
-            'password'  => env('DB_PASSWORD_PGSQL'),
+            'driver'    => 'pgsql',
+            'host'      => 'mhj-do-user-6875778-0.',
+            'port'      => '25060',
+            'database'  => 'mhjairdb',
+            'username'  => 'mhj_air_app',
+            'password'  => 'fIPDkeukT^',
         ],
 
         'sqlsrv' => [
