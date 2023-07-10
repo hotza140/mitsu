@@ -81,8 +81,6 @@ class AirModelController extends Controller
     }
     public function air_model_destroy($id){
         $item=AirModel::where('id',$id)->first();
-        $check= 'file/upload/' . $item->picture;
-                Storage::disk('s3')->delete($check);
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
