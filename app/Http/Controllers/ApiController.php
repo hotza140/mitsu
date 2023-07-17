@@ -539,8 +539,12 @@ class ApiController extends Controller
             $user->email = $r->email;
 
             if ($r->password == null) {
-                $na = $r->name . '12345';
-                $user->password = Hash::make($na);
+                if($r->phone!=null){
+                    $na = $r->phone;
+                }else{
+                    $na = $r->name . '12345';
+                }
+                $user->password = Hash::make($na); 
             } else {
                 $user->password = Hash::make($r->password);
             }
