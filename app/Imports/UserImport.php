@@ -35,6 +35,31 @@ class UserImport implements ToModel,  WithStartRow
 
         $check=User::where('name',$row[2])->where('lastname',$row[3])->first();
 
+        $year = date('Y');
+        if($check!=null){
+            $fff=User::where('email',$row[8])->first();
+            if($fff==null){
+                $aaa=User::where('name',$row[2])->where('lastname',$row[3])->first();
+                $aaa->email=$row[8];
+
+                 // CODE
+            $nu = User::where('type', 5)->orderby('id', 'desc')->first();
+            if ($nu != null) {
+                $nm = $nu->num + 1;
+            } else {
+                $nm = 1;
+            }
+            $aaa->num = $nm;
+
+            $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+            $aaa->code = $year . 'H' . $num;
+            // CODE
+
+            $aaa->save();
+            }
+           
+        }
+
         if($row[0]!=null and $row[1]!=null and $row[2]!=null){
             $pass=Hash::make($row[5]);
 
