@@ -43,7 +43,7 @@ class UserImport implements ToModel,  WithStartRow
             "lastname"=>$row[3],
             "password"=>$pass,
 
-            "birth"=>\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($row[6]),
+            "birth"=>$row[6],
             "phone"=>$row[7],
             "email"=>$row[8],
             "location"=>$row[9],
