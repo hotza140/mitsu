@@ -61,7 +61,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">Email</label>
-                                                <input type="email" name="email" class="form-control" id=""
+                                                <input type="email" name="email" class="form-control" id="" required maxlength = "25"
                                                      required value="<?php if(isset($item)){echo $item->email;} ?>">
                                             </div>
                                         </div>
@@ -69,7 +69,8 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">New Password</label>
-                                                <input type="text" name="password" class="form-control" id="" placeholder="ถ้าไม่ต้องการเปลี่ยนรหัสให้ปล่อยช่องว่างเอาไว้"
+                                                <input type="text" name="password" class="form-control" id="" required maxlength = "10"
+                                                 placeholder="ถ้าไม่ต้องการเปลี่ยนรหัสให้ปล่อยช่องว่างเอาไว้"
                                                      >
                                             </div>
                                         </div>
