@@ -32,29 +32,29 @@ class Model_listImport implements ToModel,  WithStartRow
             return new Air_listModel([
             "model"=>$row[0],
 
-            "min1"=>$row[1],
-            "stan1"=>$row[2],
-            "max1"=>$row[3],
+            "min1"=>24,
+            "stan1"=>25,
+            "max1"=>26,
             
-            "min2"=>$row[4],
-            "stan2"=>$row[5],
-            "max2"=>$row[6],
+            "min2"=>10,
+            "stan2"=>11,
+            "max2"=>12,
 
-            "min3"=>$row[7],
-            "stan3"=>$row[8],
-            "max3"=>$row[9],
+            "min3"=>30,
+            "stan3"=>35,
+            "max3"=>40,
 
-            "min4"=>$row[10],
-            "stan4"=>$row[11],
-            "max4"=>$row[12],
+            "min4"=>120,
+            "stan4"=>130,
+            "max4"=>140,
 
-            "min5"=>$row[13],
+            "min5"=>0,
             "stan5"=>$row[14],
-            "max5"=>$row[15],
+            "max5"=>0,
 
-            "min6"=>$row[16],
-            "stan6"=>$row[17],
-            "max6"=>$row[18],
+            "min6"=>198,
+            "stan6"=>220,
+            "max6"=>242,
             ]);
 
         }
