@@ -768,6 +768,24 @@
         } );
     </script>
 
+      <!-- จัดการ DATATABLE แบบไม่มี paginate และ search -->
+<script type="text/javascript">
+        $(document).ready(function() {
+            $('#table_no').dataTable({
+                order:[],
+                stateSave: true,
+                paging: false,
+                "searching": false,
+                stateSaveCallback: function(settings,data) {
+                localStorage.setItem( 'DataTables_' + settings.sInstance, JSON.stringify(data) )
+                },
+                stateLoadCallback: function(settings) {
+                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
+                },
+            });
+        } );
+    </script>
+
       <!-- <script>
         $(document).ready(function () {
     $('#simpletable').DataTable({

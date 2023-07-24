@@ -419,8 +419,17 @@ public function user_item($id){
     // SERVICE
 
        //user//
-       public function user(){
-        $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->get();
+       public function user(Request $r){
+        $search=$r->search;
+        if($search!=null){
+        $item=User::where(function($query) use($search){
+            $query->orWhere('name', 'LIKE', '%'.$search.'%');
+        })->where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(10);
+        }else{
+            $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(20);
+        }
+
+        
         return view('backend.user.index',[
             'item'=>$item,
             'page'=>"user",

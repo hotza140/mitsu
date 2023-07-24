@@ -44,10 +44,17 @@
 
                                     <a style="color:white;" class="btn btn-success" href="{{url('/backend/user_add')}}"> <i class="fa fa-plus"></i> Add</a>
 
+                                    <div><br>
+                                    <form class="form-horizontal" action="{{url('/backend/user')}}" method="GET" enctype="multipart/form-data">
+                                           @csrf
+                                        <input type="text" name="search"  class="col-md-2"> Search
+                                        </form>
+                                        </div>
+
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="simpletable" class="table table-striped table-bordered nowrap">
+                                        <table id="table_no" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
 
@@ -156,6 +163,8 @@ src="{{$picture}}"
                                                 </tr>
                                             </tfoot>
                                         </table>
+                                        <br><br>
+                                    {{$item->appends(Request::all())->links()}}
                                     </div>
                                 </div>
 
