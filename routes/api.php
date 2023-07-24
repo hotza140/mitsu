@@ -30,6 +30,9 @@ Route::group([
 
     Route::get('/api_user/{id}', 'ApiController@api_user');
 
+    Route::get('/api_air_list/{id}', 'ApiController@api_air_list');
+    Route::post('/api_air_list_check', 'ApiController@api_air_list_check');
+
 
     Route::get('/api_market', 'ApiController@api_market');
 
