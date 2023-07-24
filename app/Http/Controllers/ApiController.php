@@ -95,79 +95,423 @@ class ApiController extends Controller
      }
      ///air_list///
 
+
+
+       ///air_listcheck1///
+       public function api_air_list_check1(Request $r)
+       {
+           $air_list = Air_listModel::where('model', $r->model)->first();
+ 
+           if($air_list!=null){
+ 
+           if($r->check1!=null){
+             if($r->check1>=$air_list->min1 and $r->check1<=$air_list->max1){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+           }else{
+             $sum1=null;
+           }
+ 
+           if($r->check2!=null){
+             if($r->check2>=$air_list->min1 and $r->check2<=$air_list->max1){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+           }else{
+             $sum2=null;
+           }
+ 
+ 
+           if($r->check3!=null){
+             if($r->check3>=$air_list->min1 and $r->check3<=$air_list->max1){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+           }else{
+             $sum3=null;
+           }
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'air_list' => $air_list,
+                   'sum1' => $sum1,
+                   'sum2' => $sum2,
+                   'sum3' => $sum3,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }else{
+             $message = "Not Have Models!";
+           $status = true;
+           return response()->json([
+               'results' => [
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }
+       }
+       ///air_listcheck1///
+
+
+         ///air_listcheck2///
+         public function api_air_list_check2(Request $r)
+         {
+             $air_list = Air_listModel::where('model', $r->model)->first();
+   
+             if($air_list!=null){
+   
+             if($r->check1!=null){
+               if($r->check1>=$air_list->min2 and $r->check1<=$air_list->max2){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             }else{
+               $sum1=null;
+             }
+   
+             if($r->check2!=null){
+               if($r->check2>=$air_list->min2 and $r->check2<=$air_list->max2){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             }else{
+               $sum2=null;
+             }
+   
+   
+             if($r->check3!=null){
+               if($r->check3>=$air_list->min2 and $r->check3<=$air_list->max2){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             }else{
+               $sum3=null;
+             }
+     
+             $message = "Success!";
+             $status = true;
+             return response()->json([
+                 'results' => [
+                     'air_list' => $air_list,
+                     'sum1' => $sum1,
+                     'sum2' => $sum2,
+                     'sum3' => $sum3,
+                 ],
+                 'status' =>  $status,
+                 'message' =>  $message,
+                 'url_picture' => $this->prefix,
+             ]);
+           }else{
+               $message = "Not Have Models!";
+             $status = true;
+             return response()->json([
+                 'results' => [
+                 ],
+                 'status' =>  $status,
+                 'message' =>  $message,
+                 'url_picture' => $this->prefix,
+             ]);
+           }
+         }
+         ///air_listcheck2///
+
+
+
+           ///air_listcheck3///
+       public function api_air_list_check3(Request $r)
+       {
+           $air_list = Air_listModel::where('model', $r->model)->first();
+ 
+           if($air_list!=null){
+ 
+           if($r->check1!=null){
+             if($r->check1>=$air_list->min3 and $r->check1<=$air_list->max3){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+           }else{
+             $sum1=null;
+           }
+ 
+           if($r->check2!=null){
+             if($r->check2>=$air_list->min3 and $r->check2<=$air_list->max3){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+           }else{
+             $sum2=null;
+           }
+ 
+ 
+           if($r->check3!=null){
+             if($r->check3>=$air_list->min3 and $r->check3<=$air_list->max3){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+           }else{
+             $sum3=null;
+           }
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'air_list' => $air_list,
+                   'sum1' => $sum1,
+                   'sum2' => $sum2,
+                   'sum3' => $sum3,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }else{
+             $message = "Not Have Models!";
+           $status = true;
+           return response()->json([
+               'results' => [
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }
+       }
+       ///air_listcheck3///
+
+
+
+
+         ///air_listcheck4///
+         public function api_air_list_check4(Request $r)
+         {
+             $air_list = Air_listModel::where('model', $r->model)->first();
+   
+             if($air_list!=null){
+   
+             if($r->check1!=null){
+               if($r->check1>=$air_list->min4 and $r->check1<=$air_list->max4){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             }else{
+               $sum1=null;
+             }
+   
+             if($r->check2!=null){
+               if($r->check2>=$air_list->min4 and $r->check2<=$air_list->max4){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             }else{
+               $sum2=null;
+             }
+   
+   
+             if($r->check3!=null){
+               if($r->check3>=$air_list->min4 and $r->check3<=$air_list->max4){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             }else{
+               $sum3=null;
+             }
+     
+             $message = "Success!";
+             $status = true;
+             return response()->json([
+                 'results' => [
+                     'air_list' => $air_list,
+                     'sum1' => $sum1,
+                     'sum2' => $sum2,
+                     'sum3' => $sum3,
+                 ],
+                 'status' =>  $status,
+                 'message' =>  $message,
+                 'url_picture' => $this->prefix,
+             ]);
+           }else{
+               $message = "Not Have Models!";
+             $status = true;
+             return response()->json([
+                 'results' => [
+                 ],
+                 'status' =>  $status,
+                 'message' =>  $message,
+                 'url_picture' => $this->prefix,
+             ]);
+           }
+         }
+         ///air_listcheck4///
+
+
+
+
+           ///air_listcheck5///
+       public function api_air_list_check5(Request $r)
+       {
+           $air_list = Air_listModel::where('model', $r->model)->first();
+ 
+           if($air_list!=null){
+ 
+           if($r->check1!=null){
+             if($r->check1>=$air_list->min5 and $r->check1<=$air_list->max5){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+           }else{
+             $sum1=null;
+           }
+ 
+           if($r->check2!=null){
+             if($r->check2>=$air_list->min5 and $r->check2<=$air_list->max5){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+           }else{
+             $sum2=null;
+           }
+ 
+ 
+           if($r->check3!=null){
+             if($r->check3>=$air_list->min5 and $r->check3<=$air_list->max5){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+           }else{
+             $sum3=null;
+           }
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'air_list' => $air_list,
+                   'sum1' => $sum1,
+                   'sum2' => $sum2,
+                   'sum3' => $sum3,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }else{
+             $message = "Not Have Models!";
+           $status = true;
+           return response()->json([
+               'results' => [
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }
+       }
+       ///air_listcheck5///
+
+
+
+         ///air_listcheck6///
+         public function api_air_list_check6(Request $r)
+         {
+             $air_list = Air_listModel::where('model', $r->model)->first();
+   
+             if($air_list!=null){
+   
+             if($r->check1!=null){
+               if($r->check1>=$air_list->min6 and $r->check1<=$air_list->max6){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             }else{
+               $sum1=null;
+             }
+   
+             if($r->check2!=null){
+               if($r->check2>=$air_list->min6 and $r->check2<=$air_list->max6){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             }else{
+               $sum2=null;
+             }
+   
+   
+             if($r->check3!=null){
+               if($r->check3>=$air_list->min6 and $r->check3<=$air_list->max6){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             }else{
+               $sum3=null;
+             }
+     
+             $message = "Success!";
+             $status = true;
+             return response()->json([
+                 'results' => [
+                     'air_list' => $air_list,
+                     'sum1' => $sum1,
+                     'sum2' => $sum2,
+                     'sum3' => $sum3,
+                 ],
+                 'status' =>  $status,
+                 'message' =>  $message,
+                 'url_picture' => $this->prefix,
+             ]);
+           }else{
+               $message = "Not Have Models!";
+             $status = true;
+             return response()->json([
+                 'results' => [
+                 ],
+                 'status' =>  $status,
+                 'message' =>  $message,
+                 'url_picture' => $this->prefix,
+             ]);
+           }
+         }
+         ///air_listcheck6///
+
+
+
+
+
+
+
+
+
+
+
+    //    --------------------------------------------------------ALL
+
       ///air_list///
-      public function api_air_list_check(Request $r)
-      {
-          $air_list = Air_listModel::where('model', $r->model)->first();
+    //   public function api_air_list_check(Request $r)
+    //   {
+    //       $air_list = Air_listModel::where('model', $r->model)->first();
 
-          if($air_list!=null){
+    //       if($air_list!=null){
 
-          if($r->check1!=null){
-            if($r->check1>=$air_list->min1 and $r->check1<=$air_list->max1){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-          }else{
-            $sum1=null;
-          }
+    //       if($r->check1!=null){
+    //         if($r->check1>=$air_list->min1 and $r->check1<=$air_list->max1){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+    //       }else{
+    //         $sum1=null;
+    //       }
 
-          if($r->check2!=null){
-            if($r->check2>=$air_list->min2 and $r->check2<=$air_list->max2){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-          }else{
-            $sum2=null;
-          }
+    //       if($r->check2!=null){
+    //         if($r->check2>=$air_list->min2 and $r->check2<=$air_list->max2){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+    //       }else{
+    //         $sum2=null;
+    //       }
 
 
-          if($r->check3!=null){
-            if($r->check3>=$air_list->min3 and $r->check3<=$air_list->max3){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-          }else{
-            $sum3=null;
-          }
+    //       if($r->check3!=null){
+    //         if($r->check3>=$air_list->min3 and $r->check3<=$air_list->max3){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+    //       }else{
+    //         $sum3=null;
+    //       }
 
-          if($r->check4!=null){
-            if($r->check4>=$air_list->min4 and $r->check4<=$air_list->max4){$sum4='ปกติ';}else{$sum4='ผิดปกติ';}
-          }else{
-            $sum4=null;
-          }
+    //       if($r->check4!=null){
+    //         if($r->check4>=$air_list->min4 and $r->check4<=$air_list->max4){$sum4='ปกติ';}else{$sum4='ผิดปกติ';}
+    //       }else{
+    //         $sum4=null;
+    //       }
 
-          if($r->check5!=null){
-            if($r->check5>=$air_list->min5 and $r->check5<=$air_list->max5){$sum5='ปกติ';}else{$sum5='ผิดปกติ';}
-          }else{
-            $sum5=null;
-          }
+    //       if($r->check5!=null){
+    //         if($r->check5>=$air_list->min5 and $r->check5<=$air_list->max5){$sum5='ปกติ';}else{$sum5='ผิดปกติ';}
+    //       }else{
+    //         $sum5=null;
+    //       }
 
-          if($r->check6!=null){
-            if($r->check6>=$air_list->min6 and $r->check6<=$air_list->max6){$sum6='ปกติ';}else{$sum6='ผิดปกติ';}
-          }else{
-            $sum6=null;
-          }
+    //       if($r->check6!=null){
+    //         if($r->check6>=$air_list->min6 and $r->check6<=$air_list->max6){$sum6='ปกติ';}else{$sum6='ผิดปกติ';}
+    //       }else{
+    //         $sum6=null;
+    //       }
   
-          $message = "Success!";
-          $status = true;
-          return response()->json([
-              'results' => [
-                  'air_list' => $air_list,
-                  'sum1' => $sum1,
-                  'sum2' => $sum2,
-                  'sum3' => $sum3,
-                  'sum4' => $sum4,
-                  'sum5' => $sum5,
-                  'sum6' => $sum6,
-              ],
-              'status' =>  $status,
-              'message' =>  $message,
-              'url_picture' => $this->prefix,
-          ]);
-        }else{
-            $message = "Not Have Models!";
-          $status = true;
-          return response()->json([
-              'results' => [
-              ],
-              'status' =>  $status,
-              'message' =>  $message,
-              'url_picture' => $this->prefix,
-          ]);
-        }
-      }
+    //       $message = "Success!";
+    //       $status = true;
+    //       return response()->json([
+    //           'results' => [
+    //               'air_list' => $air_list,
+    //               'sum1' => $sum1,
+    //               'sum2' => $sum2,
+    //               'sum3' => $sum3,
+    //               'sum4' => $sum4,
+    //               'sum5' => $sum5,
+    //               'sum6' => $sum6,
+    //           ],
+    //           'status' =>  $status,
+    //           'message' =>  $message,
+    //           'url_picture' => $this->prefix,
+    //       ]);
+    //     }else{
+    //         $message = "Not Have Models!";
+    //       $status = true;
+    //       return response()->json([
+    //           'results' => [
+    //           ],
+    //           'status' =>  $status,
+    //           'message' =>  $message,
+    //           'url_picture' => $this->prefix,
+    //       ]);
+    //     }
+    //   }
       ///air_list///
+         //    --------------------------------------------------------ALL
 
      
 

@@ -31,7 +31,12 @@ Route::group([
     Route::get('/api_user/{id}', 'ApiController@api_user');
 
     Route::get('/api_air_list/{id}', 'ApiController@api_air_list');
-    Route::post('/api_air_list_check', 'ApiController@api_air_list_check');
+    Route::post('/api_air_list_check1', 'ApiController@api_air_list_check1');
+    Route::post('/api_air_list_check2', 'ApiController@api_air_list_check2');
+    Route::post('/api_air_list_check3', 'ApiController@api_air_list_check3');
+    Route::post('/api_air_list_check4', 'ApiController@api_air_list_check4');
+    Route::post('/api_air_list_check5', 'ApiController@api_air_list_check5');
+    Route::post('/api_air_list_check6', 'ApiController@api_air_list_check6');
 
 
     Route::get('/api_market', 'ApiController@api_market');
