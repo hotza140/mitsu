@@ -171,6 +171,8 @@ Route::prefix('backend')->group(function(){
     //air_model
 
        //air_model_list
+       Route::post('air_model_list_excel',[App\Http\Controllers\Air_listController::class,'air_model_list_excel']);
+
        Route::get('air_model_list',[App\Http\Controllers\Air_listController::class,'air_model_list']);
        Route::get('air_model_list_destroy/{id}',[App\Http\Controllers\Air_listController::class,'air_model_list_destroy']);
        Route::get('air_model_list_add',[App\Http\Controllers\Air_listController::class,'air_model_list_add']);

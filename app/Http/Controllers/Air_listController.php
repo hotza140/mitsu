@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\View;
 
 use Maatwebsite\Excel\Facades\Excel;
 
-use App\Imports\ModelImport;
+use App\Imports\Model_listImport;
 
 class Air_listController extends Controller
 {
@@ -29,6 +29,21 @@ class Air_listController extends Controller
             'page'=>"air_conditioner",
             'list'=>"air_model_list",
         ]);
+    }
+
+
+    public function air_model_list_excel(Request $request){
+        if($request->file!=null){
+            try {     
+                Excel::import(new Model_listImport, $request->file);
+                return redirect()->back()->with('success', 'Data Imported Successfully');
+                } catch(Exception $e) {
+                return redirect()->back()->with('success', 'Data Imported Fail.');
+                }
+        
+        }else{
+            return redirect()->back()->with('success', 'Data Imported Fail Please Choose File!');
+        }
     }
 
 
