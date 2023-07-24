@@ -28,10 +28,12 @@ class UserImport implements ToModel,  WithStartRow
     */
     public function model(array $row)
     {
-        $check=User::where('email',$row[9])->first();
-        if($check==null){
-            $check=User::where('phone',$row[8])->first();
-        }
+        // $check=User::where('email',$row[9])->first();
+        // if($check==null){
+        //     $check=User::where('phone',$row[8])->first();
+        // }
+
+        $check=User::where('name',$row[2])->where('lastname',$row[3])->first();
 
         if($row[0]!=null and $row[1]!=null and $row[2]!=null){
             $pass=Hash::make($row[5]);
@@ -51,7 +53,7 @@ class UserImport implements ToModel,  WithStartRow
 
             "birth"=>$row[6],
             "phone"=>$row[7],
-            "email"=>$row[8],
+            // "email"=>$row[8],
             "location"=>$row[9],
 
             "amphur"=>$row[7],
