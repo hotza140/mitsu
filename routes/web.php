@@ -60,6 +60,8 @@ Route::prefix('backend')->group(function(){
     //admin_user
 
     //user
+    Route::post('user_excel',[App\Http\Controllers\BackendController::class,'user_excel']);
+
     Route::get('user_item/{id}',[App\Http\Controllers\BackendController::class,'user_item']);
 
     Route::get('gal_service/{type}/{id}/{user}',[App\Http\Controllers\BackendController::class,'gal_service']);

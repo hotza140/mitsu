@@ -41,6 +41,8 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
 
+use App\Imports\UserImport;
+
 
 class BackendController extends Controller
 
@@ -320,6 +322,20 @@ class BackendController extends Controller
 
         return redirect()->to('/backend/user')->with('success','Sucess!');
 
+    }
+
+    public function user_excel(Request $request){
+        if($request->file!=null){
+            try {     
+                Excel::import(new UserImport, $request->file);
+                return redirect()->back()->with('success', 'Data Imported Successfully');
+                } catch(Exception $e) {
+                return redirect()->back()->with('success', 'Data Imported Fail.');
+                }
+        
+        }else{
+            return redirect()->back()->with('success', 'Data Imported Fail Please Choose File!');
+        }
     }
 
 
