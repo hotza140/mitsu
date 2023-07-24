@@ -425,6 +425,8 @@ public function user_item($id){
         $item=User::where(function($query) use($search){
             $query->orWhere('name', 'LIKE', '%'.$search.'%');
             $query->orWhere('code', 'LIKE', '%'.$search.'%');
+            $query->orWhere('email', 'LIKE', '%'.$search.'%');
+            $query->orWhere('phone', 'LIKE', '%'.$search.'%');
         })->where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(10);
         }else{
             $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(20);
