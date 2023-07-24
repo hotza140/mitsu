@@ -13,7 +13,7 @@
                 <!-- Page-header start -->
                 <div class="page-header card">
                     <div class="card-block">
-                        <h5 class="m-b-10">Air Models BACKEND</h5>
+                        <h5 class="m-b-10">Air Models POINT BACKEND</h5>
                     </div>
                 </div>
                 <!-- Page-header end -->
@@ -27,14 +27,14 @@
                             <div class="card">
                                 <div class="card-header">
 
-                                <form action="{{url('backend/air_model_excel')}}" method="POST" enctype="multipart/form-data">
+                                <!-- <form action="{{url('backend/air_model_excel')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
                                     <h6 style="color: red">(* อัพโหลดไฟล์ Excel ข้อมูล Model )</h6>
                                     <button type="submit" class="btn btn-danger" onclick="javascript:return confirm('Confirm?')" id="main"> Import </button>
                                     <input type="file" name="file"  />
                                    
                                     </form>
-                                    <br>
+                                    <br> -->
 
                                     <a style="color:white;" class="btn btn-success" href="{{url('/backend/air_model_add')}}">
                                         <i class="fa fa-plus"></i> Add</a>

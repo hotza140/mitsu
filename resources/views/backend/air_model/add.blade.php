@@ -8,7 +8,7 @@
                 <!-- Page-header start -->
                 <div class="page-header card">
                     <div class="card-block">
-                        <h5 class="m-b-10">Air Models/ADD</h5>
+                        <h5 class="m-b-10">Air Models POINT/ADD</h5>
 
                     </div>
                 </div>
