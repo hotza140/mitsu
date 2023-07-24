@@ -33,31 +33,41 @@ class UserImport implements ToModel,  WithStartRow
         //     $check=User::where('phone',$row[8])->first();
         // }
 
-        $check=User::where('name',$row[2])->where('lastname',$row[3])->first();
+        // $check=User::where('name',$row[2])->where('lastname',$row[3])->first();
 
-        $year = date('Y');
-        if($check!=null){
-            $fff=User::where('email',$row[8])->first();
-            if($fff==null){
-                $aaa=User::where('name',$row[2])->where('lastname',$row[3])->first();
-                $aaa->email=$row[8];
+        // $year = date('Y');
+        // if($check!=null){
+        //     $fff=User::where('email',$row[8])->first();
+        //     if($fff==null){
+        //         $aaa=User::where('name',$row[2])->where('lastname',$row[3])->first();
+        //         $aaa->email=$row[8];
 
-                 // CODE
-            $nu = User::where('type', 5)->orderby('id', 'desc')->first();
-            if ($nu != null) {
-                $nm = $nu->num + 1;
-            } else {
-                $nm = 1;
-            }
-            $aaa->num = $nm;
+        //          // CODE
+        //     $nu = User::where('type', 5)->orderby('id', 'desc')->first();
+        //     if ($nu != null) {
+        //         $nm = $nu->num + 1;
+        //     } else {
+        //         $nm = 1;
+        //     }
+        //     $aaa->num = $nm;
 
-            $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
-            $aaa->code = $year . 'H' . $num;
-            // CODE
+        //     $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+        //     $aaa->code = $year . 'H' . $num;
+        //     // CODE
 
-            $aaa->save();
-            }
+        //     $aaa->save();
+        //     }
            
+        // }
+
+
+        $check=User::where('us_id',$row[1])->first();
+        if($check!=null){
+            $aaa=User::where('us_id',$row[1])->first();
+            $aaa->amphur=$row[10];
+            $aaa->province=$row[11];
+            $aaa->save();
+
         }
 
         if($row[0]!=null and $row[1]!=null and $row[2]!=null){
@@ -81,8 +91,8 @@ class UserImport implements ToModel,  WithStartRow
             // "email"=>$row[8],
             "location"=>$row[9],
 
-            "amphur"=>$row[7],
-            "province"=>$row[7],
+            "amphur"=>$row[10],
+            "province"=>$row[11],
             "point"=>$point,
 
             "type"=>5,
