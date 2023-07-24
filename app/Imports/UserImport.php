@@ -12,6 +12,10 @@ use Illuminate\Support\Carbon;
 
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithStartRow;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\View;
+use Maatwebsite\Excel\Facades\Excel;
 
 use App\User;
 
