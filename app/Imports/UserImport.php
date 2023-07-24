@@ -36,6 +36,12 @@ class UserImport implements ToModel,  WithStartRow
         if($row[0]!=null and $row[1]!=null and $row[2]!=null){
             $pass=Hash::make($row[5]);
 
+            if($row[12]==null){
+            $point=0;
+            }else{
+                $point=$row[12];
+            }
+
         if($check==null){
             return new User([
             "us_id"=>$row[1],
@@ -50,7 +56,7 @@ class UserImport implements ToModel,  WithStartRow
 
             "amphur"=>$row[7],
             "province"=>$row[7],
-            "point"=>$row[12],
+            "point"=>$point,
 
             "type"=>5,
             "status"=>1,
