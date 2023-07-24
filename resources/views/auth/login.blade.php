@@ -95,11 +95,11 @@
                                 </div>
                                 <hr/>
                                 <div class="input-group">
-                                    <input type="email" class="form-control" placeholder="Your Email Address" name="email" value="{{ old('email') }}" required maxlenght="25">
+                                    <input type="email" class="form-control" placeholder="Your Email Address" name="email" value="{{ old('email') }}" required maxlength = "25">
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" class="form-control" placeholder="Password" name="password" required  maxlenght="10">
+                                    <input type="password" class="form-control" placeholder="Password" name="password" required  maxlength = "10">
                                     <span class="md-line"></span>
                                 </div>
                                 <div class="row m-t-25 text-left">
