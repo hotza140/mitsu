@@ -80,13 +80,13 @@
                         <?php $cus=App\Models\Customer::where('id',$data->customer_id)->first(); ?>
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <label class="col-form-label">ชื่อ :
+                                <label class="col-form-label">ลูกค้า :
                                     <?php if(isset($cus)){echo $cus->first_name.' '.$cus->last_name;} ?>
                                 </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">เบอร์ติดต่อ :
+                                <label class="col-form-label">โทร :
                                     <?php if(isset($cus)){echo $cus->phone;} ?>
                                 </label>
 
@@ -109,23 +109,23 @@
                         <div class="form-group row">
                             <table>
                                 <tr>
-                                    <td><b>
+                                    <!-- <td><b>
                                             <center>รายการที่</center>
-                                        </b></td>
+                                        </b></td> -->
                                     <td><b>
                                             <center>รายละเอียด</center>
                                         </b></td>
                                     <td><b>
-                                            <center>จำนวน</center>
+                                            <center>Q</center>
                                         </b></td>
                                     <td><b>
-                                            <center>บาท</center>
+                                            <center>Baht</center>
                                         </b></td>
                                 </tr>
 
                                 @foreach($pro as $key=> $pros)
                                 <tr>
-                                    <td>{{$key+1}}</td>
+                                    <!-- <td>{{$key+1}}</td> -->
                                     <td>
                                         <center>{{$pros->title}}</center>
                                     </td>
@@ -176,7 +176,7 @@
                                 <tr>
                                     <td></td>
                                     <td>
-                                        <center>รวมทั้งหมด</center>
+                                        <center>รวม</center>
                                     </td>
                                     <td></td>
                                     <td>
@@ -191,19 +191,19 @@
 
                         <div class="form-group row">
                             <div class="col-sm-12">
-                                <label class="col-form-label">สถานะงาน :
+                                <label class="col-form-label">Status :
                                     <?php if(isset($data)){ if($data->wo_status==0){echo 'งานยังไม่เสร็จ';}else{ echo 'งานสำเร็จ'; } } ?>
                                 </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">เวลาส่งมอบ :
+                                <label class="col-form-label">Time :
                                     <?php if(isset($data)){echo $data->wo_date.' เวลา '.$data->wo_time;} ?>
                                 </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">หมายเหตุ :
+                                <label class="col-form-label">Note :
                                     <?php if(isset($data)){if($data->remark){ echo $data->remark; }else{ echo '-'; } } ?>
                                 </label>
 
