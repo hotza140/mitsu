@@ -116,9 +116,9 @@
 
 
 
-                        <div align="center">
+                        <!-- <div align="center">
                             <p>รายการค่าแรงและค่าอะไหล่</p>
-                        </div>
+                        </div> -->
                         <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get(); ?>
                         <div class="form-group row">
                             <table class="table table-striped table-bordered nowrap">
