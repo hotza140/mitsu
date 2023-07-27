@@ -22,7 +22,10 @@
         table {
         width: 100%;
         }
-
+        
+        table {
+         border-collapse: collapse;
+        }
      
     </style>
 
