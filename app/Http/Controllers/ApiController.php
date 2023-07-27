@@ -33,6 +33,8 @@ use App\Models\TechnicianService;
 use App\AirModel;
 use App\WO;
 use App\WO_item;
+use App\Wo_air_checkModel;
+
 
 use App\Air_listModel;
 
@@ -101,17 +103,30 @@ class ApiController extends Controller
        public function api_air_list_check1(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
+           $wo = WO::where('technician_id', $r->id_user)->first();
  
-           if($air_list!=null){
+           if($air_list!=null and $wo!=null){
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if($cc==null){
+            $cc=new Wo_air_checkModel();
+            $cc->id_wo=$wo->id;
+            $cc->id_tech=$r->id_user;
+            $cc->model=$r->model;
+           }
  
            if($r->check1!=null){
              if($r->check1>=$air_list->min1 and $r->check1<=$air_list->max1){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             $r1=$r->check1.'-'.$sum1;
+             $cc->min1=$r1;
            }else{
              $sum1=null;
            }
  
            if($r->check2!=null){
              if($r->check2>=$air_list->min1 and $r->check2<=$air_list->max1){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             $r2=$r->check2.'-'.$sum2;
+             $cc->stan1=$r2;
            }else{
              $sum2=null;
            }
@@ -119,9 +134,13 @@ class ApiController extends Controller
  
            if($r->check3!=null){
              if($r->check3>=$air_list->min1 and $r->check3<=$air_list->max1){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             $r3=$r->check3.'-'.$sum3;
+             $cc->max1=$r3;
            }else{
              $sum3=null;
            }
+
+           $cc->save();
    
            $message = "Success!";
            $status = true;
@@ -137,7 +156,7 @@ class ApiController extends Controller
                'url_picture' => $this->prefix,
            ]);
          }else{
-             $message = "Not Have Models!";
+             $message = "Not Have Models or Work!";
            $status = true;
            return response()->json([
                'results' => [
@@ -151,86 +170,48 @@ class ApiController extends Controller
        ///air_listcheck1///
 
 
-         ///air_listcheck2///
-         public function api_air_list_check2(Request $r)
-         {
-             $air_list = Air_listModel::where('model', $r->model)->first();
-   
-             if($air_list!=null){
-   
-             if($r->check1!=null){
-               if($r->check1>=$air_list->min2 and $r->check1<=$air_list->max2){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             }else{
-               $sum1=null;
-             }
-   
-             if($r->check2!=null){
-               if($r->check2>=$air_list->min2 and $r->check2<=$air_list->max2){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             }else{
-               $sum2=null;
-             }
-   
-   
-             if($r->check3!=null){
-               if($r->check3>=$air_list->min2 and $r->check3<=$air_list->max2){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             }else{
-               $sum3=null;
-             }
-     
-             $message = "Success!";
-             $status = true;
-             return response()->json([
-                 'results' => [
-                     'air_list' => $air_list,
-                     'sum1' => $sum1,
-                     'sum2' => $sum2,
-                     'sum3' => $sum3,
-                 ],
-                 'status' =>  $status,
-                 'message' =>  $message,
-                 'url_picture' => $this->prefix,
-             ]);
-           }else{
-               $message = "Not Have Models!";
-             $status = true;
-             return response()->json([
-                 'results' => [
-                 ],
-                 'status' =>  $status,
-                 'message' =>  $message,
-                 'url_picture' => $this->prefix,
-             ]);
-           }
-         }
-         ///air_listcheck2///
-
-
-
-           ///air_listcheck3///
-       public function api_air_list_check3(Request $r)
+       ///air_listcheck2///
+       public function api_air_list_check2(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
+           $wo = WO::where('technician_id', $r->id_user)->first();
  
-           if($air_list!=null){
+           if($air_list!=null and $wo!=null){
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if($cc==null){
+            $cc=new Wo_air_checkModel();
+            $cc->id_wo=$wo->id;
+            $cc->id_tech=$r->id_user;
+            $cc->model=$r->model;
+           }
  
            if($r->check1!=null){
-             if($r->check1>=$air_list->min3 and $r->check1<=$air_list->max3){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             if($r->check1>=$air_list->min2 and $r->check1<=$air_list->max2){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             $r1=$r->check1.'-'.$sum1;
+             $cc->min2=$r1;
            }else{
              $sum1=null;
            }
  
            if($r->check2!=null){
-             if($r->check2>=$air_list->min3 and $r->check2<=$air_list->max3){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             if($r->check2>=$air_list->min2 and $r->check2<=$air_list->max2){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             $r2=$r->check2.'-'.$sum2;
+             $cc->stan2=$r2;
            }else{
              $sum2=null;
            }
  
  
            if($r->check3!=null){
-             if($r->check3>=$air_list->min3 and $r->check3<=$air_list->max3){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             if($r->check3>=$air_list->min2 and $r->check3<=$air_list->max2){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             $r3=$r->check3.'-'.$sum3;
+             $cc->max2=$r3;
            }else{
              $sum3=null;
            }
+
+           $cc->save();
    
            $message = "Success!";
            $status = true;
@@ -246,7 +227,79 @@ class ApiController extends Controller
                'url_picture' => $this->prefix,
            ]);
          }else{
-             $message = "Not Have Models!";
+             $message = "Not Have Models or Work!";
+           $status = true;
+           return response()->json([
+               'results' => [
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }
+       }
+       ///air_listcheck2///
+
+
+
+          ///air_listcheck3///
+       public function api_air_list_check3(Request $r)
+       {
+           $air_list = Air_listModel::where('model', $r->model)->first();
+           $wo = WO::where('technician_id', $r->id_user)->first();
+ 
+           if($air_list!=null and $wo!=null){
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if($cc==null){
+            $cc=new Wo_air_checkModel();
+            $cc->id_wo=$wo->id;
+            $cc->id_tech=$r->id_user;
+            $cc->model=$r->model;
+           }
+ 
+           if($r->check1!=null){
+             if($r->check1>=$air_list->min3 and $r->check1<=$air_list->max3){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             $r1=$r->check1.'-'.$sum1;
+             $cc->min3=$r1;
+           }else{
+             $sum1=null;
+           }
+ 
+           if($r->check2!=null){
+             if($r->check2>=$air_list->min3 and $r->check2<=$air_list->max3){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             $r2=$r->check2.'-'.$sum2;
+             $cc->stan3=$r2;
+           }else{
+             $sum2=null;
+           }
+ 
+ 
+           if($r->check3!=null){
+             if($r->check3>=$air_list->min3 and $r->check3<=$air_list->max3){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             $r3=$r->check3.'-'.$sum3;
+             $cc->max3=$r3;
+           }else{
+             $sum3=null;
+           }
+
+           $cc->save();
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'air_list' => $air_list,
+                   'sum1' => $sum1,
+                   'sum2' => $sum2,
+                   'sum3' => $sum3,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }else{
+             $message = "Not Have Models or Work!";
            $status = true;
            return response()->json([
                'results' => [
@@ -262,87 +315,48 @@ class ApiController extends Controller
 
 
 
-         ///air_listcheck4///
-         public function api_air_list_check4(Request $r)
-         {
-             $air_list = Air_listModel::where('model', $r->model)->first();
-   
-             if($air_list!=null){
-   
-             if($r->check1!=null){
-               if($r->check1>=$air_list->min4 and $r->check1<=$air_list->max4){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             }else{
-               $sum1=null;
-             }
-   
-             if($r->check2!=null){
-               if($r->check2>=$air_list->min4 and $r->check2<=$air_list->max4){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             }else{
-               $sum2=null;
-             }
-   
-   
-             if($r->check3!=null){
-               if($r->check3>=$air_list->min4 and $r->check3<=$air_list->max4){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             }else{
-               $sum3=null;
-             }
-     
-             $message = "Success!";
-             $status = true;
-             return response()->json([
-                 'results' => [
-                     'air_list' => $air_list,
-                     'sum1' => $sum1,
-                     'sum2' => $sum2,
-                     'sum3' => $sum3,
-                 ],
-                 'status' =>  $status,
-                 'message' =>  $message,
-                 'url_picture' => $this->prefix,
-             ]);
-           }else{
-               $message = "Not Have Models!";
-             $status = true;
-             return response()->json([
-                 'results' => [
-                 ],
-                 'status' =>  $status,
-                 'message' =>  $message,
-                 'url_picture' => $this->prefix,
-             ]);
-           }
-         }
-         ///air_listcheck4///
-
-
-
-
-           ///air_listcheck5///
-       public function api_air_list_check5(Request $r)
+       ///air_listcheck4///
+       public function api_air_list_check4(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
+           $wo = WO::where('technician_id', $r->id_user)->first();
  
-           if($air_list!=null){
+           if($air_list!=null and $wo!=null){
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if($cc==null){
+            $cc=new Wo_air_checkModel();
+            $cc->id_wo=$wo->id;
+            $cc->id_tech=$r->id_user;
+            $cc->model=$r->model;
+           }
  
            if($r->check1!=null){
-             if($r->check1>=$air_list->min5 and $r->check1<=$air_list->max5){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             if($r->check1>=$air_list->min4 and $r->check1<=$air_list->max4){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             $r1=$r->check1.'-'.$sum1;
+             $cc->min4=$r1;
            }else{
              $sum1=null;
            }
  
            if($r->check2!=null){
-             if($r->check2>=$air_list->min5 and $r->check2<=$air_list->max5){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             if($r->check2>=$air_list->min4 and $r->check2<=$air_list->max4){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             $r2=$r->check2.'-'.$sum2;
+             $cc->stan4=$r2;
            }else{
              $sum2=null;
            }
  
  
            if($r->check3!=null){
-             if($r->check3>=$air_list->min5 and $r->check3<=$air_list->max5){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             if($r->check3>=$air_list->min4 and $r->check3<=$air_list->max4){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             $r3=$r->check3.'-'.$sum3;
+             $cc->max4=$r3;
            }else{
              $sum3=null;
            }
+
+           $cc->save();
    
            $message = "Success!";
            $status = true;
@@ -358,7 +372,80 @@ class ApiController extends Controller
                'url_picture' => $this->prefix,
            ]);
          }else{
-             $message = "Not Have Models!";
+             $message = "Not Have Models or Work!";
+           $status = true;
+           return response()->json([
+               'results' => [
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }
+       }
+       ///air_listcheck4///
+
+
+
+
+           ///air_listcheck5///
+       public function api_air_list_check5(Request $r)
+       {
+           $air_list = Air_listModel::where('model', $r->model)->first();
+           $wo = WO::where('technician_id', $r->id_user)->first();
+ 
+           if($air_list!=null and $wo!=null){
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if($cc==null){
+            $cc=new Wo_air_checkModel();
+            $cc->id_wo=$wo->id;
+            $cc->id_tech=$r->id_user;
+            $cc->model=$r->model;
+           }
+ 
+           if($r->check1!=null){
+             if($r->check1>=$air_list->min5 and $r->check1<=$air_list->max5){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             $r1=$r->check1.'-'.$sum1;
+             $cc->min5=$r1;
+           }else{
+             $sum1=null;
+           }
+ 
+           if($r->check2!=null){
+             if($r->check2>=$air_list->min5 and $r->check2<=$air_list->max5){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             $r2=$r->check2.'-'.$sum2;
+             $cc->stan5=$r2;
+           }else{
+             $sum2=null;
+           }
+ 
+ 
+           if($r->check3!=null){
+             if($r->check3>=$air_list->min5 and $r->check3<=$air_list->max5){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             $r3=$r->check3.'-'.$sum3;
+             $cc->max5=$r3;
+           }else{
+             $sum3=null;
+           }
+
+           $cc->save();
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'air_list' => $air_list,
+                   'sum1' => $sum1,
+                   'sum2' => $sum2,
+                   'sum3' => $sum3,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }else{
+             $message = "Not Have Models or Work!";
            $status = true;
            return response()->json([
                'results' => [
@@ -373,147 +460,80 @@ class ApiController extends Controller
 
 
 
-         ///air_listcheck6///
-         public function api_air_list_check6(Request $r)
-         {
-             $air_list = Air_listModel::where('model', $r->model)->first();
-   
-             if($air_list!=null){
-   
-             if($r->check1!=null){
-               if($r->check1>=$air_list->min6 and $r->check1<=$air_list->max6){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             }else{
-               $sum1=null;
-             }
-   
-             if($r->check2!=null){
-               if($r->check2>=$air_list->min6 and $r->check2<=$air_list->max6){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             }else{
-               $sum2=null;
-             }
-   
-   
-             if($r->check3!=null){
-               if($r->check3>=$air_list->min6 and $r->check3<=$air_list->max6){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             }else{
-               $sum3=null;
-             }
-     
-             $message = "Success!";
-             $status = true;
-             return response()->json([
-                 'results' => [
-                     'air_list' => $air_list,
-                     'sum1' => $sum1,
-                     'sum2' => $sum2,
-                     'sum3' => $sum3,
-                 ],
-                 'status' =>  $status,
-                 'message' =>  $message,
-                 'url_picture' => $this->prefix,
-             ]);
-           }else{
-               $message = "Not Have Models!";
-             $status = true;
-             return response()->json([
-                 'results' => [
-                 ],
-                 'status' =>  $status,
-                 'message' =>  $message,
-                 'url_picture' => $this->prefix,
-             ]);
+       ///air_listcheck6///
+       public function api_air_list_check6(Request $r)
+       {
+           $air_list = Air_listModel::where('model', $r->model)->first();
+           $wo = WO::where('technician_id', $r->id_user)->first();
+ 
+           if($air_list!=null and $wo!=null){
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if($cc==null){
+            $cc=new Wo_air_checkModel();
+            $cc->id_wo=$wo->id;
+            $cc->id_tech=$r->id_user;
+            $cc->model=$r->model;
            }
+ 
+           if($r->check1!=null){
+             if($r->check1>=$air_list->min6 and $r->check1<=$air_list->max6){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
+             $r1=$r->check1.'-'.$sum1;
+             $cc->min6=$r1;
+           }else{
+             $sum1=null;
+           }
+ 
+           if($r->check2!=null){
+             if($r->check2>=$air_list->min6 and $r->check2<=$air_list->max6){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
+             $r2=$r->check2.'-'.$sum2;
+             $cc->stan6=$r2;
+           }else{
+             $sum2=null;
+           }
+ 
+ 
+           if($r->check3!=null){
+             if($r->check3>=$air_list->min6 and $r->check3<=$air_list->max6){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
+             $r3=$r->check3.'-'.$sum3;
+             $cc->max6=$r3;
+           }else{
+             $sum3=null;
+           }
+
+           $cc->save();
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'air_list' => $air_list,
+                   'sum1' => $sum1,
+                   'sum2' => $sum2,
+                   'sum3' => $sum3,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+         }else{
+             $message = "Not Have Models or Work!";
+           $status = true;
+           return response()->json([
+               'results' => [
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
          }
-         ///air_listcheck6///
+       }
+       ///air_listcheck1///
 
 
 
 
 
-
-
-
-
-
-
-    //    --------------------------------------------------------ALL
-
-      ///air_list///
-    //   public function api_air_list_check(Request $r)
-    //   {
-    //       $air_list = Air_listModel::where('model', $r->model)->first();
-
-    //       if($air_list!=null){
-
-    //       if($r->check1!=null){
-    //         if($r->check1>=$air_list->min1 and $r->check1<=$air_list->max1){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-    //       }else{
-    //         $sum1=null;
-    //       }
-
-    //       if($r->check2!=null){
-    //         if($r->check2>=$air_list->min2 and $r->check2<=$air_list->max2){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-    //       }else{
-    //         $sum2=null;
-    //       }
-
-
-    //       if($r->check3!=null){
-    //         if($r->check3>=$air_list->min3 and $r->check3<=$air_list->max3){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-    //       }else{
-    //         $sum3=null;
-    //       }
-
-    //       if($r->check4!=null){
-    //         if($r->check4>=$air_list->min4 and $r->check4<=$air_list->max4){$sum4='ปกติ';}else{$sum4='ผิดปกติ';}
-    //       }else{
-    //         $sum4=null;
-    //       }
-
-    //       if($r->check5!=null){
-    //         if($r->check5>=$air_list->min5 and $r->check5<=$air_list->max5){$sum5='ปกติ';}else{$sum5='ผิดปกติ';}
-    //       }else{
-    //         $sum5=null;
-    //       }
-
-    //       if($r->check6!=null){
-    //         if($r->check6>=$air_list->min6 and $r->check6<=$air_list->max6){$sum6='ปกติ';}else{$sum6='ผิดปกติ';}
-    //       }else{
-    //         $sum6=null;
-    //       }
-  
-    //       $message = "Success!";
-    //       $status = true;
-    //       return response()->json([
-    //           'results' => [
-    //               'air_list' => $air_list,
-    //               'sum1' => $sum1,
-    //               'sum2' => $sum2,
-    //               'sum3' => $sum3,
-    //               'sum4' => $sum4,
-    //               'sum5' => $sum5,
-    //               'sum6' => $sum6,
-    //           ],
-    //           'status' =>  $status,
-    //           'message' =>  $message,
-    //           'url_picture' => $this->prefix,
-    //       ]);
-    //     }else{
-    //         $message = "Not Have Models!";
-    //       $status = true;
-    //       return response()->json([
-    //           'results' => [
-    //           ],
-    //           'status' =>  $status,
-    //           'message' =>  $message,
-    //           'url_picture' => $this->prefix,
-    //       ]);
-    //     }
-    //   }
-      ///air_list///
-         //    --------------------------------------------------------ALL
-
-     
 
     // PDF WORK
     public function api_pdf_work($id)
