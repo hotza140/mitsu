@@ -227,7 +227,7 @@
 
 
 
-                                <?php  $check = Wo_air_checkModel::where('id_wo', $item->id)->first(); ?>
+                                <?php  $check = App\Wo_air_checkModel::where('id_wo', $item->id)->first(); ?>
                                  <div class="card-block">
                                     <h3>สรุปผลเช็ค Air</h3>
 
