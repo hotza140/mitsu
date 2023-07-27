@@ -223,12 +223,12 @@
 
                             </div>
                         </div>
-                        <br>
+                        <!-- <br>
 
                         <div class="dt-responsive table-responsive text-center">
                             <?php    $filePath = 'file/upload/' . $data->wo_picture;   $wo_picture= Storage::disk('s3')->url($filePath); ?>
                             <center><img src="{{$wo_picture}}" width="200px"></center>
-                        </div>
+                        </div> -->
 
 
 
