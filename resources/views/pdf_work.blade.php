@@ -12,44 +12,58 @@
     <!-- Styles -->
 
     <style>
-        /* @page {
-            size: 58mm;
-            margin: 0;
-        } */
-
-        /* @font-face {
-            font-family: 'THSarabunNew';
-            font-style: normal;
-            font-weight: normal;
-            src: url("{{ asset('fonts/THSarabunNew.ttf') }}") format('truetype');
-        }
-        @font-face {
-            font-family: 'THSarabunNew';
-            font-style: normal;
-            font-weight: bold;
-            src: url("{{ asset('fonts/THSarabunNew Bold.ttf') }}") format('truetype');
-        }
-        @font-face {
-            font-family: 'THSarabunNew';
-            font-style: italic;
-            font-weight: normal;
-            src: url("{{ asset('fonts/THSarabunNew Italic.ttf') }}") format('truetype');
-        }
-        @font-face {
-            font-family: 'THSarabunNew';
-            font-style: italic;
-            font-weight: bold;
-            src: url("{{ asset('fonts/THSarabunNew BoldItalic.ttf') }}") format('truetype');
-        }
-        html, body {
-            font-family: "THSarabunNew";
-        } */
 
         html,
         body {
             font-family: "Garuda";
         }
     </style>
+
+
+      <!-- Google font-->
+      <link href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600" rel="stylesheet">
+    <!-- Required Fremwork -->
+
+    <!-- <link rel="stylesheet" type="text/css" href="{{asset('files/bower_components/bootstrap/css/bootstrap.min.css')}}"> -->
+
+    <!-- themify-icons line icon -->
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/icon/themify-icons/themify-icons.css')}}">
+    <!-- ico font -->
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/icon/icofont/css/icofont.css')}}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/icon/font-awesome/css/font-awesome.min.cs')}}s">
+    <!-- Data Table Css -->
+    <link rel="stylesheet" type="text/css"
+        href="{{asset('files/bower_components/datatables.net-bs4/css/dataTables.bootstrap4.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+        href="{{asset('files/assets/pages/data-table/css/buttons.dataTables.min.css')}}">
+    <link rel="stylesheet" type="text/css"
+        href="{{asset('files/bower_components/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css')}}">
+    <!-- Style.css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/css/style.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/css/jquery.mCustomScrollbar.css')}}">
+
+      <!-- jpro forms css -->
+      <link rel="stylesheet" type="text/css" href="{{asset('files/assets/pages/j-pro/css/demo.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/pages/j-pro/css/font-awesome.min.css')}}">
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/pages/j-pro/css/j-pro-modern.css')}}">
+      <!-- Switch component css -->
+      <link rel="stylesheet" type="text/css" href="{{asset('files/bower_components/switchery/css/switchery.min.css')}}">
+
+    <!-- เสริม -->
+    <!-- sweet alert framework -->
+    <link rel="stylesheet" type="text/css" href="{{asset('files/bower_components/sweetalert/css/sweetalert.css')}}">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/icon/font-awesome/css/font-awesome.min.css')}}">
+    <!-- animation nifty modal window effects css -->
+    <link rel="stylesheet" type="text/css" href="{{asset('files/assets/css/component.css')}}">
+    <!-- เสริม -->
+
+
+    <!-- ตาปิดเปิด -->
+    <!-- https://www.w3resource.com/icon/font-awesome/web-application-icons/eye-slash.php -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+       <!-- ตาปิดเปิด -->
 
 </head>
 
@@ -107,7 +121,7 @@
                         </div>
                         <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get(); ?>
                         <div class="form-group row">
-                            <table>
+                            <table class="table table-striped table-bordered nowrap">
                                 <tr>
                                     <!-- <td><b>
                                             <center>รายการที่</center>
@@ -234,5 +248,67 @@
 
 
 </body>
+
+
+  <!-- เสริม -->
+  <script src="{{asset('files/bower_components/sweetalert/js/sweetalert.min.js')}}"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <script src="{{asset('files/assets/js/modal.js')}}"></script>
+        <!-- sweet alert modal.js intialize js -->
+        <!-- modalEffects js nifty modal window effects -->
+        <script src="{{asset('files/assets/js/classie.js')}}"></script>
+        <script src="{{asset('files/assets/js/modalEffects.js')}}"></script>
+         <!-- Validation js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.6/moment.min.js"></script>
+    <script  src="{{asset('files/assets/pages/form-validation/validate.js')}}"></script>
+    <!-- Custom js -->
+    <script  src="{{asset('files/assets/pages/form-validation/form-validation.js')}}"></script>
+        <!-- เสริม -->
+
+    <!-- Switch component js -->
+    <script  src="{{asset('files/bower_components/switchery/js/switchery.min.js')}}"></script>
+
+
+         <!-- Required Jquery -->
+         <!-- ตัวสำคัญแต่ชน summernote -->
+        <!-- <script  src="{{asset('files/bower_components/jquery/js/jquery.min.js')}}"></script> -->
+        <script src="{{asset('files/bower_components/jquery-ui/js/jquery-ui.min.js')}}"></script>
+        <script src="{{asset('files/bower_components/popper.js/js/popper.min.js')}}"></script>
+        <script src="{{asset('files/bower_components/bootstrap/js/bootstrap.min.js')}}"></script>
+        <!-- Required Jquery -->
+
+
+        <!-- jquery slimscroll js -->
+        <script src="{{asset('files/bower_components/jquery-slimscroll/js/jquery.slimscroll.js')}}"></script>
+        <!-- modernizr js -->
+        <script src="{{asset('files/bower_components/modernizr/js/modernizr.js')}}"></script>
+        <script src="{{asset('files/bower_components/modernizr/js/css-scrollbars.js')}}"></script>
+        <!-- data-table js -->
+        <script src="{{asset('files/bower_components/datatables.net/js/jquery.dataTables.min.js')}}"></script>
+        <script src="{{asset('files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js')}}"></script>
+        <script src="{{asset('files/assets/pages/data-table/js/jszip.min.js')}}"></script>
+        <script src="{{asset('files/assets/pages/data-table/js/pdfmake.min.js')}}"></script>
+        <script src="{{asset('files/assets/pages/data-table/js/vfs_fonts.js')}}"></script>
+        <script src="{{asset('files/bower_components/datatables.net-buttons/js/buttons.print.min.js')}}"></script>
+        <script src="{{asset('files/bower_components/datatables.net-buttons/js/buttons.html5.min.js')}}"></script>
+        <script src="{{asset('files/bower_components/datatables.net-bs4/js/dataTables.bootstrap4.min.js')}}"></script>
+        <script src="{{asset('files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js')}}">
+        </script>
+        <script src="{{asset('files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js')}}">
+        </script>
+        <!-- Custom js -->
+        <script src="{{asset('files/assets/pages/data-table/js/data-table-custom.js')}}"></script>
+        <script src="{{asset('files/assets/js/pcoded.min.js')}}"></script>
+        <script src="{{asset('files/assets/js/dark-light/vertical-layout.min.js')}}"></script>
+        <script src="{{asset('files/assets/js/jquery.mCustomScrollbar.concat.min.js')}}"></script>
+        <script src="{{asset('files/assets/js/script.js')}}"></script>
+
+          <!-- j-pro js -->
+    <script  src="{{asset('files/assets/pages/j-pro/js/jquery.ui.min.js')}}"></script>
+    <script  src="{{asset('files/assets/pages/j-pro/js/jquery.maskedinput.min.js')}}"></script>
+    <script  src="{{asset('files/assets/pages/j-pro/js/jquery.j-pro.js')}}"></script>
+    <!-- Switch component js -->
+    <script  src="{{asset('files/bower_components/switchery/js/switchery.min.js')}}"></script>
 
 </html>
