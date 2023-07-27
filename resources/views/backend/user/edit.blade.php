@@ -69,17 +69,17 @@ $picture= Storage::disk('s3')->url($filePath);
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Nickname</label>
-                                                <input disabled type="text" name="nickname" class="form-control" id=""
+                                                <input  type="text" name="nickname" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->nickname;} ?>">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Name</label>
-                                                <input disabled type="text" name="name" class="form-control" id=""
+                                                <input  type="text" name="name" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->name;} ?>">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Lastname</label>
-                                                <input disabled type="text" name="lastname" class="form-control" id=""
+                                                <input  type="text" name="lastname" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->lastname;} ?>">
                                             </div>
                                         </div>
@@ -87,12 +87,12 @@ $picture= Storage::disk('s3')->url($filePath);
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Phone</label>
-                                                <input disabled type="text" name="phone" class="form-control" id=""
+                                                <input  type="text" name="phone" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->phone;} ?>">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Email</label>
-                                                <input disabled type="email" name="email" class="form-control" id=""
+                                                <input  type="email" name="email" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->email;} ?>" required>
                                             </div>
                                             <div class="col-sm-3">
@@ -178,9 +178,9 @@ $picture= Storage::disk('s3')->url($filePath);
                                         </div>
 
 
-                                        <!-- <button type="submit" class="btn btn-success " style="color:white;"
+                                        <button type="submit" class="btn btn-success " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
-                                                    class="fa fa-check-circle-o"></i> Save </button> -->
+                                                    class="fa fa-check-circle-o"></i> Save </button>
 
 
                                     </form>
