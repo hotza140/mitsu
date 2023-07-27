@@ -123,7 +123,7 @@
 
                         <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get(); ?>
                         <div class="form-group row">
-                            <table class="table table-striped table-bordered nowrap">
+                            <table id="table_no" class="table table-striped table-bordered nowrap">
                                 <tr>
                                     <!-- <td><b>
                                             <center>รายการที่</center>
@@ -258,6 +258,25 @@
 
 
 </body>
+
+
+  <!-- จัดการ DATATABLE แบบไม่มี paginate และ search -->
+  <script type="text/javascript">
+        $(document).ready(function() {
+            $('#table_no').dataTable({
+                order:[],
+                stateSave: true,
+                paging: false,
+                "searching": false,
+                stateSaveCallback: function(settings,data) {
+                localStorage.setItem( 'DataTables_' + settings.sInstance, JSON.stringify(data) )
+                },
+                stateLoadCallback: function(settings) {
+                return JSON.parse( localStorage.getItem( 'DataTables_' + settings.sInstance ) )
+                },
+            });
+        } );
+    </script>
 
 
   <!-- เสริม -->
