@@ -162,15 +162,16 @@
                                 </tr>
 
 
+                                <?php $num=count($pro); ?>
                                 <tr>
-                                <td style="border-bottom: 1px solid black;">
+                                <td @if($num==0) style="border-bottom: 1px solid black;" @endif>
                                         <center>อัตราค่าแรง</center>
                                     </td>
-                                    <td style="border-bottom: 1px solid black;">
+                                    <td @if($num==0) style="border-bottom: 1px solid black;" @endif>
                                         <center>1</center>
                                     </td>
                                     <?php $dr1=$data->wo_price;  $dr2=number_format($dr1,2);   ?>
-                                    <td style="border-bottom: 1px solid black;">
+                                    <td @if($num==0) style="border-bottom: 1px solid black;" @endif>
                                         <center>{{$dr2}}</center>
                                     </td>
                                 </tr>
