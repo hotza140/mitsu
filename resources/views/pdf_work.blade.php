@@ -120,7 +120,7 @@
                             <p>รายการค่าแรงและค่าอะไหล่</p>
                         </div> -->
 
-                        
+
                         <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get(); ?>
                         <div class="form-group row">
                             <table class="table table-striped table-bordered nowrap">
@@ -214,7 +214,7 @@
                             </div>
                             <div class="col-sm-12">
                                 <label class="col-form-label">Time :
-                                    <?php if(isset($data)){echo $data->wo_date.' เวลา '.$data->wo_time;} ?>
+                                    <?php if(isset($data)){echo $data->wo_date.' เวลา '.$data->wo_time.' น. ';} ?>
                                 </label>
 
                             </div>
