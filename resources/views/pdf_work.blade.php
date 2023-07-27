@@ -16,7 +16,14 @@
         html,
         body {
             font-family: "Garuda";
+            font-size: 6px;
         }
+
+        table {
+        width: 100%;
+        }
+
+     
     </style>
 
 
@@ -83,36 +90,37 @@
 
 
                         <div class="dt-responsive table-responsive text-center">
-                            <center><img src="{{asset('img/back.jpg')}}" width="200px"></center>
-                            <br><br>
+                            <center><img src="{{asset('img/back.jpg')}}" width="50px"></center>
+                            <br>
                         </div>
 
-                        <div align="right">
+                        <!-- <div align="right">
                             <p>เลขที่ใบงาน : {{$data->wo_number}}</p>
-                        </div>
+                        </div> -->
 
                         <?php $cus=App\Models\Customer::where('id',$data->customer_id)->first(); ?>
-                        <div class="form-group row">
+                        <div class="form-group row" style="width:200px; border:1px solid black">
+                        <br>
                             <div class="col-sm-12">
-                                <label class="col-form-label">ลูกค้า :
+                                <label class="col-form-label"> {!! "&nbsp;" !!} ลูกค้า :
                                     <?php if(isset($cus)){echo $cus->first_name.' '.$cus->last_name;} ?>
                                 </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">โทร :
+                                <label class="col-form-label"> {!! "&nbsp;" !!} โทร :
                                     <?php if(isset($cus)){echo $cus->phone;} ?>
                                 </label>
 
                             </div>
                             <div class="col-sm-12">
-                                <label class="col-form-label">ที่อยู่ :
+                                <label class="col-form-label"> {!! "&nbsp;" !!} ที่อยู่ :
                                     <?php if(isset($cus)){echo $cus->address.' '.$cus->more_address;} ?>
                                 </label>
 
                             </div>
+                            <br>
                         </div>
-                        <br>
 
 
 
@@ -123,18 +131,19 @@
 
                         <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get(); ?>
                         <div class="form-group row">
+                        <br>
                             <table id="" class="table table-striped table-bordered nowrap">
                                 <tr>
                                     <!-- <td><b>
                                             <center>รายการที่</center>
                                         </b></td> -->
-                                    <td><b>
+                                    <td style="border-bottom: 1px solid black;"><b>
                                             <center>รายละเอียด</center>
                                         </b></td>
-                                    <td><b>
+                                    <td style="border-bottom: 1px solid black;"><b>
                                             <center>Q</center>
                                         </b></td>
-                                    <td><b>
+                                    <td style="border-bottom: 1px solid black;"><b>
                                             <center>Baht</center>
                                         </b></td>
                                 </tr>
@@ -142,35 +151,35 @@
                                 @foreach($pro as $key=> $pros)
                                 <tr>
                                     <!-- <td>{{$key+1}}</td> -->
-                                    <td>
+                                    <td @if($loop->last) style="border-bottom: 1px solid black;" @endif>
                                         <center>{{$pros->title}}</center>
                                     </td>
-                                    <td>
+                                    <td @if($loop->last) style="border-bottom: 1px solid black;" @endif>
                                         <center>{{$pros->number}}</center>
                                     </td>
 
                                     <?php $pp1=$pros->value;  $p1=number_format($pp1,2);   ?>
-                                    <td>
+                                    <td @if($loop->last) style="border-bottom: 1px solid black;" @endif>
                                         <center>{{$p1}}</center>
                                     </td>
                                 </tr>
                                 @endforeach
 
-                                <tr>
-                                    <td></td>
-                                    <td>
+                                <tr >
+                                    <!-- <td></td> -->
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>รวม</center>
                                     </td>
-                                    <td></td>
+                                    <td style="border-bottom: 1px solid black;"></td>
 
                                     <?php $dd1=$data->service_item_price;  $d1=number_format($dd1,2);   ?>
-                                    <td>
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>{{$d1}}</center>
                                     </td>
                                 </tr>
 
                                 <tr>
-                                    <td></td>
+                                    <!-- <td></td> -->
                                     <td>
                                         <center>ส่วนลดเคลม</center>
                                     </td>
@@ -180,32 +189,33 @@
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td>
+                                    <!-- <td></td> -->
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>ส่วนลดการค้า</center>
                                     </td>
-                                    <td></td>
-                                    <td>
+                                    <td style="border-bottom: 1px solid black;"></td>
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>0</center>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td></td>
-                                    <td>
+                                    <!-- <td></td> -->
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>รวม</center>
                                     </td>
-                                    <td></td>
-                                    <td>
+                                    <td style="border-bottom: 1px solid black;"></td>
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>{{$d1}}</center>
                                     </td>
                                 </tr>
 
                             </table>
+
+                            <br>
                         </div>
-                        <br>
 
 
-                        <div class="form-group row">
+                        <div class="form-group row" >
                             <div class="col-sm-12">
                                 <label class="col-form-label">Status :
                                     <?php if(isset($data)){ if($data->wo_status==0){echo 'งานยังไม่เสร็จ';}else{ echo 'งานสำเร็จ'; } } ?>
