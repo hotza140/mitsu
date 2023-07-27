@@ -132,7 +132,9 @@
                         </div> -->
 
 
-                        <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get(); ?>
+                        <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get();
+                        $all=App\WO_item::where('id_wo',$data->id)->where('status',0)->sum('value');
+                        ?>
                         <div class="form-group row">
                         <br>
                             <table id="" >
@@ -161,6 +163,20 @@
 
                                 @foreach($pro as $key=> $pros)
                                 <tr>
+
+                                @if($loop->first)
+                                    <td>
+                                        <center>อัตราค่าแรง</center>
+                                    </td>
+                                    <td>
+                                        <center>1</center>
+                                    </td>
+                                    <?php $dr1=$data->wo_price;  $dr2=number_format($dr1,2);   ?>
+                                    <td>
+                                        <center>{{$dr2}}</center>
+                                    </td>
+                                    @endif
+
                                     <!-- <td>{{$key+1}}</td> -->
                                     <td @if($loop->last) style="border-bottom: 1px solid black;" @endif>
                                         <center>{{$pros->title}}</center>
@@ -179,22 +195,16 @@
                                 @if($num==0)
 
                                 <tr>
-                                    <!-- <td></td> -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <!-- <td></td> -->
-                                    <td></td>
-                                    <td></td>
-                                    <td></td>
-                                </tr>
-                                <tr>
-                                    <!-- <td></td> -->
-                                    <td style="border-bottom: 1px solid black;"></td>
-                                    <td style="border-bottom: 1px solid black;"></td>
-                                    <td style="border-bottom: 1px solid black;"></td>
+                                <td style="border-bottom: 1px solid black;">
+                                        <center>อัตราค่าแรง</center>
+                                    </td>
+                                    <td style="border-bottom: 1px solid black;">
+                                        <center>1</center>
+                                    </td>
+                                    <?php $dr1=$data->wo_price;  $dr2=number_format($dr1,2);   ?>
+                                    <td style="border-bottom: 1px solid black;">
+                                        <center>{{$dr2}}</center>
+                                    </td>
                                 </tr>
                                 @endif
 
@@ -205,7 +215,7 @@
                                     </td>
                                     <td style="border-bottom: 1px solid black;"></td>
 
-                                    <?php $dd1=$data->service_item_price;  $d1=number_format($dd1,2);   ?>
+                                    <?php $dd1=$data->service_item_price; $dd1=$dd1+$dr1;  $d1=number_format($all,2);   ?>
                                     <td style="border-bottom: 1px solid black;">
                                         <center>{{$d1}}</center>
                                     </td>
