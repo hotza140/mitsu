@@ -1106,8 +1106,8 @@ public function user_item($id){
             }
             public function item_point_destroy($id){
                 $item=item_point::where('id',$id)->first();
-                $check= 'file/upload/' . $item->picture;
-                    Storage::disk('s3')->delete($check);
+                // $check= 'file/upload/' . $item->picture;
+                //     Storage::disk('s3')->delete($check);
                 $item->delete();
                 return redirect()->back()->with('success','Sucess!');
             }
