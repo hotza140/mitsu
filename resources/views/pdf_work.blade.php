@@ -133,6 +133,14 @@
                         <div class="form-group row">
                         <br>
                             <table id="" class="table table-striped table-bordered nowrap">
+
+                            <tr>
+                                    <!-- <td></td> -->
+                                    <td style="border-bottom: 1px solid black;"></td>
+                                    <td style="border-bottom: 1px solid black;"></td>
+                                    <td style="border-bottom: 1px solid black;"></td>
+                                </tr>
+
                                 <tr>
                                     <!-- <td><b>
                                             <center>รายการที่</center>
