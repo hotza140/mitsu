@@ -132,7 +132,7 @@
                         <?php $pro=App\WO_item::where('id_wo',$data->id)->where('status',0)->get(); ?>
                         <div class="form-group row">
                         <br>
-                            <table id="" class="table table-striped table-bordered nowrap">
+                            <table id="" >
 
                             <tr>
                                     <!-- <td></td> -->
