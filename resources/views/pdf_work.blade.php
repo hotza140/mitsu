@@ -214,7 +214,8 @@
                             </div>
                             <div class="col-sm-12">
                                 <label class="col-form-label">Time :
-                                    <?php if(isset($data)){echo $data->wo_date.' เวลา '.$data->wo_time.' น. ';} ?>
+                                    <?php if(isset($data)){ $time=date('H:i', strtotime($data->wo_time)); } ?>
+                                    <?php if(isset($data)){echo $data->wo_date.' เวลา '.$time.' น. ';} ?>
                                 </label>
 
                             </div>
