@@ -201,7 +201,7 @@
                                     </td>
                                     <td style="border-bottom: 1px solid black;"></td>
 
-                                    <?php $dd1=$data->service_item_price; $dd3=$dd1+$dr1;  $d1=number_format($dd3,2);   ?>
+                                    <?php $dd1=$data->service_item_price; $dd3=$all+$dr1;  $d1=number_format($dd3,2);   ?>
                                     <td style="border-bottom: 1px solid black;">
                                         <center>{{$d1}}</center>
                                     </td>
