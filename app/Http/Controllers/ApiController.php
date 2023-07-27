@@ -103,7 +103,7 @@ class ApiController extends Controller
        public function api_air_list_check1(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('technician_id', $r->id_work)->first();
+           $wo = WO::where('id', $r->id_work)->first();
  
            if($air_list!=null and $wo!=null){
 
@@ -173,7 +173,7 @@ class ApiController extends Controller
        public function api_air_list_check2(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('technician_id', $r->id_work)->first();
+           $wo = WO::where('id', $r->id_work)->first();
  
            if($air_list!=null and $wo!=null){
 
@@ -244,7 +244,7 @@ class ApiController extends Controller
        public function api_air_list_check3(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('technician_id', $r->id_work)->first();
+           $wo = WO::where('id', $r->id_work)->first();
  
            if($air_list!=null and $wo!=null){
 
@@ -316,7 +316,7 @@ class ApiController extends Controller
        public function api_air_list_check4(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('technician_id', $r->id_work)->first();
+           $wo = WO::where('id', $r->id_work)->first();
  
            if($air_list!=null and $wo!=null){
 
@@ -388,7 +388,7 @@ class ApiController extends Controller
        public function api_air_list_check5(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('technician_id', $r->id_work)->first();
+           $wo = WO::where('id', $r->id_work)->first();
  
            if($air_list!=null and $wo!=null){
 
@@ -459,7 +459,7 @@ class ApiController extends Controller
        public function api_air_list_check6(Request $r)
        {
            $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('technician_id', $r->id_work)->first();
+           $wo = WO::where('id', $r->id_work)->first();
  
            if($air_list!=null and $wo!=null){
 
