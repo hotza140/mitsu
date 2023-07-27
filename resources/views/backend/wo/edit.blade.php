@@ -224,6 +224,137 @@
                                 </div>
 
                                 <!-- Input Alignment card end -->
+
+
+
+                                <?php  $check = Wo_air_checkModel::where('id_wo', $item->id)->first(); ?>
+                                 <div class="card-block">
+                                    <h3>สรุปผลเช็ค Air</h3>
+
+                                    <div class="form-group row">
+                                            <h4>1. อุณหภูมิลมกลับ</h4>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 1</label>
+                                                <input disabled type="text" name="min1" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->min1;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 2</label>
+                                                <input disabled type="text" name="stan1" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->stan1;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 3</label>
+                                                <input disabled type="text" name="max1" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->max1;} ?>">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <h4>2. อุณหภูมิลมจ่าย</h4>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 1</label>
+                                                <input disabled type="text" name="min2" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->min2;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 2</label>
+                                                <input disabled type="text" name="stan2" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->stan2;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 3</label>
+                                                <input disabled type="text" name="max2" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->max2;} ?>">
+                                            </div>
+                                        </div>
+
+
+
+                                        <div class="form-group row">
+                                            <h4>3. อุณหภูมิภายนอก</h4>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 1</label>
+                                                <input disabled type="text" name="min3" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->min3;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 2</label>
+                                                <input disabled type="text" name="stan3" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->stan3;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 3</label>
+                                                <input disabled type="text" name="max3" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->max3;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <h4>4. ความดันน้ำยา</h4>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 1</label>
+                                                <input disabled type="text" name="min4" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->min4;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 2</label>
+                                                <input disabled type="text" name="stan4" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->stan4;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 3</label>
+                                                <input disabled type="text" name="max4" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->max4;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <h4>5. กระแสคอมเพรสเซอร์</h4>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 1</label>
+                                                <input disabled type="text" name="min5" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->min5;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 2</label>
+                                                <input disabled type="text" name="stan5" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->stan5;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 3</label>
+                                                <input disabled type="text" name="max5" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->max5;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                        <div class="form-group row">
+                                            <h4>6. แรงดันไฟฟ้า</h4>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 1</label>
+                                                <input disabled type="text" name="min6" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->min6;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 2</label>
+                                                <input disabled type="text" name="stan6" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->stan6;} ?>">
+                                            </div>
+                                            <div class="col-sm-4">
+                                                <label class="col-form-label">ครั้งที่ 3</label>
+                                                <input disabled type="text" name="max6" class="form-control" id="pic"
+                                                    value="<?php if(isset($check)){echo $check->max6;} ?>">
+                                            </div>
+                                        </div>
+
+
+                                      
+                                </div>
                             </div>
                         </div>
                     </div>
