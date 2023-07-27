@@ -161,22 +161,22 @@
                                         </b></td>
                                 </tr>
 
-                                @foreach($pro as $key=> $pros)
-                                <tr>
 
-                                @if($loop->first)
-                                    <td>
+                                <tr>
+                                <td style="border-bottom: 1px solid black;">
                                         <center>อัตราค่าแรง</center>
                                     </td>
-                                    <td>
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>1</center>
                                     </td>
                                     <?php $dr1=$data->wo_price;  $dr2=number_format($dr1,2);   ?>
-                                    <td>
+                                    <td style="border-bottom: 1px solid black;">
                                         <center>{{$dr2}}</center>
                                     </td>
-                                    @endif
+                                </tr>
 
+                                @foreach($pro as $key=> $pros)
+                                <tr>
                                     <!-- <td>{{$key+1}}</td> -->
                                     <td @if($loop->last) style="border-bottom: 1px solid black;" @endif>
                                         <center>{{$pros->title}}</center>
@@ -191,22 +191,7 @@
                                     </td>
                                 </tr>
                                 @endforeach
-                                <?php $num=count($pro); ?>
-                                @if($num==0)
-
-                                <tr>
-                                <td style="border-bottom: 1px solid black;">
-                                        <center>อัตราค่าแรง</center>
-                                    </td>
-                                    <td style="border-bottom: 1px solid black;">
-                                        <center>1</center>
-                                    </td>
-                                    <?php $dr1=$data->wo_price;  $dr2=number_format($dr1,2);   ?>
-                                    <td style="border-bottom: 1px solid black;">
-                                        <center>{{$dr2}}</center>
-                                    </td>
-                                </tr>
-                                @endif
+                                
 
                                 <tr >
                                     <!-- <td></td> -->
@@ -215,7 +200,7 @@
                                     </td>
                                     <td style="border-bottom: 1px solid black;"></td>
 
-                                    <?php $dd1=$data->service_item_price; $dd1=$dd1+$dr1;  $d1=number_format($all,2);   ?>
+                                    <?php $dd1=$data->service_item_price; $dd3=$dd1+$dr1;  $d1=number_format($dd3,2);   ?>
                                     <td style="border-bottom: 1px solid black;">
                                         <center>{{$d1}}</center>
                                     </td>
