@@ -761,11 +761,11 @@ class ApiController extends Controller
     public function api_work_item_submit(Request $r)
     {
         $item = WO::where('id', $r->id)->where('d_status', 0)->first();
-        $all=App\WO_item::where('id_wo',$r->id)->where('status',0)->sum('value');
-        $rr=$item->wo_price;
-        $rs=$rr+$all;
-        // $item->service_item_price = $r->sum;
-        $item->service_item_price = $rs;
+        // $all=App\WO_item::where('id_wo',$r->id)->where('status',0)->sum('value');
+        // $rr=$item->wo_price;
+        // $rs=$rr+$all;
+        // $item->service_item_price = $rs;
+        $item->service_item_price = $r->sum;
         $item->save();
 
         $message = "Success!";
