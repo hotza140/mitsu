@@ -140,6 +140,9 @@ class ApiController extends Controller
            }
 
            $cc->save();
+
+           $wo->status_air_check='มีการตรวจสอบแล้ว';
+           $wo->save();
    
            $message = "Success!";
            $status = true;
@@ -210,6 +213,9 @@ class ApiController extends Controller
            }
 
            $cc->save();
+
+           $wo->status_air_check='มีการตรวจสอบแล้ว';
+           $wo->save();
    
            $message = "Success!";
            $status = true;
@@ -281,6 +287,9 @@ class ApiController extends Controller
            }
 
            $cc->save();
+
+           $wo->status_air_check='มีการตรวจสอบแล้ว';
+           $wo->save();
    
            $message = "Success!";
            $status = true;
@@ -353,6 +362,9 @@ class ApiController extends Controller
            }
 
            $cc->save();
+
+           $wo->status_air_check='มีการตรวจสอบแล้ว';
+           $wo->save();
    
            $message = "Success!";
            $status = true;
@@ -425,6 +437,9 @@ class ApiController extends Controller
            }
 
            $cc->save();
+
+           $wo->status_air_check='มีการตรวจสอบแล้ว';
+           $wo->save();
    
            $message = "Success!";
            $status = true;
@@ -496,6 +511,9 @@ class ApiController extends Controller
            }
 
            $cc->save();
+
+           $wo->status_air_check='มีการตรวจสอบแล้ว';
+           $wo->save();
    
            $message = "Success!";
            $status = true;
