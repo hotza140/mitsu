@@ -1122,7 +1122,7 @@ class ApiController extends Controller
                 CURLOPT_POSTFIELDS => '{
             "sender": "MitsuHeavy",
             "msisdn": ["' . $r->phone . '"],
-            "message": "รหัส User ของคุณคือ ' . $r->email . ' รหัส Password ของคุณคือ  ' . $na. '"
+            "message": "รหัส ID User ของคุณคือ ' . $r->email . ' รหัส Password ของคุณคือ  ' . $na. '"
             }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
