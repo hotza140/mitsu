@@ -617,7 +617,7 @@ class ApiController extends Controller
             "sender": "MitsuHeavy",
             "msisdn": ["' . $phone . '"],
             "message": "รหัส OTP ของคุณคือ ' . $otp . ' รหัสอ้างอิง ' . $pass_check . ' รหัสมีอายุการใช้งาน 5 นาที ห้ามบอก OTP นี้แก่ผู้อื่นไม่ว่ากรณีใด"
-        }',
+            }',
                 CURLOPT_HTTPHEADER => array(
                     'Content-Type: application/json',
                     'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
@@ -1034,6 +1034,7 @@ class ApiController extends Controller
                 }
                 $user->password = Hash::make($na); 
             } else {
+                $na = $r->password;
                 $user->password = Hash::make($r->password);
             }
 
@@ -1103,6 +1104,37 @@ class ApiController extends Controller
 
 
             $user->save();
+
+
+            // ส่ง sms รหัส--------------
+            if($r->phone!=null){
+            $curl = curl_init();
+
+            curl_setopt_array($curl, array(
+                CURLOPT_URL => 'https://thsms.com/api/send-sms',
+                CURLOPT_RETURNTRANSFER => true,
+                CURLOPT_ENCODING => '',
+                CURLOPT_MAXREDIRS => 10,
+                CURLOPT_TIMEOUT => 0,
+                CURLOPT_FOLLOWLOCATION => true,
+                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                CURLOPT_CUSTOMREQUEST => 'POST',
+                CURLOPT_POSTFIELDS => '{
+            "sender": "MitsuHeavy",
+            "msisdn": ["' . $r->phone . '"],
+            "message": "รหัส User ของคุณคือ ' . $r->email . ' รหัส Password ของคุณคือ  ' . $na. '"
+            }',
+                CURLOPT_HTTPHEADER => array(
+                    'Content-Type: application/json',
+                    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
+                ),
+
+            ));
+
+            $response = curl_exec($curl);
+            curl_close($curl);
+            }
+             // ส่ง sms รหัส--------------
 
 
             $message = "Register Success!";
