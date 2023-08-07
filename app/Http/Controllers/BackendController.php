@@ -565,9 +565,20 @@ public function user_item($id){
     }
     public function user_destroy($id){
         $item=User::where('id',$id)->first();
-        $de=product::where('id_user',$id)->delete();
-        $de2=history_point::where('id_user',$id)->delete();
-        $item->delete();
+
+        $name='(delete)';
+        $phone=000000;
+        $item->name=$item->name.$name;
+        $item->lastname=$item->lastname.$name;
+        $item->email=$item->email.$name;
+        $item->phone=$item->phone.$phone;
+        $item->save();
+        $sss=User::where('id',$id)->first();
+        $sss->delete();
+
+        // $de=product::where('id_user',$id)->delete();
+        // $de2=history_point::where('id_user',$id)->delete();
+        // $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
     public function user_add(){
