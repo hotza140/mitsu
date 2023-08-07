@@ -1698,16 +1698,6 @@ class ApiController extends Controller
             'indoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
             'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
             'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
-            /*'indoor_number' => [
-                    'required',
-                    Rule::unique('air_conditioners','indoor_number')->where('outdoor_number','=',$indoor_number),
-                ],
-                'outdoor_number' => [
-                    'required',
-                    Rule::unique('air_conditioners','outdoor_number')->where(function($query) use ($request){
-                        return $query->where('indoor_number',$request->outdoor_number);
-                    }),
-                ],*/
         ];
 
         $error_validator = [
