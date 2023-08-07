@@ -34,7 +34,7 @@ class TrainingController extends Controller
     public function index()
     {
         $data['page'] = 'training';
-        $data['item'] = Training::orderby('id', 'asc')->get();
+        $data['item'] = Training::orderby('id', 'desc')->get();
         $data['list'] = 'training';
         return view('backend.training.index', $data);
     }
