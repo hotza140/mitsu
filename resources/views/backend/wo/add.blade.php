@@ -57,6 +57,14 @@
 
 
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Work Number</label>
+                                                <input type="text" name="wo_number" class="form-control" id="pic" required
+                                                    value="<?php if(isset($item)){echo $item->wo_number;} ?>">
+                                            </div>
+                                        </div>
+
 
 
                                         <div class="form-group row">

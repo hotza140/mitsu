@@ -293,7 +293,15 @@ class BackendController extends Controller
             return redirect()->to('/backend')->with('success','You NOT Super Admin!');
         }
         $item=User::where('id',$id)->first();
-        $item->delete();
+        $name='(delete)';
+        $phone=000000;
+        $item->name=$item->name.$name;
+        $item->lastname=$item->lastname.$name;
+        $item->email=$item->email.$name;
+        $item->phone=$item->phone.$phone;
+        $item->save();
+        $sss=User::where('id',$id)->first();
+        $sss->delete();
         return redirect()->back()->with('success','Sucess!');
     }
     public function admin_user_add(){

@@ -167,12 +167,12 @@ class WOController extends Controller
         $year_2 = date("y");
         $month_2 = date("m");
 
-        $number_id = WO::whereRaw('YEAR(created_at)=' . $year_4)->whereRaw('MONTH(created_at)=' . $month_2)->count() + 1;
-        $format = "WO" . $year_2 . $month_2 . "%'.07d";
+        // $number_id = WO::whereRaw('YEAR(created_at)=' . $year_4)->whereRaw('MONTH(created_at)=' . $month_2)->count() + 1;
+        // $format = "WO" . $year_2 . $month_2 . "%'.07d";
 
-        $ans = sprintf($format, $number_id);
+        // $ans = sprintf($format, $number_id);
 
-        $item->wo_number = $ans;
+        $item->wo_number = $wo_number;
         $item->wo_date = $r->wo_date;
         $item->wo_time = $r->wo_time;
         $item->wo_type = $r->wo_type;
@@ -190,6 +190,8 @@ class WOController extends Controller
     {
         $item = WO::where('id', $id)->first();
 
+
+        $item->wo_number = $wo_number;
         $item->wo_date = $r->wo_date;
         $item->wo_time = $r->wo_time;
         $item->wo_type = $r->wo_type;
