@@ -88,16 +88,16 @@
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Air Models</label>
-                                                <!-- <input type="text" name="air_model" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->air_model;} ?>"> -->
+                                                <input type="text" name="air_model" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->air_model;} ?>">
 
-                                                <select id="" class="col-form-label select_2" name="air_model">
+                                                <!-- <select id="" class="col-form-label select_2" name="air_model">
                                             @foreach($aii as $aai)
                                             <option value="{{$aai->id}}" @if(isset($item))
                                                 @if($item->air_model==$aai->id) selected @endif @endif >{{$aai->model_name}}
                                             </option>
                                             @endforeach
-                                        </select>
+                                        </select> -->
                                             </div>
                                         </div>
 
@@ -156,13 +156,15 @@
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">เลือก Customer</label>
-                                                <select id="" class="col-form-label select_2" name="customer_id">
+                                                <input type="text" name="customer_id" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->customer_id;} ?>">
+                                                <!-- <select id="" class="col-form-label select_2" name="customer_id">
                                             @foreach($cus as $cuss)
                                             <option value="{{$cuss->id}}" @if(isset($item))
                                                 @if($item->customer_id==$cuss->id) selected @endif @endif >{{$cuss->first_name}} {{$cuss->last_name}}
                                             </option>
                                             @endforeach
-                                        </select>
+                                        </select> -->
                                             </div>
                                         </div>
                                         <br>
