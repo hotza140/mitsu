@@ -572,7 +572,6 @@ public function user_item($id){
         $item->lastname=$item->lastname.$name;
         $item->email=$item->email.$name;
         $item->phone=$item->phone.$name;
-        dd($item->phone);
         $item->save();
         $sss=User::where('id',$id)->first();
         $sss->delete();
