@@ -298,7 +298,7 @@ class BackendController extends Controller
         $item->name=$item->name.$name;
         $item->lastname=$item->lastname.$name;
         $item->email=$item->email.$name;
-        $item->phone=$item->phone.$phone;
+        $item->phone=$item->phone.$name;
         $item->save();
         $sss=User::where('id',$id)->first();
         $sss->delete();
@@ -571,7 +571,8 @@ public function user_item($id){
         $item->name=$item->name.$name;
         $item->lastname=$item->lastname.$name;
         $item->email=$item->email.$name;
-        $item->phone=$item->phone.$phone;
+        $item->phone=$item->phone.$name;
+        dd($item->phone);
         $item->save();
         $sss=User::where('id',$id)->first();
         $sss->delete();
