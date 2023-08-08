@@ -1719,7 +1719,7 @@ class ApiController extends Controller
         }
 
         //Find Serial number in database
-        if ($request->indoor_number != null && !isEmpty($request->indoor_number) && $request->indoor_number != '' && isset($request->indoor_number)) {
+        if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
         }
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
@@ -1831,7 +1831,7 @@ class ApiController extends Controller
             ], 400);
         }
 
-        if ($request->indoor_number != null && !isEmpty($request->indoor_number) && $request->indoor_number != '' && isset($request->indoor_number)) {
+        if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
         }
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
