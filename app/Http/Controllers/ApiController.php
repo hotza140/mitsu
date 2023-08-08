@@ -1720,9 +1720,15 @@ class ApiController extends Controller
 
         //Find Serial number in database
         if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
-            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
+            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
+            ->where('serial_number', 'LIKE', '%'.$request->indoor_number.'%')
+            // ->where('serial_number', $request->indoor_number)
+            ->get()->count();
         }
-        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
+        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+        ->where('serial_number', 'LIKE', '%'.$request->outdoor_number.'%')
+        // ->where('serial_number', $request->outdoor_number)
+        ->get()->count();
         if (isset($check_serial_indoor)) {
             if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
                 $customer = new Customer();
@@ -1832,9 +1838,15 @@ class ApiController extends Controller
         }
 
         if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
-            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->get()->count();
+            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
+            ->where('serial_number', 'LIKE', '%'.$request->indoor_number.'%')
+            // ->where('serial_number', $request->indoor_number)
+            ->get()->count();
         }
-        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->get()->count();
+        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+        ->where('serial_number', 'LIKE', '%'.$request->outdoor_number.'%')
+        // ->where('serial_number', $request->outdoor_number)
+        ->get()->count();
 
         if (isset($check_serial_indoor)) {
             if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
@@ -1848,7 +1860,10 @@ class ApiController extends Controller
 
 
                     // ส่วนเช็ค Model รับ POINT
-                    $se = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->indoor_number)->first();
+                    $se = DB::connection('pgsql')->table('serial_numbers')
+                    ->where('serial_number', 'LIKE', '%'.$request->indoor_number.'%')
+                    // ->where('serial_number', $request->indoor_number)
+                    ->first();
                     if($se){
                     if($customer){
                         $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
@@ -1913,7 +1928,10 @@ class ApiController extends Controller
                     $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
 
                     // ส่วนเช็ค Model รับ POINT
-                    $se = DB::connection('pgsql')->table('serial_numbers')->where('serial_number', $request->outdoor_number)->first();
+                    $se = DB::connection('pgsql')->table('serial_numbers')
+                    ->where('serial_number', 'LIKE', '%'.$request->outdoor_number.'%')
+                    // ->where('serial_number', $request->outdoor_number)
+                    ->first();
                     if($se){
                     if($customer){
                         $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
