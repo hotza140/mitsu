@@ -60,7 +60,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">Email</label>
-                                                <input type="email" name="email" class="form-control" id="" required maxlength = "25"
+                                                <input type="email" name="email" class="form-control" id=""  maxlength = "25"
                                                      required value="<?php if(isset($item)){echo $item->email;} ?>">
                                             </div>
                                         </div>
@@ -68,7 +68,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">Password</label>
-                                                <input type="text" name="password" class="form-control" id="" required maxlength = "10"
+                                                <input type="text" name="password" class="form-control" id=""  maxlength = "10"
                                                       required>
                                             </div>
                                         </div>
