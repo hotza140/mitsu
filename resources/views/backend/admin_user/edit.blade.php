@@ -62,7 +62,7 @@
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">Email</label>
                                                 <input type="email" name="email" class="form-control" id="" required maxlength = "25"
-                                                     required value="<?php if(isset($item)){echo $item->email;} ?>">
+                                                      value="<?php if(isset($item)){echo $item->email;} ?>">
                                             </div>
                                         </div>
 
