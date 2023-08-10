@@ -69,7 +69,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">New Password</label>
-                                                <input type="text" name="password" class="form-control" id="" required maxlength = "10"
+                                                <input type="text" name="password" class="form-control" id=""  maxlength = "10"
                                                  placeholder="ถ้าไม่ต้องการเปลี่ยนรหัสให้ปล่อยช่องว่างเอาไว้"
                                                      >
                                             </div>
