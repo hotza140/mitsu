@@ -50,7 +50,7 @@
                                                     <td>{{$key+1}}</td>
                                                 <?php  $name=App\Models\Customer::where('id',$items->customer_id)->first();  ?>
                                                 @if($name!=null)
-                                                    <td>{{$name}}</td>
+                                                    <td>{{$name->full_name}}</td>
                                                     @else
                                                     <td></td>
                                                     @endif
