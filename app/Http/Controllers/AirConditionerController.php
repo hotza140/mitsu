@@ -50,7 +50,7 @@ class AirConditionerController extends Controller
     }
 
     public function destroy($id){
-        $item = Customer::where('id',$id)->first();
+        $item = AirConditioner::where('id',$id)->first();
         $item->delete();
         return redirect()->back()->with('success','Sucess!');
     }
