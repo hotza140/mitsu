@@ -48,7 +48,12 @@
                                             @foreach($item as $key=>$items)
                                                 <tr>
                                                     <td>{{$key+1}}</td>
-                                                    <td>{{$items->customer->full_name}}</td>
+                                                <?php  $name=App\Models\Customer::where('id',$items->customer_id)->first();  ?>
+                                                @if($name!=null)
+                                                    <td>{{$name}}</td>
+                                                    @else
+                                                    <td></td>
+                                                    @endif
                                                     <td>{{($items->outdoor_number) ?? '-'}}</td>
                                                     <td>{{($items->indoor_number)?? '-'}}</td>
                                                     <td>{{$items->updated_at}}</td>
