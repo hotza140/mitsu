@@ -1726,7 +1726,7 @@ class ApiController extends Controller
             ->get()->count();
 
             if($check_serial_indoor==0){
-                $ca1=substr($request->indoor_number,-1);
+                $ca1=substr($request->indoor_number,0,-1);
                 $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
                 ->where('serial_number', 'LIKE', '%'.$ca1.'%')
                 // ->where('serial_number', $request->indoor_number)
@@ -1741,7 +1741,7 @@ class ApiController extends Controller
         ->get()->count();
 
         if($check_serial_outdoor==0){
-            $ca2=substr($request->outdoor_number,-1);
+            $ca2=substr($request->outdoor_number,0,-1);
             $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
             ->where('serial_number', 'LIKE', '%'.$ca2.'%')
             // ->where('serial_number', $request->indoor_number)
@@ -1937,7 +1937,7 @@ class ApiController extends Controller
             ->get()->count();
 
             if($check_serial_indoor==0){
-                $ca1=substr($request->indoor_number,-1);
+                $ca1=substr($request->indoor_number,0,-1);
                 $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
                 ->where('serial_number', 'LIKE', '%'.$ca1.'%')
                 // ->where('serial_number', $request->indoor_number)
@@ -1952,7 +1952,7 @@ class ApiController extends Controller
         ->get()->count();
 
         if($check_serial_outdoor==0){
-            $ca2=substr($request->outdoor_number,-1);
+            $ca2=substr($request->outdoor_number,0,-1);
             $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
             ->where('serial_number', 'LIKE', '%'.$ca2.'%')
             // ->where('serial_number', $request->indoor_number)
