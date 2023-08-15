@@ -28,7 +28,7 @@ class AirConditionerController extends Controller
     public function index(){
         $data['page'] = 'air_conditioner';
 
-        $data['item'] = AirConditioner::orderby('id','asc')->with('customer')->get();
+        $data['item'] = AirConditioner::orderby('id','desc')->with('customer')->get();
         // return $data['item'];
         $data['list'] = 'air_conditioner';
         return view('backend.conditioner.index',$data);
