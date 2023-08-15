@@ -1780,7 +1780,7 @@ class ApiController extends Controller
                          $user = User::where('id', $customer->mechanic_id)->first();
                          if($user!=null){
                          $a1=$user->point;
-                         $a2=$model->point;
+                         $a2=$air->point;
                          $sum=$a1+$a2;
                          $user->point=$sum;
                          $user->save();
@@ -1854,7 +1854,7 @@ class ApiController extends Controller
                          $user = User::where('id', $customer->mechanic_id)->first();
                          if($user!=null){
                          $a1=$user->point;
-                         $a2=$model->point;
+                         $a2=$air->point;
                          $sum=$a1+$a2;
                          $user->point=$sum;
                          $user->save();
@@ -1976,7 +1976,7 @@ class ApiController extends Controller
                         $user = User::where('id', $customer->mechanic_id)->first();
                         if($user!=null){
                         $a1=$user->point;
-                        $a2=$model->point;
+                        $a2=$air->point;
                         $sum=$a1+$a2;
                         $user->point=$sum;
                         $user->save();
@@ -2044,7 +2044,7 @@ class ApiController extends Controller
                         $user = User::where('id', $customer->mechanic_id)->first();
                         if($user!=null){
                         $a1=$user->point;
-                        $a2=$model->point;
+                        $a2=$air->point;
                         $sum=$a1+$a2;
                         $user->point=$sum;
                         $user->save();
