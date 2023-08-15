@@ -1756,12 +1756,12 @@ class ApiController extends Controller
                      ->where('serial_number', 'LIKE', '%'.$request->indoor_number.'%')
                      // ->where('serial_number', $request->indoor_number)
                      ->first();
-                     if($se){
-                     if($customer){
+                     if($se!=null){
+                     if($customer!=null){
                          $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                         if($air){
+                         if($air!=null){
                          $user = User::where('id', $customer->mechanic_id)->first();
-                         if($user){
+                         if($user!=null){
                          $a1=$user->point;
                          $a2=$model->point;
                          $sum=$a1+$a2;
@@ -1830,12 +1830,12 @@ class ApiController extends Controller
                      ->where('serial_number', 'LIKE', '%'.$request->outdoor_number.'%')
                      // ->where('serial_number', $request->outdoor_number)
                      ->first();
-                     if($se){
-                     if($customer){
+                     if($se!=null){
+                     if($customer!=null){
                          $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                         if($air){
+                         if($air!=null){
                          $user = User::where('id', $customer->mechanic_id)->first();
-                         if($user){
+                         if($user!=null){
                          $a1=$user->point;
                          $a2=$model->point;
                          $sum=$a1+$a2;
@@ -1936,12 +1936,12 @@ class ApiController extends Controller
                     ->where('serial_number', 'LIKE', '%'.$request->indoor_number.'%')
                     // ->where('serial_number', $request->indoor_number)
                     ->first();
-                    if($se){
-                    if($customer){
+                    if($se!=null){
+                    if($customer!=null){
                         $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                        if($air){
+                        if($air!=null){
                         $user = User::where('id', $customer->mechanic_id)->first();
-                        if($user){
+                        if($user!=null){
                         $a1=$user->point;
                         $a2=$model->point;
                         $sum=$a1+$a2;
@@ -2004,12 +2004,12 @@ class ApiController extends Controller
                     ->where('serial_number', 'LIKE', '%'.$request->outdoor_number.'%')
                     // ->where('serial_number', $request->outdoor_number)
                     ->first();
-                    if($se){
-                    if($customer){
+                    if($se!=null){
+                    if($customer!=null){
                         $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                        if($air){
+                        if($air!=null){
                         $user = User::where('id', $customer->mechanic_id)->first();
-                        if($user){
+                        if($user!=null){
                         $a1=$user->point;
                         $a2=$model->point;
                         $sum=$a1+$a2;
