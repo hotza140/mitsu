@@ -1685,7 +1685,7 @@ class ApiController extends Controller
     {
 
         //check customer
-        $check_name_customer = Customer::where('first_name', $request->first_name)->where('last_name', $request->last_name)->get()->count();
+        $check_name_customer = Customer::where('mechanic_id','!=',null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->get()->count();
         if ($check_name_customer != 0) {
             return response()->json([
                 'status' => false,
@@ -1752,6 +1752,12 @@ class ApiController extends Controller
 
         if (isset($check_serial_indoor)) {
             if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+
+                $customer = Customer::where('first_name', $request->first_name)
+                ->where('last_name', $request->last_name)
+                ->first();
+
+                if($customer->mechanic_id==null){
                 $customer = new Customer();
                 $customer->mechanic_id = $request->mechanic_id;
                 $customer->first_name = $request->first_name;
@@ -1764,6 +1770,19 @@ class ApiController extends Controller
                 $customer->latitude = $request->latitude;
                 $customer->longitude = $request->longitude;
                 $customer->save();
+                }else{
+                $customer->mechanic_id = $request->mechanic_id;
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->full_name = $request->first_name . ' ' . $request->last_name;
+                $customer->phone = $request->phone;
+                $customer->line = $request->line;
+                $customer->address = $request->address;
+                $customer->more_address = $request->more_address;
+                $customer->latitude = $request->latitude;
+                $customer->longitude = $request->longitude;
+                $customer->save();
+                }
 
                 $air_conditioner = new AirConditioner();
                 $air_conditioner->customer_id = $customer->id;
@@ -1830,6 +1849,12 @@ class ApiController extends Controller
             }
         } else {
             if ($check_serial_outdoor != 0) {
+
+                $customer = Customer::where('first_name', $request->first_name)
+                ->where('last_name', $request->last_name)
+                ->first();
+
+                if($customer->mechanic_id==null){
                 $customer = new Customer();
                 $customer->mechanic_id = $request->mechanic_id;
                 $customer->first_name = $request->first_name;
@@ -1842,6 +1867,19 @@ class ApiController extends Controller
                 $customer->latitude = $request->latitude;
                 $customer->longitude = $request->longitude;
                 $customer->save();
+                }else{
+                $customer->mechanic_id = $request->mechanic_id;
+                $customer->first_name = $request->first_name;
+                $customer->last_name = $request->last_name;
+                $customer->full_name = $request->first_name . ' ' . $request->last_name;
+                $customer->phone = $request->phone;
+                $customer->line = $request->line;
+                $customer->address = $request->address;
+                $customer->more_address = $request->more_address;
+                $customer->latitude = $request->latitude;
+                $customer->longitude = $request->longitude;
+                $customer->save();
+                }
 
                 $air_conditioner = new AirConditioner();
                 $air_conditioner->customer_id = $customer->id;

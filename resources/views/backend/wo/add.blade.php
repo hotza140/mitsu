@@ -84,20 +84,11 @@
                                         </div>
 
 
-                                        <?php $aii=App\AirModel::orderby('id','desc')->get(); ?>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Air Models</label>
                                                 <input type="text" name="air_model" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->air_model;} ?>">
-
-                                                <!-- <select id="" class="col-form-label select_2" name="air_model">
-                                            @foreach($aii as $aai)
-                                            <option value="{{$aai->id}}" @if(isset($item))
-                                                @if($item->air_model==$aai->id) selected @endif @endif >{{$aai->model_name}}
-                                            </option>
-                                            @endforeach
-                                        </select> -->
                                             </div>
                                         </div>
 
@@ -122,51 +113,34 @@
                                             </div>
                                         </div>
 
-                                        <!-- <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">id technician</label>
-                                                <input type="text" name="technician_id" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->technician_id;} ?>">
-                                            </div>
-
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">customer_id</label>
-                                                <input type="text" name="customer_id" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->customer_id;} ?>">
-                                            </div>
-                                        </div> -->
-
-                                        <!-- <div class="form-group row">
-                                            <div class="col-sm-6">
-                                                <label class="col-form-label">สถานะงาน</label>
-                                            <select id="" class="col-form-label" name="wo_status">
-                                            <option value="0" @if(isset($item))
-                                                @if($item->wo_status==0) selected @endif @endif >งานยังไม่เสร็จ
-                                            </option>
-                                            <option value="1" @if(isset($item))
-                                                @if($item->wo_status==1) selected @endif @endif >งานสำเร็จ
-                                            </option>
-                                        </select>
-                                            </div>
-                                        </div> -->
-
 
                                         <br>
-                                        <?php $cus=App\Models\Customer::orderby('first_name','asc')->get(); ?>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">เลือก Customer</label>
-                                                <input type="text" name="customer_id" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->customer_id;} ?>">
-                                                <!-- <select id="" class="col-form-label select_2" name="customer_id">
-                                            @foreach($cus as $cuss)
-                                            <option value="{{$cuss->id}}" @if(isset($item))
-                                                @if($item->customer_id==$cuss->id) selected @endif @endif >{{$cuss->first_name}} {{$cuss->last_name}}
-                                            </option>
-                                            @endforeach
-                                        </select> -->
+                                                <label class="col-form-label">Customer First Name</label>
+                                                <input type="text" name="first_name" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->first_name;} ?>">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Customer Last Name</label>
+                                                <input type="text" name="last_name" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->last_name;} ?>">
                                             </div>
                                         </div>
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Customer Phone</label>
+                                                <input type="text" name="phone" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->phone;} ?>">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">Customer Address</label>
+                                                <input type="text" name="address" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->address;} ?>">
+                                            </div>
+                                        </div>
+                                        
                                         <br>
 
 

@@ -8,6 +8,12 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use App\Http\Requests\WOCreateRequest;
 
+use App\Models\TechnicianService;
+
+use App\AirModel;
+use App\Wo_air_checkModel;
+use App\Air_listModel;
+
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
@@ -178,10 +184,44 @@ class WOController extends Controller
         $item->wo_time = $r->wo_time;
         $item->wo_type = $r->wo_type;
         $item->wo_breakdown = $r->wo_breakdown;
-        $item->air_model = $r->air_model;
         $item->error_code = $r->error_code;
         $item->wo_price = $r->wo_price;
-        $item->customer_id = $r->customer_id;
+       
+
+        $air = AirModel::where('model_name',$r->air_model)->first();
+        if($air!=null){
+            $item->air_model = $air->id;
+        }else{
+            $air = new AirModel();
+            $air->model_name=$r->model_name;
+            $air->des=null;
+            $air->point=0;
+            $air->save();
+
+            $item->air_model = $air->id;
+        }
+
+        $customer = Customer::where('first_name', $r->first_name)
+        ->where('last_name', $r->last_name)->first();
+
+        if($customer==null){
+        $customer = new Customer();
+        $customer->first_name = $r->first_name;
+        $customer->last_name = $r->last_name;
+        $customer->full_name = $r->first_name . ' ' . $r->last_name;
+        $customer->phone = $r->phone;
+        $customer->address = $r->address;
+        $customer->save();
+        }else{
+        $customer->first_name = $r->first_name;
+        $customer->last_name = $r->last_name;
+        $customer->full_name = $r->first_name . ' ' . $r->last_name;
+        $customer->phone = $r->phone;
+        $customer->address = $r->address;
+        $customer->save();
+        }
+
+        $item->customer_id = $customer->id;
 
 
         $item->save();
@@ -197,13 +237,47 @@ class WOController extends Controller
         $item->wo_time = $r->wo_time;
         $item->wo_type = $r->wo_type;
         $item->wo_breakdown = $r->wo_breakdown;
-        $item->air_model = $r->air_model;
         $item->error_code = $r->error_code;
         $item->wo_price = $r->wo_price;
         $item->wo_status = $r->wo_status;
-        $item->customer_id = $r->customer_id;
 
+        $air = AirModel::where('model_name',$r->air_model)->first();
+        if($air!=null){
+            $item->air_model = $air->id;
+        }else{
+            $air = new AirModel();
+            $air->model_name=$r->model_name;
+            $air->des=null;
+            $air->point=0;
+            $air->save();
+
+            $item->air_model = $air->id;
+        }
+        
+
+        $customer = Customer::where('first_name', $r->first_name)
+        ->where('last_name', $r->last_name)->first();
+
+        if($customer==null){
+        $customer = new Customer();
+        $customer->first_name = $r->first_name;
+        $customer->last_name = $r->last_name;
+        $customer->full_name = $r->first_name . ' ' . $r->last_name;
+        $customer->phone = $r->phone;
+        $customer->address = $r->address;
+        $customer->save();
+        }else{
+        $customer->first_name = $r->first_name;
+        $customer->last_name = $r->last_name;
+        $customer->full_name = $r->first_name . ' ' . $r->last_name;
+        $customer->phone = $r->phone;
+        $customer->address = $r->address;
+        $customer->save();
+        }
+
+        $item->customer_id = $customer->id;
         $item->save();
+
         return redirect()->to('/backend/wo')->with('success', 'Sucess!');
     }
     public function wo_edit($id)
