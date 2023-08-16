@@ -88,11 +88,14 @@
                                             </div>
                                         </div>
 
+                                        <?php  
+                                          $air_models = DB::table('air_models')->where('id',$item->air_model)->first();
+                                         ?>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Air Models</label>
                                                 <input type="text" name="air_model" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->air_model;} ?>">
+                                                    value="<?php if($air_models!=null){echo $air_models->model_name;} ?>">
                                             </div>
                                         </div>
 
