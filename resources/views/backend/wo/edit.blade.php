@@ -123,7 +123,7 @@
 
                                         <br>
                                         <?php  
-                                          $customer = DB::table('customer')->where('id',$item->customer_id)->first();
+                                          $customer = DB::table('customers')->where('id',$item->customer_id)->first();
                                          ?>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
