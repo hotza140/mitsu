@@ -22,7 +22,7 @@
                 <div class="page-body">
 
                     <!-- --------------------- -->
-                    <?php  $data = App\Models\AirConditioner::orderby('id','asc')->with('customer')->get();
+                    <?php  $data = App\Models\AirConditioner::where('mechanic_id',$id)->orderby('id','asc')->with('customer')->get();
                     ?>
                     <div class="page-body">
                         <div class="row">
@@ -44,9 +44,13 @@
 
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
-                                                        <th>outdoor number</th>
-                                                        <th>indoor number</th>
+                                                        <th>Outdoor Model Name</th>
+                                                        <th>Outdoor number</th>
+                                                        <th>Indoor Model Name</th>
+                                                        <th>Indoor number</th>
+                                                        <th>Point</th>
                                                         <th>Date</th>
+                                                      
                                                         <th>Tool</th>
 
                                                     </tr>
@@ -56,9 +60,13 @@
                                                     <tr>
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$items->customer->full_name}}</td>
+                                                        <td>{{($items->out_name) ?? '-'}}</td>
                                                         <td>{{($items->outdoor_number) ?? '-'}}</td>
+                                                        <td>{{($items->in_name)?? '-'}}</td>
                                                         <td>{{($items->indoor_number)?? '-'}}</td>
+                                                        <td>{{($items->point)?? '-'}}</td>
                                                         <td>{{$items->created_at}}</td>
+                                                       
                                                         <td>
                                                             <a href="{{url('/backend/air_conditioner/'.$items->id.'/'.$id)}}"
                                                                 class="btn btn-sm btn-primary" style="color:white;"><i
@@ -75,11 +83,15 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                        <th>#</th>
+                                                    <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
-                                                        <th>outdoor number</th>
-                                                        <th>indoor number</th>
+                                                        <th>Outdoor Model Name</th>
+                                                        <th>Outdoor number</th>
+                                                        <th>Indoor Model Name</th>
+                                                        <th>Indoor number</th>
+                                                        <th>Point</th>
                                                         <th>Date</th>
+                                                        
                                                         <th>Tool</th>
                                                     </tr>
                                                 </tfoot>
