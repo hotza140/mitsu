@@ -1798,7 +1798,7 @@ class ApiController extends Controller
 
                          $air_conditioner->in_name = $air->model_name;
                          $air_conditioner->point = $air->point;
-                         $air_conditioner->save()
+                         $air_conditioner->save();
  
                          return response()->json([
                              'status' => true,
@@ -1877,7 +1877,7 @@ class ApiController extends Controller
                          $air_conditioner->out_name = $air->model_name;
                          $air_conditioner->point = $air->point;
                          $air_conditioner->point2 = $air->point;
-                         $air_conditioner->save()
+                         $air_conditioner->save();
  
                          return response()->json([
                              'status' => true,
@@ -2007,7 +2007,7 @@ class ApiController extends Controller
 
                         $air_conditioner->in_name = $air->model_name;
                         $air_conditioner->point = $air->point;
-                        $air_conditioner->save()
+                        $air_conditioner->save();
 
                         return response()->json([
                             'status' => true,
@@ -2080,7 +2080,7 @@ class ApiController extends Controller
                         $air_conditioner->out_name = $air->model_name;
                         $air_conditioner->point = $air->point;
                         $air_conditioner->point2 = $air->point;
-                        $air_conditioner->save()
+                        $air_conditioner->save();
 
                         return response()->json([
                             'status' => true,

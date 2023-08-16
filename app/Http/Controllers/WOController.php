@@ -173,7 +173,7 @@ class WOController extends Controller
 
         // $ans = sprintf($format, $number_id);
 
-        $item->wo_number = $wo_number;
+        $item->wo_number = $r->wo_number;
         $item->wo_date = $r->wo_date;
         $item->wo_time = $r->wo_time;
         $item->wo_type = $r->wo_type;
@@ -192,7 +192,7 @@ class WOController extends Controller
         $item = WO::where('id', $id)->first();
 
 
-        $item->wo_number = $wo_number;
+        $item->wo_number = $r->wo_number;
         $item->wo_date = $r->wo_date;
         $item->wo_time = $r->wo_time;
         $item->wo_type = $r->wo_type;
