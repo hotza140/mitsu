@@ -66,7 +66,7 @@
                                                     @if($aii==null)
                                                     <td>-</td>
                                                     @else
-                                                    <td>{{$aii->model_name}}</td>
+                                                    <td>{{$aii->des}}</td>
                                                     @endif
                                                     
                                                     <td>{{$items->error_code}}</td>
