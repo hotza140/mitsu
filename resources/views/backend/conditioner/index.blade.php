@@ -35,12 +35,15 @@
                                             <thead>
                                                 <tr>
 
-                                                    <th>#</th>
-                                                    <th>ชื่อลูกค้า</th>
-                                                    <th>outdoor number</th>
-                                                    <th>indoor number</th>
-                                                    <th>Updated_at</th>
-                                                    <th>Tool</th>
+                                                <th>#</th>
+                                                        <th>ชื่อลูกค้า</th>
+                                                        <th>Outdoor Model Name</th>
+                                                        <th>Outdoor number</th>
+                                                        <th>Indoor Model Name</th>
+                                                        <th>Indoor number</th>
+                                                        <th>Point</th>
+                                                        <th>Date</th>
+                                                        <th>Tool</th>
 
                                                 </tr>
                                             </thead>
@@ -54,9 +57,12 @@
                                                     @else
                                                     <td></td>
                                                     @endif
-                                                    <td>{{($items->outdoor_number) ?? '-'}}</td>
-                                                    <td>{{($items->indoor_number)?? '-'}}</td>
-                                                    <td>{{$items->updated_at}}</td>
+                                                    <td>{{($items->out_name) ?? '-'}}</td>
+                                                        <td>{{($items->outdoor_number) ?? '-'}}</td>
+                                                        <td>{{($items->in_name)?? '-'}}</td>
+                                                        <td>{{($items->indoor_number)?? '-'}}</td>
+                                                        <td>{{($items->point)?? '-'}}</td>
+                                                        <td>{{$items->created_at}}</td>
                                                     <td>
                                                     <a href="{{url('/backend/air_conditioner/'.$items->id)}}" class="btn btn-sm btn-primary" style="color:white;"><i class="fa fa-gear"></i>Edit</a>
                                                         <a href="{{url('/backend/air_conditioner/destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a>
@@ -68,11 +74,15 @@
                                             <tfoot>
                                                 <tr>
                                                 <th>#</th>
-                                                <th>ชื่อลูกค้า</th>
-                                                <th>outdoor number</th>
-                                                <th>indoor number</th>
-                                                <th>Updated_at</th>
-                                                <th>Tool</th>
+                                                        <th>ชื่อลูกค้า</th>
+                                                        <th>Outdoor Model Name</th>
+                                                        <th>Outdoor number</th>
+                                                        <th>Indoor Model Name</th>
+                                                        <th>Indoor number</th>
+                                                        <th>Point</th>
+                                                        <th>Date</th>
+                                                      
+                                                        <th>Tool</th>
                                                 </tr>
                                             </tfoot>
                                         </table>
