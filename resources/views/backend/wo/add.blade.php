@@ -87,7 +87,7 @@
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Air Models</label>
-                                                <input type="text" name="air_model" class="form-control" id="pic"
+                                                <input type="text" name="model_name" class="form-control" id="pic"
                                                     value="">
                                             </div>
                                         </div>
