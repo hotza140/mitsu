@@ -1720,35 +1720,31 @@ class ApiController extends Controller
 
         //Find Serial number in database
         if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
-            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', 'LIKE', '%'.$request->indoor_number.'%')
-            // ->where('serial_number', $request->indoor_number)
-            ->get()->count();
+            $king1=strlen($request->indoor_number);
 
-            if($check_serial_indoor==0){
-                $ca1=substr($request->indoor_number,0,-1);
-                $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-                ->where('serial_number', 'LIKE', '%'.$ca1.'%')
-                // ->where('serial_number', $request->indoor_number)
-                ->get()->count();
+            if($king1>11){
+            $ca1=substr($request->indoor_number,0,-1);
             }else{
-                $ca1=$request->indoor_number;
+            $ca1=$request->indoor_number;
             }
-        }
-        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-        ->where('serial_number', 'LIKE', '%'.$request->outdoor_number.'%')
-        // ->where('serial_number', $request->outdoor_number)
-        ->get()->count();
 
-        if($check_serial_outdoor==0){
-            $ca2=substr($request->outdoor_number,0,-1);
-            $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', 'LIKE', '%'.$ca2.'%')
-            // ->where('serial_number', $request->indoor_number)
+            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
+            ->where('serial_number', $ca1)
             ->get()->count();
-        }else{
-            $ca2=$request->outdoor_number;
+
         }
+
+            $king2=strlen($request->outdoor_number);
+
+            if($king2>11){
+            $ca2=substr($request->outdoor_number,0,-1);
+            }else{
+            $ca2=$request->outdoor_number;
+            }
+
+        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+        ->where('serial_number', $ca2)
+        ->get()->count();
 
         if (isset($check_serial_indoor)) {
             if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
@@ -1757,7 +1753,7 @@ class ApiController extends Controller
                 ->where('last_name', $request->last_name)
                 ->first();
 
-                if($customer->mechanic_id==null){
+                if($customer==null){
                 $customer = new Customer();
                 $customer->mechanic_id = $request->mechanic_id;
                 $customer->first_name = $request->first_name;
@@ -1854,7 +1850,7 @@ class ApiController extends Controller
                 ->where('last_name', $request->last_name)
                 ->first();
 
-                if($customer->mechanic_id==null){
+                if($customer==null){
                 $customer = new Customer();
                 $customer->mechanic_id = $request->mechanic_id;
                 $customer->first_name = $request->first_name;
@@ -1978,35 +1974,32 @@ class ApiController extends Controller
         }
 
         if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
-            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', 'LIKE', '%'.$request->indoor_number.'%')
-            // ->where('serial_number', $request->indoor_number)
-            ->get()->count();
 
-            if($check_serial_indoor==0){
-                $ca1=substr($request->indoor_number,0,-1);
-                $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-                ->where('serial_number', 'LIKE', '%'.$ca1.'%')
-                // ->where('serial_number', $request->indoor_number)
-                ->get()->count();
+            $king1=strlen($request->indoor_number);
+
+            if($king1>11){
+            $ca1=substr($request->indoor_number,0,-1);
             }else{
-                $ca1=$request->indoor_number;
+            $ca1=$request->indoor_number;
             }
-        }
-        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-        ->where('serial_number', 'LIKE', '%'.$request->outdoor_number.'%')
-        // ->where('serial_number', $request->outdoor_number)
-        ->get()->count();
 
-        if($check_serial_outdoor==0){
-            $ca2=substr($request->outdoor_number,0,-1);
-            $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', 'LIKE', '%'.$ca2.'%')
-            // ->where('serial_number', $request->indoor_number)
+            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
+            ->where('serial_number', $ca1)
             ->get()->count();
-        }else{
-            $ca2=$request->outdoor_number;
         }
+
+        
+        $king2=strlen($request->outdoor_number);
+
+        if($king2>11){
+        $ca2=substr($request->outdoor_number,0,-1);
+        }else{
+        $ca2=$request->outdoor_number;
+        }
+
+    $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+    ->where('serial_number', $ca2)
+    ->get()->count();
 
         if (isset($check_serial_indoor)) {
             if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
