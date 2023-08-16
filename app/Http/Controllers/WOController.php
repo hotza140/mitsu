@@ -211,6 +211,13 @@ class WOController extends Controller
         $customer->full_name = $r->first_name . ' ' . $r->last_name;
         $customer->phone = $r->phone;
         $customer->address = $r->address;
+
+        $customer->mechanic_id = null;
+        $customer->line = null;
+        $customer->more_address = null;
+        $customer->latitude = null;
+        $customer->longitude = null;
+
         $customer->save();
         }else{
         $customer->first_name = $r->first_name;
@@ -265,6 +272,13 @@ class WOController extends Controller
         $customer->full_name = $r->first_name . ' ' . $r->last_name;
         $customer->phone = $r->phone;
         $customer->address = $r->address;
+
+        $customer->mechanic_id = null;
+        $customer->line = null;
+        $customer->more_address = null;
+        $customer->latitude = null;
+        $customer->longitude = null;
+        
         $customer->save();
         }else{
         $customer->first_name = $r->first_name;
