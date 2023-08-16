@@ -22,7 +22,9 @@
                 <div class="page-body">
 
                     <!-- --------------------- -->
-                    <?php  $data = App\Models\AirConditioner::where('mechanic_id',$id)->orderby('id','asc')->with('customer')->get();
+                    <?php  
+                     $cus = App\Models\Customer::where('mechanic_id',$id)->pluck('id')->toArray();
+                    $data = App\Models\AirConditioner::whereIn('customer',$cus)->orderby('id','asc')->with('customer')->get();
                     ?>
                     <div class="page-body">
                         <div class="row">
