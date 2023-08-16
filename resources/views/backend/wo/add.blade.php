@@ -119,12 +119,12 @@
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Customer First Name</label>
                                                 <input type="text" name="first_name" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->first_name;} ?>">
+                                                    value="">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Customer Last Name</label>
                                                 <input type="text" name="last_name" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->last_name;} ?>">
+                                                    value="">
                                             </div>
                                         </div>
 
@@ -132,12 +132,12 @@
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Customer Phone</label>
                                                 <input type="text" name="phone" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->phone;} ?>">
+                                                    value="">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Customer Address</label>
                                                 <input type="text" name="address" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->address;} ?>">
+                                                    value="">
                                             </div>
                                         </div>
                                         
