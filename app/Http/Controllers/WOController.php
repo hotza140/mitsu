@@ -215,8 +215,8 @@ class WOController extends Controller
         $customer->mechanic_id = null;
         $customer->line = null;
         $customer->more_address = null;
-        $customer->latitude = null;
-        $customer->longitude = null;
+        $customer->latitude = 0;
+        $customer->longitude = 0;
 
         $customer->save();
         }else{
@@ -276,9 +276,9 @@ class WOController extends Controller
         $customer->mechanic_id = null;
         $customer->line = null;
         $customer->more_address = null;
-        $customer->latitude = null;
-        $customer->longitude = null;
-        
+        $customer->latitude = 0;
+        $customer->longitude = 0;
+
         $customer->save();
         }else{
         $customer->first_name = $r->first_name;
