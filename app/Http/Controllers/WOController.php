@@ -188,13 +188,13 @@ class WOController extends Controller
         $item->wo_price = $r->wo_price;
        
 
-        $air = AirModel::where('des',$r->air_model)->first();
+        $air = AirModel::where('des',$r->model_name)->first();
         if($air!=null){
             $item->air_model = $air->id;
         }else{
             $air = new AirModel();
             $air->des=$r->model_name;
-            $air->model_name=null;
+            $air->model_name='no_name';
             $air->point=0;
             $air->save();
 
@@ -248,13 +248,13 @@ class WOController extends Controller
         $item->wo_price = $r->wo_price;
         $item->wo_status = $r->wo_status;
 
-        $air = AirModel::where('des',$r->air_model)->first();
+        $air = AirModel::where('des',$r->model_name)->first();
         if($air!=null){
             $item->air_model = $air->id;
         }else{
             $air = new AirModel();
             $air->des=$r->model_name;
-            $air->model_name=null;
+            $air->model_name='no_name';
             $air->point=0;
             $air->save();
 
