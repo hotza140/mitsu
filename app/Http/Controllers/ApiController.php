@@ -1815,7 +1815,7 @@ class ApiController extends Controller
                          $his->date=date('Y-m-d H:i:s');
                          $his->save();
 
-                         $air_conditioner->in_name = $air->model_name;
+                         $air_conditioner->in_name = $air->des;
                          $air_conditioner->point = $air->point;
                          $air_conditioner->save();
  
@@ -1912,7 +1912,7 @@ class ApiController extends Controller
                          $his->date=date('Y-m-d H:i:s');
                          $his->save();
 
-                         $air_conditioner->out_name = $air->model_name;
+                         $air_conditioner->out_name = $air->des;
                          $air_conditioner->point = $air->point;
                          $air_conditioner->point2 = $air->point;
                          $air_conditioner->save();
@@ -2043,7 +2043,7 @@ class ApiController extends Controller
                         $his->date=date('Y-m-d H:i:s');
                         $his->save();
 
-                        $air_conditioner->in_name = $air->model_name;
+                        $air_conditioner->in_name = $air->des;
                         $air_conditioner->point = $air->point;
                         $air_conditioner->save();
 
@@ -2115,7 +2115,7 @@ class ApiController extends Controller
                         $his->date=date('Y-m-d H:i:s');
                         $his->save();
 
-                        $air_conditioner->out_name = $air->model_name;
+                        $air_conditioner->out_name = $air->des;
                         $air_conditioner->point = $air->point;
                         $air_conditioner->point2 = $air->point;
                         $air_conditioner->save();
