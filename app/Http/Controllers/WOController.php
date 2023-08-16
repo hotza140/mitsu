@@ -193,8 +193,8 @@ class WOController extends Controller
             $item->air_model = $air->id;
         }else{
             $air = new AirModel();
-            $air->model_name=$r->model_name;
-            $air->des=null;
+            $air->des=$r->model_name;
+            $air->model_name=null;
             $air->point=0;
             $air->save();
 
@@ -253,8 +253,8 @@ class WOController extends Controller
             $item->air_model = $air->id;
         }else{
             $air = new AirModel();
-            $air->model_name=$r->model_name;
-            $air->des=null;
+            $air->des=$r->model_name;
+            $air->model_name=null;
             $air->point=0;
             $air->save();
 
