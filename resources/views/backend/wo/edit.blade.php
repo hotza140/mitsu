@@ -184,6 +184,7 @@
                                                                 @endif
                                                     </div>
 
+                                                    <br>
                                          <label>Picture After</label>
                                                     <div class="file-upload col-sm-6">
                                                                 <input type="file" name="pic_after" class="form-control" id="pic">
