@@ -175,7 +175,10 @@
                                                                 <input type="file" name="pic_before" class="form-control" id="pic">
                                                                 @if(isset($item))
                                                                 @if($item->pic_before!='')
-                                                                    <div><img src="{{asset('img/upload/'.$item->pic_before)}}" width="150px"></div>
+                                                                <?php    $filePath = 'file/upload/' . $item->pic_before;  
+                                            $pic_before= Storage::disk('s3')->url($filePath);
+                                            ?>
+                                                                    <div><img src="{{$pic_before}}" width="150px"></div>
                                                                 @endif
                                                                 @endif
                                                     </div>
@@ -187,7 +190,10 @@
                                                                 <input type="file" name="pic_after" class="form-control" id="pic">
                                                                 @if(isset($item))
                                                                 @if($item->pic_after!='')
-                                                                    <div><img src="{{asset('img/upload/'.$item->pic_after)}}" width="150px"></div>
+                                                                <?php    $filePath = 'file/upload/' . $item->pic_after;  
+                                            $pic_after= Storage::disk('s3')->url($filePath);
+                                            ?>
+                                                                    <div><img src="{{$pic_after}}" width="150px"></div>
                                                                 @endif
                                                                 @endif
                                                     </div>
