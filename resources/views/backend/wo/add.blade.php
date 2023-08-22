@@ -142,6 +142,28 @@
                                         </div>
                                         
                                         <br>
+                                         <label>Picture Before</label>
+                                                    <div class="file-upload">
+                                                                <input type="file" name="pic_before" class="form-control" id="pic">
+                                                                @if(isset($item))
+                                                                @if($item->pic_before!='')
+                                                                    <div><img src="{{asset('img/upload/'.$item->pic_before)}}" width="150px"></div>
+                                                                @endif
+                                                                @endif
+                                                    </div>
+                                                    <br>
+
+                                                    <br>
+                                         <label>Picture After</label>
+                                                    <div class="file-upload">
+                                                                <input type="file" name="pic_after" class="form-control" id="pic">
+                                                                @if(isset($item))
+                                                                @if($item->pic_after!='')
+                                                                    <div><img src="{{asset('img/upload/'.$item->pic_after)}}" width="150px"></div>
+                                                                @endif
+                                                                @endif
+                                                    </div>
+                                                    <br>
 
 
 
