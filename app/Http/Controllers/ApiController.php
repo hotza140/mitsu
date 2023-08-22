@@ -932,6 +932,36 @@ class ApiController extends Controller
                 $wo->wo_picture = $fileName;
             }
 
+            if ($r->pic_berfore != null) {
+                if (!$r->hasFile('pic_berfore')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('pic_berfore');
+                if (!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $fileName = $_FILES['pic_berfore']['name'];
+                $fileName = date('YmdHis') . '_' . $fileName;
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $wo->pic_berfore = $fileName;
+            }
+
+            if ($r->pic_after != null) {
+                if (!$r->hasFile('pic_after')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('pic_after');
+                if (!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $fileName = $_FILES['pic_after']['name'];
+                $fileName = date('YmdHis') . '_' . $fileName;
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $wo->pic_after = $fileName;
+            }
+
             $wo->save();
 
 
