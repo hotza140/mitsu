@@ -141,11 +141,11 @@
                                             </div>
                                         </div>
                                         
-
-                                        <br>
                                         <div class="form-group row">
+                                            <div class="col-sm-3">
+                                        <br>
                                          <label>Picture Before</label>
-                                                    <div class="file-upload col-sm-6">
+                                                    <div class="file-upload">
                                                                 <input type="file" name="pic_before" class="form-control" id="pic">
                                                                 @if(isset($item))
                                                                 @if($item->pic_before!='')
@@ -156,10 +156,11 @@
                                                                 @endif
                                                                 @endif
                                                     </div>
+                                                    <br>
 
                                                     <br>
                                          <label>Picture After</label>
-                                                    <div class="file-upload col-sm-6">
+                                                    <div class="file-upload">
                                                                 <input type="file" name="pic_after" class="form-control" id="pic">
                                                                 @if(isset($item))
                                                                 @if($item->pic_after!='')
@@ -170,8 +171,9 @@
                                                                 @endif
                                                                 @endif
                                                     </div>
-                                                    </div>
                                                     <br>
+                                                    </div>
+                                                    </div>
 
 
 
