@@ -141,7 +141,9 @@
                                             </div>
                                         </div>
                                         
+
                                         <br>
+                                        <div class="form-group row">
                                          <label>Picture Before</label>
                                                     <div class="file-upload col-sm-6">
                                                                 <input type="file" name="pic_before" class="form-control" id="pic">
@@ -154,9 +156,7 @@
                                                                 @endif
                                                                 @endif
                                                     </div>
-                                                    <br>
 
-                                                    <br>
                                          <label>Picture After</label>
                                                     <div class="file-upload col-sm-6">
                                                                 <input type="file" name="pic_after" class="form-control" id="pic">
@@ -168,6 +168,7 @@
                                                                     <div><img src="{{$pic_after}}" width="150px"></div>
                                                                 @endif
                                                                 @endif
+                                                    </div>
                                                     </div>
                                                     <br>
 
