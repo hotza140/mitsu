@@ -932,34 +932,34 @@ class ApiController extends Controller
                 $wo->wo_picture = $fileName;
             }
 
-            if ($r->pic_berfore != null) {
-                if (!$r->hasFile('pic_berfore')) {
+            if ($r->pic_before != null) {
+                if (!$r->hasFile('pic_before')) {
                     return response()->json(['upload_file_not_found'], 400);
                 }
-                $file = $r->file('pic_berfore');
+                $file = $r->file('pic_before');
                 if (!$file->isValid()) {
                     return response()->json(['invalid_file_upload'], 400);
                 }
-                $fileName = $_FILES['pic_berfore']['name'];
+                $fileName = $_FILES['pic_before']['name'];
                 $fileName = date('YmdHis') . '_' . $fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
-                $wo->pic_berfore = $fileName;
+                $wo->pic_before = $fileName;
             }
 
-                if ($r->pic_berfore2 != null) {
-                if (!$r->hasFile('pic_berfore2')) {
+                if ($r->pic_before2 != null) {
+                if (!$r->hasFile('pic_before2')) {
                     return response()->json(['upload_file_not_found'], 400);
                 }
-                $file = $r->file('pic_berfore2');
+                $file = $r->file('pic_before2');
                 if (!$file->isValid()) {
                     return response()->json(['invalid_file_upload'], 400);
                 }
-                $fileName = $_FILES['pic_berfore2']['name'];
+                $fileName = $_FILES['pic_before2']['name'];
                 $fileName = date('YmdHis') . '_' . $fileName;
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
-                $wo->pic_berfore2 = $fileName;
+                $wo->pic_before2 = $fileName;
             }
 
             if ($r->pic_after != null) {
