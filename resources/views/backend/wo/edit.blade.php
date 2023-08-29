@@ -205,6 +205,45 @@
 
 
 
+
+
+
+                                                    <div class="form-group row">
+                                            <div class="col-sm-3">
+                                        <br>
+                                         <label>Picture Before2</label>
+                                                    <div class="file-upload">
+                                                                <input type="file" name="pic_before2" class="form-control" id="pic">
+                                                                @if(isset($item))
+                                                                @if($item->pic_before2!='')
+                                                                <?php    $filePath = 'file/upload/' . $item->pic_before2;  
+                                            $pic_before2= Storage::disk('s3')->url($filePath);
+                                            ?>
+                                                                    <div><img src="{{$pic_before2}}" width="150px"></div>
+                                                                @endif
+                                                                @endif
+                                                    </div>
+                                                    <br>
+
+                                                    <br>
+                                         <label>Picture After2</label>
+                                                    <div class="file-upload">
+                                                                <input type="file" name="pic_after2" class="form-control" id="pic">
+                                                                @if(isset($item))
+                                                                @if($item->pic_after2!='')
+                                                                <?php    $filePath = 'file/upload/' . $item->pic_after2;  
+                                            $pic_after2= Storage::disk('s3')->url($filePath);
+                                            ?>
+                                                                    <div><img src="{{$pic_after2}}" width="150px"></div>
+                                                                @endif
+                                                                @endif
+                                                    </div>
+                                                    <br>
+                                                    </div>
+                                                    </div>
+
+
+
                                         <div class="form-group row">
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">หมายเหตุ</label>

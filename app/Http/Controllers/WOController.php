@@ -209,6 +209,28 @@ class WOController extends Controller
           Storage::disk('s3')->put($filePath, file_get_contents($file));
           $item->pic_after = $fileName;
           }
+
+          if($r->pic_before2){
+            $check= 'file/upload/' . $item->pic_before2;
+                  Storage::disk('s3')->delete($check);
+          $file = $r->file('pic_before2');
+          $fileName = $_FILES['pic_before2']['name'];
+           $fileName = date('YmdHis').'_'.$fileName;
+          $filePath = 'file/upload/' . $fileName;
+          Storage::disk('s3')->put($filePath, file_get_contents($file));
+          $item->pic_before2 = $fileName;
+          }
+
+          if($r->pic_after2){
+            $check= 'file/upload/' . $item->pic_after2;
+                  Storage::disk('s3')->delete($check);
+          $file = $r->file('pic_after2');
+          $fileName = $_FILES['pic_after2']['name'];
+           $fileName = date('YmdHis').'_'.$fileName;
+          $filePath = 'file/upload/' . $fileName;
+          Storage::disk('s3')->put($filePath, file_get_contents($file));
+          $item->pic_after2 = $fileName;
+          }
        
 
         $air = AirModel::where('des',$r->model_name)->first();
@@ -282,15 +304,26 @@ class WOController extends Controller
           $item->pic_before = $fileName;
           }
 
-          if($r->pic_after){
-            $check= 'file/upload/' . $item->pic_after;
+          if($r->pic_before2){
+            $check= 'file/upload/' . $item->pic_before2;
                   Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_after');
-          $fileName = $_FILES['pic_after']['name'];
+          $file = $r->file('pic_before2');
+          $fileName = $_FILES['pic_before2']['name'];
            $fileName = date('YmdHis').'_'.$fileName;
           $filePath = 'file/upload/' . $fileName;
           Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_after = $fileName;
+          $item->pic_before2 = $fileName;
+          }
+
+          if($r->pic_after2){
+            $check= 'file/upload/' . $item->pic_after2;
+                  Storage::disk('s3')->delete($check);
+          $file = $r->file('pic_after2');
+          $fileName = $_FILES['pic_after2']['name'];
+           $fileName = date('YmdHis').'_'.$fileName;
+          $filePath = 'file/upload/' . $fileName;
+          Storage::disk('s3')->put($filePath, file_get_contents($file));
+          $item->pic_after2 = $fileName;
           }
 
         $air = AirModel::where('des',$r->model_name)->first();
