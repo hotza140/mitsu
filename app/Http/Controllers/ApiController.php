@@ -947,6 +947,21 @@ class ApiController extends Controller
                 $wo->pic_berfore = $fileName;
             }
 
+                if ($r->pic_berfore2 != null) {
+                if (!$r->hasFile('pic_berfore2')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('pic_berfore2');
+                if (!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $fileName = $_FILES['pic_berfore2']['name'];
+                $fileName = date('YmdHis') . '_' . $fileName;
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $wo->pic_berfore2 = $fileName;
+            }
+
             if ($r->pic_after != null) {
                 if (!$r->hasFile('pic_after')) {
                     return response()->json(['upload_file_not_found'], 400);
@@ -960,6 +975,21 @@ class ApiController extends Controller
                 $filePath = 'file/upload/' . $fileName;
                 Storage::disk('s3')->put($filePath, file_get_contents($file));
                 $wo->pic_after = $fileName;
+            }
+
+            if ($r->pic_after2 != null) {
+                if (!$r->hasFile('pic_after2')) {
+                    return response()->json(['upload_file_not_found'], 400);
+                }
+                $file = $r->file('pic_after2');
+                if (!$file->isValid()) {
+                    return response()->json(['invalid_file_upload'], 400);
+                }
+                $fileName = $_FILES['pic_after2']['name'];
+                $fileName = date('YmdHis') . '_' . $fileName;
+                $filePath = 'file/upload/' . $fileName;
+                Storage::disk('s3')->put($filePath, file_get_contents($file));
+                $wo->pic_after2 = $fileName;
             }
 
             $wo->save();
