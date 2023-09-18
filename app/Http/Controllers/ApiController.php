@@ -1806,104 +1806,104 @@ class ApiController extends Controller
         ->where('serial_number', $ca2)
         ->get()->count();
 
-        if (isset($check_serial_indoor)) {
-            if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+        // if (isset($check_serial_indoor)) {
+        //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
 
-                $customer = Customer::where('first_name', $request->first_name)
-                ->where('last_name', $request->last_name)
-                ->first();
+        //         $customer = Customer::where('first_name', $request->first_name)
+        //         ->where('last_name', $request->last_name)
+        //         ->first();
 
-                if($customer==null){
-                $customer = new Customer();
-                $customer->mechanic_id = $request->mechanic_id;
-                $customer->first_name = $request->first_name;
-                $customer->last_name = $request->last_name;
-                $customer->full_name = $request->first_name . ' ' . $request->last_name;
-                $customer->phone = $request->phone;
-                $customer->line = $request->line;
-                $customer->address = $request->address;
-                $customer->more_address = $request->more_address;
-                $customer->latitude = $request->latitude;
-                $customer->longitude = $request->longitude;
-                $customer->save();
-                }else{
-                $customer->mechanic_id = $request->mechanic_id;
-                $customer->first_name = $request->first_name;
-                $customer->last_name = $request->last_name;
-                $customer->full_name = $request->first_name . ' ' . $request->last_name;
-                $customer->phone = $request->phone;
-                $customer->line = $request->line;
-                $customer->address = $request->address;
-                $customer->more_address = $request->more_address;
-                $customer->latitude = $request->latitude;
-                $customer->longitude = $request->longitude;
-                $customer->save();
-                }
+        //         if($customer==null){
+        //         $customer = new Customer();
+        //         $customer->mechanic_id = $request->mechanic_id;
+        //         $customer->first_name = $request->first_name;
+        //         $customer->last_name = $request->last_name;
+        //         $customer->full_name = $request->first_name . ' ' . $request->last_name;
+        //         $customer->phone = $request->phone;
+        //         $customer->line = $request->line;
+        //         $customer->address = $request->address;
+        //         $customer->more_address = $request->more_address;
+        //         $customer->latitude = $request->latitude;
+        //         $customer->longitude = $request->longitude;
+        //         $customer->save();
+        //         }else{
+        //         $customer->mechanic_id = $request->mechanic_id;
+        //         $customer->first_name = $request->first_name;
+        //         $customer->last_name = $request->last_name;
+        //         $customer->full_name = $request->first_name . ' ' . $request->last_name;
+        //         $customer->phone = $request->phone;
+        //         $customer->line = $request->line;
+        //         $customer->address = $request->address;
+        //         $customer->more_address = $request->more_address;
+        //         $customer->latitude = $request->latitude;
+        //         $customer->longitude = $request->longitude;
+        //         $customer->save();
+        //         }
 
-                $air_conditioner = new AirConditioner();
-                $air_conditioner->customer_id = $customer->id;
-                $air_conditioner->indoor_number = $ca1;
-                $air_conditioner->outdoor_number = $ca2;
+        //         $air_conditioner = new AirConditioner();
+        //         $air_conditioner->customer_id = $customer->id;
+        //         $air_conditioner->indoor_number = $ca1;
+        //         $air_conditioner->outdoor_number = $ca2;
 
-                if ($air_conditioner->save()) {
+        //         if ($air_conditioner->save()) {
 
-                     // ส่วนเช็ค Model รับ POINT
-                     $se = DB::connection('pgsql')->table('serial_numbers')
-                     ->where('serial_number', 'LIKE', '%'.$ca1.'%')
-                     // ->where('serial_number', $request->indoor_number)
-                     ->first();
-                     if($se!=null){
-                     if($customer!=null){
-                         $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                         if($air!=null){
-                         $user = User::where('id', $customer->mechanic_id)->first();
-                         if($user!=null){
-                         $a1=$user->point;
-                         $a2=$air->point;
-                         $sum=$a1+$a2;
-                         $user->point=$sum;
-                         $user->save();
+        //              // ส่วนเช็ค Model รับ POINT
+        //              $se = DB::connection('pgsql')->table('serial_numbers')
+        //              ->where('serial_number', 'LIKE', '%'.$ca1.'%')
+        //              // ->where('serial_number', $request->indoor_number)
+        //              ->first();
+        //              if($se!=null){
+        //              if($customer!=null){
+        //                  $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
+        //                  if($air!=null){
+        //                  $user = User::where('id', $customer->mechanic_id)->first();
+        //                  if($user!=null){
+        //                  $a1=$user->point;
+        //                  $a2=$air->point;
+        //                  $sum=$a1+$a2;
+        //                  $user->point=$sum;
+        //                  $user->save();
  
-                         $his=new history_point();
-                         $his->title='ได้รับ Point จากการทำรายการ';
-                         $his->point=$a2;
-                         $his->id_user=$user->id;
-                         $his->date=date('Y-m-d H:i:s');
-                         $his->save();
+        //                  $his=new history_point();
+        //                  $his->title='ได้รับ Point จากการทำรายการ';
+        //                  $his->point=$a2;
+        //                  $his->id_user=$user->id;
+        //                  $his->date=date('Y-m-d H:i:s');
+        //                  $his->save();
 
-                         $air_conditioner->in_name = $air->des;
-                         $air_conditioner->point = $air->point;
-                         $air_conditioner->save();
+        //                  $air_conditioner->in_name = $air->des;
+        //                  $air_conditioner->point = $air->point;
+        //                  $air_conditioner->save();
  
-                         return response()->json([
-                             'status' => true,
-                             'message' => 'Success Receive '.$a2.' Point!',
-                             'url_picture' => $this->prefix,
-                         ]);
+        //                  return response()->json([
+        //                      'status' => true,
+        //                      'message' => 'Success Receive '.$a2.' Point!',
+        //                      'url_picture' => $this->prefix,
+        //                  ]);
  
-                         }
-                     }}
-                     }
-                     // ส่วนเช็ค Model รับ POINT
+        //                  }
+        //              }}
+        //              }
+        //              // ส่วนเช็ค Model รับ POINT
 
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Success!',
-                        'url_picture' => $this->prefix,
-                    ]);
-                } else {
-                    return response()->json([
-                        'status' => false,
-                        'message' => 'Data cannot be saved!'
-                    ], 400);
-                }
-            } else {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Not Found Air Conditioner in Data.'
-                ], 400);
-            }
-        } else {
+        //             return response()->json([
+        //                 'status' => true,
+        //                 'message' => 'Success!',
+        //                 'url_picture' => $this->prefix,
+        //             ]);
+        //         } else {
+        //             return response()->json([
+        //                 'status' => false,
+        //                 'message' => 'Data cannot be saved!'
+        //             ], 400);
+        //         }
+        //     } else {
+        //         return response()->json([
+        //             'status' => false,
+        //             'message' => 'Not Found Air Conditioner in Data.'
+        //         ], 400);
+        //     }
+        // } else {
             if ($check_serial_outdoor != 0) {
 
                 $customer = Customer::where('first_name', $request->first_name)
@@ -2001,7 +2001,7 @@ class ApiController extends Controller
                     'message' => 'Not Found Air Conditioner in Data.'
                 ], 400);
             }
-        }
+        // }
     }
 
     public function update_air_conditioner(Request $request)
@@ -2061,80 +2061,80 @@ class ApiController extends Controller
     ->where('serial_number', $ca2)
     ->get()->count();
 
-        if (isset($check_serial_indoor)) {
-            if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
-                $air_conditioner = new AirConditioner;
-                $air_conditioner->customer_id = $request->customer_id;
-                $air_conditioner->indoor_number = $ca1;
-                $air_conditioner->outdoor_number = $ca2;
+        // if (isset($check_serial_indoor)) {
+        //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+        //         $air_conditioner = new AirConditioner;
+        //         $air_conditioner->customer_id = $request->customer_id;
+        //         $air_conditioner->indoor_number = $ca1;
+        //         $air_conditioner->outdoor_number = $ca2;
 
-                if ($air_conditioner->save()) {
-                    $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+        //         if ($air_conditioner->save()) {
+        //             $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
 
 
-                    // ส่วนเช็ค Model รับ POINT
-                    $se = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', 'LIKE', '%'.$ca1.'%')
-                    // ->where('serial_number', $request->indoor_number)
-                    ->first();
-                    if($se!=null){
-                    if($customer!=null){
-                        $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                        if($air!=null){
-                        $user = User::where('id', $customer->mechanic_id)->first();
-                        if($user!=null){
-                        $a1=$user->point;
-                        $a2=$air->point;
-                        $sum=$a1+$a2;
-                        $user->point=$sum;
-                        $user->save();
+        //             // ส่วนเช็ค Model รับ POINT
+        //             $se = DB::connection('pgsql')->table('serial_numbers')
+        //             ->where('serial_number', 'LIKE', '%'.$ca1.'%')
+        //             // ->where('serial_number', $request->indoor_number)
+        //             ->first();
+        //             if($se!=null){
+        //             if($customer!=null){
+        //                 $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
+        //                 if($air!=null){
+        //                 $user = User::where('id', $customer->mechanic_id)->first();
+        //                 if($user!=null){
+        //                 $a1=$user->point;
+        //                 $a2=$air->point;
+        //                 $sum=$a1+$a2;
+        //                 $user->point=$sum;
+        //                 $user->save();
 
-                        $his=new history_point();
-                        $his->title='ได้รับ Point จากการทำรายการ';
-                        $his->point=$a2;
-                        $his->id_user=$user->id;
-                        $his->date=date('Y-m-d H:i:s');
-                        $his->save();
+        //                 $his=new history_point();
+        //                 $his->title='ได้รับ Point จากการทำรายการ';
+        //                 $his->point=$a2;
+        //                 $his->id_user=$user->id;
+        //                 $his->date=date('Y-m-d H:i:s');
+        //                 $his->save();
 
-                        $air_conditioner->in_name = $air->des;
-                        $air_conditioner->point = $air->point;
-                        $air_conditioner->save();
+        //                 $air_conditioner->in_name = $air->des;
+        //                 $air_conditioner->point = $air->point;
+        //                 $air_conditioner->save();
 
-                        return response()->json([
-                            'status' => true,
-                            'message' => 'Success Receive '.$a2.' Point!',
-                            'result' => [
-                                'customer' => $customer,
-                            ],
-                            'url_picture' => $this->prefix,
-                        ]);
+        //                 return response()->json([
+        //                     'status' => true,
+        //                     'message' => 'Success Receive '.$a2.' Point!',
+        //                     'result' => [
+        //                         'customer' => $customer,
+        //                     ],
+        //                     'url_picture' => $this->prefix,
+        //                 ]);
 
-                        }
-                    }}
-                    }
-                    // ส่วนเช็ค Model รับ POINT
+        //                 }
+        //             }}
+        //             }
+        //             // ส่วนเช็ค Model รับ POINT
 
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Success!',
-                        'result' => [
-                            'customer' => $customer,
-                        ],
-                        'url_picture' => $this->prefix,
-                    ]);
-                } else {
-                    return response()->json([
-                        'status' => false,
-                        'message' => 'Can Not Update'
-                    ], 400);
-                }
-            } else {
-                return response()->json([
-                    'status' => false,
-                    'message' => 'Not Found Air Conditioner in Data.'
-                ], 400);
-            }
-        } else {
+        //             return response()->json([
+        //                 'status' => true,
+        //                 'message' => 'Success!',
+        //                 'result' => [
+        //                     'customer' => $customer,
+        //                 ],
+        //                 'url_picture' => $this->prefix,
+        //             ]);
+        //         } else {
+        //             return response()->json([
+        //                 'status' => false,
+        //                 'message' => 'Can Not Update'
+        //             ], 400);
+        //         }
+        //     } else {
+        //         return response()->json([
+        //             'status' => false,
+        //             'message' => 'Not Found Air Conditioner in Data.'
+        //         ], 400);
+        //     }
+        // } else {
             if ($check_serial_outdoor != 0) {
                 $air_conditioner = new AirConditioner;
                 $air_conditioner->customer_id = $request->customer_id;
@@ -2207,7 +2207,7 @@ class ApiController extends Controller
                     'message' => 'Not Found Air Conditioner in Data.'
                 ], 400);
             }
-        }
+        // }
     }
 
     public function update_customer(Request $request)
