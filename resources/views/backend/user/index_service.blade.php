@@ -190,7 +190,7 @@
 
 
                     <!-- --------------------- -->
-                    <?php $tec=DB::table('technician_services')->where('machanic_id',$id)->orderby('id','desc')->get(); ?>
+                    <?php $tec=DB::table('technician_services')->where('machanic_id',$id)->where('status','!=',5)->orderby('id','desc')->get(); ?>
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">

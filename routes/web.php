@@ -62,6 +62,16 @@ Route::prefix('backend')->group(function(){
     Route::post('admin_user_update/{id}',[App\Http\Controllers\BackendController::class,'admin_user_update']);
     //admin_user
 
+
+     //tech_service
+     Route::get('tech_service',[App\Http\Controllers\BackendController::class,'tech_service']);
+     Route::get('tech_service_destroy/{id}',[App\Http\Controllers\BackendController::class,'tech_service_destroy']);
+     Route::get('tech_service_add',[App\Http\Controllers\BackendController::class,'tech_service_add']);
+     Route::post('tech_service_store',[App\Http\Controllers\BackendController::class,'tech_service_store']);
+     Route::get('tech_service_edit/{id}',[App\Http\Controllers\BackendController::class,'tech_service_edit']);
+     Route::post('tech_service_update/{id}',[App\Http\Controllers\BackendController::class,'tech_service_update']);
+     //tech_service
+
     //user
     Route::post('user_excel',[App\Http\Controllers\BackendController::class,'user_excel']);
 

@@ -410,6 +410,46 @@
 
 
 
+                              <!-- tech_service Page-->
+                              <!-- <ul class="pcoded-item pcoded-left-item">
+                                @if(isset($page)) @if($page=="tech_service") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-user"></i><b> </b></span>
+                                        <span class="pcoded-mtext">ช่างบริการเครือข่าย</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <?php 
+                                        // $ttr=DB::table('technician_services')->where('status',0)->get(); $ttrs=count($ttr);
+                                         ?>
+                                        @if($ttrs!=0)<span class="pcoded-badge label label-danger">{{$ttrs}}</span>@endif
+                                    </a>
+
+                                       <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="tech_service") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/tech_service')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">ช่างบริการเครือข่ายรอการยืนยัน</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <?php 
+                                                // $ttr=DB::table('technician_services')->where('status',0)->get(); $ttrs=count($ttr); 
+                                                ?>
+                                                @if($ttrs!=0)<span class="pcoded-badge label label-danger">{{$ttrs}}</span>@endif
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                </li>
+                            </ul> -->
+                            <!-- tech_service Page -->
+
+
+
 
                             <!-- Home Page-->
                             <!-- <ul class="pcoded-item pcoded-left-item"> -->

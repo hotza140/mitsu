@@ -46,7 +46,8 @@
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
-                                                        <th>Picture</th>
+                                                        <th>ที่อยู่จัดส่ง</th>
+                                                        <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -60,23 +61,14 @@
                                                     <tr>
                                                         <td>{{$key+1}}</td>
                                                         <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
-                                                        <td>{{($p1->name)?? '-'}} {{($p1->lastname)?? '-'}}</td>
+                                                        <td>{{($p1->name)?? '-'}} {{($p1->lastname)?? '-'}}<br>
+                                                        คะแนนคงเหลือ  {{($itts->old_point)?? '-'}}</td>
                                                         <td>Phone: {{($p1->phone)?? '-'}}<br>
                                                             Email: {{($p1->email)?? '-'}}<br>
                                                             Line: {{($p1->line)?? '-'}}
                                                         </td>
-                                                        <td>
-                                                        @if(isset($itts->item->picture))
-                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
-$picture= Storage::disk('s3')->url($filePath);
-?>
-
-src="{{$picture}}" style="width:100px">
-@else
-{{$itts->title}}
-
-@endif
-                                                        </td>
+                                                        <td>{{$itts->address}}</td>
+                                                        <td>{{$itts->title}}</td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
                                                         <td>{{$itts->date}}</td>
@@ -101,7 +93,8 @@ src="{{$picture}}" style="width:100px">
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
-                                                        <th>Picture</th>
+                                                        <th>ที่อยู่จัดส่ง</th>
+                                                        <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -157,7 +150,7 @@ src="{{$picture}}" style="width:100px">
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
-                                                        <th>Picture</th>
+                                                        <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -176,18 +169,7 @@ src="{{$picture}}" style="width:100px">
                                                             Email: {{($p2->email)?? '-'}}<br>
                                                             Line: {{($p2->line)?? '-'}}
                                                         </td>
-                                                        <td>
-                                                        @if(isset($itts->item->picture))
-                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
-$picture= Storage::disk('s3')->url($filePath);
-?>
-
-src="{{$picture}}" style="width:100px">
-@else
-{{$itts->title}}
-
-@endif
-                                                        </td>
+                                                        <td>{{$itts->title}} </td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
                                                         <td>{{$itts->date}}</td>
@@ -209,7 +191,7 @@ src="{{$picture}}" style="width:100px">
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
-                                                        <th>Picture</th>
+                                                        <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -264,7 +246,7 @@ src="{{$picture}}" style="width:100px">
                                                         <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
-                                                        <th>Picture</th>
+                                                        <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -283,18 +265,7 @@ src="{{$picture}}" style="width:100px">
                                                             Email: {{($p3->email)?? '-'}}<br>
                                                             Line: {{($p3->line)?? '-'}}
                                                         </td>
-                                                        <td>
-                                                        @if(isset($itts->item->picture))
-                                                        <img <?php    $filePath = 'file/upload/' . $itts->item->picture;  
-$picture= Storage::disk('s3')->url($filePath);
-?>
-
-src="{{$picture}}" style="width:100px">
-@else
-{{$itts->title}}
-
-@endif
-                                                        </td>
+                                                        <td>{{$itts->title}}</td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
                                                         <td>{{$itts->date}}</td>
@@ -316,7 +287,7 @@ src="{{$picture}}" style="width:100px">
                                                     <th>#</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
-                                                        <th>Picture</th>
+                                                        <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
