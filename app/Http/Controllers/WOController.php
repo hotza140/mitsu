@@ -187,6 +187,10 @@ class WOController extends Controller
         $item->error_code = $r->error_code;
         $item->wo_price = $r->wo_price;
 
+        $item->wo_remark = $r->wo_remark;
+
+        $item->technician_id = $r->technician_id;
+
 
         if($r->pic_before){
             $check= 'file/upload/' . $item->pic_before;
@@ -293,6 +297,10 @@ class WOController extends Controller
         $item->wo_price = $r->wo_price;
         $item->wo_status = $r->wo_status;
 
+        $item->wo_remark = $r->wo_remark;
+
+        $item->technician_id = $r->technician_id;
+
         if($r->pic_before){
             $check= 'file/upload/' . $item->pic_before;
                   Storage::disk('s3')->delete($check);
@@ -370,7 +378,8 @@ class WOController extends Controller
         $item->customer_id = $customer->id;
         $item->save();
 
-        return redirect()->to('/backend/wo')->with('success', 'Sucess!');
+        // return redirect()->to('/backend/wo')->with('success', 'Sucess!');
+        return redirect()->to('/backend/wo_edit/'.$id)->with('success', 'Sucess!');
     }
     public function wo_edit($id)
     {

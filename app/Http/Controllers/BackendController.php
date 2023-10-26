@@ -297,7 +297,7 @@ class BackendController extends Controller
         $phone=000000;
         $item->name=$item->name.$name;
         $item->lastname=$item->lastname.$name;
-        $item->email=$item->email.$name;
+        $item->email=$name.$item->email;
         $item->phone=$item->phone.$name;
         $item->save();
         $sss=User::where('id',$id)->first();
@@ -570,7 +570,7 @@ public function user_item($id){
         $phone=000000;
         $item->name=$item->name.$name;
         $item->lastname=$item->lastname.$name;
-        $item->email=$item->email.$name;
+        $item->email=$name.$item->email;
         $item->phone=$item->phone.$name;
         $item->save();
         $sss=User::where('id',$id)->first();

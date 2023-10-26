@@ -43,13 +43,13 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Date</label>
+                                                <label class="col-form-label">วันที่เปิดใบงานระบุจากระบบ</label>
                                                 <input type="date" name="wo_date" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_date;} ?>">
                                             </div>
 
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Time</label>
+                                                <label class="col-form-label">เวลาเปิดใบงานระบุจากระบบ</label>
                                                 <input type="time" name="wo_time" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_time;} ?>">
                                             </div>
@@ -57,45 +57,58 @@
 
 
 
+
+
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Work Number</label>
+                                                <label class="col-form-label">หมายเลขใบสั่ง</label>
                                                 <input type="text" name="wo_number" class="form-control" id="pic" required
                                                     value="<?php if(isset($item)){echo $item->wo_number;} ?>">
                                             </div>
                                         </div>
 
 
-
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Type</label>
-                                                <input type="text" name="wo_type" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->wo_type;} ?>">
+                                                <label class="col-form-label">ประเภท</label>
+
+                                                    <select id="" class="col-form-label" name="wo_type">
+                                            <option value="ติดตั่ง" @if(isset($item))
+                                                @if($item->wo_type=='ติดตั่ง') selected @endif @endif >ติดตั่ง
+                                            </option>
+                                            <option value="ล้าง" @if(isset($item))
+                                                @if($item->wo_type=='ล้าง') selected @endif @endif >ล้าง
+                                            </option>
+                                            <option value="ซ่อม" @if(isset($item))
+                                                @if($item->wo_type=='ซ่อม') selected @endif @endif >ซ่อม
+                                            </option>
+                                        </select>
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-6">
-                                                <label class="col-form-label">อาการเสีย</label>
+                                                <label class="col-form-label">ลักษณะผิดปกติ</label>
                                                 <input type="text" name="wo_breakdown" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_breakdown;} ?>">
                                             </div>
                                         </div>
 
-
+                                        <?php  
+                                          $air_models = DB::table('air_models')->where('id',@$item->air_model)->first();
+                                         ?>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Air Models</label>
+                                                <label class="col-form-label">ชื่อรุ่น ใน/นอก</label>
                                                 <input type="text" name="model_name" class="form-control" id="pic"
-                                                    value="">
+                                                    value="<?php if($air_models!=null){echo $air_models->des;} ?>">
                                             </div>
                                         </div>
 
 
                                         <div class="form-group row">
                                             <div class="col-sm-6">
-                                                <label class="col-form-label">รหัสข้อผิดพลาด</label>
+                                                <label class="col-form-label">รหัสไฟกระพริบ</label>
                                                 <input type="text" name="error_code" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->error_code;} ?>">
                                             </div>
@@ -107,7 +120,7 @@
 
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">ราคาค่าบริการ</label>
+                                                <label class="col-form-label">ค่าบริการ</label>
                                                 <input type="number" name="wo_price" class="form-control" id="pic"
                                                     value="<?php if(isset($item)){echo $item->wo_price;} ?>">
                                             </div>
@@ -115,36 +128,76 @@
 
 
                                         <br>
+                                        <?php  
+                                          $customer = DB::table('customers')->where('id',@$item->customer_id)->first();
+                                         ?>
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Customer First Name</label>
+                                                <label class="col-form-label">ชื่อ</label>
                                                 <input type="text" name="first_name" class="form-control" id="pic"
-                                                    value="">
+                                                    value="<?php if($customer!=null){echo $customer->first_name;} ?>">
                                             </div>
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Customer Last Name</label>
+                                                <label class="col-form-label">นามสกุล</label>
                                                 <input type="text" name="last_name" class="form-control" id="pic"
-                                                    value="">
+                                                    value="<?php if($customer!=null){echo $customer->last_name;} ?>">
                                             </div>
                                         </div>
 
                                         <div class="form-group row">
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Customer Phone</label>
+                                                <label class="col-form-label">เบอร์</label>
                                                 <input type="text" name="phone" class="form-control" id="pic"
-                                                    value="">
+                                                    value="<?php if($customer!=null){echo $customer->phone;} ?>">
                                             </div>
                                             <div class="col-sm-3">
-                                                <label class="col-form-label">Customer Address</label>
+                                                <label class="col-form-label">ที่อยู่</label>
                                                 <input type="text" name="address" class="form-control" id="pic"
-                                                    value="">
+                                                    value="<?php if($customer!=null){echo $customer->address;} ?>">
                                             </div>
                                         </div>
-                                        
+
+                                        <?php    $tech = App\User::where('type', 5)->orderby('name', 'asc')->get();   ?>
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
+                                            <label for="">มอบหมายงานให้ช่างบริการ</label>
+                                            <select name="technician_id" id="id_type" class="form-control select2-single">
+                                            <option value="">เลือก</option>
+                                                @foreach($tech as $key=>$techs)
+                                                <?php    $province = DB::table('tb_province')->where('name_th', $techs->province)->first();   ?>
+                                                <option
+                                                    <?php if(isset($item->technician_id)){ if($item->technician_id == $techs->id){echo 'selected';} } ?>
+                                                    value="{{$techs->id}}">{{$techs->name}} {{$techs->lastname}} ({{$techs->province}})({{@$province->zone}})</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+                                        </div>
+
+                                        <br>
+
+                                      
+
+
+                                        <div class="form-group row">
+                                            <div class="col-sm-6">
+                                                <label class="col-form-label">สถานะงาน</label>
+                                            <select id="" class="col-form-label" name="wo_status">
+                                            <option value="0" @if(isset($item))
+                                                @if($item->wo_status==0) selected @endif @endif >งานยังไม่เสร็จ
+                                            </option>
+                                            <option value="1" @if(isset($item))
+                                                @if($item->wo_status==1) selected @endif @endif >งานสำเร็จ
+                                            </option>
+                                        </select>
+                                            </div>
+                                        </div>
+
+
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                         <br>
-                                         <label>Picture Before</label>
+                                         <label>ภาพประกอบใบสั่งงานก่อน 1</label>
                                                     <div class="file-upload">
                                                                 <input type="file" name="pic_before" class="form-control" id="pic">
                                                                 @if(isset($item))
@@ -159,7 +212,7 @@
                                                     <br>
 
                                                     <br>
-                                         <label>Picture After</label>
+                                         <label>ภาพประกอบใบสั่งงานหลัง 1</label>
                                                     <div class="file-upload">
                                                                 <input type="file" name="pic_after" class="form-control" id="pic">
                                                                 @if(isset($item))
@@ -177,11 +230,10 @@
 
 
 
-
                                                     <div class="form-group row">
                                             <div class="col-sm-3">
                                         <br>
-                                         <label>Picture Before2</label>
+                                         <label>ภาพประกอบใบสั่งงานก่อน 2</label>
                                                     <div class="file-upload">
                                                                 <input type="file" name="pic_before2" class="form-control" id="pic">
                                                                 @if(isset($item))
@@ -196,7 +248,7 @@
                                                     <br>
 
                                                     <br>
-                                         <label>Picture After2</label>
+                                         <label>ภาพประกอบใบสั่งงานหลัง 2</label>
                                                     <div class="file-upload">
                                                                 <input type="file" name="pic_after2" class="form-control" id="pic">
                                                                 @if(isset($item))
@@ -221,6 +273,8 @@
                                                     value="<?php if(isset($item)){echo $item->wo_remark;} ?>">
                                             </div>
                                         </div>
+
+                                     
 
 
 
