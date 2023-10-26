@@ -58,7 +58,7 @@ class BackendController extends Controller
 
      ///Forget Password---------------
 
-     public function forget_pass($id){
+     public function forget_pass1($id){
         $user=User::where('forgot_code',$id)->first();
 
         return view('forget_pass',[

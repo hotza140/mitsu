@@ -26,7 +26,7 @@
                                 <div class="card-block">
 
                                     <form method="post" id=""
-                                        action=""
+                                        action="{{url('/backend/air_conditioner_edit/')}}"
                                         enctype="multipart/form-data" >
                                         @csrf
 
@@ -68,12 +68,27 @@
                                         <div class="form-group row">
                                             <div class="col-md-12 col-sm-12">
                                                 <div class="col-md-6 col-sm-12">
+                                                    <label class="col-form-label">ชื่อรุ่น(indoor)</label>
+                                                    <input type="text" name="in_name" class="form-control" value="{{$detail->in_name}}" >
+                                                </div>
+                                                <div class="col-md-6 col-sm-12">
+                                                    <label class="col-form-label">ชื่อรุ่น(outdoor)</label>
+                                                    <input type="text" name="out_name" class="form-control" value="{{$detail->out_name}}" >
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <input type="hidden" name="id" class="form-control" value="{{$detail->id}}" >
+
+                                        <div class="form-group row">
+                                            <div class="col-md-12 col-sm-12">
+                                                <div class="col-md-6 col-sm-12">
                                                     <label class="col-form-label">หมายเลขเครื่องปรับอากาศ(indoor)</label>
-                                                    <input type="text" class="form-control" value="{{$detail->indoor}}" readonly>
+                                                    <input type="text" name="indoor" class="form-control" value="{{$detail->indoor_number}}" >
                                                 </div>
                                                 <div class="col-md-6 col-sm-12">
                                                     <label class="col-form-label">หมายเลขเครื่องปรับอากาศ(outdoor)</label>
-                                                    <input type="text" class="form-control" value="{{$detail->outdoor}}" readonly>
+                                                    <input type="text" name="outdoor" class="form-control" value="{{$detail->outdoor_number}}" >
                                                 </div>
                                             </div>
                                         </div>
@@ -89,9 +104,9 @@
                                                 style="color:white;" class="btn btn-success"> <i
                                                     class="fa fa-share-square-o"></i> Back </a>
                                                     @endif
-                                            {{-- <button type="submit" class="btn btn-danger " style="color:white;"
+                                             <button type="submit" class="btn btn-danger " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
-                                                    class="fa fa-check-circle-o"></i> Save </button> --}}
+                                                    class="fa fa-check-circle-o"></i> Save </button> 
                                         </p>
 
                                     </form>

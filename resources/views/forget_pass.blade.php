@@ -2,7 +2,7 @@
 <html lang="en">
 
 <head>
-    <title>MAXIS CHANGEPASS</title>
+    <title>Mitsu CHANGEPASS</title>
     <!-- HTML5 Shim and Respond.js IE10 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 10]>
@@ -38,13 +38,13 @@
     <style>
         .common-img-bg {
     background-size: cover;
-    background: linear-gradient(45deg, #4cff40, #73b4ff);
+    background: linear-gradient(45deg, #FEE702, #000000);
     height: 100%;
     }
 
     .btn, .sweet-alert button.confirm, .wizard>.actions a {
-    background-color: #02b94b;
-    border-color: #00ff0a;
+    background-color: #FEE702;
+    border-color: #000000;
     color: #fff;
     cursor: pointer;
     transition: all ease-in 0.3s;

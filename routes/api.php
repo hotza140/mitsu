@@ -25,6 +25,8 @@ Route::group([
     'prefix' => 'common',
 ], function () {
 
+    Route::post('/api_forget_pass','ApiController@api_forget_pass');
+
     Route::post('/api_otp_register', 'ApiController@api_otp_register');
     Route::get('/api_pdf_work/{id}', 'ApiController@api_pdf_work');
 

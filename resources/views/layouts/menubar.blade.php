@@ -323,7 +323,7 @@
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon" style="color: gold;"><i
                                                 class="ti-eye"></i><b>D</b></span>
-                                        <span class="pcoded-mtext" style="color: gold;">ADMIN</span>
+                                        <span class="pcoded-mtext" style="color: gold;">ผู้ดูแลระบบ</span>
                                         <span class="pcoded-mcaret"></span>
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                     </a>
@@ -336,7 +336,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/admin_user')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext" style="color: gold;">Manage Admin</span>
+                                                <span class="pcoded-mtext" style="color: gold;">จัดการ ผู้ดูแลระบบ</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                             </a>
@@ -363,7 +363,7 @@
                                 <li class="pcoded-hasmenu"> @endif
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-user"></i><b> </b></span>
-                                        <span class="pcoded-mtext">USER</span>
+                                        <span class="pcoded-mtext">สมาชิก</span>
                                         <span class="pcoded-mcaret"></span>
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                         <?php $num=DB::table('users')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
@@ -378,7 +378,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/wait_user')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">USER รอการยืนยัน</span>
+                                                <span class="pcoded-mtext">สมาชิกรอการยืนยัน</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <?php $num=DB::table('users')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
                                                 @if($nums!=0)<span class="pcoded-badge label label-danger">{{$nums}}</span>@endif
@@ -396,7 +396,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/user')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">USER</span>
+                                                <span class="pcoded-mtext">ข้อมูลสมาชิก</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span>  -->
                                             </a>
@@ -531,7 +531,7 @@
                                 <li class="pcoded-hasmenu"> @endif
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">MARKET</span>
+                                        <span class="pcoded-mtext">ร้านตัวแทนจำหน่าย</span>
                                         <span class="pcoded-mcaret"></span>
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                     </a>
@@ -544,7 +544,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/market')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">MARKET</span>
+                                                <span class="pcoded-mtext">รายชื่อร้านตัวแทนจำหน่าย</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                             </a>
@@ -580,7 +580,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/air_conditioner')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">ข้อมูล</span>
+                                                <span class="pcoded-mtext">ข้อมูลงานติดตั้ง</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                             </a>
@@ -596,7 +596,7 @@
                                         <li class=""> @endif
                                         <a href="{{url('backend/air_model_list')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Air Models</span>
+                                                <span class="pcoded-mtext">รุ่นเครื่องปรับอากาศ</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -606,7 +606,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/air_model')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Air Models POINT</span>
+                                                <span class="pcoded-mtext">จัดการคะแนน</span>
                                                 <span class="pcoded-mcaret"></span>
                                             </a>
                                         </li>
@@ -666,7 +666,7 @@
                                 <li class="pcoded-hasmenu"> @endif
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-book"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">จัดการ Item Point</span>
+                                        <span class="pcoded-mtext">จัดการคะแนนสะสม</span>
                                         <span class="pcoded-mcaret"></span>
                                         <?php $dd=DB::table('buy_point')->where('status',0)->get(); $ddr=count($dd); ?>
                                                 @if($ddr!=0)<span
@@ -682,7 +682,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/item_point')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">Item</span>
+                                                <span class="pcoded-mtext">จัดการของรางวัล</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                             </a>
@@ -698,7 +698,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/wait_point')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">แลกเปลี่ยนรอยืนยัน</span>
+                                                <span class="pcoded-mtext">รายการแลกเปลี่ยน</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <?php $dd=DB::table('buy_point')->where('status',0)->get(); $ddr=count($dd); ?>
                                                 @if($ddr!=0)<span

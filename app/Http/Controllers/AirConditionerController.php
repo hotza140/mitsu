@@ -55,4 +55,15 @@ class AirConditionerController extends Controller
         return redirect()->back()->with('success','Sucess!');
     }
 
+    public function air_conditioner_edit(Request $r){
+        $item = AirConditioner::where('id',$r->id)->first();
+        $item->in_name=$r->in_name;
+        $item->out_name=$r->out_name;
+
+        $item->indoor_number=$r->indoor;
+        $item->outdoor_number=$r->outdoor;
+        $item->save();
+        return redirect()->back()->with('success','Sucess!');
+    }
+
 }

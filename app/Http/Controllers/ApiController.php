@@ -67,6 +67,66 @@ class ApiController extends Controller
 
 
 
+       ///--------api_forget_pass---------///
+       public function api_forget_pass(Request $r){
+        $user=User::where('email',$r->email)->first();
+
+        if($user!=null){
+
+            $length = 12;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+
+        $rand_num=$randomString;
+        $user->forgot_code=$rand_num;
+        $user->save();
+
+        $link=url('forget_pass').'1/'.$rand_num;
+        $email=$user->email;
+      
+        
+
+        $forget_mail=new Forget_email(['link'=>$link,
+        'email'=>$email,
+
+        ]);
+
+        Mail::to($user->email)->send($forget_mail);
+
+
+        $status=true;
+        $message="Success!";
+        return response()->json([
+        'results'=>[
+        'user' =>$user,  
+        ],
+        'status'=>$status,
+        'message' =>  $message,
+        'url_picture' => $this->prefix,        
+        ]);
+        }else{
+            $status=false;
+            $message="Email Wrong!";
+            return response()->json([
+            'results'=>[
+            'user' =>$user,  
+            ],
+            'status'=>$status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,        
+            ]);
+        }
+
+
+
+    }
+    ///----------------///
+
+
      ///air_list///
      public function api_air_list($id)
      {

@@ -26,6 +26,9 @@ Route::get('/config-cache', function() {
     return '<h1>Clear Config cleared</h1>';
 });
 
+Route::get('forget_pass1/{id}',[App\Http\Controllers\BackendController::class,'forget_pass1']);
+Route::post('/change_pass',[App\Http\Controllers\BackendController::class,'change_pass']);
+
 
 Route::post('/login_backend',[App\Http\Controllers\BackendController::class,'login_backend']);
 
@@ -188,6 +191,8 @@ Route::prefix('backend')->group(function(){
     // ===== Conditioner List ====
     Route::get('air_conditioner',[App\Http\Controllers\AirConditionerController::class,'index']);
     Route::get('air_conditioner/{id}',[App\Http\Controllers\AirConditionerController::class,'details']);
+    Route::post('air_conditioner_edit',[App\Http\Controllers\AirConditionerController::class,'air_conditioner_edit']);
+
     Route::get('air_conditioner/destroy/{id}',[App\Http\Controllers\AirConditionerController::class,'destroy']);
 
     Route::get('air_conditioner/{id}/{item}',[App\Http\Controllers\AirConditionerController::class,'details_user']);

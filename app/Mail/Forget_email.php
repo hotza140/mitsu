@@ -30,7 +30,7 @@ class Forget_email extends Mailable
     public function build()
     {
         return $this
-		->from('Maxis@web.com')
+		->from('Mitsu@web.com')
         ->subject("Forget Password")
         ->view('forget_mail')
         ->with(['link'=>$this->link,
