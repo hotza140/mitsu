@@ -84,9 +84,9 @@ $picture= Storage::disk('s3')->url($filePath);
 
                                         <div class="form-group row">
                                             <div class="col-sm-12">
-                                                <label class="col-form-label">Marget</label>
-                                                <input disabled type="text" name="marget" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->marget;} ?>">
+                                                <label class="col-form-label">Market / Shop Name</label>
+                                                <input disabled type="text" name="market" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->market;} ?>">
                                             </div>
                                         </div>
 
@@ -104,9 +104,14 @@ $picture= Storage::disk('s3')->url($filePath);
 
                                         <p class="text-right">
                                             <a href="{{ url('/backend/wait_user') }}"
-                                                style="color:white;" class="btn btn-success"> <i
+                                                style="color:white;" class="btn btn-primary"> <i
                                                     class="fa fa-share-square-o"></i> Back </a>
-                                            <button type="submit" class="btn btn-danger " style="color:white;"
+
+                                                    <a href="{{ url('/backend/wait_user_not/'.$item->id) }}"
+                                                style="color:white;" class="btn btn-danger" onclick="return confirm('Confirm!');"> <i
+                                                    class="fa fa-share-square-o"></i> ไม่อณุมัติ </a>
+
+                                            <button type="submit" class="btn btn-success " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
                                                     class="fa fa-check-circle-o"></i> ยืนยันการสมัครสมาชิก </button>
                                         </p>

@@ -119,6 +119,8 @@ Route::prefix('backend')->group(function(){
     //history_point
 
     //wait_user
+    Route::get('wait_user_not/{id}',[App\Http\Controllers\BackendController::class,'wait_user_not']);
+
     Route::get('wait_user',[App\Http\Controllers\BackendController::class,'wait_user']);
     Route::get('wait_user_destroy/{id}',[App\Http\Controllers\BackendController::class,'wait_user_destroy']);
     Route::get('wait_user_add',[App\Http\Controllers\BackendController::class,'wait_user_add']);

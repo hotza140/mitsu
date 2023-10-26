@@ -36,6 +36,7 @@
                                                 <tr>
 
                                                 <th>#</th>
+                                                <th>ช่างติดตั้ง</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Outdoor Model Name</th>
                                                         <th>Outdoor number</th>
@@ -53,8 +54,11 @@
                                                     <td>{{$key+1}}</td>
                                                 <?php  $name=App\Models\Customer::where('id',$items->customer_id)->first();  ?>
                                                 @if($name!=null)
+                                                <?php  $users=App\User::where('id',$name->mechanic_id)->first();  ?>
+                                                <td>{{@$users->name}} {{@$users->lastname}}</td>
                                                     <td>{{$name->full_name}}</td>
                                                     @else
+                                                    <td></td>
                                                     <td></td>
                                                     @endif
                                                     <td>{{($items->out_name) ?? '-'}}</td>
@@ -74,6 +78,7 @@
                                             <tfoot>
                                                 <tr>
                                                 <th>#</th>
+                                                <th>ช่างติดตั้ง</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>Outdoor Model Name</th>
                                                         <th>Outdoor number</th>

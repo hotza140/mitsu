@@ -592,8 +592,17 @@ public function user_item($id){
 
 
 
+    
 
         //wait_user//
+        public function wait_user_not(Request $r,$id){
+            $item=User::where('id',$id)->first();
+
+            $item->delete();
+            
+            return redirect()->to('/backend/wait_user')->with('success','Sucess!');
+        }
+
         public function wait_user(){
             $item=User ::where('type','>',2)->where('status',0)->orderby('id','desc')->get();
             return view('backend.wait_user.index',[

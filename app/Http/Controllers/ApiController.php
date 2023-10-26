@@ -1940,7 +1940,7 @@ class ApiController extends Controller
 
                 $air_conditioner = new AirConditioner();
                 $air_conditioner->customer_id = $customer->id;
-                $air_conditioner->indoor_number = null;
+                $air_conditioner->indoor_number = $ca1;
                 $air_conditioner->outdoor_number = $ca2;
 
                 if ($air_conditioner->save()) {
@@ -1950,10 +1950,16 @@ class ApiController extends Controller
                      ->where('serial_number', 'LIKE', '%'.$ca2.'%')
                      // ->where('serial_number', $request->outdoor_number)
                      ->first();
-                     if($se!=null){
+
+                     $ae = DB::connection('pgsql')->table('serial_numbers')
+                     ->where('serial_number', 'LIKE', '%'.$ca1.'%')
+                     // ->where('serial_number', $request->outdoor_number)
+                     ->first();
+
                      if($customer!=null){
                          $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                         if($air!=null){
+                         $air_2 = AirModel::where('model_name',@$ae->product_code)->where('des',@$ae->product_name)->first();
+                         if($air!=null or $air_2!=null){
                          $user = User::where('id', $customer->mechanic_id)->first();
                          if($user!=null){
                          $a1=$user->point;
@@ -1969,9 +1975,10 @@ class ApiController extends Controller
                          $his->date=date('Y-m-d H:i:s');
                          $his->save();
 
-                         $air_conditioner->out_name = $air->des;
-                         $air_conditioner->point = $air->point;
-                         $air_conditioner->point2 = $air->point;
+                         $air_conditioner->out_name = @$air->des;
+                         $air_conditioner->in_name = @$air_2->des;
+                         $air_conditioner->point = @$air->point;
+                         $air_conditioner->point2 = @$air->point;
                          $air_conditioner->save();
  
                          return response()->json([
@@ -1982,7 +1989,6 @@ class ApiController extends Controller
  
                          }
                      }}
-                     }
                      // ส่วนเช็ค Model รับ POINT
 
                     return response()->json([
@@ -2150,10 +2156,16 @@ class ApiController extends Controller
                     ->where('serial_number', 'LIKE', '%'.$ca2.'%')
                     // ->where('serial_number', $request->outdoor_number)
                     ->first();
-                    if($se!=null){
+
+                    $ae = DB::connection('pgsql')->table('serial_numbers')
+                    ->where('serial_number', 'LIKE', '%'.$ca1.'%')
+                    // ->where('serial_number', $request->outdoor_number)
+                    ->first();
+
                     if($customer!=null){
-                        $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                        if($air!=null){
+                        $air = AirModel::where('model_name',@$se->product_code)->where('des',@$se->product_name)->first();
+                        $air_2 = AirModel::where('model_name',@$ae->product_code)->where('des',@$ae->product_name)->first();
+                        if($air!=null or $air_2!=null){
                         $user = User::where('id', $customer->mechanic_id)->first();
                         if($user!=null){
                         $a1=$user->point;
@@ -2169,9 +2181,10 @@ class ApiController extends Controller
                         $his->date=date('Y-m-d H:i:s');
                         $his->save();
 
-                        $air_conditioner->out_name = $air->des;
-                        $air_conditioner->point = $air->point;
-                        $air_conditioner->point2 = $air->point;
+                        $air_conditioner->out_name = @$air->des;
+                        $air_conditioner->in_name = @$air_2->des;
+                        $air_conditioner->point = @$air->point;
+                        $air_conditioner->point2 = @$air->point;
                         $air_conditioner->save();
 
                         return response()->json([
@@ -2185,7 +2198,6 @@ class ApiController extends Controller
 
                         }
                     }}
-                    }
                     // ส่วนเช็ค Model รับ POINT
 
                     return response()->json([
