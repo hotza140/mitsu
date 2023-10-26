@@ -293,7 +293,7 @@ class BackendController extends Controller
             return redirect()->to('/backend')->with('success','You NOT Super Admin!');
         }
         $item=User::where('id',$id)->first();
-        $name='(delete)';
+        $name='(delete)'.$item->id;
         $phone=000000;
         $item->name=$item->name.$name;
         $item->lastname=$item->lastname.$name;
@@ -566,7 +566,7 @@ public function user_item($id){
     public function user_destroy($id){
         $item=User::where('id',$id)->first();
 
-        $name='(delete)';
+        $name='(delete)'.$item->id;
         $phone=000000;
         $item->name=$item->name.$name;
         $item->lastname=$item->lastname.$name;
