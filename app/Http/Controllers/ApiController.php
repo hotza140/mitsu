@@ -825,9 +825,9 @@ class ApiController extends Controller
     {
         $date = date('Y-m-d');
         if ($r->date == null or $r->date == "null") {
-            $wo = WO::where('technician_id', $r->id)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id','!=',null)->where('technician_id', $r->id)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         } else {
-            $wo = WO::where('technician_id', $r->id)->where('wo_date', $r->date)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id','!=',null)->where('technician_id', $r->id)->where('wo_date', $r->date)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
             $date = $r->date;
         }
 
