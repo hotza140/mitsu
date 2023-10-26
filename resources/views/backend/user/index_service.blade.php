@@ -30,7 +30,7 @@
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10">CAR Service</h3>
+                                            <h3 class="m-b-10">ข้อมูลรถบริการ</h3>
                                         </strong>
 
 
@@ -46,13 +46,13 @@
                                                 <thead>
                                                     <tr>
 
-                                                        <th>#</th>
-                                                        <th>Brand</th>
-                                                        <th>Model</th>
-                                                        <th>Color</th>
-                                                        <th>Number Plate</th>
-                                                        <th>Date</th>
-                                                        <th>Tool</th>
+                                                        <th>ลำดับ</th>
+                                                        <th>ยี่ห้อ</th>
+                                                        <th>รุ่น</th>
+                                                        <th>สี</th>
+                                                        <th>ทะเบียน</th>
+                                                        <th>วันที่บันทึก</th>
+                                                        <th>จัดการ</th>
 
                                                     </tr>
                                                 </thead>
@@ -75,13 +75,13 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                    <th>#</th>
-                                                        <th>Brand</th>
-                                                        <th>Model</th>
-                                                        <th>Color</th>
-                                                        <th>Number Plate</th>
-                                                        <th>Date</th>
-                                                        <th>Tool</th>
+                                                    <th>ลำดับ</th>
+                                                        <th>ยี่ห้อ</th>
+                                                        <th>รุ่น</th>
+                                                        <th>สี</th>
+                                                        <th>ทะเบียน</th>
+                                                        <th>วันที่บันทึก</th>
+                                                        <th>จัดการ</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -120,7 +120,7 @@
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10">Tool Service</h3>
+                                            <h3 class="m-b-10">ข้อมูลเครื่องมือ</h3>
                                         </strong>
                                         <a style="color:white;" class="btn btn-warning" href="{{url('/backend/user')}}">
                                             <i class="fa fa-arrow-left"></i> Back</a>
@@ -132,10 +132,10 @@
                                                 <thead>
                                                     <tr>
 
-                                                    <th>#</th>
-                                                        <th>Tool</th>
-                                                        <th>Date</th>
-                                                        <th>Tool</th>
+                                                    <th>ลำดับ</th>
+                                                        <th>รายการเครื่องมือ</th>
+                                                        <th>วันที่บันทึก</th>
+                                                        <th>จัดการ</th>
 
                                                     </tr>
                                                 </thead>
@@ -155,10 +155,10 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                    <th>#</th>
-                                                        <th>Tool</th>
-                                                        <th>Date</th>
-                                                        <th>Tool</th>
+                                                    <th>ลำดับ</th>
+                                                        <th>รายการเครื่องมือ</th>
+                                                        <th>วันที่บันทึก</th>
+                                                        <th>จัดการ</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>
@@ -199,7 +199,7 @@
                                     <div class="card-header">
 
                                         <strong>
-                                            <h3 class="m-b-10">Technician Service</h3>
+                                            <h3 class="m-b-10">ข้อมูลช่างบริการ</h3>
                                         </strong>
                                         <a style="color:white;" class="btn btn-warning" href="{{url('/backend/user')}}">
                                             <i class="fa fa-arrow-left"></i> Back</a>
@@ -211,14 +211,14 @@
                                                 <thead>
                                                     <tr>
 
-                                                    <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Nikname</th>
-                                                        <th>Phone</th>
-                                                        <th>Line</th>
-                                                        <th>Date</th>
-                                                        <th>Tool</th>
+                                                    <th>ลำดับ</th>
+                                                        <th>ชื่อ</th>
+                                                        <th>สกุล</th>
+                                                        <th>ชื่อเล่น</th>
+                                                        <th>เบอร์โทรศัพท์</th>
+                                                        <th>ไลน์</th>
+                                                        <th>วันที่บันทึก</th>
+                                                        <th>จัดการ</th>
 
                                                     </tr>
                                                 </thead>
@@ -243,14 +243,14 @@
                                                 </tbody>
                                                 <tfoot>
                                                     <tr>
-                                                    <th>#</th>
-                                                        <th>First Name</th>
-                                                        <th>Last Name</th>
-                                                        <th>Nikname</th>
-                                                        <th>Phone</th>
-                                                        <th>Line</th>
-                                                        <th>Date</th>
-                                                        <th>Tool</th>
+                                                    <th>ลำดับ</th>
+                                                        <th>ชื่อ</th>
+                                                        <th>สกุล</th>
+                                                        <th>ชื่อเล่น</th>
+                                                        <th>เบอร์โทรศัพท์</th>
+                                                        <th>ไลน์</th>
+                                                        <th>วันที่บันทึก</th>
+                                                        <th>จัดการ</th>
                                                     </tr>
                                                 </tfoot>
                                             </table>

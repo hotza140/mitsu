@@ -330,7 +330,7 @@
                                     <h3>สรุปผลเช็ค Air</h3>
 
                                     <div class="form-group row">
-                                            <h4>1. อุณหภูมิลมกลับ</h4>
+                                            <h4>1. อุณหภูมิลมกลับ °C</h4>
                                             <div class="col-sm-4">
                                                 <label class="col-form-label">ครั้งที่ 1</label>
                                                 <input disabled type="text" name="min1" class="form-control" id="pic"
@@ -351,7 +351,7 @@
 
 
                                         <div class="form-group row">
-                                            <h4>2. อุณหภูมิลมจ่าย</h4>
+                                            <h4>2. อุณหภูมิลมจ่าย °C</h4>
                                             <div class="col-sm-4">
                                                 <label class="col-form-label">ครั้งที่ 1</label>
                                                 <input disabled type="text" name="min2" class="form-control" id="pic"
@@ -372,7 +372,7 @@
 
 
                                         <div class="form-group row">
-                                            <h4>3. อุณหภูมิภายนอก</h4>
+                                            <h4>3. อุณหภูมิภายนอก °C</h4>
                                             <div class="col-sm-4">
                                                 <label class="col-form-label">ครั้งที่ 1</label>
                                                 <input disabled type="text" name="min3" class="form-control" id="pic"
@@ -392,7 +392,7 @@
 
 
                                         <div class="form-group row">
-                                            <h4>4. ความดันน้ำยา</h4>
+                                            <h4>4. ความดันน้ำยา °PSI</h4>
                                             <div class="col-sm-4">
                                                 <label class="col-form-label">ครั้งที่ 1</label>
                                                 <input disabled type="text" name="min4" class="form-control" id="pic"
@@ -412,7 +412,7 @@
 
 
                                         <div class="form-group row">
-                                            <h4>5. กระแสคอมเพรสเซอร์</h4>
+                                            <h4>5. กระแสคอมเพรสเซอร์ °A</h4>
                                             <div class="col-sm-4">
                                                 <label class="col-form-label">ครั้งที่ 1</label>
                                                 <input disabled type="text" name="min5" class="form-control" id="pic"
@@ -432,7 +432,7 @@
 
 
                                         <div class="form-group row">
-                                            <h4>6. แรงดันไฟฟ้า</h4>
+                                            <h4>6. แรงดันไฟฟ้า °ACV</h4>
                                             <div class="col-sm-4">
                                                 <label class="col-form-label">ครั้งที่ 1</label>
                                                 <input disabled type="text" name="min6" class="form-control" id="pic"

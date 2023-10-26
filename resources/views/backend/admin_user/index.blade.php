@@ -60,7 +60,7 @@
                                                             <input type="hidden" name="hidden" value="0" class="hidden">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id">
                                                             <button type="submit" class="btn btn-info  button" style="color:white;"
-                                                            > <i class="fa fa-check-circle-o"></i> Open
+                                                            > <i class="fa fa-check-circle-o"></i> เปิดการใช้งาน
                                                             </button>
                                                     </form>
                                                             </td>
@@ -73,7 +73,7 @@
                                                             <input type="hidden" name="hidden" value="1" class="hidden">
                                                             <input type="hidden" name="id" value="{{$items->id}}" class="id">
                                                             <button type="submit" class="btn btn-secondary  button" style="color:red;"
-                                                            > <i class="fa fa-times-circle-o"></i> Close
+                                                            > <i class="fa fa-times-circle-o"></i> ระงับการใช้งาน
                                                             </button>
                                                         
                                                          </form>    

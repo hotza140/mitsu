@@ -306,6 +306,7 @@
                                     <thead>
                                         <tr>
                                             <th>ชื่อ - นามสกุล</th>
+                                            <th>ชื่อเล่น</th>
                                             <th>เบอร์โทรศัพท์</th>
                                             <th>สังกัดร้าน</th>
                                         </tr>
@@ -370,6 +371,7 @@
                             $('#sort-data').append(
                                 '<tr>'+
                                     '<td>'+data.full_name+'</td>'+
+                                    '<td>'+data.nickname+'</td>'+
                                     '<td>'+data.phone+'</td>'+
                                     '<td>'+data.agency+'</td>'+
                                 '</tr>'

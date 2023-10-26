@@ -374,9 +374,9 @@ src="{{$picture}}" style="width:100px">
                                                         @if($itts->status==0)
                                                         <td style="color: green;">กำลังรอยืนยัน</td>
                                                         @elseif($itts->status==2)
-                                                        <td style="color: red;">ไม่อณุมัติ</td>
+                                                        <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
-                                                        <td style="color: grey;">สำเร็จ</td>
+                                                        <td style="color: grey;">อณุมัติ</td>
                                                         @endif
                                                     </tr>
                                                     @endforeach

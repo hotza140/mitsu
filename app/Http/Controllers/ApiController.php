@@ -883,9 +883,11 @@ class ApiController extends Controller
     ///WORK งานที่รับของแต่ละคน///
     public function api_work_list(Request $r)
     {
-        $date = date('Y-m-d');
+        $date = date('Y-m-d'); $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
         if ($r->date == null or $r->date == "null") {
-            $wo = WO::where('technician_id','!=',null)->where('technician_id', $r->id)->wheredate('wo_date', $date)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id','!=',null)->where('technician_id', $r->id)->wheredate('wo_date','>=', $date)
+            ->wheredate('wo_date','<=', $date_a)
+            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         } else {
             $date = $r->date;
             $wo = WO::where('technician_id','!=',null)->where('technician_id', $r->id)->wheredate('wo_date', $date)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
@@ -2422,6 +2424,7 @@ class ApiController extends Controller
                     $user->user_id = $request->user_id;
                     $user->first_name = $request->first_name;
                     $user->last_name = $request->last_name;
+                    $user->nickname = $request->nickname;
                     $user->full_name = $request->first_name . ' ' . $request->last_name;
                     $user->phone = $request->phone;
                     $usersResult = User::find($request->user_id);

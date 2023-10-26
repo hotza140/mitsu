@@ -37,7 +37,7 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>name</th>
+                                                    <th>Title</th>
                                                     <th>status</th>
                                                     <th>date</th>
                                                     <th>Updated_at</th>
@@ -71,7 +71,7 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>name</th>
+                                                    <th>Title</th>
                                                     <th>status</th>
                                                     <th>date</th>
                                                     <th>Updated_at</th>

@@ -913,7 +913,7 @@ public function user_item($id){
 
     public function history_point_store(Request $r){
         $item=new history_point();
-        $item->title='เพิ่มแต้มโดย ADMIN';
+        $item->title='เพิ่มแต้มโดย ADMIN ('.Auth::user()->email.')';
         $item->point=$r->point;
         $item->id_user=$r->id_user;
         $item->date=date('Y-m-d H:i:s');

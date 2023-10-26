@@ -89,7 +89,7 @@
                                                                 class="id">
                                                             <button type="submit" class="btn btn-info  button"
                                                                 style="color:white;"> <i
-                                                                    class="fa fa-check-circle-o"></i> Open
+                                                                    class="fa fa-check-circle-o"></i> เปิดการใช้งาน
                                                             </button>
                                                         </form>
                                                     </td>
@@ -107,7 +107,7 @@
                                                                 class="id">
                                                             <button type="submit" class="btn btn-secondary  button"
                                                                 style="color:red;"> <i class="fa fa-times-circle-o"></i>
-                                                                Close
+                                                                ระงับการใช้งาน
                                                             </button>
 
                                                         </form>
@@ -134,13 +134,13 @@ src="{{$picture}}"
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
                                                         <a href="{{url('/backend/user_edit/'.$items->id)}}"
-                                                            >ข้อมูล User</a> 
+                                                            >ข้อมูลช่างบริการ</a> 
                                                                 <br>
                                                         <a href="{{url('/backend/user_service/'.$items->id)}}"
-                                                            >ข้อมูลบริการ</a> 
+                                                            >ข้อมูลหน่วยบริการ</a> 
                                                                 <br>
                                                         <a href="{{url('/backend/user_item/'.$items->id)}}"
-                                                            >เครื่องปรับอากาศ</a> 
+                                                            >ข้อมูลลงทะเบียน</a> 
                                                                 <br>
                                                         <a href="{{url('/backend/user_destroy/'.$items->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('You Want To Delete?')"  style="color:white;"><i class="fa fa-trash"></i>Delete</a>
                                                     </td>

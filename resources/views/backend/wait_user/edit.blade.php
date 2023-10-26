@@ -109,7 +109,7 @@ $picture= Storage::disk('s3')->url($filePath);
 
                                                     <a href="{{ url('/backend/wait_user_not/'.$item->id) }}"
                                                 style="color:white;" class="btn btn-danger" onclick="return confirm('Confirm!');"> <i
-                                                    class="fa fa-share-square-o"></i> ไม่อณุมัติ </a>
+                                                    class="fa fa-share-square-o"></i> ไม่อนุมัติ </a>
 
                                             <button type="submit" class="btn btn-success " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i

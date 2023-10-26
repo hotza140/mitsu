@@ -77,7 +77,7 @@
                                                         @elseif($itts->status==2)
                                                         <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
-                                                        <td style="color: grey;">สำเร็จ</td>
+                                                        <td style="color: grey;">อณุมัติ</td>
                                                         @endif
                                                         <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-gear" >อนุมัติ</i></a>
@@ -178,7 +178,7 @@
                                                         @elseif($itts->status==2)
                                                         <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
-                                                        <td style="color: grey;">สำเร็จ</td>
+                                                        <td style="color: grey;">อณุมัติ</td>
                                                         @endif
                                                         <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
@@ -274,7 +274,7 @@
                                                         @elseif($itts->status==2)
                                                         <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
-                                                        <td style="color: grey;">สำเร็จ</td>
+                                                        <td style="color: grey;">อณุมัติ</td>
                                                         @endif
                                                         <td><a href="{{url('/backend/wait_destroy/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-trash"></i></a></td>
