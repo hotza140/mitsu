@@ -424,7 +424,7 @@
                                         <?php 
                                         // $ttr=DB::table('technician_services')->where('status',0)->get(); $ttrs=count($ttr);
                                          ?>
-                                        @if($ttrs!=0)<span class="pcoded-badge label label-danger">{{$ttrs}}</span>@endif
+                                        @if(@$ttrs!=0)<span class="pcoded-badge label label-danger">{{$ttrs}}</span>@endif
                                     </a>
 
                                        <ul class="pcoded-submenu">
@@ -439,7 +439,7 @@
                                                 <?php 
                                                 // $ttr=DB::table('technician_services')->where('status',0)->get(); $ttrs=count($ttr); 
                                                 ?>
-                                                @if($ttrs!=0)<span class="pcoded-badge label label-danger">{{$ttrs}}</span>@endif
+                                                @if(@$ttrs!=0)<span class="pcoded-badge label label-danger">{{$ttrs}}</span>@endif
                                             </a>
                                         </li>
                                     </ul>
