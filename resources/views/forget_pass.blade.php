@@ -108,7 +108,7 @@
                                     </div>
                                 </div>
                                 <hr/>
-                                <img src="{{asset('img/pic_ad.png')}}" style="width:300px" alt="small-logo.png">
+                                <img src="{{asset('img/back.jpg')}}" style="width:300px" alt="small-logo.png">
 
                             </div>
                         </form>
@@ -140,6 +140,7 @@
     <script  src="{{asset('files/bower_components/jquery-i18next/js/jquery-i18next.min.js')}}"></script>
     <script  src="{{asset('files/assets/js/common-pages.js')}}"></script>
 
+    @else
 
     @endif
 
