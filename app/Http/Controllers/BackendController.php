@@ -598,7 +598,40 @@ public function user_item($id){
         public function wait_user_not(Request $r,$id){
             $item=User::where('id',$id)->first();
 
+            $admin_email=Auth::user()->email;
+            $phone=$item->phone;
             $item->delete();
+
+              // ส่ง sms รหัส--------------
+              if($phone!=null){
+                $curl = curl_init();
+    
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://thsms.com/api/send-sms',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => '{
+                "sender": "MitsuHeavy",
+                "msisdn": ["' . $phone . '"],
+                "message": "การสมัครสมาชิกของท่านถูกผู้ดูแล' . $admin_email . 'ปฎิเสธกรุณาติดต่อแอดมินหรือผู้ดูแลระบบ Heavy One Clickอีกครั้ง"
+                }',
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json',
+                        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
+                    ),
+    
+                ));
+    
+                $response = curl_exec($curl);
+                curl_close($curl);
+                }
+                 // ส่ง sms รหัส--------------
+
             
             return redirect()->to('/backend/wait_user')->with('success','Sucess!');
         }
@@ -627,6 +660,40 @@ public function user_item($id){
             $item->status=1;
 
             $item->save();
+
+            $admin_email=Auth::user()->email;
+            $phone=$item->phone;
+
+              // ส่ง sms รหัส--------------
+              if($phone!=null){
+                $curl = curl_init();
+    
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://thsms.com/api/send-sms',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => '{
+                "sender": "MitsuHeavy",
+                "msisdn": ["' . $phone . '"],
+                "message": "การสมัครสมาชิกเสร็จสมบูรณ์ โดยยืนยันผ่านผู้ดูแล' . $admin_email . 'ท่านสามารถล็อคอินเข้าใช้งานระบบ Heavy One Click ได้แล้ว"
+                }',
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json',
+                        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
+                    ),
+    
+                ));
+    
+                $response = curl_exec($curl);
+                curl_close($curl);
+                }
+                 // ส่ง sms รหัส--------------
+                 
             return redirect()->to('/backend/wait_user')->with('success','Sucess!');
         }
         public function wait_user_edit($id){
