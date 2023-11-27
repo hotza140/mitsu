@@ -42,6 +42,9 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
 
+
+use App\Models\noti;
+
 use App\Imports\UserImport;
 
 
@@ -120,6 +123,99 @@ class BackendController extends Controller
     public function verify(){
         return view('auth/verify');
     }
+
+
+
+
+      //noti//
+      public function noti(){
+        $item=noti ::orderby('id','desc')->get();
+        return view('backend.noti.index',[
+            'item'=>$item,
+            'page'=>"noti",
+            'list'=>"noti",
+        ]);
+    }
+    public function noti_store(Request $r){
+        $item = new noti();
+
+        if($r->id_user!=null){
+           $item->id_user = $r->id_user;
+        }
+        if($r->id_customer!=null){
+           $item->id_customer = $r->id_customer;
+        }
+        if($r->id_work!=null){
+           $item->id_work = $r->id_work;
+        }
+        if($r->titleth!=null){
+           $item->titleth = $r->titleth;
+        }
+        if($r->detailth!=null){
+           $item->detailth = $r->detailth;
+        }
+        if($r->status!=null){
+           $item->status = $r->status;
+        }
+
+        $item->id_admin = Auth::user()->id;
+   
+        $item->save();
+
+        
+
+        return redirect()->to('/backend/noti')->with('success','Sucess!');
+
+    }
+    public function noti_update(Request $r,$id){
+        $item=noti::where('id',$id)->first();
+        
+       if($r->id_user!=null){
+          $item->id_user = $r->id_user;
+       }
+       if($r->id_customer!=null){
+          $item->id_customer = $r->id_customer;
+       }
+       if($r->id_work!=null){
+          $item->id_work = $r->id_work;
+       }
+       if($r->titleth!=null){
+          $item->titleth = $r->titleth;
+       }
+       if($r->detailth!=null){
+          $item->detailth = $r->detailth;
+       }
+       if($r->status!=null){
+          $item->status = $r->status;
+       }
+  
+
+       $item->id_admin = Auth::user()->id;
+
+          $item->save();
+
+        return redirect()->to('/backend/noti')->with('success','Sucess!');
+    }
+    public function noti_edit($id){
+        $item=noti::where('id',$id)->first();
+        return view('backend.noti.edit',[
+            'item'=>$item,
+            'page'=>"noti",
+            'list'=>"noti",
+        ]);
+    }
+    public function noti_destroy($id){
+        $item=noti::where('id',$id)->first();
+        $item->delete();
+        return redirect()->back()->with('success','Sucess!');
+    }
+    public function noti_add(){
+        return view('backend.noti.add',[
+            'page'=>"noti",
+            'list'=>"noti",
+        ]);
+    }
+    //noti//
 
 
 
@@ -1195,6 +1291,18 @@ public function user_item($id){
         $item=buy_point::where('id',$id)->first();
         $item->status=1;
         $item->save();
+
+        $aaa = new noti();
+           $aaa->id_user = $item->id_user;
+           $aaa->id_item = $item->id_item;
+        
+           $aaa->titleth = 'การแลกเปลี่ยนสินค้าของคุณได้รับการยืนยันแล้ว ชื่อสินค้า/'.$item->title;
+           $aaa->detailth = 'กรุณารอสินค้าส่งไปถึง';
+
+        $aaa->id_admin = Auth::user()->id;
+   
+        $aaa->save();
+        
         return redirect()->back()->with('success','Sucess!');
     }
     public function wait_not($id){
@@ -1208,6 +1316,17 @@ public function user_item($id){
         
         $item->status=2;
         $item->save();
+
+        $aaa = new noti();
+        $aaa->id_user = $item->id_user;
+        $aaa->id_item = $item->id_item;
+     
+        $aaa->titleth = 'การแลกเปลี่ยนสินค้าของคุณถูกยกเลิก ชื่อสินค้า/'.$item->title;
+        $aaa->detailth = 'กรุณาติดต่อเจ้าหน้าที่';
+
+        $aaa->id_admin = Auth::user()->id;
+
+        $aaa->save();
 
         
         return redirect()->back()->with('success','Sucess!');

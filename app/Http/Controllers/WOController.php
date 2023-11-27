@@ -10,6 +10,8 @@ use App\Http\Requests\WOCreateRequest;
 
 use App\Models\TechnicianService;
 
+use App\Models\noti;
+
 use App\AirModel;
 use App\Wo_air_checkModel;
 use App\Air_listModel;
@@ -299,6 +301,17 @@ class WOController extends Controller
 
         curl_close($curl);
         // echo $response;
+
+
+        $aaa = new noti();
+        $aaa->work = $item->work;
+     
+        $aaa->titleth = 'มีงานใหม่ หมายเลขงาน/'.$item->wo_number;
+        $aaa->detailth = 'มีงานใหม่';
+
+        $aaa->id_admin = Auth::user()->id;
+
+        $aaa->save();
 
 
         return redirect()->to('/backend/wo')->with('success', 'Sucess!');

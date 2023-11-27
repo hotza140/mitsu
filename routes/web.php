@@ -63,6 +63,16 @@ Route::prefix('backend')->group(function(){
     //admin_user
 
 
+     //admin_user
+     Route::get('noti',[App\Http\Controllers\BackendController::class,'noti']);
+     Route::get('noti_destroy/{id}',[App\Http\Controllers\BackendController::class,'noti_destroy']);
+     Route::get('noti_add',[App\Http\Controllers\BackendController::class,'noti_add']);
+     Route::post('noti_store',[App\Http\Controllers\BackendController::class,'noti_store']);
+     Route::get('noti_edit/{id}',[App\Http\Controllers\BackendController::class,'noti_edit']);
+     Route::post('noti_update/{id}',[App\Http\Controllers\BackendController::class,'noti_update']);
+     //admin_user
+
+
      //tech_service
      Route::get('tech_service',[App\Http\Controllers\BackendController::class,'tech_service']);
      Route::get('tech_service_destroy/{id}',[App\Http\Controllers\BackendController::class,'tech_service_destroy']);

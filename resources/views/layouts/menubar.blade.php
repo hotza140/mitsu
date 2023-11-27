@@ -410,6 +410,50 @@
 
 
 
+
+
+
+
+
+
+                               <!-- noti-->
+                               <ul class="pcoded-item pcoded-left-item">
+                                <!-- Start-->
+                                @if(isset($page)) @if($page=="noti") <li class="pcoded-hasmenu active pcoded-trigger">
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    @else
+                                <li class="pcoded-hasmenu"> @endif
+                                    <a href="javascript:void(0)">
+                                        <span class="pcoded-micon"><i class="ti-announcement"></i><b>D</b></span>
+                                        <span class="pcoded-mtext">ระบบแจ้งเตือน(NOTI)</span>
+                                        <span class="pcoded-mcaret"></span>
+                                        <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                    </a>
+
+                                    <!-- noti -->
+                                    <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="noti") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/noti')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">ข้อมูล</span>
+                                                <span class="pcoded-mcaret"></span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- noti-->
+
+                                    <!-- End-->
+                                </li>
+                            </ul>
+                            <!--noti-->
+
+
+
                               <!-- tech_service Page-->
                               <!-- <ul class="pcoded-item pcoded-left-item">
                                 @if(isset($page)) @if($page=="tech_service") <li class="pcoded-hasmenu active pcoded-trigger">
