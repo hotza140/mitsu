@@ -305,7 +305,7 @@ class WOController extends Controller
 
 
         $aaa = new noti();
-        $aaa->work = $item->work;
+        $aaa->id_work = $item->id;
      
         $aaa->titleth = 'มีงานใหม่ หมายเลขงาน/'.$item->wo_number;
         $aaa->detailth = 'มีงานใหม่';
