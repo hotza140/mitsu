@@ -115,7 +115,7 @@ class ApiController extends Controller
          ///NOtification GET///
          public function api_noti($id)
          {
-            $item=noti::where('id_user',$id)->orderby('id','desc')->get();
+            $item=noti::where('id_user',$id)->orwhere('id_user',null)->orderby('id','desc')->get();
      
              $message = "Success!";
              $status = true;
