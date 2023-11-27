@@ -50,6 +50,8 @@ Route::group([
     Route::get('/api_work_detail/{id}', 'ApiController@api_work_detail');
 
     Route::get('/api_work_item/{id}', 'ApiController@api_work_item');
+    
+    Route::post('/api_work_item_add', 'ApiController@api_work_item_add');
     Route::post('/api_work_item_delete', 'ApiController@api_work_item_delete');
     Route::post('/api_work_item_submit', 'ApiController@api_work_item_submit');
 

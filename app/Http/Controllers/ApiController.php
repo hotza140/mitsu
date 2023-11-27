@@ -807,6 +807,33 @@ class ApiController extends Controller
     }
     ///WORK_item///
 
+       ///WORK_item///
+       public function api_work_item_add(Request $r)
+       {
+        
+        $item = new WO_item();
+           $item->id_wo = $r->id_work;
+           $item->title = $r->title;
+           $item->number = $r->number;
+           $item->value = $r->value;
+   
+           $item->status = $r->status;
+   
+           $item->save();
+   
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'item' => $item,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]);
+       }
+       ///WORK_item///
+
 
     ///WORK_item///
     public function api_work_item_delete(Request $r)
