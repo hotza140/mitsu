@@ -1020,7 +1020,7 @@ class ApiController extends Controller
                 $aaa->id_user = $r->id;
                 $aaa->id_work = $wo->id;
              
-                $aaa->titleth = 'คุณรับงาน รหัสงาน/'.$wo->wo_number;
+                $aaa->titleth = 'คุณรับงานสำเร็จ รหัสงาน/'.$wo->wo_number;
                 $aaa->detailth = 'คุณรับงานสำเร็จแล้ว';
         
                 $aaa->save();
