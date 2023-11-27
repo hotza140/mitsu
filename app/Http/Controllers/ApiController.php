@@ -54,6 +54,8 @@ use Illuminate\Support\Facades\Validator;
 
 use App\Models\market;
 
+use App\Models\noti;
+
 
 class ApiController extends Controller
 
@@ -64,6 +66,70 @@ class ApiController extends Controller
     // protected $prefix = 'http://hot.orangeworkshop.info/mitsu/img/upload/';
 
     protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
+
+
+
+
+
+
+      ///NOtification///
+      public function api_noti_add(Request $r)
+      {
+       
+       $item = new noti();
+
+       if($r->id_user!=null){
+          $item->id_user = $r->id_user;
+       }
+       if($r->id_customer!=null){
+          $item->id_customer = $r->id_customer;
+       }
+       if($r->id_work!=null){
+          $item->id_work = $r->id_work;
+       }
+       if($r->title!=null){
+          $item->titleth = $r->title;
+       }
+       if($r->detail!=null){
+          $item->detailth = $r->detail;
+       }
+       if($r->status!=null){
+          $item->status = $r->status;
+       }
+  
+          $item->save();
+  
+          $message = "Success!";
+          $status = true;
+          return response()->json([
+              'results' => [
+                  'item' => $item,
+              ],
+              'status' =>  $status,
+              'message' =>  $message,
+              'url_picture' => $this->prefix,
+          ]);
+      }
+      ///NOtification///
+
+         ///NOtification GET///
+         public function api_noti($id)
+         {
+            $item=noti::where('id_user',$id)->orderby('id','desc')->get();
+     
+             $message = "Success!";
+             $status = true;
+             return response()->json([
+                 'results' => [
+                     'item' => $item,
+                 ],
+                 'status' =>  $status,
+                 'message' =>  $message,
+                 'url_picture' => $this->prefix,
+             ]);
+         }
+         ///NOtification GET///
+
 
 
 
