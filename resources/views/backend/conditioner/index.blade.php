@@ -28,6 +28,45 @@
 
                                     {{-- <a style="color:white;" class="btn btn-success" href="{{url('/backend/banner_add')}}"> <i class="fa fa-plus"></i> Add</a> --}}
 
+                                    <?php $date=date('Y-m-d');   ?>
+                               
+                               <div><br>
+                                   <form class="form-horizontal" action="{{url('/backend/air_conditioner')}}" method="GET" enctype="multipart/form-data">
+                                          @csrf
+                                       <input type="date" name="date_s" value="<?php if(isset($date_s)){echo $date_s;}else{echo $date;} ?>"  class="col-md-2">Start<br><br>
+                                       <input type="date" name="date_e" value="<?php if(isset($date_e)){echo $date_e;}else{echo $date;} ?>"  class="col-md-2">End<br><br>
+
+                                       <button type="submit" class="btn btn-danger" style="color:white;"
+                                               onclick="return confirm('Confirm!');"> <i
+                                                   class="fa fa-check-circle-o"></i> Enter </button>
+
+                                                   <a href="{{ url('/backend/air_conditioner') }}"
+                                               style="color:white;" class="btn btn-warning"> <i
+                                                   class="fa fa-share-square-o"></i> Reset </a>
+                                       </form>
+                                       </div>
+
+
+
+
+
+
+                                       <div><br>
+                               <h5>Export รายละเอียดคอร์สและจำนวนนักเรียน</h5>
+                                   <form class="form-horizontal" action="{{url('backend/data_export')}}" method="POST" enctype="multipart/form-data">
+                                          @csrf
+
+                                       <input type="hidden" name="date_s" value="<?php if(isset($date_s)){echo $date_s;} ?>"  class="col-md-2">
+                                       <input type="hidden" name="date_e" value="<?php if(isset($date_e)){echo $date_e;} ?>"  class="col-md-2">
+                                       
+                                       <button type="submit" class="btn btn-danger" style="color:white;"
+                                               onclick="return confirm('Confirm!');"> <i
+                                                   class="fa fa-check-circle-o"></i> Enter </button>
+                                       </form>
+                                       </div>
+                                       <br>
+
+
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">

@@ -177,7 +177,10 @@ Route::prefix('backend')->group(function(){
      
 
      //air_model
+     
      Route::post('air_model_excel',[App\Http\Controllers\AirModelController::class,'air_model_excel']);
+
+     
 
     Route::get('air_model',[App\Http\Controllers\AirModelController::class,'air_model']);
     Route::get('air_model_destroy/{id}',[App\Http\Controllers\AirModelController::class,'air_model_destroy']);
@@ -199,6 +202,7 @@ Route::prefix('backend')->group(function(){
        //air_model_list
 
     // ===== Conditioner List ====
+    Route::post('data_export',[App\Http\Controllers\AirConditionerController::class,'data_export']);
     Route::get('air_conditioner',[App\Http\Controllers\AirConditionerController::class,'index']);
     Route::get('air_conditioner/{id}',[App\Http\Controllers\AirConditionerController::class,'details']);
     Route::post('air_conditioner_edit',[App\Http\Controllers\AirConditionerController::class,'air_conditioner_edit']);

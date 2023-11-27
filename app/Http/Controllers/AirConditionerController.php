@@ -22,16 +22,39 @@ use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
+use App\Exports\dataExport;
 
 class AirConditionerController extends Controller
 {
-    public function index(){
+    public function data_export(Request $r){
+        $date_time=date('Y-m-d_h:i:s');
+        // dd($date_time);
+        $name="DataExport".$date_time;
+        return Excel::download(new dataExport,"$name.xlsx");
+    }
+	
+    public function index(Request $r){
         $data['page'] = 'air_conditioner';
 
-        $data['item'] = AirConditioner::orderby('id','desc')->with('customer')->get();
+		$date=date('Y-m-d');
+		
+		if($r->date_s!=null and $r->date_e!=null){
+			$data['item'] = AirConditioner::orderby('id','desc')->with('customer')
+				->whereDate('created_at', '>=', $r->date_s)
+        		->whereDate('created_at', '<=', $r->date_e)
+				->get();
+		}else{
+			$data['item'] = AirConditioner::orderby('id','desc')
+				->whereDate('created_at',$date)
+				->with('customer')->get();
+		}
+        
         // return $data['item'];
         $data['list'] = 'air_conditioner';
-        return view('backend.conditioner.index',$data);
+        return view('backend.conditioner.index',$data,[
+			'date_s'=>$r->date_s,
+			'date_e'=>$r->date_e,
+		]);
     }
 
     public function details($id){
