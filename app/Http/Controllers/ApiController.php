@@ -1015,6 +1015,16 @@ class ApiController extends Controller
             if ($wo->technician_id == null) {
                 $wo->technician_id = $r->id;
                 $wo->save();
+
+                $aaa = new noti();
+                $aaa->id_user = $r->id;
+                $aaa->id_work = $wo->id;
+             
+                $aaa->titleth = 'คุณรับงาน รหัสงาน/'.$wo->wo_number;
+                $aaa->detailth = 'คุณรับงานสำเร็จแล้ว';
+        
+                $aaa->save();
+                
             } else {
                 $message = "Someone already took this job.";
                 $status = false;
