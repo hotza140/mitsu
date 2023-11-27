@@ -1,8 +1,9 @@
 <table>
     <thead>
         <tr>
-        <th style="width: 150px">ชื่อ/นามสกุล </th>
-            <th style="width: 150px">เบอร์ติดต่อ </th>
+        <th style="width: 150px">ชื่อ/นามสกุล ช่าง </th>
+        <th style="width: 150px">ชื่อ/นามสกุล ลูกค้า </th>
+            <th style="width: 150px">เบอร์ติดต่อ ลูกค้า </th>
             <th style="width: 150px">ร้านค้า </th>
             <th style="width: 150px">ชื่อรุ่น(indoor) </th>
             <th style="width: 150px">หมายเลขเครื่องปรับอากาศ(indoor) </th>
@@ -15,11 +16,16 @@
         </tr>
     </thead>
     <tbody>
-        @foreach ($data->data as $key=>$item)
+        @foreach ($data as $key=>$item)
         <tr>
-            <td>{{$item->name}}</td>
-            <td>{{$item->phone}}</td>
-            <td>{{$item->market}}</td>
+        <?php  $name=App\Models\Customer::where('id',$item->customer_id)->first();
+         $users=App\User::where('id',@$name->mechanic_id)->first();  
+         $market=App\Models\market::where('id',@$users->id_market)->first();
+        ?>
+        <td>{{@$users->name}} {{@$users->lastname}}</td>
+            <td>{{@$name->full_name}}</td>
+            <td>{{@$name->phone}}</td>
+            <td>{{@$market->titleth}}</td>
 
             <td>{{$item->in_name}}</td>
             <td>{{$item->indoor_number}}</td>
@@ -28,8 +34,8 @@
             <td>{{$item->outdoor_number}}</td>
 
             <td>{{$item->created_at}}</td>
-            <td>{{$item->date_s}}</td>
-            <td>{{$item->date_e}}</td>
+            <td>{{$date_s}}</td>
+            <td>{{$date_e}}</td>
         </tr>
         @endforeach
 

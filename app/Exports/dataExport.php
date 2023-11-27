@@ -40,42 +40,19 @@ class dataExport implements FromView
         $air = AirConditioner::
         whereDate('created_at', '>=', $date_s)
         ->whereDate('created_at', '<=', $date_e)
-        ->orderBy('id', 'desc');
+        ->orderBy('id', 'desc')
+        ->get();
         }else{
-        $air = AirConditioner::orderBy('id', 'desc');
+        $air = AirConditioner::
+        orderBy('id', 'desc')
+        ->get();
         }
 
-        $data = DataTables::of($air)
-            ->addIndexColumn()
-            ->addColumn('name', function ($row) {
-                $pp = Customer::where('id', $row->customer_id)->first();
-                return $pp ? $pp->full_name : null;
-            })
-            ->addColumn('phone', function ($row) {
-                $pp = Customer::where('id', $row->customer_id)->first();
-                return $pp ? $pp->phone : null;
-            })
-            ->addColumn('market', function ($row) {
-                $mm = Customer::where('id', $row->customer_id)->first();
-                $pp = market::where('id', @$mm->id_market)->first();
-                return $pp ? $pp->titleth : null;
-            })
-            ->addColumn('date_s', function ($row) use($date_s) {
-                return $date_s ? $date_s : null;
-            })
-            ->addColumn('date_e', function ($row) use($date_e) {
-                return $date_e ? $date_e : null;
-            })
-            ->rawColumns(['number_s','name','date_s','date_e','phone'])
-            ->make(true);
-
-           
-
-
-            $datatableData = $data->getData();
             
-            return view('date_excel', [
-                'data'=>$datatableData,
+            return view('data_excel', [
+                'data'=>$air,
+                'date_s'=>$date_s,
+                'date_e'=>$date_e,
             ]);
 
     }
