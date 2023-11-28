@@ -131,6 +131,25 @@ class ApiController extends Controller
          ///NOtification GET///
 
 
+           ///NOtification GET ALL///
+           public function api_noti_all()
+           {
+              $item=noti::orderby('id','desc')->get();
+       
+               $message = "Success!";
+               $status = true;
+               return response()->json([
+                   'results' => [
+                       'item' => $item,
+                   ],
+                   'status' =>  $status,
+                   'message' =>  $message,
+                   'url_picture' => $this->prefix,
+               ]);
+           }
+           ///NOtification GET ALL///
+
+
 
 
        ///--------api_forget_pass---------///

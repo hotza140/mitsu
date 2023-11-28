@@ -44,6 +44,7 @@ Route::group([
     Route::get('/api_market', 'ApiController@api_market');
 
     Route::get('/api_noti/{id}', 'ApiController@api_noti');
+    Route::get('/api_noti_all', 'ApiController@api_noti_all');
     Route::post('/api_noti_add', 'ApiController@api_noti_add');
     
 
