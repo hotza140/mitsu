@@ -793,6 +793,22 @@
                                     </ul>
                                     <!-- item_point -->
 
+
+                                     <!-- all_point -->
+                                     <ul class="pcoded-submenu">
+                                        @if(isset($list)) @if($list=="all_point") <li class="active"> @else
+                                        <li class=""> @endif
+                                            @else
+                                        <li class=""> @endif
+                                            <a href="{{url('backend/all_point')}}">
+                                                <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
+                                                <span class="pcoded-mtext">ประวัติการแลกเปลี่ยน</span>
+                                                <!-- <span class="pcoded-badge label label-danger">1</span> -->
+                                            </a>
+                                        </li>
+                                    </ul>
+                                    <!-- all_point -->
+
                                     <!-- End-->
                                 </li>
                             </ul>

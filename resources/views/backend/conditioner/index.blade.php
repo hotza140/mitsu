@@ -56,8 +56,8 @@
                                    <form class="form-horizontal" action="{{url('backend/data_export')}}" method="POST" enctype="multipart/form-data">
                                           @csrf
 
-                                       <input type="hidden" name="date_s" value="<?php if(isset($date_s)){echo $date_s;} ?>"  class="col-md-2">
-                                       <input type="hidden" name="date_e" value="<?php if(isset($date_e)){echo $date_e;} ?>"  class="col-md-2">
+                                       <input type="hidden" name="date_s" value="<?php if(isset($date_s)){echo $date_s;}else{echo $date;} ?>"  class="col-md-2">
+                                       <input type="hidden" name="date_e" value="<?php if(isset($date_e)){echo $date_e;}else{echo $date;} ?>"  class="col-md-2">
                                        
                                        <button type="submit" class="btn btn-danger" style="color:white;"
                                                onclick="return confirm('Confirm!');"> <i

@@ -1769,6 +1769,18 @@ class ApiController extends Controller
             $his->buy_point = $ci;
             $his->bl_point = $sum;
             $his->date = date('Y-m-d H:i:s');
+
+            $length = 12;
+            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            $charactersLength = strlen($characters);
+            $randomString = '';
+            for ($i = 0; $i < $length; $i++) {
+                $randomString .= $characters[rand(0, $charactersLength - 1)];
+            }
+
+            $rand_num=$randomString;
+            $his->number = $rand_num;
+
             $his->save();
 
 

@@ -141,6 +141,17 @@ Route::prefix('backend')->group(function(){
     Route::post('history_point_update/{id}',[App\Http\Controllers\BackendController::class,'history_point_update']);
     //history_point
 
+     //all_point
+     Route::post('all_point_export',[App\Http\Controllers\BackendController::class,'all_point_export']);
+
+    Route::get('all_point',[App\Http\Controllers\BackendController::class,'all_point']);
+    Route::get('all_point_destroy/{id}',[App\Http\Controllers\BackendController::class,'all_point_destroy']);
+    Route::get('all_point_add/{id}',[App\Http\Controllers\BackendController::class,'all_point_add']);
+    Route::post('all_point_store',[App\Http\Controllers\BackendController::class,'all_point_store']);
+    Route::get('all_point_edit/{id}',[App\Http\Controllers\BackendController::class,'all_point_edit']);
+    Route::post('all_point_update/{id}',[App\Http\Controllers\BackendController::class,'all_point_update']);
+    //all_point
+
     //wait_user
     Route::get('wait_user_not/{id}',[App\Http\Controllers\BackendController::class,'wait_user_not']);
 

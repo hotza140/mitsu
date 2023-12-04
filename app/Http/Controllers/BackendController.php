@@ -42,6 +42,7 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
 
+use App\Exports\all_pointExport;
 
 use App\Models\noti;
 
@@ -1426,6 +1427,69 @@ public function user_item($id){
                 ]);
             }
             //item_point//
+
+
+
+
+
+
+
+
+
+
+                //all_point//
+
+                public function all_point_export(Request $r){
+                    $date_time=date('Y-m-d_h:i:s');
+                    // dd($date_time);
+                    $name="All_pointExport".$date_time;
+                    return Excel::download(new all_pointExport,"$name.xlsx");
+                }
+
+
+                public function all_point(Request $r){
+                    // $item=buy_point::orderby('id','desc')->get();
+                    return view('backend.all_point.index',[
+                        // 'item'=>$item,
+                        'page'=>"item_point",
+                        'list'=>"all_point",
+                        'date_s'=>$r->date_s,
+			            'date_e'=>$r->date_e,
+                    ]);
+                }
+                public function all_point_store(Request $r){
+                    $item=new buy_point();
+        
+                    $item->save();
+                    return redirect()->to('/backend/all_point')->with('success','Sucess!');
+        
+                }
+                public function all_point_update(Request $r,$id){
+                    $item=buy_point::where('id',$id)->first();
+                    $item->save();
+                    return redirect()->to('/backend/all_point')->with('success','Sucess!');
+                }
+                public function all_point_edit($id){
+                    $item=buy_point::where('id',$id)->first();
+                    return view('backend.all_point.edit',[
+                        'item'=>$item,
+                        'page'=>"item_point",
+                        'list'=>"all_point",
+                    ]);
+                }
+                public function all_point_destroy($id){
+                    $item=buy_point::where('id',$id)->first();
+                    $item->delete();
+                    return redirect()->back()->with('success','Sucess!');
+                }
+                public function all_point_add(){
+                    return view('backend.all_point.add',[
+                        'page'=>"item_point",
+                        'list'=>"all_point",
+                    ]);
+                }
+                //all_point//
+    
 
 
 
