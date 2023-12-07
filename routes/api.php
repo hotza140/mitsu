@@ -78,6 +78,8 @@ Route::group([
 
 
     Route::get('/api_province', 'ApiController@api_province');
+    Route::post('/api_amupur', 'ApiController@api_amupur');
+    Route::post('/api_district', 'ApiController@api_district');
 
     Route::post('/api_edit_user', 'ApiController@api_edit_user');
 

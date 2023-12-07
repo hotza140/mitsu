@@ -151,6 +151,104 @@ class ApiController extends Controller
 
 
 
+             ///province///
+    public function api_province(Request $r)
+    {
+
+        $ps = 'select name_th,id,name_en
+                FROM tb_province
+                ORDER BY
+                CONVERT ( name_th USING tis620 ) ASC';
+
+        $province =  DB::select($ps);
+
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'province' => $province,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///province///
+
+
+           
+
+
+                    ///amupur///
+    public function api_amupur(Request $r)
+    {
+
+        if($r->code!=null){
+            $as = 'select name_th,id,name_en
+            FROM tb_amupur
+            WHERE  province_code = '. $r->code.'
+            ORDER BY
+            CONVERT ( name_th USING tis620 ) ASC';
+        }else{
+            $as = 'select name_th,id,name_en
+            FROM tb_amupur
+            ORDER BY
+            CONVERT ( name_th USING tis620 ) ASC'; 
+        }
+        
+        $amphur =  DB::select($as);
+
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'amphur' => $amphur,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///amupur///
+
+
+      ///district///
+      public function api_district(Request $r)
+      {
+  
+        if($r->id!=null){
+          $ds = 'select name_th,id,name_en
+                  FROM tb_districts
+                  WHERE  amphure_id = '. $r->id.'
+                  ORDER BY
+                  CONVERT ( name_th USING tis620 ) ASC';
+        }else{
+            $ds = 'select name_th,id,name_en
+            FROM tb_districts
+            ORDER BY
+            CONVERT ( name_th USING tis620 ) ASC';
+        }
+
+          $district =  DB::select($ds);
+  
+  
+          $message = "Success!";
+          $status = true;
+          return response()->json([
+              'results' => [
+                  'district' => $district,
+              ],
+              'status' =>  $status,
+              'message' =>  $message,
+              'url_picture' => $this->prefix,
+          ]);
+      }
+      ///district///
+
+
+
 
        ///--------api_forget_pass---------///
        public function api_forget_pass(Request $r){
@@ -1846,7 +1944,7 @@ class ApiController extends Controller
 
 
     ///province///
-    public function api_province()
+    public function api_province_all()
     {
 
         $ps = 'select name_th,id,name_en
