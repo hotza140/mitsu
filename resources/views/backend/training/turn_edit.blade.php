@@ -134,7 +134,7 @@
                                                 <div class="form-group row">
                                                     <div class="col-sm-6">
                                                         <label class="col-form-label">Google Map Link</label>
-                                                        <input type="number" name="google_link" class="form-control" id="turn"
+                                                        <input type="text" name="google_link" class="form-control" id="turn"
                                                         value="{{$item->google_link}}"
                                                              >
                                                     </div>
