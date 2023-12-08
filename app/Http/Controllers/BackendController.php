@@ -1017,11 +1017,9 @@ public function user_item($id){
         $item->save();
 
         $user=User::where('id',$r->id_user)->first();
-        if($user!=null){
         $point=$user->point;
         $user->point=$point+$r->point;
         $user->save();
-        }
 
         return redirect()->back()->with('success','Sucess!');
     }
