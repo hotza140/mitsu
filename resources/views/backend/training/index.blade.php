@@ -37,9 +37,9 @@
                                             <thead>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Title</th>
-                                                    <th>status</th>
-                                                    <th>date</th>
+                                                    <th>ชื่อหลักสูตร</th>
+                                                    <!-- <th>status</th>
+                                                    <th>date</th> -->
                                                     <th>Updated_at</th>
                                                     <th>Tool</th>
                                                 </tr>
@@ -49,8 +49,8 @@
                                                 <tr class="num" id="{{$items->id}}">
                                                     <td>{{$key+1}}</td>
                                                     <td>{{$items->name}}</td>
-                                                    <td>{{$items->status}}</td>
-                                                    <td>{{$items->date_time}}</td>
+                                                    <!-- <td>{{$items->status}}</td>
+                                                    <td>{{$items->date_time}}</td> -->
                                                     <td>{{$items->updated_at}}</td>
                                                     <td>
                                                         {{-- <a href="{{url('/backend/training/turn/'.$items->id)}}"
@@ -71,9 +71,9 @@
                                             <tfoot>
                                                 <tr>
                                                     <th>#</th>
-                                                    <th>Title</th>
-                                                    <th>status</th>
-                                                    <th>date</th>
+                                                    <th>ชื่อหลักสูตร</th>
+                                                    <!-- <th>status</th>
+                                                    <th>date</th> -->
                                                     <th>Updated_at</th>
                                                     <th>Tool</th>
                                                 </tr>

@@ -80,7 +80,7 @@
                 <!-- Page-header start -->
                 <div class="page-header card">
                     <div class="card-block atm">
-                        <h5 class="m-b-10">Training/EDIT</h5>
+                        <h5 class="m-b-10">TrainingTurn View/EDIT</h5>
 
                     </div>
                 </div>
@@ -88,76 +88,6 @@
 
                 <!-- Page body start -->
                 <div id="faq" role="tablist" aria-multiselectable="true">
-
-
-                    <div class="panel panel-default">
-                        <div class="panel-heading" role="tab" id="detail-training" style="height: 56px;">
-                            <h1 class="panel-title">
-                                <a data-toggle="collapse" data-parent="#faq" href="#detailtraining"
-                                    aria-expanded="false" aria-controls="detailtraining">
-                                    รายละเอียดฝึกอบรม
-                                </a>
-                            </h1>
-                        </div>
-                        <!-- <div class="page-body panel-collapse collapse" id="detailtraining" role="tabpanel"
-                            aria-labelledby="detail-training"> -->
-                            <div>
-                            <div class="row">
-                                <div class="col-sm-12">
-                                    <div class="card">
-                                        <div class="card-header">
-
-                                        </div>
-
-                                        <div class="card-block">
-
-                                            <form method="post" id=""
-                                                action="{{ url('/backend/training/update/'.$detail->id) }}"
-                                                enctype="multipart/form-data">
-                                                @csrf
-
-                                                <input type="hidden" name="training_id" id="training-id"
-                                                    value="{{$detail->id}}">
-
-                                                <div class="form-group row">
-                                                    <div class="col-sm-6">
-                                                        <label class="col-form-label">ชื่อหลักสูตร</label>
-                                                        <input type="text" name="name" class="form-control" id="name"
-                                                            value="{{$detail->name}}" required="">
-                                                    </div>
-                                                </div>
-
-                                                <div class="form-group row">
-                                                    <div class="col-sm-12">
-                                                        <label class="col-form-label">เนื้อหาหลักสูตร</label>
-                                                        <textarea class="form-control" name="detail" id=""
-                                                            style="height:150px"
-                                                            required="">{{$detail->detail}}</textarea>
-                                                    </div>
-                                                </div>
-
-                                                <p class="text-right">
-                                                    <a href="{{ url('/backend/training') }}" style="color:white;"
-                                                        class="btn btn-danger"> <i class="fa fa-share-square-o"></i>
-                                                        Back </a>
-                                                    <button type="submit" class="btn btn-success " style="color:white;"
-                                                        onclick="return confirm('Confirm!');"> <i
-                                                            class="fa fa-check-circle-o"></i> Save </button>
-                                                </p>
-
-                                            </form>
-                                        </div>
-
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-
-
-
-
 
                     <div id="ddr"></div>
                     <div class="panel panel-default">
@@ -187,47 +117,53 @@
                                                 @csrf
 
                                                 <input type="hidden" name="id" id="id"
-                                                    value="{{$detail->id}}">
+                                                    value="{{$item->training_id}}">
 
-                                                <!-- <div class="form-group row">
+                                                    <input type="hidden" name="edit" 
+                                                    value="{{$item->id}}">
+
+                                                <div class="form-group row">
                                                     <div class="col-sm-2">
-                                                        <label class="col-form-label">รอบที่</label>
+                                                        <label class="col-form-label">รอบที่ {{$item->turn}}</label>
                                                         <input type="number" name="turn" class="form-control" id="turn"
+                                                        value="{{$item->turn}}"
                                                              required="">
                                                     </div>
-                                                </div> -->
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-sm-6">
+                                                        <label class="col-form-label">Google Map Link</label>
+                                                        <input type="number" name="google_link" class="form-control" id="turn"
+                                                        value="{{$item->google_link}}"
+                                                             >
+                                                    </div>
+                                                </div>
 
                                                 <!-- <div class="form-group row">
                                                     <div class="col-sm-3">
                                                         <label class="col-form-label">สถานะเปิดอบรม</label><br>
                                                         <label class="switch">
                                                             <input type="checkbox" name="status" id="status"
-                                                                @if(@$detail->status == 'on') checked @endif>
+                                                                @if(@$item->status == 'on') checked @endif>
                                                             <span class="slider round"></span>
                                                         </label>
                                                     </div>
                                                 </div> -->
 
                                                 <div class="form-group row">
-                                                    <div class="col-sm-6">
-                                                        <label class="col-form-label">Google Map Link</label>
-                                                        <input type="number" name="google_link" class="form-control" id="turn"
-                                                             >
-                                                    </div>
-                                                </div>
-
-
-                                                <div class="form-group row">
                                                     <div class="col-sm-4">
                                                         <label class="col-form-label">วันที่/เวลาเริ่มต้น</label>
                                                         <input type="datetime-local" name="date_start"
                                                             class="form-control" id="date_start" required=""
+                                                            value="{{$item->date_start}}"
                                                            >
                                                     </div>
                                                     <div class="col-sm-4">
                                                         <label class="col-form-label">วันที่/เวลาสิ้นสุด</label>
                                                         <input type="datetime-local" name="date_end"
                                                             class="form-control" id="date_end" required=""
+                                                            value="{{$item->date_end}}"
                                                          >
                                                     </div>
                                                 </div>
@@ -237,7 +173,7 @@
                                                         <label class="col-form-label">สถานที่ฝึกอบรม</label>
                                                         <textarea class="form-control" name="address" id=""
                                                             style="height:70px"
-                                                            required=""></textarea>
+                                                            required="">{{$item->address}}</textarea>
                                                     </div>
                                                 </div>
 
@@ -249,7 +185,7 @@
                                                             <option value="">ระบุจังหวัด</option>
                                                             @foreach ($provinces as $province)
                                                             <option value="{{$province->id}}" @if($province->id ==
-                                                                @$aaa->province) selected @endif
+                                                                @$item->province_id) selected @endif
                                                                 >{{$province->name_th}}</option>
                                                             @endforeach
 
@@ -262,7 +198,7 @@
                                                             <option value="">ระบุอำเภอ</option>
                                                             @foreach ($amphures as $amphure)
                                                             <option value="{{$amphure->id}}" @if($amphure->id ==
-                                                                @$aaa->amphure) selected @endif>{{$amphure->name_th}}
+                                                                @$item->amphure_id) selected @endif>{{$amphure->name_th}}
                                                             </option>
                                                             @endforeach
                                                         </select>
@@ -277,7 +213,7 @@
                                                             <option value="">ระบุตำบล</option>
                                                             @foreach ($districts as $district)
                                                             <option value="{{$district->id}}" @if($district->id ==
-                                                                @$aaa->district) selected
+                                                                @$item->district_id) selected
                                                                 @endif>{{$district->name_th}}</option>
                                                             @endforeach
                                                         </select>
@@ -286,14 +222,18 @@
                                                         <label class="col-form-label">เลขไปรษณีย์</label>
                                                         <input type="text" id="postcode" name="postcode"
                                                             class="form-control" required=""
+                                                            value="{{$item->postcode}}"
                                                             >
                                                     </div>
                                                 </div>
 
                                                 <p class="text-right">
+                                                <a href="{{url('/backend/training/edit/'.$item->training_id)}}" style="color:white;"
+                                                        class="btn btn-danger"> <i class="fa fa-share-square-o"></i>
+                                                        Back </a>
                                                     <button type="submit" class="btn btn-success " style="color:white;"
                                                         onclick="return confirm('Confirm!');"> <i
-                                                            class="fa fa-check-circle-o"></i> ADD </button>
+                                                            class="fa fa-check-circle-o"></i> Save </button>
                                                 </p>
 
                                             </form>
@@ -309,13 +249,16 @@
                     <div id="haft"></div>
 
                      <!-- --------------------- -->
-                     <?php $point=DB::table('training_turns')->where('training_id',$detail->id)->orderby('turn','asc')->get(); ?>
+                     <?php
+                     $point = App\Models\TrainingList::where('turn_id', $item->id)->get();
+                     ?>
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">
                                 <!-- Zero config.table start -->
                                 <div class="card">
                                     <div class="card-header">
+                                    <h5>รายชื่อผู้ฝึกอบรม</h5>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
                                             <table id="" class="table table-striped table-bordered nowrap">
@@ -323,10 +266,10 @@
                                                     <tr>
 
                                                         <th>#</th>
-                                                        <th>รอบที่</th>
-                                                        <th>วันที่/เวลาเริ่มต้น</th>
-                                                        <th>วันที่/เวลาสิ้นสุด</th>
-                                                        <th>Tool</th>
+                                                       <th>ชื่อ - นามสกุล</th>
+                                            <th>ชื่อเล่น</th>
+                                            <th>เบอร์โทรศัพท์</th>
+                                            <th>สังกัดร้าน</th>
 
                                                     </tr>
                                                 </thead>
@@ -334,20 +277,10 @@
                                                     @foreach($point as $key=>$items)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
-                                                        <td>รอบที่ {{$items->turn}}</td>
-                                                        <td>{{$items->date_start}}</td>
-                                                        <td>{{$items->date_end}}</td>
-                                                        <td>
-                                                        <a href="{{url('/backend/training/turn_edit/'.$items->id)}}"
-                                                            class="btn btn-sm btn-primary" style="color:white;"><i
-                                                                class="fa fa-gear"></i>View&Edit</a>
-
-                                                            <a href="{{url('/backend/training/turn_destroy/'.$items->id.'#haft')}}"
-                                                                class="btn btn-sm btn-danger"
-                                                                onclick="javascript:return confirm('You Want To Delete?')"
-                                                                style="color:white;"><i
-                                                                    class="fa fa-trash"></i>Delete</a>
-                                                        </td>
+                                                        <td>{{$items->full_name}}</td>
+                                                        <td>{{$items->nickname}}</td>
+                                                        <td>{{$items->phone}}</td>
+                                                        <td>{{$items->agency}}</td>
                                                     </tr>
                                                     @endforeach
 
@@ -374,53 +307,7 @@
 
 
 
-                    <!-- <div id="faq" role="tablist" aria-multiselectable="true">
-                        <div class="panel panel-default">
-                            <div class="panel-heading" role="tab" id="training-turn" style="height: 56px;">
-                                <h1 class="panel-title">
-                                    <a data-toggle="collapse" data-parent="#faq" href="#trainingturn"
-                                        aria-expanded="false" aria-controls="trainingturn">
-                                        การเปิดรอบฝึกอบรม
-                                    </a>
-                                </h1>
-                            </div>
-                            <div class="page-body panel-collapse collapse" id="trainingturn" role="tabpanel"
-                                aria-labelledby="training-turn">
-                                <div class="row">
-                                    <div class="col-sm-12">
-
-                                        <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
-                                       
-
-                                        <div class="card">
-                                            <div class="card-header">
-
-                                            </div>
-
-                                            <div class="card-block">
-                                                <div class="form-group row">
-                                                    <div class="col-sm-12">
-                                                        <button type="button" id="add-traingturn"
-                                                            class="btn btn-success"><i class="fa fa-plus"></i>
-                                                            เพิ่มรอบ</button>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <div class="col-sm-12" id="training-turn-num">
-                                                        @foreach ($detail->trainingturn as $turn)
-                                                        <button type="button" class="btn btn-default btn-turn"
-                                                            rel="{{$turn->id}}">รอบที่ {{$turn->turn}}</button>
-                                                        @endforeach
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div> -->
+                 
 
 
                     

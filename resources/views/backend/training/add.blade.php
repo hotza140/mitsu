@@ -91,74 +91,29 @@
                                         @csrf
 
                                         <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">หัวข้อฝึกอบรม</label>
-                                                <input type="text" name="name" class="form-control" id="name" required="">
-                                            </div>
-                                        </div>
+                                                    <div class="col-sm-6">
+                                                        <label class="col-form-label">ชื่อหลักสูตร</label>
+                                                        <input type="text" name="name" class="form-control" id="name"
+                                                             required="">
+                                                    </div>
+                                                </div>
 
-                                        <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">สถานะเปิดอบรม</label><br>
-                                                <label class="switch">
-                                                    <input type="checkbox" name="status" id="status" checked>
-                                                     <span class="slider round"></span>
-                                                </label>
-                                            </div>
-                                        </div>
+                                                <div class="form-group row">
+                                                    <div class="col-sm-12">
+                                                        <label class="col-form-label">เนื้อหาหลักสูตร</label>
+                                                        <textarea class="form-control" name="detail" id=""
+                                                            style="height:150px"
+                                                            required=""></textarea>
+                                                    </div>
+                                                </div>
 
-                                        <div class="form-group row">
-                                            <div class="col-sm-4">
-                                                <label class="col-form-label">วันที่และเวลา</label>
-                                                <input type="datetime-local" name="datetime" class="form-control" id="datetime" required="">
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">รายละเอียดการฝึกอบรม</label>
-                                                <textarea class="form-control" name="detail" id="detail" style="height:150px" required=""></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-sm-12">
-                                                <label class="col-form-label">ที่อยู่</label>
-                                                <textarea class="form-control" name="address" id="address" style="height:70px" required=""></textarea>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">จังหวัด</label>
-                                                <select class="form-control" name="province" id="province" required="">
-                                                    <option value="">ระบุจังหวัด</option>
-                                                    @foreach ($provinces as $province)
-                                                    <option value="{{$province->id}}">{{$province->name_th}}</option>
-                                                    @endforeach
-
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">อำเภอ</label>
-                                                <select class="form-control" name="amphure" id="amphure" required="">
-                                                    <option value="">ระบุอำเภอ</option>
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group row">
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">ตำบล</label>
-                                                <select class="form-control" name="district" id="district" required="">
-                                                    <option value="">ระบุตำบล</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 col-sm-12">
-                                                <label class="col-form-label">เลขไปรษณีย์</label>
-                                                <input type="text" id="postcode" name="postcode" class="form-control" required="">
-                                            </div>
-                                        </div>
+                                                <?php $ddd=date('Y-m-d H:i:s'); ?>
+                                                <input type="hidden" name="status" id="status" value="on" >
+                                                <input type="hidden" name="datetime" id="datetime" value="{{$ddd}}" >
+                                                <input type="hidden" name="address" id="address" value="0" >
+                                                <input type="hidden" name="district" id="district" value="0" >
+                                                <input type="hidden" name="amphure" id="amphure" value="0" >
+                                                <input type="hidden" name="province" id="province" value="0" >
 
                                         <p class="text-right">
                                             <a href="{{ url('/backend/training') }}" style="color:white;"
