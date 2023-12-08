@@ -106,7 +106,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                             <div class="col-sm-12">
                                                 <label class="col-form-label">New
                                                     Password(หากไม่ต้องการเปลี่ยนให้เว้นว่างเอาไว้)</label>
-                                                <input disabled type="text" name="password" class="form-control" id="" value="">
+                                                <input  type="text" name="password" class="form-control" id="" value="">
                                             </div>
                                         </div>
 
