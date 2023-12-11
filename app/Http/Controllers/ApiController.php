@@ -72,86 +72,86 @@ class ApiController extends Controller
 
 
 
-      ///NOtification///
-      public function api_noti_add(Request $r)
-      {
-       
-       $item = new noti();
+    ///NOtification///
+    public function api_noti_add(Request $r)
+    {
 
-       if($r->id_user!=null){
-          $item->id_user = $r->id_user;
-       }
-       if($r->id_customer!=null){
-          $item->id_customer = $r->id_customer;
-       }
-       if($r->id_work!=null){
-          $item->id_work = $r->id_work;
-       }
-       if($r->title!=null){
-          $item->titleth = $r->title;
-       }
-       if($r->detail!=null){
-          $item->detailth = $r->detail;
-       }
-       if($r->status!=null){
-          $item->status = $r->status;
-       }
-  
-          $item->save();
-  
-          $message = "Success!";
-          $status = true;
-          return response()->json([
-              'results' => [
-                  'item' => $item,
-              ],
-              'status' =>  $status,
-              'message' =>  $message,
-              'url_picture' => $this->prefix,
-          ]);
-      }
-      ///NOtification///
+        $item = new noti();
 
-         ///NOtification GET///
-         public function api_noti($id)
-         {
-            $item=noti::where('id_user',$id)->orwhere('id_user',null)->orderby('id','desc')->get();
-     
-             $message = "Success!";
-             $status = true;
-             return response()->json([
-                 'results' => [
-                     'item' => $item,
-                 ],
-                 'status' =>  $status,
-                 'message' =>  $message,
-                 'url_picture' => $this->prefix,
-             ]);
-         }
-         ///NOtification GET///
+        if ($r->id_user != null) {
+            $item->id_user = $r->id_user;
+        }
+        if ($r->id_customer != null) {
+            $item->id_customer = $r->id_customer;
+        }
+        if ($r->id_work != null) {
+            $item->id_work = $r->id_work;
+        }
+        if ($r->title != null) {
+            $item->titleth = $r->title;
+        }
+        if ($r->detail != null) {
+            $item->detailth = $r->detail;
+        }
+        if ($r->status != null) {
+            $item->status = $r->status;
+        }
 
+        $item->save();
 
-           ///NOtification GET ALL///
-           public function api_noti_all()
-           {
-              $item=noti::orderby('id','desc')->get();
-       
-               $message = "Success!";
-               $status = true;
-               return response()->json([
-                   'results' => [
-                       'item' => $item,
-                   ],
-                   'status' =>  $status,
-                   'message' =>  $message,
-                   'url_picture' => $this->prefix,
-               ]);
-           }
-           ///NOtification GET ALL///
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///NOtification///
+
+    ///NOtification GET///
+    public function api_noti($id)
+    {
+        $item = noti::where('id_user', $id)->orwhere('id_user', null)->orderby('id', 'desc')->get();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///NOtification GET///
 
 
+    ///NOtification GET ALL///
+    public function api_noti_all()
+    {
+        $item = noti::orderby('id', 'desc')->get();
 
-             ///province///
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///NOtification GET ALL///
+
+
+
+    ///province///
     public function api_province(Request $r)
     {
 
@@ -177,26 +177,26 @@ class ApiController extends Controller
     ///province///
 
 
-           
 
 
-                    ///amupur///
+
+    ///amupur///
     public function api_amupur(Request $r)
     {
 
-        if($r->code!=null){
+        if ($r->code != null) {
             $as = 'select name_th,id,name_en
             FROM tb_amupur
-            WHERE  province_code = '. $r->code.'
+            WHERE  province_code = ' . $r->code . '
             ORDER BY
             CONVERT ( name_th USING tis620 ) ASC';
-        }else{
+        } else {
             $as = 'select name_th,id,name_en
             FROM tb_amupur
             ORDER BY
-            CONVERT ( name_th USING tis620 ) ASC'; 
+            CONVERT ( name_th USING tis620 ) ASC';
         }
-        
+
         $amphur =  DB::select($as);
 
 
@@ -214,47 +214,48 @@ class ApiController extends Controller
     ///amupur///
 
 
-      ///district///
-      public function api_district(Request $r)
-      {
-  
-        if($r->id!=null){
-          $ds = 'select name_th,id,name_en
+    ///district///
+    public function api_district(Request $r)
+    {
+
+        if ($r->id != null) {
+            $ds = 'select name_th,id,name_en
                   FROM tb_districts
-                  WHERE  amphure_id = '. $r->id.'
+                  WHERE  amphure_id = ' . $r->id . '
                   ORDER BY
                   CONVERT ( name_th USING tis620 ) ASC';
-        }else{
+        } else {
             $ds = 'select name_th,id,name_en
             FROM tb_districts
             ORDER BY
             CONVERT ( name_th USING tis620 ) ASC';
         }
 
-          $district =  DB::select($ds);
-  
-  
-          $message = "Success!";
-          $status = true;
-          return response()->json([
-              'results' => [
-                  'district' => $district,
-              ],
-              'status' =>  $status,
-              'message' =>  $message,
-              'url_picture' => $this->prefix,
-          ]);
-      }
-      ///district///
+        $district =  DB::select($ds);
+
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'district' => $district,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///district///
 
 
 
 
-       ///--------api_forget_pass---------///
-       public function api_forget_pass(Request $r){
-        $user=User::where('email',$r->email)->first();
+    ///--------api_forget_pass---------///
+    public function api_forget_pass(Request $r)
+    {
+        $user = User::where('email', $r->email)->first();
 
-        if($user!=null){
+        if ($user != null) {
 
             $length = 12;
             $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
@@ -264,526 +265,589 @@ class ApiController extends Controller
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
 
-        $rand_num=$randomString;
-        $user->forgot_code=$rand_num;
-        $user->save();
+            $rand_num = $randomString;
+            $user->forgot_code = $rand_num;
+            $user->save();
 
-        $link=url('forget_pass').'1/'.$rand_num;
-        $email=$user->email;
-      
-        
-
-        $forget_mail=new Forget_email(['link'=>$link,
-        'email'=>$email,
-
-        ]);
-
-        Mail::to($user->email)->send($forget_mail);
+            $link = url('forget_pass') . '1/' . $rand_num;
+            $email = $user->email;
 
 
-        $status=true;
-        $message="Success!";
-        return response()->json([
-        'results'=>[
-        'user' =>$user,  
-        ],
-        'status'=>$status,
-        'message' =>  $message,
-        'url_picture' => $this->prefix,        
-        ]);
-        }else{
-            $status=false;
-            $message="Email Wrong!";
+
+            $forget_mail = new Forget_email([
+                'link' => $link,
+                'email' => $email,
+
+            ]);
+
+            Mail::to($user->email)->send($forget_mail);
+
+
+            $status = true;
+            $message = "Success!";
             return response()->json([
-            'results'=>[
-            'user' =>$user,  
-            ],
-            'status'=>$status,
-            'message' =>  $message,
-            'url_picture' => $this->prefix,        
+                'results' => [
+                    'user' => $user,
+                ],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $status = false;
+            $message = "Email Wrong!";
+            return response()->json([
+                'results' => [
+                    'user' => $user,
+                ],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
             ]);
         }
-
-
-
     }
     ///----------------///
 
 
-     ///air_list///
-     public function api_air_list($id)
-     {
-         $air_list = Air_listModel::where('model', $id)->first();
- 
-         if($air_list!=null){
-         $message = "Success!";
-         $status = true;
-         return response()->json([
-             'results' => [
-                 'air_list' => $air_list,
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
-        }else{
+    ///air_list///
+    public function api_air_list($id)
+    {
+        $air_list = Air_listModel::where('model', $id)->first();
+
+        if ($air_list != null) {
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'air_list' => $air_list,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
             $message = "Not Have Models!";
-         $status = true;
-         return response()->json([
-             'results' => [
-             ],
-             'status' =>  $status,
-             'message' =>  $message,
-             'url_picture' => $this->prefix,
-         ]);
+            $status = true;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
         }
-     }
-     ///air_list///
+    }
+    ///air_list///
 
 
 
-       ///air_listcheck1///
-       public function api_air_list_check1(Request $r)
-       {
-           $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('id', $r->id_work)->first();
- 
-           if($air_list!=null and $wo!=null){
+    ///air_listcheck1///
+    public function api_air_list_check1(Request $r)
+    {
+        $air_list = Air_listModel::where('model', $r->model)->first();
+        $wo = WO::where('id', $r->id_work)->first();
 
-            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
-            if($cc==null){
-            $cc=new Wo_air_checkModel();
-            $cc->id_wo=$wo->id;
-            $cc->model=$r->model;
-           }
- 
-           if($r->check1!=null){
-             if($r->check1>=$air_list->min1 and $r->check1<=$air_list->max1){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             $r1=$r->check1.'-'.$sum1;
-             $cc->min1=$r1;
-           }else{
-             $sum1=null;
-           }
- 
-           if($r->check2!=null){
-             if($r->check2>=$air_list->min1 and $r->check2<=$air_list->max1){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             $r2=$r->check2.'-'.$sum2;
-             $cc->stan1=$r2;
-           }else{
-             $sum2=null;
-           }
- 
- 
-           if($r->check3!=null){
-             if($r->check3>=$air_list->min1 and $r->check3<=$air_list->max1){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             $r3=$r->check3.'-'.$sum3;
-             $cc->max1=$r3;
-           }else{
-             $sum3=null;
-           }
-
-           $cc->save();
-
-           $wo->status_air_check='มีการตรวจสอบแล้ว';
-           $wo->save();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'air_list' => $air_list,
-                   'sum1' => $sum1,
-                   'sum2' => $sum2,
-                   'sum3' => $sum3,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }else{
-             $message = "Not Have Models or Work!";
-           $status = true;
-           return response()->json([
-               'results' => [
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }
-       }
-       ///air_listcheck1///
-
-
-       ///air_listcheck2///
-       public function api_air_list_check2(Request $r)
-       {
-           $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('id', $r->id_work)->first();
- 
-           if($air_list!=null and $wo!=null){
+        if ($air_list != null and $wo != null) {
 
             $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
-            if($cc==null){
-            $cc=new Wo_air_checkModel();
-            $cc->id_wo=$wo->id;
-            $cc->model=$r->model;
-           }
- 
-           if($r->check1!=null){
-             if($r->check1>=$air_list->min2 and $r->check1<=$air_list->max2){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             $r1=$r->check1.'-'.$sum1;
-             $cc->min2=$r1;
-           }else{
-             $sum1=null;
-           }
- 
-           if($r->check2!=null){
-             if($r->check2>=$air_list->min2 and $r->check2<=$air_list->max2){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             $r2=$r->check2.'-'.$sum2;
-             $cc->stan2=$r2;
-           }else{
-             $sum2=null;
-           }
- 
- 
-           if($r->check3!=null){
-             if($r->check3>=$air_list->min2 and $r->check3<=$air_list->max2){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             $r3=$r->check3.'-'.$sum3;
-             $cc->max2=$r3;
-           }else{
-             $sum3=null;
-           }
+            if ($cc == null) {
+                $cc = new Wo_air_checkModel();
+                $cc->id_wo = $wo->id;
+                $cc->model = $r->model;
+            }
 
-           $cc->save();
+            if ($r->check1 != null) {
+                if ($r->check1 >= $air_list->min1 and $r->check1 <= $air_list->max1) {
+                    $sum1 = 'ปกติ';
+                } else {
+                    $sum1 = 'ผิดปกติ';
+                }
+                $r1 = $r->check1 . '-' . $sum1;
+                $cc->min1 = $r1;
+            } else {
+                $sum1 = null;
+            }
 
-           $wo->status_air_check='มีการตรวจสอบแล้ว';
-           $wo->save();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'air_list' => $air_list,
-                   'sum1' => $sum1,
-                   'sum2' => $sum2,
-                   'sum3' => $sum3,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }else{
-             $message = "Not Have Models or Work!";
-           $status = true;
-           return response()->json([
-               'results' => [
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }
-       }
-       ///air_listcheck2///
+            if ($r->check2 != null) {
+                if ($r->check2 >= $air_list->min1 and $r->check2 <= $air_list->max1) {
+                    $sum2 = 'ปกติ';
+                } else {
+                    $sum2 = 'ผิดปกติ';
+                }
+                $r2 = $r->check2 . '-' . $sum2;
+                $cc->stan1 = $r2;
+            } else {
+                $sum2 = null;
+            }
 
 
+            if ($r->check3 != null) {
+                if ($r->check3 >= $air_list->min1 and $r->check3 <= $air_list->max1) {
+                    $sum3 = 'ปกติ';
+                } else {
+                    $sum3 = 'ผิดปกติ';
+                }
+                $r3 = $r->check3 . '-' . $sum3;
+                $cc->max1 = $r3;
+            } else {
+                $sum3 = null;
+            }
 
-          ///air_listcheck3///
-       public function api_air_list_check3(Request $r)
-       {
-           $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('id', $r->id_work)->first();
- 
-           if($air_list!=null and $wo!=null){
+            $cc->save();
 
-            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
-            if($cc==null){
-            $cc=new Wo_air_checkModel();
-            $cc->id_wo=$wo->id;
-            $cc->model=$r->model;
-           }
- 
-           if($r->check1!=null){
-             if($r->check1>=$air_list->min3 and $r->check1<=$air_list->max3){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             $r1=$r->check1.'-'.$sum1;
-             $cc->min3=$r1;
-           }else{
-             $sum1=null;
-           }
- 
-           if($r->check2!=null){
-             if($r->check2>=$air_list->min3 and $r->check2<=$air_list->max3){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             $r2=$r->check2.'-'.$sum2;
-             $cc->stan3=$r2;
-           }else{
-             $sum2=null;
-           }
- 
- 
-           if($r->check3!=null){
-             if($r->check3>=$air_list->min3 and $r->check3<=$air_list->max3){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             $r3=$r->check3.'-'.$sum3;
-             $cc->max3=$r3;
-           }else{
-             $sum3=null;
-           }
+            $wo->status_air_check = 'มีการตรวจสอบแล้ว';
+            $wo->save();
 
-           $cc->save();
-
-           $wo->status_air_check='มีการตรวจสอบแล้ว';
-           $wo->save();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'air_list' => $air_list,
-                   'sum1' => $sum1,
-                   'sum2' => $sum2,
-                   'sum3' => $sum3,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }else{
-             $message = "Not Have Models or Work!";
-           $status = true;
-           return response()->json([
-               'results' => [
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }
-       }
-       ///air_listcheck3///
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'air_list' => $air_list,
+                    'sum1' => $sum1,
+                    'sum2' => $sum2,
+                    'sum3' => $sum3,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "Not Have Models or Work!";
+            $status = true;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+    }
+    ///air_listcheck1///
 
 
+    ///air_listcheck2///
+    public function api_air_list_check2(Request $r)
+    {
+        $air_list = Air_listModel::where('model', $r->model)->first();
+        $wo = WO::where('id', $r->id_work)->first();
 
-
-       ///air_listcheck4///
-       public function api_air_list_check4(Request $r)
-       {
-           $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('id', $r->id_work)->first();
- 
-           if($air_list!=null and $wo!=null){
+        if ($air_list != null and $wo != null) {
 
             $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
-            if($cc==null){
-            $cc=new Wo_air_checkModel();
-            $cc->id_wo=$wo->id;
-            $cc->model=$r->model;
-           }
- 
-           if($r->check1!=null){
-             if($r->check1>=$air_list->min4 and $r->check1<=$air_list->max4){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             $r1=$r->check1.'-'.$sum1;
-             $cc->min4=$r1;
-           }else{
-             $sum1=null;
-           }
- 
-           if($r->check2!=null){
-             if($r->check2>=$air_list->min4 and $r->check2<=$air_list->max4){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             $r2=$r->check2.'-'.$sum2;
-             $cc->stan4=$r2;
-           }else{
-             $sum2=null;
-           }
- 
- 
-           if($r->check3!=null){
-             if($r->check3>=$air_list->min4 and $r->check3<=$air_list->max4){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             $r3=$r->check3.'-'.$sum3;
-             $cc->max4=$r3;
-           }else{
-             $sum3=null;
-           }
+            if ($cc == null) {
+                $cc = new Wo_air_checkModel();
+                $cc->id_wo = $wo->id;
+                $cc->model = $r->model;
+            }
 
-           $cc->save();
+            if ($r->check1 != null) {
+                if ($r->check1 >= $air_list->min2 and $r->check1 <= $air_list->max2) {
+                    $sum1 = 'ปกติ';
+                } else {
+                    $sum1 = 'ผิดปกติ';
+                }
+                $r1 = $r->check1 . '-' . $sum1;
+                $cc->min2 = $r1;
+            } else {
+                $sum1 = null;
+            }
 
-           $wo->status_air_check='มีการตรวจสอบแล้ว';
-           $wo->save();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'air_list' => $air_list,
-                   'sum1' => $sum1,
-                   'sum2' => $sum2,
-                   'sum3' => $sum3,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }else{
-             $message = "Not Have Models or Work!";
-           $status = true;
-           return response()->json([
-               'results' => [
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }
-       }
-       ///air_listcheck4///
+            if ($r->check2 != null) {
+                if ($r->check2 >= $air_list->min2 and $r->check2 <= $air_list->max2) {
+                    $sum2 = 'ปกติ';
+                } else {
+                    $sum2 = 'ผิดปกติ';
+                }
+                $r2 = $r->check2 . '-' . $sum2;
+                $cc->stan2 = $r2;
+            } else {
+                $sum2 = null;
+            }
 
 
+            if ($r->check3 != null) {
+                if ($r->check3 >= $air_list->min2 and $r->check3 <= $air_list->max2) {
+                    $sum3 = 'ปกติ';
+                } else {
+                    $sum3 = 'ผิดปกติ';
+                }
+                $r3 = $r->check3 . '-' . $sum3;
+                $cc->max2 = $r3;
+            } else {
+                $sum3 = null;
+            }
 
+            $cc->save();
 
-           ///air_listcheck5///
-       public function api_air_list_check5(Request $r)
-       {
-           $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('id', $r->id_work)->first();
- 
-           if($air_list!=null and $wo!=null){
+            $wo->status_air_check = 'มีการตรวจสอบแล้ว';
+            $wo->save();
 
-            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
-            if($cc==null){
-            $cc=new Wo_air_checkModel();
-            $cc->id_wo=$wo->id;
-            $cc->model=$r->model;
-           }
- 
-           if($r->check1!=null){
-             if($r->check1>=$air_list->min5 and $r->check1<=$air_list->max5){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             $r1=$r->check1.'-'.$sum1;
-             $cc->min5=$r1;
-           }else{
-             $sum1=null;
-           }
- 
-           if($r->check2!=null){
-             if($r->check2>=$air_list->min5 and $r->check2<=$air_list->max5){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             $r2=$r->check2.'-'.$sum2;
-             $cc->stan5=$r2;
-           }else{
-             $sum2=null;
-           }
- 
- 
-           if($r->check3!=null){
-             if($r->check3>=$air_list->min5 and $r->check3<=$air_list->max5){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             $r3=$r->check3.'-'.$sum3;
-             $cc->max5=$r3;
-           }else{
-             $sum3=null;
-           }
-
-           $cc->save();
-
-           $wo->status_air_check='มีการตรวจสอบแล้ว';
-           $wo->save();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'air_list' => $air_list,
-                   'sum1' => $sum1,
-                   'sum2' => $sum2,
-                   'sum3' => $sum3,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }else{
-             $message = "Not Have Models or Work!";
-           $status = true;
-           return response()->json([
-               'results' => [
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }
-       }
-       ///air_listcheck5///
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'air_list' => $air_list,
+                    'sum1' => $sum1,
+                    'sum2' => $sum2,
+                    'sum3' => $sum3,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "Not Have Models or Work!";
+            $status = true;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+    }
+    ///air_listcheck2///
 
 
 
-       ///air_listcheck6///
-       public function api_air_list_check6(Request $r)
-       {
-           $air_list = Air_listModel::where('model', $r->model)->first();
-           $wo = WO::where('id', $r->id_work)->first();
- 
-           if($air_list!=null and $wo!=null){
+    ///air_listcheck3///
+    public function api_air_list_check3(Request $r)
+    {
+        $air_list = Air_listModel::where('model', $r->model)->first();
+        $wo = WO::where('id', $r->id_work)->first();
+
+        if ($air_list != null and $wo != null) {
 
             $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
-            if($cc==null){
-            $cc=new Wo_air_checkModel();
-            $cc->id_wo=$wo->id;
-            $cc->model=$r->model;
-           }
- 
-           if($r->check1!=null){
-             if($r->check1>=$air_list->min6 and $r->check1<=$air_list->max6){$sum1='ปกติ';}else{$sum1='ผิดปกติ';}
-             $r1=$r->check1.'-'.$sum1;
-             $cc->min6=$r1;
-           }else{
-             $sum1=null;
-           }
- 
-           if($r->check2!=null){
-             if($r->check2>=$air_list->min6 and $r->check2<=$air_list->max6){$sum2='ปกติ';}else{$sum2='ผิดปกติ';}
-             $r2=$r->check2.'-'.$sum2;
-             $cc->stan6=$r2;
-           }else{
-             $sum2=null;
-           }
- 
- 
-           if($r->check3!=null){
-             if($r->check3>=$air_list->min6 and $r->check3<=$air_list->max6){$sum3='ปกติ';}else{$sum3='ผิดปกติ';}
-             $r3=$r->check3.'-'.$sum3;
-             $cc->max6=$r3;
-           }else{
-             $sum3=null;
-           }
+            if ($cc == null) {
+                $cc = new Wo_air_checkModel();
+                $cc->id_wo = $wo->id;
+                $cc->model = $r->model;
+            }
 
-           $cc->save();
+            if ($r->check1 != null) {
+                if ($r->check1 >= $air_list->min3 and $r->check1 <= $air_list->max3) {
+                    $sum1 = 'ปกติ';
+                } else {
+                    $sum1 = 'ผิดปกติ';
+                }
+                $r1 = $r->check1 . '-' . $sum1;
+                $cc->min3 = $r1;
+            } else {
+                $sum1 = null;
+            }
 
-           $wo->status_air_check='มีการตรวจสอบแล้ว';
-           $wo->save();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'air_list' => $air_list,
-                   'sum1' => $sum1,
-                   'sum2' => $sum2,
-                   'sum3' => $sum3,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }else{
-             $message = "Not Have Models or Work!";
-           $status = true;
-           return response()->json([
-               'results' => [
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-         }
-       }
-       ///air_listcheck1///
+            if ($r->check2 != null) {
+                if ($r->check2 >= $air_list->min3 and $r->check2 <= $air_list->max3) {
+                    $sum2 = 'ปกติ';
+                } else {
+                    $sum2 = 'ผิดปกติ';
+                }
+                $r2 = $r->check2 . '-' . $sum2;
+                $cc->stan3 = $r2;
+            } else {
+                $sum2 = null;
+            }
+
+
+            if ($r->check3 != null) {
+                if ($r->check3 >= $air_list->min3 and $r->check3 <= $air_list->max3) {
+                    $sum3 = 'ปกติ';
+                } else {
+                    $sum3 = 'ผิดปกติ';
+                }
+                $r3 = $r->check3 . '-' . $sum3;
+                $cc->max3 = $r3;
+            } else {
+                $sum3 = null;
+            }
+
+            $cc->save();
+
+            $wo->status_air_check = 'มีการตรวจสอบแล้ว';
+            $wo->save();
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'air_list' => $air_list,
+                    'sum1' => $sum1,
+                    'sum2' => $sum2,
+                    'sum3' => $sum3,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "Not Have Models or Work!";
+            $status = true;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+    }
+    ///air_listcheck3///
+
+
+
+
+    ///air_listcheck4///
+    public function api_air_list_check4(Request $r)
+    {
+        $air_list = Air_listModel::where('model', $r->model)->first();
+        $wo = WO::where('id', $r->id_work)->first();
+
+        if ($air_list != null and $wo != null) {
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if ($cc == null) {
+                $cc = new Wo_air_checkModel();
+                $cc->id_wo = $wo->id;
+                $cc->model = $r->model;
+            }
+
+            if ($r->check1 != null) {
+                if ($r->check1 >= $air_list->min4 and $r->check1 <= $air_list->max4) {
+                    $sum1 = 'ปกติ';
+                } else {
+                    $sum1 = 'ผิดปกติ';
+                }
+                $r1 = $r->check1 . '-' . $sum1;
+                $cc->min4 = $r1;
+            } else {
+                $sum1 = null;
+            }
+
+            if ($r->check2 != null) {
+                if ($r->check2 >= $air_list->min4 and $r->check2 <= $air_list->max4) {
+                    $sum2 = 'ปกติ';
+                } else {
+                    $sum2 = 'ผิดปกติ';
+                }
+                $r2 = $r->check2 . '-' . $sum2;
+                $cc->stan4 = $r2;
+            } else {
+                $sum2 = null;
+            }
+
+
+            if ($r->check3 != null) {
+                if ($r->check3 >= $air_list->min4 and $r->check3 <= $air_list->max4) {
+                    $sum3 = 'ปกติ';
+                } else {
+                    $sum3 = 'ผิดปกติ';
+                }
+                $r3 = $r->check3 . '-' . $sum3;
+                $cc->max4 = $r3;
+            } else {
+                $sum3 = null;
+            }
+
+            $cc->save();
+
+            $wo->status_air_check = 'มีการตรวจสอบแล้ว';
+            $wo->save();
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'air_list' => $air_list,
+                    'sum1' => $sum1,
+                    'sum2' => $sum2,
+                    'sum3' => $sum3,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "Not Have Models or Work!";
+            $status = true;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+    }
+    ///air_listcheck4///
+
+
+
+
+    ///air_listcheck5///
+    public function api_air_list_check5(Request $r)
+    {
+        $air_list = Air_listModel::where('model', $r->model)->first();
+        $wo = WO::where('id', $r->id_work)->first();
+
+        if ($air_list != null and $wo != null) {
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if ($cc == null) {
+                $cc = new Wo_air_checkModel();
+                $cc->id_wo = $wo->id;
+                $cc->model = $r->model;
+            }
+
+            if ($r->check1 != null) {
+                if ($r->check1 >= $air_list->min5 and $r->check1 <= $air_list->max5) {
+                    $sum1 = 'ปกติ';
+                } else {
+                    $sum1 = 'ผิดปกติ';
+                }
+                $r1 = $r->check1 . '-' . $sum1;
+                $cc->min5 = $r1;
+            } else {
+                $sum1 = null;
+            }
+
+            if ($r->check2 != null) {
+                if ($r->check2 >= $air_list->min5 and $r->check2 <= $air_list->max5) {
+                    $sum2 = 'ปกติ';
+                } else {
+                    $sum2 = 'ผิดปกติ';
+                }
+                $r2 = $r->check2 . '-' . $sum2;
+                $cc->stan5 = $r2;
+            } else {
+                $sum2 = null;
+            }
+
+
+            if ($r->check3 != null) {
+                if ($r->check3 >= $air_list->min5 and $r->check3 <= $air_list->max5) {
+                    $sum3 = 'ปกติ';
+                } else {
+                    $sum3 = 'ผิดปกติ';
+                }
+                $r3 = $r->check3 . '-' . $sum3;
+                $cc->max5 = $r3;
+            } else {
+                $sum3 = null;
+            }
+
+            $cc->save();
+
+            $wo->status_air_check = 'มีการตรวจสอบแล้ว';
+            $wo->save();
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'air_list' => $air_list,
+                    'sum1' => $sum1,
+                    'sum2' => $sum2,
+                    'sum3' => $sum3,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "Not Have Models or Work!";
+            $status = true;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+    }
+    ///air_listcheck5///
+
+
+
+    ///air_listcheck6///
+    public function api_air_list_check6(Request $r)
+    {
+        $air_list = Air_listModel::where('model', $r->model)->first();
+        $wo = WO::where('id', $r->id_work)->first();
+
+        if ($air_list != null and $wo != null) {
+
+            $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
+            if ($cc == null) {
+                $cc = new Wo_air_checkModel();
+                $cc->id_wo = $wo->id;
+                $cc->model = $r->model;
+            }
+
+            if ($r->check1 != null) {
+                if ($r->check1 >= $air_list->min6 and $r->check1 <= $air_list->max6) {
+                    $sum1 = 'ปกติ';
+                } else {
+                    $sum1 = 'ผิดปกติ';
+                }
+                $r1 = $r->check1 . '-' . $sum1;
+                $cc->min6 = $r1;
+            } else {
+                $sum1 = null;
+            }
+
+            if ($r->check2 != null) {
+                if ($r->check2 >= $air_list->min6 and $r->check2 <= $air_list->max6) {
+                    $sum2 = 'ปกติ';
+                } else {
+                    $sum2 = 'ผิดปกติ';
+                }
+                $r2 = $r->check2 . '-' . $sum2;
+                $cc->stan6 = $r2;
+            } else {
+                $sum2 = null;
+            }
+
+
+            if ($r->check3 != null) {
+                if ($r->check3 >= $air_list->min6 and $r->check3 <= $air_list->max6) {
+                    $sum3 = 'ปกติ';
+                } else {
+                    $sum3 = 'ผิดปกติ';
+                }
+                $r3 = $r->check3 . '-' . $sum3;
+                $cc->max6 = $r3;
+            } else {
+                $sum3 = null;
+            }
+
+            $cc->save();
+
+            $wo->status_air_check = 'มีการตรวจสอบแล้ว';
+            $wo->save();
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'air_list' => $air_list,
+                    'sum1' => $sum1,
+                    'sum2' => $sum2,
+                    'sum3' => $sum3,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "Not Have Models or Work!";
+            $status = true;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+    }
+    ///air_listcheck1///
 
 
 
@@ -990,32 +1054,32 @@ class ApiController extends Controller
     }
     ///WORK_item///
 
-       ///WORK_item///
-       public function api_work_item_add(Request $r)
-       {
-        
+    ///WORK_item///
+    public function api_work_item_add(Request $r)
+    {
+
         $item = new WO_item();
-           $item->id_wo = $r->id_work;
-           $item->title = $r->title;
-           $item->number = $r->number;
-           $item->value = $r->value;
-   
-           $item->status = $r->status;
-   
-           $item->save();
-   
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'item' => $item,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]);
-       }
-       ///WORK_item///
+        $item->id_wo = $r->id_work;
+        $item->title = $r->title;
+        $item->number = $r->number;
+        $item->value = $r->value;
+
+        $item->status = $r->status;
+
+        $item->save();
+
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'item' => $item,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
+    ///WORK_item///
 
 
     ///WORK_item///
@@ -1093,15 +1157,15 @@ class ApiController extends Controller
     ///WORK งานที่รับของแต่ละคน///
     public function api_work_list(Request $r)
     {
-        $date = date('Y-m-d'); $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
+        $date = date('Y-m-d');
+        $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
         if ($r->date == null or $r->date == "null") {
-            $wo = WO::where('technician_id','!=',null)->where('technician_id', $r->id)->wheredate('wo_date','>=', $date)
-            ->wheredate('wo_date','<=', $date_a)
-            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)->wheredate('wo_date', '>=', $date)
+                ->wheredate('wo_date', '<=', $date_a)
+                ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         } else {
             $date = $r->date;
-            $wo = WO::where('technician_id','!=',null)->where('technician_id', $r->id)->wheredate('wo_date', $date)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
-           
+            $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)->wheredate('wo_date', $date)->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         }
 
         $message = "Success!";
@@ -1136,12 +1200,11 @@ class ApiController extends Controller
                 $aaa = new noti();
                 $aaa->id_user = $r->id;
                 $aaa->id_work = $wo->id;
-             
-                $aaa->titleth = 'คุณรับงานสำเร็จ หมายเลขงาน/'.$wo->wo_number;
+
+                $aaa->titleth = 'คุณรับงานสำเร็จ หมายเลขงาน/' . $wo->wo_number;
                 $aaa->detailth = 'คุณรับงานสำเร็จแล้ว';
-        
+
                 $aaa->save();
-                
             } else {
                 $message = "Someone already took this job.";
                 $status = false;
@@ -1166,14 +1229,14 @@ class ApiController extends Controller
         $curl = curl_init();
 
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'GET',
         ));
 
         $response = curl_exec($curl);
@@ -1248,7 +1311,7 @@ class ApiController extends Controller
                 $wo->pic_before = $fileName;
             }
 
-                if ($r->pic_before2 != null) {
+            if ($r->pic_before2 != null) {
                 if (!$r->hasFile('pic_before2')) {
                     return response()->json(['upload_file_not_found'], 400);
                 }
@@ -1388,12 +1451,12 @@ class ApiController extends Controller
             $user->email = $r->email;
 
             if ($r->password == null) {
-                if($r->phone!=null){
+                if ($r->phone != null) {
                     $na = $r->phone;
-                }else{
+                } else {
                     $na = $r->name . '12345';
                 }
-                $user->password = Hash::make($na); 
+                $user->password = Hash::make($na);
             } else {
                 $na = $r->password;
                 $user->password = Hash::make($r->password);
@@ -1468,34 +1531,34 @@ class ApiController extends Controller
 
 
             // ส่ง sms รหัส--------------
-            if($r->phone!=null){
-            $curl = curl_init();
+            if ($r->phone != null) {
+                $curl = curl_init();
 
-            curl_setopt_array($curl, array(
-                CURLOPT_URL => 'https://thsms.com/api/send-sms',
-                CURLOPT_RETURNTRANSFER => true,
-                CURLOPT_ENCODING => '',
-                CURLOPT_MAXREDIRS => 10,
-                CURLOPT_TIMEOUT => 0,
-                CURLOPT_FOLLOWLOCATION => true,
-                CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                CURLOPT_CUSTOMREQUEST => 'POST',
-                CURLOPT_POSTFIELDS => '{
+                curl_setopt_array($curl, array(
+                    CURLOPT_URL => 'https://thsms.com/api/send-sms',
+                    CURLOPT_RETURNTRANSFER => true,
+                    CURLOPT_ENCODING => '',
+                    CURLOPT_MAXREDIRS => 10,
+                    CURLOPT_TIMEOUT => 0,
+                    CURLOPT_FOLLOWLOCATION => true,
+                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                    CURLOPT_CUSTOMREQUEST => 'POST',
+                    CURLOPT_POSTFIELDS => '{
             "sender": "MitsuHeavy",
             "msisdn": ["' . $r->phone . '"],
-            "message": "รหัส ID User ของคุณคือ ' . $r->email . ' รหัส Password ของคุณคือ  ' . $na. '"
+            "message": "รหัส ID User ของคุณคือ ' . $r->email . ' รหัส Password ของคุณคือ  ' . $na . '"
             }',
-                CURLOPT_HTTPHEADER => array(
-                    'Content-Type: application/json',
-                    'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
-                ),
+                    CURLOPT_HTTPHEADER => array(
+                        'Content-Type: application/json',
+                        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
+                    ),
 
-            ));
+                ));
 
-            $response = curl_exec($curl);
-            curl_close($curl);
+                $response = curl_exec($curl);
+                curl_close($curl);
             }
-             // ส่ง sms รหัส--------------
+            // ส่ง sms รหัส--------------
 
 
             $message = "Register Success!";
@@ -1596,10 +1659,10 @@ class ApiController extends Controller
             }
             //    ------------------
 
-            if ($r->email != null or $r->email!='-') {
-                $check = User::where('id','!=',$r->id_user)->where('email', $r->email)->first();
-                if($check==null){
-                $user->email = $r->email;
+            if ($r->email != null or $r->email != '-') {
+                $check = User::where('id', '!=', $r->id_user)->where('email', $r->email)->first();
+                if ($check == null) {
+                    $user->email = $r->email;
                 }
             }
             if ($r->phone != null) {
@@ -1697,46 +1760,54 @@ class ApiController extends Controller
     ///LOGIN  User///
     public function api_login_user(Request $r)
     {
-        $check = User::where('email', $r->email)->where('type', 5)->first();
-        if ($check) {
-            $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->where('status', 1)->first();
-            if ($confirm) {
-                if (!Hash::check($r->password, $confirm->password)) {
-                    $password = "";
+        try {
+            $check = User::where('email', $r->email)->where('type', 5)->first();
+            if ($check) {
+                $confirm = User::where('email', $r->email)->where('type', 5)->where('open', 0)->where('status', 1)->first();
+                if ($confirm) {
+                    if (!Hash::check($r->password, $confirm->password)) {
+                        $password = "";
+                    } else {
+                        $password = User::where('email', $r->email)->where('type', 5)->first();
+                    }
+                    if ($password) {
+                        $message = "Success";
+                    } else {
+                        $message = "Invalid Password";
+                    }
                 } else {
-                    $password = User::where('email', $r->email)->where('type', 5)->first();
-                }
-                if ($password) {
-                    $message = "Success";
-                } else {
-                    $message = "Invalid Password";
+                    $message = "Not ConFirm Or User Are Close!";
                 }
             } else {
-                $message = "Not ConFirm Or User Are Close!";
+                $message = "Invalid Email";
             }
-        } else {
-            $message = "Invalid Email";
-        }
-        if ($message == "Success") {
-            $status = true;
-            return response()->json([
-                'results' => [
-                    'user' => $password,
-                ],
-                'status' => $status,
-                'message' => $message,
-                'url_picture' => $this->prefix,
+            if ($message == "Success") {
+                $status = true;
+                return response()->json([
+                    'results' => [
+                        'user' => $password,
+                    ],
+                    'status' => $status,
+                    'message' => $message,
+                    'url_picture' => $this->prefix,
 
-            ]);
-        } else {
-            $status = false;
+                ]);
+            } else {
+                $status = false;
+                return response()->json([
+                    'results' => [
+                        'email' => $r->email, 'password' => $r->password,
+                    ],
+                    'status' => $status,
+                    'message' => $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
+            }
+        } catch (Exception $e) {
             return response()->json([
-                'results' => [
-                    'email' => $r->email, 'password' => $r->password,
-                ],
-                'status' => $status,
-                'message' => $message,
-                'url_picture' => $this->prefix,
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
             ], 400);
         }
     }
@@ -1876,7 +1947,7 @@ class ApiController extends Controller
                 $randomString .= $characters[rand(0, $charactersLength - 1)];
             }
 
-            $rand_num=$randomString;
+            $rand_num = $randomString;
             $his->number = $rand_num;
 
             $his->save();
@@ -2059,7 +2130,7 @@ class ApiController extends Controller
     {
 
         //check customer
-        $check_name_customer = Customer::where('mechanic_id','!=',null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->get()->count();
+        $check_name_customer = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->get()->count();
         if ($check_name_customer != 0) {
             return response()->json([
                 'status' => false,
@@ -2094,31 +2165,30 @@ class ApiController extends Controller
 
         //Find Serial number in database
         if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
-            $king1=strlen($request->indoor_number);
+            $king1 = strlen($request->indoor_number);
 
-            if($king1>11){
-            $ca1=substr($request->indoor_number,0,-1);
-            }else{
-            $ca1=$request->indoor_number;
+            if ($king1 > 11) {
+                $ca1 = substr($request->indoor_number, 0, -1);
+            } else {
+                $ca1 = $request->indoor_number;
             }
 
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', $ca1)
-            ->get()->count();
-
+                ->where('serial_number', $ca1)
+                ->get()->count();
         }
 
-            $king2=strlen($request->outdoor_number);
+        $king2 = strlen($request->outdoor_number);
 
-            if($king2>11){
-            $ca2=substr($request->outdoor_number,0,-1);
-            }else{
-            $ca2=$request->outdoor_number;
-            }
+        if ($king2 > 11) {
+            $ca2 = substr($request->outdoor_number, 0, -1);
+        } else {
+            $ca2 = $request->outdoor_number;
+        }
 
         $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-        ->where('serial_number', $ca2)
-        ->get()->count();
+            ->where('serial_number', $ca2)
+            ->get()->count();
 
         // if (isset($check_serial_indoor)) {
         //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
@@ -2177,7 +2247,7 @@ class ApiController extends Controller
         //                  $sum=$a1+$a2;
         //                  $user->point=$sum;
         //                  $user->save();
- 
+
         //                  $his=new history_point();
         //                  $his->title='ได้รับ Point จากการทำรายการ';
         //                  $his->point=$a2;
@@ -2188,13 +2258,13 @@ class ApiController extends Controller
         //                  $air_conditioner->in_name = $air->des;
         //                  $air_conditioner->point = $air->point;
         //                  $air_conditioner->save();
- 
+
         //                  return response()->json([
         //                      'status' => true,
         //                      'message' => 'Success Receive '.$a2.' Point!',
         //                      'url_picture' => $this->prefix,
         //                  ]);
- 
+
         //                  }
         //              }}
         //              }
@@ -2218,13 +2288,13 @@ class ApiController extends Controller
         //         ], 400);
         //     }
         // } else {
-            if ($check_serial_outdoor != 0) {
+        if ($check_serial_outdoor != 0) {
 
-                $customer = Customer::where('first_name', $request->first_name)
+            $customer = Customer::where('first_name', $request->first_name)
                 ->where('last_name', $request->last_name)
                 ->first();
 
-                if($customer==null){
+            if ($customer == null) {
                 $customer = new Customer();
                 $customer->mechanic_id = $request->mechanic_id;
                 $customer->first_name = $request->first_name;
@@ -2237,7 +2307,7 @@ class ApiController extends Controller
                 $customer->latitude = $request->latitude;
                 $customer->longitude = $request->longitude;
                 $customer->save();
-                }else{
+            } else {
                 $customer->mechanic_id = $request->mechanic_id;
                 $customer->first_name = $request->first_name;
                 $customer->last_name = $request->last_name;
@@ -2249,78 +2319,78 @@ class ApiController extends Controller
                 $customer->latitude = $request->latitude;
                 $customer->longitude = $request->longitude;
                 $customer->save();
+            }
+
+            $air_conditioner = new AirConditioner();
+            $air_conditioner->customer_id = $customer->id;
+            $air_conditioner->indoor_number = $ca1;
+            $air_conditioner->outdoor_number = $ca2;
+
+            if ($air_conditioner->save()) {
+
+                // ส่วนเช็ค Model รับ POINT
+                $se = DB::connection('pgsql')->table('serial_numbers')
+                    ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
+                    // ->where('serial_number', $request->outdoor_number)
+                    ->first();
+
+                $ae = DB::connection('pgsql')->table('serial_numbers')
+                    ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                    // ->where('serial_number', $request->outdoor_number)
+                    ->first();
+
+                if ($customer != null) {
+                    $air = AirModel::where('model_name', $se->product_code)->where('des', $se->product_name)->first();
+                    $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                    if ($air != null or $air_2 != null) {
+                        $user = User::where('id', $customer->mechanic_id)->first();
+                        if ($user != null) {
+                            $a1 = $user->point;
+                            $a2 = $air->point;
+                            $sum = $a1 + $a2;
+                            $user->point = $sum;
+                            $user->save();
+
+                            $his = new history_point();
+                            $his->title = 'ได้รับ Point จากการทำรายการ';
+                            $his->point = $a2;
+                            $his->id_user = $user->id;
+                            $his->date = date('Y-m-d H:i:s');
+                            $his->save();
+
+                            $air_conditioner->out_name = @$air->des;
+                            $air_conditioner->in_name = @$air_2->des;
+                            $air_conditioner->point = @$air->point;
+                            $air_conditioner->point2 = @$air->point;
+                            $air_conditioner->save();
+
+                            return response()->json([
+                                'status' => true,
+                                'message' => 'Success Receive ' . $a2 . ' Point!',
+                                'url_picture' => $this->prefix,
+                            ]);
+                        }
+                    }
                 }
+                // ส่วนเช็ค Model รับ POINT
 
-                $air_conditioner = new AirConditioner();
-                $air_conditioner->customer_id = $customer->id;
-                $air_conditioner->indoor_number = $ca1;
-                $air_conditioner->outdoor_number = $ca2;
-
-                if ($air_conditioner->save()) {
-
-                     // ส่วนเช็ค Model รับ POINT
-                     $se = DB::connection('pgsql')->table('serial_numbers')
-                     ->where('serial_number', 'LIKE', '%'.$ca2.'%')
-                     // ->where('serial_number', $request->outdoor_number)
-                     ->first();
-
-                     $ae = DB::connection('pgsql')->table('serial_numbers')
-                     ->where('serial_number', 'LIKE', '%'.$ca1.'%')
-                     // ->where('serial_number', $request->outdoor_number)
-                     ->first();
-
-                     if($customer!=null){
-                         $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-                         $air_2 = AirModel::where('model_name',@$ae->product_code)->where('des',@$ae->product_name)->first();
-                         if($air!=null or $air_2!=null){
-                         $user = User::where('id', $customer->mechanic_id)->first();
-                         if($user!=null){
-                         $a1=$user->point;
-                         $a2=$air->point;
-                         $sum=$a1+$a2;
-                         $user->point=$sum;
-                         $user->save();
- 
-                         $his=new history_point();
-                         $his->title='ได้รับ Point จากการทำรายการ';
-                         $his->point=$a2;
-                         $his->id_user=$user->id;
-                         $his->date=date('Y-m-d H:i:s');
-                         $his->save();
-
-                         $air_conditioner->out_name = @$air->des;
-                         $air_conditioner->in_name = @$air_2->des;
-                         $air_conditioner->point = @$air->point;
-                         $air_conditioner->point2 = @$air->point;
-                         $air_conditioner->save();
- 
-                         return response()->json([
-                             'status' => true,
-                             'message' => 'Success Receive '.$a2.' Point!',
-                             'url_picture' => $this->prefix,
-                         ]);
- 
-                         }
-                     }}
-                     // ส่วนเช็ค Model รับ POINT
-
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Success!',
-                        'url_picture' => $this->prefix,
-                    ]);
-                } else {
-                    return response()->json([
-                        'status' => false,
-                        'message' => 'Data cannot be saved!'
-                    ], 400);
-                }
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success!',
+                    'url_picture' => $this->prefix,
+                ]);
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Not Found Air Conditioner in Data.'
+                    'message' => 'Data cannot be saved!'
                 ], 400);
             }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found Air Conditioner in Data.'
+            ], 400);
+        }
         // }
     }
 
@@ -2355,31 +2425,31 @@ class ApiController extends Controller
 
         if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
 
-            $king1=strlen($request->indoor_number);
+            $king1 = strlen($request->indoor_number);
 
-            if($king1>11){
-            $ca1=substr($request->indoor_number,0,-1);
-            }else{
-            $ca1=$request->indoor_number;
+            if ($king1 > 11) {
+                $ca1 = substr($request->indoor_number, 0, -1);
+            } else {
+                $ca1 = $request->indoor_number;
             }
 
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', $ca1)
+                ->where('serial_number', $ca1)
+                ->get()->count();
+        }
+
+
+        $king2 = strlen($request->outdoor_number);
+
+        if ($king2 > 11) {
+            $ca2 = substr($request->outdoor_number, 0, -1);
+        } else {
+            $ca2 = $request->outdoor_number;
+        }
+
+        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+            ->where('serial_number', $ca2)
             ->get()->count();
-        }
-
-        
-        $king2=strlen($request->outdoor_number);
-
-        if($king2>11){
-        $ca2=substr($request->outdoor_number,0,-1);
-        }else{
-        $ca2=$request->outdoor_number;
-        }
-
-    $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-    ->where('serial_number', $ca2)
-    ->get()->count();
 
         // if (isset($check_serial_indoor)) {
         //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
@@ -2455,84 +2525,84 @@ class ApiController extends Controller
         //         ], 400);
         //     }
         // } else {
-            if ($check_serial_outdoor != 0) {
-                $air_conditioner = new AirConditioner;
-                $air_conditioner->customer_id = $request->customer_id;
-                $air_conditioner->indoor_number = $ca1;
-                $air_conditioner->outdoor_number = $ca2;
+        if ($check_serial_outdoor != 0) {
+            $air_conditioner = new AirConditioner;
+            $air_conditioner->customer_id = $request->customer_id;
+            $air_conditioner->indoor_number = $ca1;
+            $air_conditioner->outdoor_number = $ca2;
 
-                if ($air_conditioner->save()) {
-                    $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+            if ($air_conditioner->save()) {
+                $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
 
-                    // ส่วนเช็ค Model รับ POINT
-                    $se = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', 'LIKE', '%'.$ca2.'%')
+                // ส่วนเช็ค Model รับ POINT
+                $se = DB::connection('pgsql')->table('serial_numbers')
+                    ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
                     // ->where('serial_number', $request->outdoor_number)
                     ->first();
 
-                    $ae = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', 'LIKE', '%'.$ca1.'%')
+                $ae = DB::connection('pgsql')->table('serial_numbers')
+                    ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
                     // ->where('serial_number', $request->outdoor_number)
                     ->first();
 
-                    if($customer!=null){
-                        $air = AirModel::where('model_name',@$se->product_code)->where('des',@$se->product_name)->first();
-                        $air_2 = AirModel::where('model_name',@$ae->product_code)->where('des',@$ae->product_name)->first();
-                        if($air!=null or $air_2!=null){
+                if ($customer != null) {
+                    $air = AirModel::where('model_name', @$se->product_code)->where('des', @$se->product_name)->first();
+                    $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                    if ($air != null or $air_2 != null) {
                         $user = User::where('id', $customer->mechanic_id)->first();
-                        if($user!=null){
-                        $a1=$user->point;
-                        $a2=$air->point;
-                        $sum=$a1+$a2;
-                        $user->point=$sum;
-                        $user->save();
+                        if ($user != null) {
+                            $a1 = $user->point;
+                            $a2 = $air->point;
+                            $sum = $a1 + $a2;
+                            $user->point = $sum;
+                            $user->save();
 
-                        $his=new history_point();
-                        $his->title='ได้รับ Point จากการทำรายการ';
-                        $his->point=$a2;
-                        $his->id_user=$user->id;
-                        $his->date=date('Y-m-d H:i:s');
-                        $his->save();
+                            $his = new history_point();
+                            $his->title = 'ได้รับ Point จากการทำรายการ';
+                            $his->point = $a2;
+                            $his->id_user = $user->id;
+                            $his->date = date('Y-m-d H:i:s');
+                            $his->save();
 
-                        $air_conditioner->out_name = @$air->des;
-                        $air_conditioner->in_name = @$air_2->des;
-                        $air_conditioner->point = @$air->point;
-                        $air_conditioner->point2 = @$air->point;
-                        $air_conditioner->save();
+                            $air_conditioner->out_name = @$air->des;
+                            $air_conditioner->in_name = @$air_2->des;
+                            $air_conditioner->point = @$air->point;
+                            $air_conditioner->point2 = @$air->point;
+                            $air_conditioner->save();
 
-                        return response()->json([
-                            'status' => true,
-                            'message' => 'Success Receive '.$a2.' Point!',
-                            'result' => [
-                                'customer' => $customer,
-                            ],
-                            'url_picture' => $this->prefix,
-                        ]);
-
+                            return response()->json([
+                                'status' => true,
+                                'message' => 'Success Receive ' . $a2 . ' Point!',
+                                'result' => [
+                                    'customer' => $customer,
+                                ],
+                                'url_picture' => $this->prefix,
+                            ]);
                         }
-                    }}
-                    // ส่วนเช็ค Model รับ POINT
-
-                    return response()->json([
-                        'status' => true,
-                        'message' => 'Success!',
-                        'result' => [
-                            'customer' => $customer,
-                        ],
-                        'url_picture' => $this->prefix,
-                    ]);
-                } else {
-                    return response()->json([
-                        'status' => false,
-                        'message' => 'Can Not Update'
-                    ], 400);
+                    }
                 }
+                // ส่วนเช็ค Model รับ POINT
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success!',
+                    'result' => [
+                        'customer' => $customer,
+                    ],
+                    'url_picture' => $this->prefix,
+                ]);
             } else {
                 return response()->json([
                     'status' => false,
-                    'message' => 'Not Found Air Conditioner in Data.'
+                    'message' => 'Can Not Update'
                 ], 400);
             }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found Air Conditioner in Data.'
+            ], 400);
+        }
         // }
     }
 
