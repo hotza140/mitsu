@@ -1933,7 +1933,10 @@ class ApiController extends Controller
 
             $his->title = $item->titleth;
 
-            $his->address = $r->address;
+            if($r->address!=null){
+                $his->address = $r->address;
+            }
+           
             $his->old_point = $cu;
             $his->buy_point = $ci;
             $his->bl_point = $sum;
