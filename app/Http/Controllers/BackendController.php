@@ -60,6 +60,55 @@ class BackendController extends Controller
     }
 
 
+    public function fix(){
+        $user=User::where('type',5)->where('id','>',2)->where('id','<',2000)->orderby('id','asc')->get();
+        // $year = date('Y');
+        $year=2023;
+        foreach($user as $us){
+                $aaa=User::where('id',$us->id)->first();
+                $nm=$us->id;
+                $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+                $aaa->code = $year . 'H' . $num;
+
+                $aaa->save();
+        }
+
+        return redirect()->back()->with('success','Success!');
+    }
+
+    public function fix2(){
+        $user=User::where('type',5)->where('id','>',2000)->where('id','<',7000)->orderby('id','asc')->get();
+        // $year = date('Y');
+        $year=2023;
+        foreach($user as $us){
+                $aaa=User::where('id',$us->id)->first();
+                $nm=$us->id;
+                $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+                $aaa->code = $year . 'H' . $num;
+
+                $aaa->save();
+        }
+
+        return redirect()->back()->with('success','Success!');
+    }
+
+    public function fix3(){
+        $user=User::where('type',5)->where('id','>',7000)->orderby('id','asc')->get();
+        // $year = date('Y');
+        $year=2023;
+        foreach($user as $us){
+                $aaa=User::where('id',$us->id)->first();
+                $nm=$us->id;
+                $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+                $aaa->code = $year . 'H' . $num;
+
+                $aaa->save();
+        }
+
+        return redirect()->back()->with('success','Success!');
+    }
+
+
      ///Forget Password---------------
 
      public function forget_pass1($id){

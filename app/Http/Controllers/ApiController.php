@@ -1520,8 +1520,10 @@ class ApiController extends Controller
                 $nm = 1;
             }
             $user->num = $nm;
+            $ggg=$user->id;
 
-            $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+            // $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+            $num = str_pad($ggg, 5, '0', STR_PAD_LEFT);
             $user->code = $year . 'H' . $num;
             // CODE
 

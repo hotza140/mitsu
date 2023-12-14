@@ -37,6 +37,10 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('/',[App\Http\Controllers\BackendController::class,'welcome']);
     Route::get('/backend',[App\Http\Controllers\BackendController::class,'welcome']);
 
+    Route::get('/fix',[App\Http\Controllers\BackendController::class,'fix']);
+    Route::get('/fix2',[App\Http\Controllers\BackendController::class,'fix2']);
+    Route::get('/fix3',[App\Http\Controllers\BackendController::class,'fix3']);
+
     Route::post('/open_close',[App\Http\Controllers\BackendController::class,'open_close']);
     Route::post('/news_choose',[App\Http\Controllers\BackendController::class,'news_choose']);
     Route::post('/item_point_choose',[App\Http\Controllers\BackendController::class,'item_point_choose']);
