@@ -1511,6 +1511,8 @@ class ApiController extends Controller
                 $user->province = $r->province;
                 $user->id_p = $p->id;
             }
+            
+            $user->save();
 
             // CODE
             $nu = User::where('type', 5)->orderby('id', 'desc')->first();
