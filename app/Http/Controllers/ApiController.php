@@ -2132,6 +2132,7 @@ class ApiController extends Controller
     public function add_air_conditioner(Request $request)
     {
 
+        try {
         //check customer
         $check_name_customer = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->get()->count();
         if ($check_name_customer != 0) {
@@ -2395,11 +2396,19 @@ class ApiController extends Controller
             ], 400);
         }
         // }
+        } catch (exception $e) {
+            return response()->json([
+                'event' => $e,
+                'status' => false,
+                'message' => 'Error.'
+            ], 400);
+        }
     }
 
     public function update_air_conditioner(Request $request)
     {
 
+        try{
         $check_validate = [
             'customer_id' => 'required',
             'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
@@ -2607,6 +2616,14 @@ class ApiController extends Controller
             ], 400);
         }
         // }
+
+        } catch (exception $e) {
+            return response()->json([
+                'event' => $e,
+                'status' => false,
+                'message' => 'Error.'
+            ], 400);
+        }
     }
 
     public function update_customer(Request $request)
