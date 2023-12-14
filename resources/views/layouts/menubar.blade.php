@@ -366,7 +366,7 @@
                                         <span class="pcoded-mtext">สมาชิก</span>
                                         <span class="pcoded-mcaret"></span>
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
-                                        <?php $num=DB::table('users')->withoutTrashed()->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
+                                        <?php $num=DB::table('users')->whereNull('deleted_at')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
                                         @if($nums!=0)<span class="pcoded-badge label label-danger">{{$nums}}</span>@endif
                                     </a>
 
@@ -380,7 +380,7 @@
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
                                                 <span class="pcoded-mtext">สมาชิกรอการยืนยัน</span>
                                                 <span class="pcoded-mcaret"></span>
-                                                <?php $num=DB::table('users')->withoutTrashed()->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
+                                                <?php $num=DB::table('users')->whereNull('deleted_at')->where('type','>',2)->where('status',0)->get(); $nums=count($num); ?>
                                                 @if($nums!=0)<span class="pcoded-badge label label-danger">{{$nums}}</span>@endif
                                             </a>
                                         </li>
