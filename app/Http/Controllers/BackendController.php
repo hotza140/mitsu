@@ -369,6 +369,7 @@ class BackendController extends Controller
 
         $item->type=$r->type;
         $item->name=$r->name;
+        $item->code=$r->code;
         $item->email=$r->email;
 
         $item->save();

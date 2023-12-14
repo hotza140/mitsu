@@ -67,6 +67,12 @@ $picture= Storage::disk('s3')->url($filePath);
                                         @endif
 
                                         <div class="form-group row">
+                                        <div class="col-sm-3">
+                                                <label class="col-form-label">CODE</label>
+                                                <input  type="text" name="code" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->code;} ?>">
+                                            </div>
+                                            
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">Nickname</label>
                                                 <input  type="text" name="nickname" class="form-control" id=""
