@@ -9,8 +9,8 @@
             <th style="width: 150px">หมายเลขเครื่องปรับอากาศ(indoor) </th>
             <th style="width: 150px">ชื่อรุ่น(outdoor) </th>
             <th style="width: 150px">หมายเลขเครื่องปรับอากาศ(outdoor) </th>
-            <th style="width: 150px">วันที่และเวลาในการติดตั้ง </th>
             <th style="width: 150px">คะแนนที่ได้รับ </th>
+            <th style="width: 150px">วันที่และเวลาในการติดตั้ง </th>
             <th style="width: 150px">ช่วงเวลาที่เลือก Start </th>
             <th style="width: 150px">ช่วงเวลาที่เลือก End </th>
 
@@ -33,9 +33,9 @@
 
             <td>{{$item->out_name}}</td>
             <td>{{$item->outdoor_number}}</td>
-
-            <td>{{$item->created_at}}</td>
             <td>{{$item->point}}</td>
+            <td>{{$item->created_at}}</td>
+            
             <td>{{$date_s}}</td>
             <td>{{$date_e}}</td>
         </tr>
