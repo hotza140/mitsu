@@ -672,6 +672,7 @@ public function user_item($id){
                 $item->lastname = $r->lastname;
                 $item->email = $r->email;
                 $item->phone = $r->phone;
+                $item->code = $r->code;
 
 
                 // $item->line = $r->line;
