@@ -34,9 +34,9 @@
                                 </div>
                                 <div class="card-block">
 
-                                    <!-- <form method="post" id="" action="{{ url('/backend/user_update/'.$item->id) }}"
-                                        enctype="multipart/form-data"> -->
-                                    <form>
+                                    <form method="post" id="" action="{{ url('/backend/user_update/'.$item->id) }}"
+                                        enctype="multipart/form-data">
+                                    <!-- <form> -->
                                         @csrf
 
 
