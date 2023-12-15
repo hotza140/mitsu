@@ -1521,8 +1521,10 @@ class ApiController extends Controller
             } else {
                 $nm = 1;
             }
+            $idd=$nu->id+1;
             $user->num = $nm;
-            $ggg=$user->id;
+            // $ggg=$user->id;
+            $ggg=$idd;
 
             // $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
             $num = str_pad($ggg, 5, '0', STR_PAD_LEFT);
