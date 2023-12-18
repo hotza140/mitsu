@@ -71,24 +71,130 @@ class ApiController extends Controller
 
     // trainning
 
-    public function training_detail($id, $user)
+    public function train_all()
     {
-        $max_turn = TrainingTurn::where('training_id', $id)->orderby('turn', 'desc')->first()->id;
-        /*$training = Training::where('id', $id)->with('traininglist','trainingturn')
-            ->whereHas('traininglist','turn_id',$max_turn->id)->get();*/
-        $data = Training::where('id', $id)->with('province', 'amphure', 'district')->get();
-
-        $lists = TrainingList::where('training_id', $id)->where('user_id', $user)->where('turn_id', $max_turn)->get();
+        $data = Training::with('province', 'amphure', 'district')->get();
 
         return response()->json([
             'status' => true,
             'message' => 'Success',
             'result' => [
                 'data' => $data,
-                'turn_id' => $max_turn,
-                'list' => $lists,
             ],
         ]);
+    }
+
+
+    public function train_turn(Request $r)
+    {
+        $data_detail = Training::where('id',$r->training_id)->with('province', 'amphure', 'district')->first();
+        $data = TrainingTurn::where('training_id', $r->training_id)->orderby('turn', 'asc')->get();
+        
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'result' => [
+                'data' => $data,
+                'data_detail' => $data_detail,
+            ],
+        ]);
+    }
+
+    public function train_turn_detail(Request $r)
+    {
+        $data = TrainingTurn::where('id', $r->turn_id)->orderby('turn', 'asc')->first();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'result' => [
+                'data' => $data,
+            ],
+        ]);
+    }
+
+
+    public function train_list(Request $r)
+    {
+        if($r->training_id!=null){
+            $data_detail = Training::where('id',$r->training_id)->with('province', 'amphure', 'district')->first();
+        }else{
+            $data_detail =null;
+        }
+   
+        $data = TrainingTurn::where('id', $r->turn_id)->orderby('turn', 'asc')->first();
+
+        $lists = TrainingList::where('turn_id', $r->turn_id)->orderby('turn','asc')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'result' => [
+                'data' => $data,
+            ],
+        ]);
+    }
+
+
+    public function history_train_list(Request $r)
+    {
+        if($r->training_id!=null){
+            $data_detail = Training::where('id',$r->training_id)->with('province', 'amphure', 'district')->first();
+        }else{
+            $data_detail =null;
+        }
+   
+        $data = TrainingTurn::where('id', $r->turn_id)->orderby('turn', 'asc')->first();
+
+        $lists = TrainingList::where('turn_id', $r->turn_id)->where('user_id', $r->user_id)->orderby('turn','asc')->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'result' => [
+                'data' => $data,
+            ],
+        ]);
+    }
+
+
+
+    public function train_turn_confirm(Request $request)
+    {
+        $data = TrainingTurn::where('id', $request->turn_id)->orderby('turn', 'asc')->first();
+        if($data!=null){
+        $user = new TrainingList;
+                    $user->user_id = $request->user_id;
+                    $user->first_name = $request->first_name;
+                    $user->last_name = $request->last_name;
+                    $user->nickname = $request->nickname;
+                    $user->full_name = $request->first_name . ' ' . $request->last_name;
+                    $user->phone = $request->phone;
+                    $usersResult = User::find($request->user_id);
+                    $user->agency = $usersResult->market;
+
+                    $user->training_id = $data->training_id;
+                    $user->turn_id = $request->turn_id;
+                    $user->save();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'result' => [
+                'data' => $data,
+            ],
+        ]);
+        }else{
+            $status = false;
+            $message = "Not Have Data!";
+            return response()->json([
+                'results' => [
+                ],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
     }
 
 

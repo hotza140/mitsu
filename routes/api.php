@@ -27,6 +27,13 @@ Route::group([
 
     Route::post('/api_forget_pass','ApiController@api_forget_pass');
 
+    Route::get('/train_all','ApiController@train_all');
+    Route::post('/train_turn','ApiController@train_turn');
+    Route::post('/train_turn_detail','ApiController@train_turn_detail');
+    Route::post('/train_list','ApiController@train_list');
+    Route::post('/history_train_list','ApiController@history_train_list');
+    Route::post('/train_turn_confirm','ApiController@train_turn_confirm');
+
     Route::post('/api_otp_register', 'ApiController@api_otp_register');
     Route::get('/api_pdf_work/{id}', 'ApiController@api_pdf_work');
 
