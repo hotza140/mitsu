@@ -69,6 +69,31 @@ class ApiController extends Controller
 
 
 
+    // trainning
+
+    public function training_detail($id, $user)
+    {
+        $max_turn = TrainingTurn::where('training_id', $id)->orderby('turn', 'desc')->first()->id;
+        /*$training = Training::where('id', $id)->with('traininglist','trainingturn')
+            ->whereHas('traininglist','turn_id',$max_turn->id)->get();*/
+        $data = Training::where('id', $id)->with('province', 'amphure', 'district')->get();
+
+        $lists = TrainingList::where('training_id', $id)->where('user_id', $user)->where('turn_id', $max_turn)->get();
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Success',
+            'result' => [
+                'data' => $data,
+                'turn_id' => $max_turn,
+                'list' => $lists,
+            ],
+        ]);
+    }
+
+
+    // trainning
+
 
 
 
