@@ -105,7 +105,7 @@ class TrainingController extends Controller
         $rrr->province_id = $request->province;
         $rrr->amphure_id = $request->amphure;
         $rrr->district_id = $request->district;
-        $rrr->turn = $request->google_link;
+        $rrr->google_link = $request->google_link;
 
         $rrr->postcode = $request->postcode;
 
