@@ -241,10 +241,10 @@ class ApiController extends Controller
         }
     }
 
-    public function train_turn_edit(Request $request, $id = null)
+    public function train_turn_edit(Request $request)
     {
-        if ($id) {
-            $user_training = TrainingList::where('id', $id)->with('training')->first();
+        if ($request->id) {
+            $user_training = TrainingList::where('id', $request->id)->with('training')->first();
             //check status
             if ($user_training->training->status == 'off') {
                 return response()->json([
@@ -286,7 +286,7 @@ class ApiController extends Controller
             //check validate value
 
             try {
-                $list = TrainingList::find($id);
+                $list = TrainingList::find($request->id);
                 $list->first_name = $request->first_name;
                 $list->last_name = $request->last_name;
                 $list->full_name = $request->first_name . ' ' . $request->last_name;
@@ -323,10 +323,10 @@ class ApiController extends Controller
         }
     }
 
-    public function train_turn_approve(Request $request, $id = null)
+    public function train_turn_approve(Request $request)
     {
-        if ($id) {
-            // $training_id = $id;
+        if ($request->id) {
+            // $training_id = $request->id;
 
             //Check Validate
             $check_validate = [
@@ -352,10 +352,10 @@ class ApiController extends Controller
                 ], 400);
             }
 
-            $training = Training::where('id', $id)->first();
-            $turn_id = TrainingTurn::where('training_id', $id)->orderby('turn', 'desc')->first();
+            $training = Training::where('id', $request->id)->first();
+            $turn_id = TrainingTurn::where('training_id', $request->id)->orderby('turn', 'desc')->first();
 
-            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $id)->get();
+            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $request->id)->get();
 
             foreach ($turn_list as $traning_list) {
                 $list = TrainingList::find($traning_list->id);

@@ -72,6 +72,10 @@ Route::group([
     Route::post('/api_work_submit', 'ApiController@api_work_submit');
     Route::post('/api_end_work', 'ApiController@api_end_work');
 
+    Route::get('/train_turn_remove/{id}', 'ApiController@train_turn_remove');
+    Route::post('/train_turn_edit', 'ApiController@train_turn_edit');
+    Route::post('/train_turn_approve', 'ApiController@train_turn_approve');
+
 
 
     Route::post('/api_change_password', 'ApiController@api_change_password');
