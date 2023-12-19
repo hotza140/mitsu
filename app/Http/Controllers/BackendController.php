@@ -56,14 +56,13 @@ class BackendController extends Controller
 
        ///Welcome---------------
        public function welcome(){
-        // $nu = User::withTrash()->where('type', 5)->orderby('id', 'desc')->first();
         return view('backend.welcome');
     }
 
 
     public function fix(){
         $user=User::where('type',5)->where('id','>',2)->where('id','<',2000)->orderby('id','asc')->get();
-        // $year = date('Y');
+        // $year = date('Y');   
         $year=2023;
         foreach($user as $us){
                 $aaa=User::where('id',$us->id)->first();
