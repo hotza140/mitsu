@@ -241,7 +241,7 @@ class ApiController extends Controller
         }
     }
 
-    public function edit_book_training(Request $request, $id = null)
+    public function train_turn_edit(Request $request, $id = null)
     {
         if ($id) {
             $user_training = TrainingList::where('id', $id)->with('training')->first();
@@ -323,7 +323,7 @@ class ApiController extends Controller
         }
     }
 
-    public function approve_training_list(Request $request, $id = null)
+    public function train_turn_approve(Request $request, $id = null)
     {
         if ($id) {
             // $training_id = $id;
