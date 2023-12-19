@@ -1720,6 +1720,8 @@ class ApiController extends Controller
     ///Register  User///
     public function api_register_user(Request $r)
     {
+
+        try{
         // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
         $dff = date('Y-m-d H:i:s');
         $otp = OTP::where('phone', $r->phone)->first();
@@ -1899,6 +1901,17 @@ class ApiController extends Controller
                 'url_picture' => $this->prefix,
             ], 400);
         }
+
+
+      } catch (Exception $e) {
+        return response()->json([
+            'result' => [],
+            'status' => false,
+            'message' => $e->getMessage(),
+        ], 400);
+        }
+
+
     }
     ///Register  User///
 
