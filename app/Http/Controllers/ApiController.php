@@ -191,6 +191,7 @@ class ApiController extends Controller
                     $user->turn_id = $request->turn_id;
                     $user->save();
 
+
         return response()->json([
             'status' => true,
             'message' => 'Success',
@@ -208,6 +209,174 @@ class ApiController extends Controller
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
             ]);
+        }
+    }
+
+
+
+
+    public function train_turn_remove($id)
+    {
+        try {
+            $user_training = TrainingList::where('id', $id)->first();
+            if ($user_training) {
+                $user_training->delete();
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success',
+                ]);
+            } else {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'ไม่พบข้อมูล',
+                ], 400);
+            }
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 400);
+        }
+    }
+
+    public function edit_book_training(Request $request, $id = null)
+    {
+        if ($id) {
+            $user_training = TrainingList::where('id', $id)->with('training')->first();
+            //check status
+            if ($user_training->training->status == 'off') {
+                return response()->json([
+                    'status' => false,
+                    'message' => 'The Training is close',
+                ], 400);
+            }
+            //check status
+
+            //check validate value
+            $user_training_validate = [
+                'user_id' => 'required',
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'phone' => 'required',
+                // 'agency' => 'required'
+            ];
+
+            $error_validator = [
+                'user_id' => 'กรุณากรอกข้อมูล',
+                'first_name:required' => 'กรุณากรอกข้อมูล',
+                'last_name:required' => 'กรุณากรอกข้อมูล',
+                'phone:required' => 'กรุณากรอกข้อมูล',
+                // 'agency:required' => 'กรุณากรอกข้อมูล'
+            ];
+
+            $validator = Validator::make(
+                $request->all(),
+                $user_training_validate,
+                $error_validator
+            );
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'error' => $validator->errors(),
+                ], 400);
+            }
+            //check validate value
+
+            try {
+                $list = TrainingList::find($id);
+                $list->first_name = $request->first_name;
+                $list->last_name = $request->last_name;
+                $list->full_name = $request->first_name . ' ' . $request->last_name;
+                $list->user_id = $request->user_id;
+                $list->phone = $request->phone;
+                // $list->agency = $request->agency;
+                $list->save();
+
+                $training = Training::where('id', $list->training_id)->first();
+                $turn_id = TrainingTurn::where('training_id', $training->id)->orderby('turn', 'desc')->first();
+
+                return response()->json([
+                    'status' => true,
+                    'message' => "success",
+                    'result' => [
+                        'list' => $list,
+                        'data' => $training,
+                        'turn_id' => $turn_id,
+                    ],
+                ]);
+            } catch (Exception $e) {
+                Log::error($e->getMessage());
+                return response()->json([
+                    'result' => [],
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ], 400);
+            }
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found User',
+            ], 400);
+        }
+    }
+
+    public function approve_training_list(Request $request, $id = null)
+    {
+        if ($id) {
+            // $training_id = $id;
+
+            //Check Validate
+            $check_validate = [
+                'user_id' => 'required',
+                'status' => 'required',
+            ];
+
+            $error_validator = [
+                'user_id:required' => 'กรุณากรอกข้อมูล',
+                'status:required' => 'กรุณากรอกข้อมูล',
+            ];
+
+            $validator = Validator::make(
+                $request->all(),
+                $check_validate,
+                $error_validator
+            );
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'error' => $validator->errors(),
+                ], 400);
+            }
+
+            $training = Training::where('id', $id)->first();
+            $turn_id = TrainingTurn::where('training_id', $id)->orderby('turn', 'desc')->first();
+
+            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $id)->get();
+
+            foreach ($turn_list as $traning_list) {
+                $list = TrainingList::find($traning_list->id);
+                $list->status_approve = $request->status;
+                $list->save();
+            }
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success!',
+                'data' => [
+                    'training' => $training,
+                    'list' => $turn_list,
+                    'turn' => $turn_id->turn,
+                ]
+            ]);
+        } else {
+            return response()->json([
+                'status' => false,
+                'message' => 'Not Found Training'
+            ], 400);
         }
     }
 
@@ -2545,13 +2714,17 @@ class ApiController extends Controller
             ], 400);
         }
         // }
-        } catch (exception $e) {
+        }  catch (Exception $e) {
             return response()->json([
-                'event' => $e,
+                'result' => [],
                 'status' => false,
-                'message' => 'Error.'
+                'message' => $e->getMessage(),
             ], 400);
         }
+
+        
+
+        
     }
 
     public function update_air_conditioner(Request $request)
@@ -2766,11 +2939,11 @@ class ApiController extends Controller
         }
         // }
 
-        } catch (exception $e) {
+        }  catch (Exception $e) {
             return response()->json([
-                'event' => $e,
+                'result' => [],
                 'status' => false,
-                'message' => 'Error.'
+                'message' => $e->getMessage(),
             ], 400);
         }
     }
