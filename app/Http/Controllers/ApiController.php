@@ -124,7 +124,7 @@ class ApiController extends Controller
    
         $data = TrainingTurn::where('id', $r->turn_id)->orderby('turn', 'asc')->first();
 
-        $lists = TrainingList::where('turn_id', $r->turn_id)->orderby('turn','asc')->get();
+        $lists = TrainingList::where('turn_id', $r->turn_id)->orderby('id','asc')->get();
 
         return response()->json([
             'status' => true,
@@ -146,7 +146,7 @@ class ApiController extends Controller
    
         $data = TrainingTurn::where('id', $r->turn_id)->orderby('turn', 'asc')->first();
 
-        $lists = TrainingList::where('turn_id', $r->turn_id)->where('user_id', $r->user_id)->orderby('turn','asc')->get();
+        $lists = TrainingList::where('turn_id', $r->turn_id)->where('user_id', $r->user_id)->orderby('id','desc')->get();
 
         return response()->json([
             'status' => true,
