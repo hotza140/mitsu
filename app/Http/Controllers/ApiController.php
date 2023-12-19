@@ -163,6 +163,20 @@ class ApiController extends Controller
     {
         $data = TrainingTurn::where('id', $request->turn_id)->orderby('turn', 'asc')->first();
         if($data!=null){
+
+        $check = Training::where('id', $data->training_id)->orderby('turn', 'asc')->first();
+        if(@$check->status == 'off'){
+            $status = false;
+            $message = "The Training is close.";
+            return response()->json([
+                'results' => [
+                ],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+
         $user = new TrainingList;
                     $user->user_id = $request->user_id;
                     $user->first_name = $request->first_name;
