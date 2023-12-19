@@ -56,6 +56,7 @@ class BackendController extends Controller
 
        ///Welcome---------------
        public function welcome(){
+        // $nu = User::withTrash()->where('type', 5)->orderby('id', 'desc')->first();
         return view('backend.welcome');
     }
 

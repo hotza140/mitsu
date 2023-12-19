@@ -1829,7 +1829,7 @@ class ApiController extends Controller
             }
 
             // CODE
-            $nu = User::withTrash()->where('type', 5)->orderby('id', 'desc')->first();
+            $nu = User::where('type', 5)->orderby('id', 'desc')->first();
             if ($nu != null) {
                 $nm = $nu->num + 1;
             } else {
