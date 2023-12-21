@@ -2256,7 +2256,8 @@ class ApiController extends Controller
         if ($cu >= $ci) {
             $sum = $cu - $ci;
             $user->point = $sum;
-            $user->save();
+
+            try{
 
             $his = new buy_point();
             $his->id_user = $user->id;
@@ -2286,6 +2287,15 @@ class ApiController extends Controller
 
             $his->save();
 
+            } catch (Exception $e) {
+            return response()->json([
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 400);
+            }
+
+            $user->save();
 
             $message = "Success!";
             $status = true;
