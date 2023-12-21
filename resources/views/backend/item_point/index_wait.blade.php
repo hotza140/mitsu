@@ -44,6 +44,7 @@
                                                     <tr>
 
                                                         <th>#</th>
+                                                        <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ที่อยู่จัดส่ง</th>
@@ -60,6 +61,7 @@
                                                     @foreach($data as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
+                                                        <td>{{$itts->number}}</td>
                                                         <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p1->name)?? '-'}} {{($p1->lastname)?? '-'}}<br>
                                                         คะแนนคงเหลือ  {{($itts->old_point)?? '-'}}</td>
@@ -91,6 +93,7 @@
                                                 <tfoot>
                                                     <tr>
                                                     <th>#</th>
+                                                    <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ที่อยู่จัดส่ง</th>
@@ -148,6 +151,7 @@
                                                     <tr>
 
                                                         <th>#</th>
+                                                        <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
@@ -163,6 +167,7 @@
                                                     @foreach($data1 as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
+                                                        <td>{{$itts->number}}</td>
                                                         <?php $p2=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p2->name)?? '-'}} {{($p2->lastname)?? '-'}}</td>
                                                         <td>Phone: {{($p2->phone)?? '-'}}<br>
@@ -189,6 +194,7 @@
                                                 <tfoot>
                                                     <tr>
                                                     <th>#</th>
+                                                    <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
@@ -244,6 +250,7 @@
                                                     <tr>
 
                                                         <th>#</th>
+                                                        <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
@@ -259,6 +266,7 @@
                                                     @foreach($data2 as $key=>$itts)
                                                     <tr>
                                                         <td>{{$key+1}}</td>
+                                                        <td>{{$itts->number}}</td>
                                                         <?php $p3=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p3->name)?? '-'}} {{($p3->lastname)?? '-'}}</td>
                                                         <td>Phone: {{($p3->phone)?? '-'}}<br>
@@ -285,6 +293,7 @@
                                                 <tfoot>
                                                     <tr>
                                                     <th>#</th>
+                                                    <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
