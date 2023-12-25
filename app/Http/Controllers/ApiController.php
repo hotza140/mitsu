@@ -2287,7 +2287,7 @@ class ApiController extends Controller
             $rand_num = $randomString;
             $his->number = $rand_num;
 
-            $his->save();
+            // $his->save();
 
             } catch (Exception $e) {
             return response()->json([
@@ -2298,7 +2298,7 @@ class ApiController extends Controller
             }
 
 
-            try{
+            if ($his->save()) {
             $add=new tb_log();
             $add->id=rand(11111,99999);
             $add->id_user=$user->id;
@@ -2309,15 +2309,24 @@ class ApiController extends Controller
             $add->old_point=$cu;
             $add->bl_point=$sum;
             $add->save();
-            } catch (Exception $e) {
-            return response()->json([
-                'result' => [],
-                'status' => false,
-                'message' => $e->getMessage(),
-            ], 400);
-            }
 
             $user->save();
+            
+            }else{
+                $message = "Fail!";
+                $status = false;
+                return response()->json([
+                    'results' => [
+                        'item' => $item,
+                        'user' => $user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
+            }
+
+           
 
             $message = "Success!";
             $status = true;
