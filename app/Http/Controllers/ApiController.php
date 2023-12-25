@@ -2311,7 +2311,7 @@ class ApiController extends Controller
             $add->save();
 
             $user->save();
-            
+
             }else{
                 $message = "Fail!";
                 $status = false;
@@ -2729,14 +2729,16 @@ class ApiController extends Controller
                             $a2 = $air->point;
                             $sum = $a1 + $a2;
                             $user->point = $sum;
-                            $user->save();
+                            // $user->save();
 
+                            if($user->save()){
                             $his = new history_point();
                             $his->title = 'ได้รับ Point จากการทำรายการ';
                             $his->point = $a2;
                             $his->id_user = $user->id;
                             $his->date = date('Y-m-d H:i:s');
                             $his->save();
+                            }
 
                             $air_conditioner->out_name = @$air->des;
                             $air_conditioner->in_name = @$air_2->des;
@@ -2750,6 +2752,30 @@ class ApiController extends Controller
                                 'url_picture' => $this->prefix,
                             ]);
                         }
+                    }else{
+
+
+                        try{
+                            $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                            $sss = User::where('id', $request->mechanic_id)->first();
+            
+                            $add=new tb_log();
+                            $add->id=rand(11111,99999);
+                            $add->id_user=$request->mechanic_id;
+                            $add->id_other=$cus->id;
+                            $add->title='เพิ่มแอร์ แต่ไม่ได้คะแนน';
+                            $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
+                            $add->serial=$ca2;
+                            $add->save();
+                            } catch (Exception $e) {
+                            return response()->json([
+                                'result' => [],
+                                'status' => false,
+                                'message' => $e->getMessage(),
+                            ], 400);
+                            }
+
+
                     }
                 }
                 // ส่วนเช็ค Model รับ POINT
@@ -2972,14 +2998,16 @@ class ApiController extends Controller
                             $a2 = $air->point;
                             $sum = $a1 + $a2;
                             $user->point = $sum;
-                            $user->save();
+                            // $user->save();
 
+                            if($user->save()){
                             $his = new history_point();
                             $his->title = 'ได้รับ Point จากการทำรายการ';
                             $his->point = $a2;
                             $his->id_user = $user->id;
                             $his->date = date('Y-m-d H:i:s');
                             $his->save();
+                            }
 
                             $air_conditioner->out_name = @$air->des;
                             $air_conditioner->in_name = @$air_2->des;
@@ -2996,6 +3024,27 @@ class ApiController extends Controller
                                 'url_picture' => $this->prefix,
                             ]);
                         }
+                    }else{
+                        try{
+                            $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                            $sss = User::where('id', $request->mechanic_id)->first();
+            
+                            $add=new tb_log();
+                            $add->id=rand(11111,99999);
+                            $add->id_user=$request->mechanic_id;
+                            $add->id_other=$cus->id;
+                            $add->title='เพิ่มแอร์ แต่ไม่ได้คะแนน';
+                            $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
+                            $add->serial=$ca2;
+                            $add->save();
+                            } catch (Exception $e) {
+                            return response()->json([
+                                'result' => [],
+                                'status' => false,
+                                'message' => $e->getMessage(),
+                            ], 400);
+                            }
+
                     }
                 }
                 // ส่วนเช็ค Model รับ POINT
