@@ -2307,7 +2307,7 @@ class ApiController extends Controller
             $add->detail='แลกแต้ม ชื่อคนแลก '.$user->name.' แลกสินค้าชื่อ '.$item->titleth;
             $add->point=$ci;
             $add->old_point=$cu;
-            $add->bl_point_point=$sum;
+            $add->bl_point=$sum;
             $add->save();
             } catch (Exception $e) {
             return response()->json([
