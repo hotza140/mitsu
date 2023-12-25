@@ -56,6 +56,8 @@ use App\Models\market;
 
 use App\Models\noti;
 
+use App\tb_log;
+
 
 class ApiController extends Controller
 
@@ -2295,6 +2297,26 @@ class ApiController extends Controller
             ], 400);
             }
 
+
+            try{
+            $add=new tb_log();
+            $add->id=rand(11111,99999);
+            $add->id_user=$user->id;
+            $add->id_item=$item->id;
+            $add->title='แลกแต้ม';
+            $add->detail='แลกแต้ม ชื่อคนแลก '.$user->name.' แลกสินค้าชื่อ '.$item->titleth;
+            $add->point=$ci;
+            $add->old_point=$cu;
+            $add->bl_point_point=$sum;
+            $add->save();
+            } catch (Exception $e) {
+            return response()->json([
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 400);
+            }
+
             $user->save();
 
             $message = "Success!";
@@ -2633,6 +2655,10 @@ class ApiController extends Controller
         //         ], 400);
         //     }
         // } else {
+
+           
+
+
         if ($check_serial_outdoor != 0) {
 
             $customer = Customer::where('first_name', $request->first_name)
@@ -2731,6 +2757,28 @@ class ApiController extends Controller
                 ], 400);
             }
         } else {
+
+            try{
+                $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                $sss = User::where('id', $request->mechanic_id)->first();
+
+                $add=new tb_log();
+                $add->id=rand(11111,99999);
+                $add->id_user=$request->mechanic_id;
+                $add->id_other=$cus->id;
+                $add->title='เพิ่มแอร์';
+                $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
+                $add->serial=$ca2;
+                $add->save();
+                } catch (Exception $e) {
+                return response()->json([
+                    'result' => [],
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ], 400);
+                }
+
+                
             return response()->json([
                 'status' => false,
                 'message' => 'Not Found Air Conditioner in Data.'
@@ -2882,6 +2930,9 @@ class ApiController extends Controller
         //         ], 400);
         //     }
         // } else {
+
+         
+
         if ($check_serial_outdoor != 0) {
             $air_conditioner = new AirConditioner;
             $air_conditioner->customer_id = $request->customer_id;
@@ -2955,6 +3006,28 @@ class ApiController extends Controller
                 ], 400);
             }
         } else {
+
+            try{
+                $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                $sss = User::where('id', $request->mechanic_id)->first();
+
+                $add=new tb_log();
+                $add->id=rand(11111,99999);
+                $add->id_user=$request->mechanic_id;
+                $add->id_other=$cus->id;
+                $add->title='เพิ่มแอร์';
+                $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
+                $add->serial=$ca2;
+                $add->save();
+                } catch (Exception $e) {
+                return response()->json([
+                    'result' => [],
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ], 400);
+                }
+
+
             return response()->json([
                 'status' => false,
                 'message' => 'Not Found Air Conditioner in Data.'

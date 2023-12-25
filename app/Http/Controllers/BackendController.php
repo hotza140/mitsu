@@ -46,6 +46,8 @@ use App\Exports\all_pointExport;
 
 use App\Models\noti;
 
+use App\Models\tb_log;
+
 use App\Imports\UserImport;
 
 
