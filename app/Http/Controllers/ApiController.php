@@ -2259,18 +2259,15 @@ class ApiController extends Controller
             $sum = $cu - $ci;
             $user->point = $sum;
 
-            try{
 
             $his = new buy_point();
             $his->id_user = $user->id;
             $his->id_item = $item->id;
 
             $his->title = $item->titleth;
-
             if($r->address!=null){
                 $his->address = $r->address;
             }
-           
             $his->old_point = $cu;
             $his->buy_point = $ci;
             $his->bl_point = $sum;
@@ -2286,17 +2283,6 @@ class ApiController extends Controller
 
             $rand_num = $randomString;
             $his->number = $rand_num;
-
-            // $his->save();
-
-            } catch (Exception $e) {
-            return response()->json([
-                'result' => [],
-                'status' => false,
-                'message' => $e->getMessage(),
-            ], 400);
-            }
-
 
             if ($his->save()) {
             $add=new tb_log();
