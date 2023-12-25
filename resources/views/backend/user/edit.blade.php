@@ -266,7 +266,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                         <th>Date</th>
                                                         <!-- <th>Created_at</th> -->
                                                         <!-- <th>Updated_at</th> -->
-                                                        <th>Tool</th>
+                                                        <!-- <th>Tool</th> -->
 
                                                     </tr>
                                                 </thead>
@@ -280,13 +280,13 @@ $picture= Storage::disk('s3')->url($filePath);
                                                         <td>{{$date}}</td>
                                                         <!-- <td>{{$items->created_at}}</td> -->
                                                         <!-- <td>{{$items->updated_at}}</td> -->
-                                                        <td>
+                                                        <!-- <td>
                                                             <a href="{{url('/backend/history_point_destroy/'.$items->id)}}"
                                                                 class="btn btn-sm btn-danger"
                                                                 onclick="javascript:return confirm('You Want To Delete?')"
                                                                 style="color:white;"><i
                                                                     class="fa fa-trash"></i>Delete</a>
-                                                        </td>
+                                                        </td> -->
                                                     </tr>
                                                     @endforeach
 
@@ -299,7 +299,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                         <th>Date</th>
                                                         <!-- <th>Created_at</th> -->
                                                         <!-- <th>Updated_at</th> -->
-                                                        <th>Tool</th>
+                                                        <!-- <th>Tool</th> -->
                                                     </tr>
                                                 </tfoot>
                                             </table>
