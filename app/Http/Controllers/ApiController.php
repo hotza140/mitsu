@@ -2571,6 +2571,8 @@ class ApiController extends Controller
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
                 ->where('serial_number', $ca1)
                 ->get()->count();
+        }else{
+            $ca1=null;
         }
 
         $king2 = strlen($request->outdoor_number);
@@ -2752,7 +2754,7 @@ class ApiController extends Controller
 
                             if($user->save()){
                             $his = new history_point();
-                            $his->title = 'ได้รับ Point จากการทำรายการ';
+                            $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
                             $his->point = $a2;
                             $his->id_user = $user->id;
                             $his->date = date('Y-m-d H:i:s');
@@ -2893,6 +2895,8 @@ class ApiController extends Controller
             $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
                 ->where('serial_number', $ca1)
                 ->get()->count();
+        }else{
+            $ca1=null;
         }
 
 
@@ -3019,7 +3023,7 @@ class ApiController extends Controller
 
                             if($user->save()){
                             $his = new history_point();
-                            $his->title = 'ได้รับ Point จากการทำรายการ';
+                            $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
                             $his->point = $a2;
                             $his->id_user = $user->id;
                             $his->date = date('Y-m-d H:i:s');
