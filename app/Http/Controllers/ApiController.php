@@ -2731,13 +2731,13 @@ class ApiController extends Controller
 
                 // ส่วนเช็ค Model รับ POINT
                 $se = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
-                    // ->where('serial_number', $request->outdoor_number)
+                    // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
+                    ->where('serial_number', $ca2)
                     ->first();
 
                 $ae = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
-                    // ->where('serial_number', $request->outdoor_number)
+                    // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                    ->where('serial_number', $ca1)
                     ->first();
 
                 if ($customer != null) {
@@ -3002,13 +3002,13 @@ class ApiController extends Controller
 
                 // ส่วนเช็ค Model รับ POINT
                 $se = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
-                    // ->where('serial_number', $request->outdoor_number)
+                    // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
+                    ->where('serial_number', $ca2)
                     ->first();
 
                 $ae = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
-                    // ->where('serial_number', $request->outdoor_number)
+                    // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                    ->where('serial_number', $ca1)
                     ->first();
 
                 if ($customer != null) {
