@@ -2288,6 +2288,11 @@ class ApiController extends Controller
             if($his->save()){
 
             }else{
+            $uu = User::where('id', $r->id_user)->orderby('id', 'desc')->first();
+            $uu->point = $cu;
+            $uu->save();
+
+            
             $add=new tb_log();
             $add->id=rand(11111,99999);
             $add->id_user=$user->id;
