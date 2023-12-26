@@ -202,7 +202,7 @@ $picture= Storage::disk('s3')->url($filePath);
                     <div class="m-b-10" style="background-color: red;">.</div>
 
                     <!-- --------------------- -->
-                    <?php $point=DB::table('history_point')->where('id_user',$item->id)->orderby('id','desc')->get(); ?>
+                    <?php $point=DB::table('history_point')->where('id_user',$item->id)->orderby('id','desc')->limit(10)->get(); ?>
                     <div class="page-body">
                         <div class="row">
                             <div class="col-sm-12">
@@ -247,7 +247,7 @@ $picture= Storage::disk('s3')->url($filePath);
 
                                         <br>
                                         <strong>
-                                            <h3 class="m-b-10">ประวัติการได้รับแต้ม Point
+                                            <h3 class="m-b-10">ประวัติการได้รับแต้ม Point 10 รายการล่าสุด
                                             </h3>
                                         </strong>
 
