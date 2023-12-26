@@ -57,7 +57,7 @@
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">Description</label>
                                                 <input type="text" name="des" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->des;} ?>">
+                                                required    value="<?php if(isset($item)){echo $item->des;} ?>">
                                             </div>
                                         </div>
 
@@ -65,7 +65,7 @@
                                             <div class="col-sm-6">
                                                 <label class="col-form-label">Point</label>
                                                 <input type="number" name="point" class="form-control" id="pic"
-                                                    value="<?php if(isset($item)){echo $item->point;} ?>">
+                                                required  value="<?php if(isset($item)){echo $item->point;} ?>">
                                             </div>
                                         </div>
 
