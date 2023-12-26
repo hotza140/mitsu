@@ -2294,7 +2294,6 @@ class ApiController extends Controller
 
             
             $add=new tb_log();
-            $add->id=rand(11111,99999);
             $add->id_user=$user->id;
             $add->id_item=$item->id;
             $add->title='แลกแต้ม';
@@ -2780,7 +2779,6 @@ class ApiController extends Controller
                             $sss = User::where('id', $request->mechanic_id)->first();
             
                             $add=new tb_log();
-                            $add->id=rand(11111,99999);
                             $add->id_user=$request->mechanic_id;
                             $add->id_other=$cus->id;
                             $add->title='เพิ่มแอร์ แต่ไม่ได้คะแนน';
@@ -2818,7 +2816,6 @@ class ApiController extends Controller
                 $sss = User::where('id', $request->mechanic_id)->first();
 
                 $add=new tb_log();
-                $add->id=rand(11111,99999);
                 $add->id_user=$request->mechanic_id;
                 $add->id_other=$cus->id;
                 $add->title='เพิ่มแอร์';
@@ -3050,7 +3047,6 @@ class ApiController extends Controller
                             $sss = User::where('id', $request->mechanic_id)->first();
             
                             $add=new tb_log();
-                            $add->id=rand(11111,99999);
                             $add->id_user=$request->mechanic_id;
                             $add->id_other=$cus->id;
                             $add->title='เพิ่มแอร์ แต่ไม่ได้คะแนน';
@@ -3090,7 +3086,6 @@ class ApiController extends Controller
                 $sss = User::where('id', $request->mechanic_id)->first();
 
                 $add=new tb_log();
-                $add->id=rand(11111,99999);
                 $add->id_user=$request->mechanic_id;
                 $add->id_other=$cus->id;
                 $add->title='เพิ่มแอร์';
