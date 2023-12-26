@@ -2297,7 +2297,34 @@ class ApiController extends Controller
             $add->point=$ci;
             $add->old_point=$cu;
             $add->bl_point=$sum;
-            $add->save();
+
+            if($add->save()){
+                 $message = "Data Fail But Log Save!";
+                $status = false;
+                return response()->json([
+                    'results' => [
+                        'item' => $item,
+                        'user' => $user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
+            }else{
+                 $message = "Log Fail!";
+                $status = false;
+                return response()->json([
+                    'results' => [
+                        'item' => $item,
+                        'user' => $user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
+            }
+
+
             }
 
             }else{
