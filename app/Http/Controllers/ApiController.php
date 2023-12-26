@@ -2741,8 +2741,10 @@ class ApiController extends Controller
                     ->first();
 
                 if ($customer != null) {
-                    $air = AirModel::where('model_name', $se->product_code)->where('des', $se->product_name)->first();
-                    $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                    // $air = AirModel::where('model_name', $se->product_code)->where('des', $se->product_name)->first();
+                    // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                    $air = AirModel::where('des', $se->product_name)->first();
+                    $air_2 = AirModel::where('des', @$ae->product_name)->first();
                     if ($air != null or $air_2 != null) {
                         $user = User::where('id', $customer->mechanic_id)->first();
                         if ($user != null) {
@@ -3010,8 +3012,10 @@ class ApiController extends Controller
                     ->first();
 
                 if ($customer != null) {
-                    $air = AirModel::where('model_name', @$se->product_code)->where('des', @$se->product_name)->first();
-                    $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                    // $air = AirModel::where('model_name', @$se->product_code)->where('des', @$se->product_name)->first();
+                    // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                    $air = AirModel::where('des', @$se->product_name)->first();
+                    $air_2 = AirModel::where('des', @$ae->product_name)->first();
                     if ($air != null or $air_2 != null) {
                         $user = User::where('id', $customer->mechanic_id)->first();
                         if ($user != null) {
