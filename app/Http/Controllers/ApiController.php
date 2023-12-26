@@ -2260,6 +2260,7 @@ class ApiController extends Controller
             $user->point = $sum;
 
 
+            if($user->save()){
             $his = new buy_point();
             $his->id_user = $user->id;
             $his->id_item = $item->id;
@@ -2284,7 +2285,9 @@ class ApiController extends Controller
             $rand_num = $randomString;
             $his->number = $rand_num;
 
-            if ($his->save()) {
+            if($his->save()){
+
+            }else{
             $add=new tb_log();
             $add->id=rand(11111,99999);
             $add->id_user=$user->id;
@@ -2295,8 +2298,7 @@ class ApiController extends Controller
             $add->old_point=$cu;
             $add->bl_point=$sum;
             $add->save();
-
-            $user->save();
+            }
 
             }else{
                 $message = "Fail!";
