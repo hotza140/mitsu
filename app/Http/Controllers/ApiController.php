@@ -2307,7 +2307,7 @@ class ApiController extends Controller
             $add=new tb_log();
             $add->id_user=$user->id;
             $add->id_item=$item->id;
-            $add->title='แลกแต้ม';
+            $add->title='แลกแต้ม Log ล้มเหลว';
             $add->detail='แลกแต้ม ชื่อคนแลก '.$user->name.' แลกสินค้าชื่อ '.$item->titleth;
             $add->point=$ci;
             $add->old_point=$cu;
