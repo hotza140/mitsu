@@ -2265,7 +2265,7 @@ class ApiController extends Controller
             $add->point=$ci;
             $add->old_point=$cu;
             $add->bl_point=$sum;
-
+            $add->save();
 
             $sum = $cu - $ci;
             $user->point = $sum;
