@@ -2256,6 +2256,17 @@ class ApiController extends Controller
         $cu = $user->point;
         $ci = $item->point;
         if ($cu >= $ci) {
+
+            $add=new tb_log();
+            $add->id_user=$user->id;
+            $add->id_item=$item->id;
+            $add->title='แลกแต้ม Log History';
+            $add->detail='แลกแต้ม ชื่อคนแลก '.$user->name.' แลกสินค้าชื่อ '.$item->titleth;
+            $add->point=$ci;
+            $add->old_point=$cu;
+            $add->bl_point=$sum;
+
+
             $sum = $cu - $ci;
             $user->point = $sum;
 
