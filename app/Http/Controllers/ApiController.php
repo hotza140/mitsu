@@ -56,7 +56,7 @@ use App\Models\market;
 
 use App\Models\noti;
 
-use App\tb_log;
+use App\Models\tb_log;
 
 
 class ApiController extends Controller
