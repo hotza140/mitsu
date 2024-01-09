@@ -2285,6 +2285,8 @@ class ApiController extends Controller
     ///Buy Item ///
     public function api_buy_item(Request $r)
     {
+
+        try{
         $user = User::where('id', $r->id_user)->orderby('id', 'desc')->first();
         $item = item_point::where('id', $r->id_item)->orderby('id', 'desc')->first();
 
@@ -2417,6 +2419,26 @@ class ApiController extends Controller
                 'url_picture' => $this->prefix,
             ], 400);
         }
+
+
+        } catch (Exception $e) {
+        Log::error($e->getMessage());
+
+        $f=new tb_log();
+        $f->id_user=$r->id_user;
+        $f->id_item=$r->id_item;
+        $f->title='Error';
+        $f->detail=$e->getMessage();
+        $f->save();
+
+        return response()->json([
+            'result' => [],
+            'status' => false,
+            'message' => $e->getMessage(),
+        ], 400);
+        }
+    
+    
     }
     ///Buy Item ///
 
