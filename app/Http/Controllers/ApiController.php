@@ -2427,7 +2427,7 @@ class ApiController extends Controller
         $f=new tb_log();
         $f->id_user=$r->id_user;
         $f->id_item=$r->id_item;
-        $f->title='Error';
+        $f->title='Error Buy Item POINT';
         $f->detail=$e->getMessage();
         $f->save();
 
