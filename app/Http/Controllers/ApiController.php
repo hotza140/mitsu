@@ -90,7 +90,7 @@ class ApiController extends Controller
                 'status' => true,
                 'message' => 'Success',
                 'result' => [
-                    'data' => $data,
+                    'add' => $add,
                 ],
             ]);
         
