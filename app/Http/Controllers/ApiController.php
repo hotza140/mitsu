@@ -71,6 +71,41 @@ class ApiController extends Controller
 
 
 
+       
+
+
+        // API TEST LOG
+        public function test_log()
+        {
+
+        try{
+            $add=new tb_log();
+            $add->id_user=8263;
+            $add->id_item=37;
+            $add->title='TEST แลกแต้ม Log History';
+            $add->detail='TEST แลกแต้ม';
+            $add->save();
+
+            return response()->json([
+                'status' => true,
+                'message' => 'Success',
+                'result' => [
+                    'data' => $data,
+                ],
+            ]);
+        
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            return response()->json([
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
+            ], 400);
+        }
+           
+    }
+
+
     // trainning
 
     public function train_all()
