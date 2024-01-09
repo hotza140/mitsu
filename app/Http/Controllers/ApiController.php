@@ -2917,13 +2917,21 @@ class ApiController extends Controller
             ], 400);
         }
         // }
-        }  catch (Exception $e) {
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+    
+            $f=new tb_log();
+            $f->id_user=$request->mechanic_id;
+            $f->title='Error FIX AIR /in '.$request->indoor_number.' /out '.$request->outdoor_number;
+            $f->detail=$e->getMessage();
+            $f->save();
+    
             return response()->json([
                 'result' => [],
                 'status' => false,
                 'message' => $e->getMessage(),
             ], 400);
-        }
+            }
 
         
 
@@ -3201,13 +3209,21 @@ class ApiController extends Controller
         }
         // }
 
-        }  catch (Exception $e) {
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+    
+            $f=new tb_log();
+            $f->id_user=$request->mechanic_id;
+            $f->title='Error FIX AIR /in '.$request->indoor_number.' /out '.$request->outdoor_number;
+            $f->detail=$e->getMessage();
+            $f->save();
+    
             return response()->json([
                 'result' => [],
                 'status' => false,
                 'message' => $e->getMessage(),
             ], 400);
-        }
+            }
     }
 
     public function update_customer(Request $request)
