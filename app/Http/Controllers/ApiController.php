@@ -168,6 +168,8 @@ class ApiController extends Controller
             'message' => 'Success',
             'result' => [
                 'data' => $data,
+                'lists' => $lists,
+                'data_detail' => $data_detail,
             ],
         ]);
     }
@@ -190,6 +192,8 @@ class ApiController extends Controller
             'message' => 'Success',
             'result' => [
                 'data' => $data,
+                'lists' => $lists,
+                'data_detail' => $data_detail,
             ],
         ]);
     }
@@ -234,6 +238,7 @@ class ApiController extends Controller
             'message' => 'Success',
             'result' => [
                 'data' => $data,
+                'user' => $user,
             ],
         ]);
         }else{
