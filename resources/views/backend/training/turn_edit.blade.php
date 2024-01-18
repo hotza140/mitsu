@@ -267,7 +267,7 @@
 
                                                         <th>#</th>
                                                        <th>ชื่อ - นามสกุล</th>
-                                            <th>ชื่อเล่น</th>
+                                            <!-- <th>ชื่อเล่น</th> -->
                                             <th>เบอร์โทรศัพท์</th>
                                             <th>สังกัดร้าน</th>
 
@@ -278,7 +278,7 @@
                                                     <tr>
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$items->full_name}}</td>
-                                                        <td>{{$items->nickname}}</td>
+                                                        <!-- <td>{{$items->nickname}}</td> -->
                                                         <td>{{$items->phone}}</td>
                                                         <td>{{$items->agency}}</td>
                                                     </tr>
