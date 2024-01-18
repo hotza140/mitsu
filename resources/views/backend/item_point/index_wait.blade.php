@@ -63,13 +63,17 @@
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$itts->number}}</td>
                                                         <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
-                                                        <td>{{($p1->name)?? '-'}} {{($p1->lastname)?? '-'}}<br>
+                                                        <td>{{(@$p1->name)?? '-'}} {{(@$p1->lastname)?? '-'}}
                                                         คะแนนคงเหลือ  {{($itts->old_point)?? '-'}}</td>
-                                                        <td>Phone: {{($p1->phone)?? '-'}}<br>
-                                                            Email: {{($p1->email)?? '-'}}<br>
-                                                            Line: {{($p1->line)?? '-'}}
+                                                        <td>Phone: {{(@$p1->phone)?? '-'}}
+                                                            Email: {{(@$p1->email)?? '-'}}
+                                                            Line: {{(@$p1->line)?? '-'}}
                                                         </td>
+                                                        @if($itts->address!=null)
+                                                        <td>{{@$p1->province}}/{{@$p1->district}}/{{@$p1->amphur}}/{{@$p1->location}}</td>
+                                                        @else
                                                         <td>{{$itts->address}}</td>
+                                                        @endif
                                                         <td>{{$itts->title}}</td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
@@ -170,8 +174,8 @@
                                                         <td>{{$itts->number}}</td>
                                                         <?php $p2=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p2->name)?? '-'}} {{($p2->lastname)?? '-'}}</td>
-                                                        <td>Phone: {{($p2->phone)?? '-'}}<br>
-                                                            Email: {{($p2->email)?? '-'}}<br>
+                                                        <td>Phone: {{($p2->phone)?? '-'}}
+                                                            Email: {{($p2->email)?? '-'}}
                                                             Line: {{($p2->line)?? '-'}}
                                                         </td>
                                                         <td>{{$itts->title}} </td>
@@ -269,8 +273,8 @@
                                                         <td>{{$itts->number}}</td>
                                                         <?php $p3=App\User::where('id',$itts->id_user)->first();  ?>
                                                         <td>{{($p3->name)?? '-'}} {{($p3->lastname)?? '-'}}</td>
-                                                        <td>Phone: {{($p3->phone)?? '-'}}<br>
-                                                            Email: {{($p3->email)?? '-'}}<br>
+                                                        <td>Phone: {{($p3->phone)?? '-'}}
+                                                            Email: {{($p3->email)?? '-'}}
                                                             Line: {{($p3->line)?? '-'}}
                                                         </td>
                                                         <td>{{$itts->title}}</td>
