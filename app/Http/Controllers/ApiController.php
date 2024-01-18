@@ -414,7 +414,7 @@ class ApiController extends Controller
             ], 400);
             }
 
-            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $request->id)->get();
+            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $request->id)->get();
 
             foreach ($turn_list as $traning_list) {
                 $list = TrainingList::find($traning_list->id);
