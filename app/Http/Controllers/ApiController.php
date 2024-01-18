@@ -368,6 +368,7 @@ class ApiController extends Controller
 
     public function train_turn_approve(Request $request)
     {
+        try{
         if ($request->id) {
             // $training_id = $request->id;
 
@@ -421,6 +422,15 @@ class ApiController extends Controller
                 'message' => 'Not Found Training'
             ], 400);
         }
+
+        } catch (Exception $e) {
+                Log::error($e->getMessage());
+                return response()->json([
+                    'result' => [],
+                    'status' => false,
+                    'message' => $e->getMessage(),
+                ], 400);
+            }
     }
 
 
