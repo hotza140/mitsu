@@ -332,6 +332,7 @@ class ApiController extends Controller
                 $list->first_name = $request->first_name;
                 $list->last_name = $request->last_name;
                 $list->full_name = $request->first_name . ' ' . $request->last_name;
+                $list->nickname = $request->nickname;
                 $list->user_id = $request->user_id;
                 $list->phone = $request->phone;
                 // $list->agency = $request->agency;
