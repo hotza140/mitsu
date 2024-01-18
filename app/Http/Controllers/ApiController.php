@@ -205,7 +205,7 @@ class ApiController extends Controller
         $data = TrainingTurn::where('id', $request->turn_id)->orderby('turn', 'asc')->first();
         if($data!=null){
 
-        $check = Training::where('id', $data->training_id)->orderby('turn', 'asc')->first();
+        $check = Training::where('id', $data->training_id)->with('province', 'amphure', 'district')->first();
         if(@$check->status == 'off'){
             $status = false;
             $message = "The Training is close.";
@@ -338,7 +338,7 @@ class ApiController extends Controller
                 // $list->agency = $request->agency;
                 $list->save();
 
-                $training = Training::where('id', $list->training_id)->first();
+                $training = Training::where('id', $list->training_id)->with('province', 'amphure', 'district')->first();
                 $turn_id = TrainingTurn::where('training_id', $training->id)->orderby('turn', 'desc')->first();
 
                 return response()->json([
@@ -395,7 +395,7 @@ class ApiController extends Controller
                 ], 400);
             }
 
-            $training = Training::where('id', $request->id)->first();
+            $training = Training::where('id', $request->id)->with('province', 'amphure', 'district')->first();
             $turn_id = TrainingTurn::where('training_id', $request->id)->orderby('turn', 'desc')->first();
 
             $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $request->id)->get();
