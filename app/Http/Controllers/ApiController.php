@@ -396,14 +396,14 @@ class ApiController extends Controller
                 ], 400);
             }
 
-            $training = Training::where('id', $request->id)->with('province', 'amphure', 'district')->first();
+            // $training = Training::where('id', $request->id)->with('province', 'amphure', 'district')->first();
 
-            if($turn_id==null){
-                return response()->json([
-                'status' => false,
-                'message' => 'Not Found Training'
-            ], 400);
-            }
+            // if($training==null){
+            //     return response()->json([
+            //     'status' => false,
+            //     'message' => 'Not Found Training'
+            // ], 400);
+            // }
 
             $turn_id = TrainingTurn::where('id', $request->id)->orderby('turn', 'desc')->first();
 
@@ -426,9 +426,8 @@ class ApiController extends Controller
                 'status' => true,
                 'message' => 'Success!',
                 'data' => [
-                    'training' => $training,
+                    // 'training' => $training,
                     'list' => $turn_list,
-                    'turn' => $turn_id->turn,
                 ]
             ]);
         } else {
