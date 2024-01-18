@@ -397,7 +397,22 @@ class ApiController extends Controller
             }
 
             $training = Training::where('id', $request->id)->with('province', 'amphure', 'district')->first();
-            $turn_id = TrainingTurn::where('training_id', $request->id)->orderby('turn', 'desc')->first();
+
+            if($turn_id==null){
+                return response()->json([
+                'status' => false,
+                'message' => 'Not Found Training'
+            ], 400);
+            }
+
+            $turn_id = TrainingTurn::where('id', $request->id)->orderby('turn', 'desc')->first();
+
+            if($turn_id==null){
+                return response()->json([
+                'status' => false,
+                'message' => 'Not Found TrainingTurn'
+            ], 400);
+            }
 
             $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $turn_id->id)->where('training_id', $request->id)->get();
 
