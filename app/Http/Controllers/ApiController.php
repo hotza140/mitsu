@@ -536,7 +536,7 @@ class ApiController extends Controller
     public function api_province(Request $r)
     {
 
-        $ps = 'select name_th,id,name_en
+        $ps = 'select name_th,id,name_en,code,zone
                 FROM tb_province
                 ORDER BY
                 CONVERT ( name_th USING tis620 ) ASC';
@@ -566,13 +566,13 @@ class ApiController extends Controller
     {
 
         if ($r->code != null) {
-            $as = 'select name_th,id,name_en
+            $as = 'select name_th,id,name_en,province_code,code
             FROM tb_amupur
             WHERE  province_code = ' . $r->code . '
             ORDER BY
             CONVERT ( name_th USING tis620 ) ASC';
         } else {
-            $as = 'select name_th,id,name_en
+            $as = 'select name_th,id,name_en,province_code,code
             FROM tb_amupur
             ORDER BY
             CONVERT ( name_th USING tis620 ) ASC';
@@ -600,13 +600,13 @@ class ApiController extends Controller
     {
 
         if ($r->id != null) {
-            $ds = 'select name_th,id,name_en
+            $ds = 'select name_th,id,name_en,amphure_id,zip_code
                   FROM tb_districts
                   WHERE  amphure_id = ' . $r->id . '
                   ORDER BY
                   CONVERT ( name_th USING tis620 ) ASC';
         } else {
-            $ds = 'select name_th,id,name_en
+            $ds = 'select name_th,id,name_en,amphure_id,zip_code
             FROM tb_districts
             ORDER BY
             CONVERT ( name_th USING tis620 ) ASC';
