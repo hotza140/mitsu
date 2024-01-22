@@ -2155,6 +2155,109 @@ class ApiController extends Controller
 
 
 
+
+
+       ///เรียก  User /// 
+       public function api_user_call(Request $r)
+       {
+           $user = User::where('id', $r->id_user)->first();
+           if ($user != null) {
+   
+               $message = "Success!";
+               $status = true;
+               return response()->json([
+                   'results' => [
+                       'user' => $user,
+                   ],
+                   'status' =>  $status,
+                   'message' =>  $message,
+                   'url_picture' => $this->prefix,
+               ]);
+           } else {
+               $message = "There is an ID on the server!";
+               $status = false;
+               return response()->json([
+                   'results' => [],
+                   'status' =>  $status,
+                   'message' =>  $message,
+                   'url_picture' => $this->prefix,
+               ], 400);
+           }
+       }
+       ///เรียก  User ///
+
+
+
+     ///EDIT  User  ที่อยู่/// 
+    public function api_edit_user_address(Request $r)
+    {
+        $user = User::where('id', $r->id_user)->first();
+        if ($user != null) {
+
+            if ($r->province != null) {
+                $p = province::where('name_th', $r->province)->first();
+                if ($p != null) {
+                    $user->id_p = $p->id;
+                    $user->province = $r->province;
+                }
+            }
+            if ($r->district != null) {
+                $d = district::where('name_th', $r->district)->first();
+                if ($d != null) {
+                    $user->id_d = $d->id;
+                    $user->district = $r->district;
+                }
+            }
+            if ($r->amphur != null) {
+                $a = amphur::where('name_th', $r->amphur)->first();
+                if ($a != null) {
+                    $user->id_a = $a->id;
+                    $user->amphur = $r->amphur;
+                }
+            }
+            if ($r->house != null) {
+                $user->house = $r->house;
+            }
+            if ($r->moo != null) {
+                $user->moo = $r->moo;
+            }
+            if ($r->condo != null) {
+                $user->condo = $r->condo;
+            }
+            if ($r->road != null) {
+                $user->road = $r->road;
+            }
+            if ($r->zipcode != null) {
+                $user->zipcode = $r->zipcode;
+            }
+            $user->save();
+
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'user' => $user,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "There is an ID on the server!";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+    ///EDIT  User ที่อยู่///
+
+
+
     ///LOGIN  User///
     public function api_login_user(Request $r)
     {

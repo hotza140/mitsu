@@ -55,6 +55,11 @@ Route::group([
     Route::post('/api_noti_add', 'ApiController@api_noti_add');
 
     Route::get('/test_log', 'ApiController@test_log');
+
+
+    
+    Route::post('/api_user_call', 'ApiController@api_user_call');
+    Route::post('/api_edit_user_address', 'ApiController@api_edit_user_address');
     
 
 
