@@ -52,7 +52,7 @@
 
 
                                        <div><br>
-                               <h5>Export รายละเอียดคอร์สและจำนวนนักเรียน</h5>
+                               <h5>Export รายละเอียด</h5>
                                    <form class="form-horizontal" action="{{url('backend/data_export')}}" method="POST" enctype="multipart/form-data">
                                           @csrf
 
