@@ -63,12 +63,9 @@ class BackendController extends Controller
                 $aaa=AirConditioner::where('id',$us->id_air)->first();
 
                 if($aaa!=null){
-                if($aaa->point>$aaa->point_2){
-                $sum=$aaa->point-$aaa->point_2;
-                }else{
-                $sum=$aaa->point_2-$aaa->point;   
-                }
-
+                $a1=$aaa->point;
+                $a2=$aaa->point_2;
+                $sum=$a1-$a2;
                 $aaa->point=$sum;
                 $aaa->save();
 
