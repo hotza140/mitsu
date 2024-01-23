@@ -70,7 +70,7 @@ class BackendController extends Controller
                 // $aaa->save();
 
                 if($aaa->save()){
-dd('bbb');
+dd($aaa->id);
                 }
                 if($aaa->outdoor_number=='23MK01911AQ'){
                     dd('asd');
