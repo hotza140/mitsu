@@ -64,7 +64,7 @@ class BackendController extends Controller
 
                 if($aaa!=null){
                 $a1=$aaa->point;
-                $a2=$aaa->point_2;
+                $a2=$aaa->point2;
                 $sum=$a1-$a2;
                 $aaa->point=$sum;
                 $aaa->save();
