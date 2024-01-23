@@ -2549,6 +2549,7 @@ class ApiController extends Controller
 
         } catch (Exception $e) {
         Log::error($e->getMessage());
+        Log::channel('point_logs')->error($e->getMessage());
 
         $f=new tb_log();
         $f->id_user=$r->id_user;
