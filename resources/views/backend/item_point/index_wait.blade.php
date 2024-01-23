@@ -164,6 +164,7 @@
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
+                                                        <th>ที่อยู่</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -184,6 +185,7 @@
                                                             Line: {{($p2->line)?? '-'}}
                                                         </td>
                                                         <td>{{$itts->title}} </td>
+                                                        <td>{{$itts->address}}</td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
                                                         <td>{{$itts->date}}</td>
@@ -207,6 +209,7 @@
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
+                                                        <th>ที่อยู่</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -263,6 +266,7 @@
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
+                                                        <th>ที่อยู่</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
@@ -283,6 +287,7 @@
                                                             Line: {{($p3->line)?? '-'}}
                                                         </td>
                                                         <td>{{$itts->title}}</td>
+                                                        <td>{{$itts->address}}</td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
                                                         <td>{{$itts->date}}</td>
@@ -306,6 +311,7 @@
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
                                                         <th>ชื่อสินค้า</th>
+                                                        <th>ที่อยู่</th>
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
