@@ -2513,7 +2513,7 @@ class ApiController extends Controller
             }
 
             }else{
-                $message = "Fail!";
+                $message = "User Save Fail!";
                 $status = false;
                 return response()->json([
                     'results' => [
@@ -2540,7 +2540,7 @@ class ApiController extends Controller
                 'url_picture' => $this->prefix,
             ]);
         } else {
-            $message = "Fail!";
+            $message = "คะแนนของคุณไม่เพียงพอ";
             $status = false;
             return response()->json([
                 'results' => [
