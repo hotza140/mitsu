@@ -104,19 +104,7 @@
                                                         <td>{{($items->outdoor_number) ?? '-'}}</td>
                                                         <td>{{($items->in_name)?? '-'}}</td>
                                                         <td>{{($items->indoor_number)?? '-'}}</td>
-                                                        @if($items->id>=3728 and $items->id<=4110)
-                                                        <?php  
-                                                        if($items->point>$items->point_2){
-                                                        $sum=$items->point-$items->point_2;
-                                                        }else{
-                                                        $sum=$items->point_2-$items->point;   
-                                                        }
-                                                        ?>
-                                                        <td>{{$sum}}</td>
-                                                        @else
                                                         <td>{{($items->point)?? '-'}}</td>
-                                                        @endif
-                                                        <!-- <td>{{($items->point)?? '-'}}</td> -->
                                                         <td>{{$items->created_at}}</td>
                                                     <td>
                                                     <a href="{{url('/backend/air_conditioner/'.$items->id)}}" class="btn btn-sm btn-primary" style="color:white;"><i class="fa fa-gear"></i>Edit</a>
