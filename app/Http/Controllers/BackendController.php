@@ -60,7 +60,7 @@ class BackendController extends Controller
     public function fix_2(){
         $user=history_point::where('id','>=',3622)->where('id','<=',4007)->get();
         foreach($user as $us){
-                $aaa=AirConditioner::where('id',$us->i_air)->first();
+                $aaa=AirConditioner::where('id',$us->id_air)->first();
 
                 if($aaa!=null){
                 if($aaa->point>$aaa->point_2){
