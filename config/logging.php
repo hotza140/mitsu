@@ -53,6 +53,13 @@ return [
             'level' => 'debug',
             'days' => 14,
         ],
+        
+        'point_logs' => [
+            'driver' => 'daily',
+            'path' => storage_path('logs/point.log'), // เปลี่ยนเส้นทางไฟล์ตามที่คุณต้องการ
+            'level' => 'debug',
+            'days' => 14,
+        ],
 
         'slack' => [
             'driver' => 'slack',

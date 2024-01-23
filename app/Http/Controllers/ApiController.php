@@ -2426,17 +2426,6 @@ class ApiController extends Controller
         $cu = $user->point;
         $ci = $item->point;
         if ($cu >= $ci) {
-
-            // $add=new tb_log();
-            // $add->id_user=$user->id;
-            // $add->id_item=$item->id;
-            // $add->title='แลกแต้ม Log History';
-            // $add->detail='แลกแต้ม ชื่อคนแลก '.$user->name.' แลกสินค้าชื่อ '.$item->titleth;
-            // $add->point=$ci;
-            // $add->old_point=$cu;
-            // $add->bl_point=$sum;
-            // $add->save();
-
             $sum = $cu - $ci;
             $user->point = $sum;
 
@@ -2485,7 +2474,8 @@ class ApiController extends Controller
 
             if($add->save()){
                  $message = "Data Fail But Log Save!";
-                $status = false;
+                $status = true;
+                Log::channel('point_logs')->error('Data Fail But Log Save');
                 return response()->json([
                     'results' => [
                         'item' => $item,
@@ -2494,10 +2484,11 @@ class ApiController extends Controller
                     'status' =>  $status,
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
-                ], 400);
+                ]);
             }else{
                  $message = "Log Fail!";
                 $status = false;
+                Log::channel('point_logs')->error('Log Fail!');
                 return response()->json([
                     'results' => [
                         'item' => $item,
@@ -2515,6 +2506,7 @@ class ApiController extends Controller
             }else{
                 $message = "User Save Fail!";
                 $status = false;
+                Log::channel('point_logs')->error('User Save Fail!');
                 return response()->json([
                     'results' => [
                         'item' => $item,
@@ -2542,6 +2534,7 @@ class ApiController extends Controller
         } else {
             $message = "คะแนนของคุณไม่เพียงพอ";
             $status = false;
+            Log::channel('point_logs')->error('คะแนนของคุณไม่เพียงพอ');
             return response()->json([
                 'results' => [
                     'item' => $item,
