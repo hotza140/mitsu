@@ -70,8 +70,11 @@ class BackendController extends Controller
                 $aaa->point=$sum;
                 $aaa->save();
 
-                $us->point=$sum;
-                $us->save();
+                $bbb=history_point::where('id',$us->id)->first();
+                if($bbb!=null){
+                $bbb->point=$sum;
+                $bbb->save();
+                }
             }
         }
 
