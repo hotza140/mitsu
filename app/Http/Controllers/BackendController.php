@@ -77,6 +77,9 @@ class BackendController extends Controller
             }
         }
 
+        $count=count($user);
+        dd($count);
+
         return redirect()->back()->with('success','Success!');
     }
     
