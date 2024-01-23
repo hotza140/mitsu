@@ -34,7 +34,7 @@
             <td>{{$item->out_name}}</td>
             <td>{{$item->outdoor_number}}</td>
 
-            @if($items->id>=3728 and $items->id<=4110)
+            @if($item->id>=3728 and $item->id<=4110)
             <?php  
             if($item->point>$item->point_2){
             $sum=$item->point-$item->point_2;
