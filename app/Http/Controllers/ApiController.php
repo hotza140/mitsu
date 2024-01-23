@@ -2474,7 +2474,7 @@ class ApiController extends Controller
 
             if($add->save()){
                  $message = "Data Fail But Log Save!";
-                $status = true;
+                $status = false;
                 Log::channel('point_logs')->error('Data Fail But Log Save');
                 return response()->json([
                     'results' => [
@@ -2484,7 +2484,7 @@ class ApiController extends Controller
                     'status' =>  $status,
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
-                ]);
+                ],400);
             }else{
                  $message = "Log Fail!";
                 $status = false;
