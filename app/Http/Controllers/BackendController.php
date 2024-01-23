@@ -55,6 +55,29 @@ class BackendController extends Controller
 
 {
 
+    public function fix_2(){
+        $user=history_point::where('id','>=',3622)->where('id','<=',4007)->get();
+        foreach($user as $us){
+                $aaa=AirConditioner::where('id',$us->i_air)->first();
+
+                
+                if($aaa->point>$aaa->point_2){
+                $sum=$aaa->point-$aaa->point_2;
+                }else{
+                $sum=$aaa->point_2-$aaa->point;   
+                }
+                
+                $aaa->point=$sum;
+                $aaa->save();
+
+                $us->point=$sum;
+                $us->save();
+        }
+
+        return redirect()->back()->with('success','Success!');
+    }
+    
+
 
        ///Welcome---------------
        public function welcome(){
