@@ -36,7 +36,7 @@
 
             <!-- @if($item->created_at<'2024-01-23 10:40:01')
             <?php 
-            //  $sum=$item->point+$item->point_2;
+             $sum=$item->point+$item->point_2;
              ?>
             <td>{{$sum}}</td>
             @else
