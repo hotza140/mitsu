@@ -52,7 +52,7 @@
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
-                                                        <th>Status</th>
+                                                        <!-- <th>Status</th> -->
                                                         <th>Tool</th>
 
                                                     </tr>
@@ -78,13 +78,13 @@
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
                                                         <td>{{$itts->date}}</td>
-                                                        @if($itts->status==0)
+                                                        <!-- @if($itts->status==0)
                                                         <td style="color: green;">กำลังรอยืนยัน</td>
                                                         @elseif($itts->status==2)
                                                         <td style="color: red;">ไม่อนุมัติ</td>
                                                         @else
                                                         <td style="color: grey;">อณุมัติ</td>
-                                                        @endif
+                                                        @endif -->
                                                         <td><a href="{{url('/backend/wait_con/'.$itts->id)}}" class="btn btn-sm btn-success" onclick="javascript:return confirm('Confirm?')"
                                                           style="color:white;"><i class="fa fa-gear" >อนุมัติ</i></a>
                                                           <a href="{{url('/backend/wait_not/'.$itts->id)}}" class="btn btn-sm btn-danger" onclick="javascript:return confirm('Confirm?')"
@@ -105,7 +105,7 @@
                                                         <!-- <th>Title</th> -->
                                                         <th>Point</th>
                                                         <th>Date</th>
-                                                        <th>Status</th>
+                                                        <!-- <th>Status</th> -->
                                                         <th>Tool</th>
                                                     </tr>
                                                 </tfoot>
