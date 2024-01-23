@@ -104,7 +104,7 @@
                                                         <td>{{($items->outdoor_number) ?? '-'}}</td>
                                                         <td>{{($items->in_name)?? '-'}}</td>
                                                         <td>{{($items->indoor_number)?? '-'}}</td>
-                                                        @if($items->created_at>'2024-01-23 10:40:01' and $items->created_at<'2024-01-23 17:30:01')
+                                                        @if($items->id>=3728 and $items->id<=4110)
                                                         <?php  
                                                         if($items->point>$items->point_2){
                                                         $sum=$items->point-$items->point_2;

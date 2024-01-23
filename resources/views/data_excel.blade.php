@@ -34,18 +34,18 @@
             <td>{{$item->out_name}}</td>
             <td>{{$item->outdoor_number}}</td>
 
-            @if($item->created_at>'2024-01-23 10:40:01' and $item->created_at<'2024-01-23 17:30:01')
-                                                        <?php  
-                                                        if($item->point>$item->point_2){
-                                                        $sum=$item->point-$item->point_2;
-                                                        }else{
-                                                        $sum=$item->point_2-$item->point;   
-                                                        }
-                                                        ?>
-                                                        <td>{{$sum}}</td>
-                                                        @else
-                                                        <td>{{($item->point)?? '-'}}</td>
-                                                        @endif
+            @if($items->id>=3728 and $items->id<=4110)
+            <?php  
+            if($item->point>$item->point_2){
+            $sum=$item->point-$item->point_2;
+            }else{
+            $sum=$item->point_2-$item->point;   
+            }
+            ?>
+            <td>{{$sum}}</td>
+             @else
+            <td>{{($item->point)?? '-'}}</td>
+            @endif
             <!-- <td>{{$item->point}}</td> -->
            
             <td>{{$item->created_at}}</td>
