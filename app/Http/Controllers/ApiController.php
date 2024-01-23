@@ -2968,6 +2968,7 @@ class ApiController extends Controller
                             $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
                             $his->point = @$a2;
                             $his->id_user = $user->id;
+                            $his->id_air = $air_conditioner->id;
                             $his->date = date('Y-m-d H:i:s');
                             $his->save();
                             }
@@ -3255,6 +3256,7 @@ class ApiController extends Controller
                             $his = new history_point();
                             $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
                             $his->point = @$a2;
+                            $his->id_air = $air_conditioner->id;
                             $his->id_user = $user->id;
                             $his->date = date('Y-m-d H:i:s');
                             $his->save();
