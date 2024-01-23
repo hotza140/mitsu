@@ -67,8 +67,11 @@ class BackendController extends Controller
                 $a2=$aaa->point_2;
                 $sum=$a1-$a2;
                 $aaa->point=$sum;
-                $aaa->save();
+                // $aaa->save();
 
+                if($aaa->save()){
+dd('bbb');
+                }
                 if($aaa->outdoor_number=='23MK01911AQ'){
                     dd('asd');
                 }
