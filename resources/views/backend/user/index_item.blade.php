@@ -70,6 +70,8 @@
                                                         <?php  $sum=$items->point+$items->point_2; ?>
                                                         <td>{{$sum}}</td>
                                                         @else
+                                                        <td>{{($items->point)?? '-'}}</td>
+                                                        @endif
                                                         <td>{{$items->created_at}}</td>
                                                        
                                                         <td>
