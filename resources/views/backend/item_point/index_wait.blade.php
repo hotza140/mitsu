@@ -50,7 +50,9 @@
                                                         <th>ที่อยู่จัดส่ง</th>
                                                         <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
-                                                        <th>Point</th>
+                                                        <th>คะแนนที่ใช้</th>
+                                                        <th>คะแนนก่อนใช้</th>
+                                                        <th>คะแนนหลังใช้</th>
                                                         <th>Date</th>
                                                         <!-- <th>Status</th> -->
                                                         <th>Tool</th>
@@ -77,6 +79,8 @@
                                                         <td>{{$itts->title}}</td>
                                                         <!-- <td>{{($itts->item->titleen)?? '-'}}</td> -->
                                                         <td>{{$itts->buy_point}}</td>
+                                                        <td>{{$itts->old_point}}</td>
+                                                        <td>{{$itts->bl_point}}</td>
                                                         <td>{{$itts->date}}</td>
                                                         <!-- @if($itts->status==0)
                                                         <td style="color: green;">กำลังรอยืนยัน</td>
@@ -103,7 +107,9 @@
                                                         <th>ที่อยู่จัดส่ง</th>
                                                         <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
-                                                        <th>Point</th>
+                                                        <th>คะแนนที่ใช้</th>
+                                                        <th>คะแนนก่อนใช้</th>
+                                                        <th>คะแนนหลังใช้</th>
                                                         <th>Date</th>
                                                         <!-- <th>Status</th> -->
                                                         <th>Tool</th>
