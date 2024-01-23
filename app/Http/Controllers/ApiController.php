@@ -2966,7 +2966,7 @@ class ApiController extends Controller
                             if($user->save()){
                             $his = new history_point();
                             $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
-                            $his->point = $a2;
+                            $his->point = @$a2;
                             $his->id_user = $user->id;
                             $his->date = date('Y-m-d H:i:s');
                             $his->save();
@@ -2974,8 +2974,8 @@ class ApiController extends Controller
 
                             $air_conditioner->out_name = @$air->des;
                             $air_conditioner->in_name = @$air_2->des;
-                            $air_conditioner->point = @$air->point;
-                            $air_conditioner->point2 = @$air->point;
+                            $air_conditioner->point = @$a2;
+                            $air_conditioner->point2 = @$air_2->point;
                             $air_conditioner->save();
 
                             return response()->json([
@@ -3254,7 +3254,7 @@ class ApiController extends Controller
                             if($user->save()){
                             $his = new history_point();
                             $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
-                            $his->point = $a2;
+                            $his->point = @$a2;
                             $his->id_user = $user->id;
                             $his->date = date('Y-m-d H:i:s');
                             $his->save();
@@ -3262,8 +3262,8 @@ class ApiController extends Controller
 
                             $air_conditioner->out_name = @$air->des;
                             $air_conditioner->in_name = @$air_2->des;
-                            $air_conditioner->point = @$air->point;
-                            $air_conditioner->point2 = @$air->point;
+                            $air_conditioner->point = @$a2;
+                            $air_conditioner->point2 = @$air_2->point;
                             $air_conditioner->save();
 
                             return response()->json([
