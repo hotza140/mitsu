@@ -566,7 +566,7 @@ class ApiController extends Controller
     {
 
         if ($r->code != null) {
-            $as = 'select name_th,id,name_en,code
+            $as = 'select name_th,id,name_en,code,province_id
             FROM tb_amupur
             WHERE  province_id = ' . $r->code . '
             ORDER BY
