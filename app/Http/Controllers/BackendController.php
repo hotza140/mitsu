@@ -42,6 +42,8 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
 
+use App\Models\AirConditioner;
+
 use App\Exports\all_pointExport;
 
 use App\Models\noti;
