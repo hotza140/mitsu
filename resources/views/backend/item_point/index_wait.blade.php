@@ -65,8 +65,7 @@
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$itts->number}}</td>
                                                         <?php $p1=App\User::where('id',$itts->id_user)->first();  ?>
-                                                        <td>{{(@$p1->name)?? '-'}} {{(@$p1->lastname)?? '-'}}
-                                                        คะแนนคงเหลือ  {{($itts->old_point)?? '-'}}</td>
+                                                        <td>{{(@$p1->name)?? '-'}} {{(@$p1->lastname)?? '-'}}</td>
                                                         <td>Phone: {{(@$p1->phone)?? '-'}}
                                                             Email: {{(@$p1->email)?? '-'}}
                                                             Line: {{(@$p1->line)?? '-'}}
