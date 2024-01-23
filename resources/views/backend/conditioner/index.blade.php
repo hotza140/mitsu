@@ -105,7 +105,7 @@
                                                         <td>{{($items->in_name)?? '-'}}</td>
                                                         <td>{{($items->indoor_number)?? '-'}}</td>
                                                         @if($items->created_at<'2024-01-23')
-                                                        <?php  $sum=$items->point+$items->point_2;
+                                                        <?php  $sum=$items->point+$items->point_2; ?>
                                                         <td>{{$sum}}</td>
                                                         @else
                                                         <td>{{($items->point)?? '-'}}</td>

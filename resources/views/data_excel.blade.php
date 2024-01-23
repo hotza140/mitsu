@@ -33,7 +33,14 @@
 
             <td>{{$item->out_name}}</td>
             <td>{{$item->outdoor_number}}</td>
+
+            @if($item->created_at<'2024-01-23')
+            <?php  $sum=$item->point+$item->point_2; ?>
+            <td>{{$sum}}</td>
+            @else
             <td>{{$item->point}}</td>
+            @endif
+           
             <td>{{$item->created_at}}</td>
             
             <td>{{$date_s}}</td>
