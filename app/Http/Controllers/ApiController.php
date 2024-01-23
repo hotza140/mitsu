@@ -2945,14 +2945,16 @@ class ApiController extends Controller
                         if ($user != null) {
                             $a1 = $user->point;
 
-                            if($air!=null and $air_2!=null){
-                                $w1=$air->point;
-                                $w2=$air_2->point;
-                                $ws=$w1+$w2;
-                                $a2 = $ws;
-                            }else{
-                                $a2 = $air->point;
-                            }
+                            // if($air!=null and $air_2!=null){
+                            //     $w1=$air->point;
+                            //     $w2=$air_2->point;
+                            //     $ws=$w1+$w2;
+                            //     $a2 = $ws;
+                            // }else{
+                            //     $a2 = $air->point;
+                            // }
+
+                            $a2 = $air->point;
                             $sum = $a1 + $a2;
                             $user->point = $sum;
                             // $user->save();
@@ -3233,15 +3235,16 @@ class ApiController extends Controller
                         if ($user != null) {
                             $a1 = $user->point;
 
-                            if($air!=null and $air_2!=null){
-                                $w1=$air->point;
-                                $w2=$air_2->point;
-                                $ws=$w1+$w2;
-                                $a2 = $ws;
-                            }else{
-                                $a2 = $air->point;
-                            }
+                            // if($air!=null and $air_2!=null){
+                            //     $w1=$air->point;
+                            //     $w2=$air_2->point;
+                            //     $ws=$w1+$w2;
+                            //     $a2 = $ws;
+                            // }else{
+                            //     $a2 = $air->point;
+                            // }
                             
+                            $a2 = $air->point;
                             $sum = $a1 + $a2;
                             $user->point = $sum;
                             // $user->save();
