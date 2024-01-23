@@ -69,6 +69,10 @@ class BackendController extends Controller
                 $aaa->point=$sum;
                 $aaa->save();
 
+                if($aaa->outdoor_number=='23MK01911AQ'){
+                    dd('asd');
+                }
+
                 $bbb=history_point::where('id',$us->id)->first();
                 if($bbb!=null){
                 $bbb->point=$sum;
