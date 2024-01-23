@@ -2072,24 +2072,24 @@ class ApiController extends Controller
             //    ------------------
 
             if ($r->province != null) {
-                $p = province::where('name_th', $r->province)->first();
+                $p = province::where('id', $r->province)->first();
                 if ($p != null) {
-                    $user->id_p = $p->id;
-                    $user->province = $r->province;
+                    $user->id_p = $r->province;
+                    $user->province = @$p->name_th;
                 }
             }
             if ($r->district != null) {
-                $d = district::where('name_th', $r->district)->first();
+                $d = district::where('id', $r->district)->first();
                 if ($d != null) {
-                    $user->id_d = $d->id;
-                    $user->district = $r->district;
+                    $user->id_d = $r->district;
+                    $user->district = @$d->name_th;
                 }
             }
             if ($r->amphur != null) {
-                $a = amphur::where('name_th', $r->amphur)->first();
+                $a = amphur::where('id', $r->amphur)->first();
                 if ($a != null) {
-                    $user->id_a = $a->id;
-                    $user->amphur = $r->amphur;
+                    $user->id_a = $r->amphur;
+                    $user->amphur = @$a->name_th;
                 }
             }
             if ($r->house != null) {
@@ -2195,24 +2195,24 @@ class ApiController extends Controller
         if ($user != null) {
 
             if ($r->province != null) {
-                $p = province::where('name_th', $r->province)->first();
+                $p = province::where('id', $r->province)->first();
                 if ($p != null) {
-                    $user->id_p = $p->id;
-                    $user->province = $r->province;
+                    $user->id_p = $r->province;
+                    $user->province = @$p->name_th;
                 }
             }
             if ($r->district != null) {
-                $d = district::where('name_th', $r->district)->first();
+                $d = district::where('id', $r->district)->first();
                 if ($d != null) {
-                    $user->id_d = $d->id;
-                    $user->district = $r->district;
+                    $user->id_d = $r->district;
+                    $user->district = @$d->name_th;
                 }
             }
             if ($r->amphur != null) {
-                $a = amphur::where('name_th', $r->amphur)->first();
+                $a = amphur::where('id', $r->amphur)->first();
                 if ($a != null) {
-                    $user->id_a = $a->id;
-                    $user->amphur = $r->amphur;
+                    $user->id_a = $r->amphur;
+                    $user->amphur = @$a->name_th;
                 }
             }
             if ($r->house != null) {
