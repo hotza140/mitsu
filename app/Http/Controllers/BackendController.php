@@ -60,18 +60,19 @@ class BackendController extends Controller
         foreach($user as $us){
                 $aaa=AirConditioner::where('id',$us->i_air)->first();
 
-                
+                if($aaa!=null){
                 if($aaa->point>$aaa->point_2){
                 $sum=$aaa->point-$aaa->point_2;
                 }else{
                 $sum=$aaa->point_2-$aaa->point;   
                 }
-                
+
                 $aaa->point=$sum;
                 $aaa->save();
 
                 $us->point=$sum;
                 $us->save();
+            }
         }
 
         return redirect()->back()->with('success','Success!');
