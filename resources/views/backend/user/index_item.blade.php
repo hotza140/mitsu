@@ -66,7 +66,10 @@
                                                         <td>{{($items->outdoor_number) ?? '-'}}</td>
                                                         <td>{{($items->in_name)?? '-'}}</td>
                                                         <td>{{($items->indoor_number)?? '-'}}</td>
-                                                        <td>{{($items->point)?? '-'}}</td>
+                                                        @if($items->created_at<'2024-01-23 10:40:01')
+                                                        <?php  $sum=$items->point+$items->point_2; ?>
+                                                        <td>{{$sum}}</td>
+                                                        @else
                                                         <td>{{$items->created_at}}</td>
                                                        
                                                         <td>

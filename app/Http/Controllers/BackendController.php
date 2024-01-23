@@ -1286,8 +1286,8 @@ public function user_item($id){
         //================ AJAX ===================
 
         public function get_amphure($id){
-            $province_code = province::where('id',$id)->first();
-            $amphure = amphur::where('province_code',$province_code->code)->get();
+            // $province_code = province::where('id',$id)->first();
+            $amphure = amphur::where('province_id',$id)->get();
 
             return $amphure;
         }
