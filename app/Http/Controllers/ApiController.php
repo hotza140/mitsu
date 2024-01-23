@@ -536,7 +536,7 @@ class ApiController extends Controller
     public function api_province(Request $r)
     {
 
-        $ps = 'select name_th,id,name_en,code,
+        $ps = 'select name_th,id,name_en,code
                 FROM tb_province
                 ORDER BY
                 CONVERT ( name_th USING tis620 ) ASC';
