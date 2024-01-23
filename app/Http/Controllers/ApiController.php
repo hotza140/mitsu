@@ -572,7 +572,7 @@ class ApiController extends Controller
             ORDER BY
             CONVERT ( name_th USING tis620 ) ASC';
         } else {
-            $as = 'select name_th,id,name_en,province_code,code
+            $as = 'select name_th,id,name_en,code,province_id
             FROM tb_amupur
             ORDER BY
             CONVERT ( name_th USING tis620 ) ASC';
