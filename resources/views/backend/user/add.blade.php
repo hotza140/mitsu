@@ -164,6 +164,26 @@
 
 
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">ชื่อธนาคาร</label>
+                                                <input  type="text" name="bank_name" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->bank_name;} ?>">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">ชื่อบัญชี</label>
+                                                <input  type="text" name="bank_title" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->bank_title;} ?>">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">หมายเลขบัญชี</label>
+                                                <input  type="text" name="bank_number" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->bank_number;} ?>">
+                                            </div>
+                                        </div>
+
+
+
 
                                         <p class="text-right">
                                             <a href="{{ url('/backend/user') }}"

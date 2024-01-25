@@ -184,6 +184,25 @@ $picture= Storage::disk('s3')->url($filePath);
                                         </div>
 
 
+                                        <div class="form-group row">
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">ชื่อธนาคาร</label>
+                                                <input  type="text" name="bank_name" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->bank_name;} ?>">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">ชื่อบัญชี</label>
+                                                <input  type="text" name="bank_title" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->bank_title;} ?>">
+                                            </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">หมายเลขบัญชี</label>
+                                                <input  type="text" name="bank_number" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->bank_number;} ?>">
+                                            </div>
+                                        </div>
+
+
                                         <button type="submit" class="btn btn-success " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
                                                     class="fa fa-check-circle-o"></i> Save </button>

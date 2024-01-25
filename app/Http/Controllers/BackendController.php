@@ -651,6 +651,18 @@ public function user_item($id){
                     $item->moo = $r->moo;
                     $item->condo = $r->condo;
                     $item->road = $r->road;
+
+                        if($r->bank_number!=null){
+                            $item->bank_number=$r->bank_number;
+                        }
+                        
+                        if($r->bank_title!=null){
+                        $item->bank_title=$r->bank_title;
+                        }
+            
+                        if($r->bank_name!=null){
+                        $item->bank_name=$r->bank_name;
+                        }
     
                     $item->zipcode = $r->zipcode;
                     $p = province::where('name_th',"LIKE","%{$r->province}%",)->first();
@@ -704,6 +716,18 @@ public function user_item($id){
                 $item->email = $r->email;
                 $item->phone = $r->phone;
                 $item->code = $r->code;
+
+                if($r->bank_number!=null){
+                    $item->bank_number=$r->bank_number;
+                }
+                
+                if($r->bank_title!=null){
+                $item->bank_title=$r->bank_title;
+                }
+    
+                if($r->bank_name!=null){
+                $item->bank_name=$r->bank_name;
+                }
 
 
                 // $item->line = $r->line;
