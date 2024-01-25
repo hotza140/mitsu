@@ -85,6 +85,10 @@ class ApiController extends Controller
             $user->bank_title=$r->bank_title;
             }
 
+            if(@$r->bank_name!=null){
+                $user->bank_name=$r->bank_name;
+                }
+
             if(@$r->bank_number!=null or @$r->bank_title!=null){
             $user->save();
             }
