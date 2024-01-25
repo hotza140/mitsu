@@ -71,6 +71,47 @@ class ApiController extends Controller
 
 
 
+
+     ///user_bank///
+     public function api_user_bank(Request $r)
+     {
+         $user = User::where('id', $r->user_id)->first();
+         if($user!=null){
+            if(@$r->bank_number!=null){
+                $user->bank_number=$r->bank_number;
+            }
+            
+            if(@$r->bank_title!=null){
+            $user->bank_title=$r->bank_title;
+            }
+
+            if(@$r->bank_number!=null or @$r->bank_title!=null){
+            $user->save();
+            }
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'user' => $user,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+         }else{
+            $status = false;
+            $message = "Not Have User!.";
+            return response()->json([
+                'results' => [
+                ],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+         }
+     }
+     ///user_bank///
        
 
 
