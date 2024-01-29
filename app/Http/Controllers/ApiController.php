@@ -75,7 +75,7 @@ class ApiController extends Controller
      ///user_bank///
      public function api_user_bank(Request $r)
      {
-         $user = User::where('id', $r->user_id)->first();
+         $user = User::where('id', $r->id_user)->first();
          if($user!=null){
             if(@$r->bank_number!=null){
                 $user->bank_number=$r->bank_number;
