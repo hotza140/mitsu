@@ -3021,7 +3021,13 @@ class ApiController extends Controller
                             $air_conditioner->out_name = @$air->des;
                             $air_conditioner->in_name = @$air_2->des;
                             $air_conditioner->point = @$a2;
-                            $air_conditioner->point2 = @$air_2->point;
+
+                            if(@$air_2->point==null){
+                                $air_conditioner->point2 = 0;
+                            }else{
+                                $air_conditioner->point2 = @$air_2->point;
+                            }
+                            
                             $air_conditioner->save();
 
                             return response()->json([
@@ -3315,7 +3321,13 @@ class ApiController extends Controller
                             $air_conditioner->out_name = @$air->des;
                             $air_conditioner->in_name = @$air_2->des;
                             $air_conditioner->point = @$a2;
-                            $air_conditioner->point2 = @$air_2->point;
+
+                             if(@$air_2->point==null){
+                                $air_conditioner->point2 = 0;
+                            }else{
+                                $air_conditioner->point2 = @$air_2->point;
+                            }
+                            
                             $air_conditioner->save();
 
                             return response()->json([
