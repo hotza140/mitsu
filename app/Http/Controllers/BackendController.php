@@ -630,6 +630,7 @@ public function user_item($id){
         if($search!=null){
         $item=User::where(function($query) use($search){
             $query->orWhere('name', 'LIKE', '%'.$search.'%');
+            $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
             $query->orWhere('code', 'LIKE', '%'.$search.'%');
             $query->orWhere('email', 'LIKE', '%'.$search.'%');
             $query->orWhere('phone', 'LIKE', '%'.$search.'%');
