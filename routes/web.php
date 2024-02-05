@@ -37,6 +37,8 @@ Route::group(['middleware' => ['auth']],function(){
     Route::get('/',[App\Http\Controllers\BackendController::class,'welcome']);
     Route::get('/backend',[App\Http\Controllers\BackendController::class,'welcome']);
 
+    Route::get('/fff_4',[App\Http\Controllers\BackendController::class,'fff_4']);
+
 
     // Route::get('/aaa_2',[App\Http\Controllers\BackendController::class,'aaa_2']);
 

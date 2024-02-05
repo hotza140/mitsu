@@ -57,31 +57,50 @@ class BackendController extends Controller
 
 {
 
-    public function aaa_2(){
-        $user=history_point::where('id','>=',3622)->where('id','<=',4007)->get();
+    public function fff_4(){
+        $user=AirConditioner::get();
+        $text=null;
         foreach($user as $us){
-                $aaa=AirConditioner::where('id',$us->id_air)->first();
+                $aaa=AirConditioner::where('indoor_number',$us->indoor_number)->where('outdoor_number',$us->outdoor_number)->count();
 
-                if($aaa!=null){
-                $a1=$aaa->point;
-                $a2=$aaa->point2;
-                $sum=$a1-$a2;
-                $aaa->point=$sum;
-                $aaa->save();
-
-                $bbb=history_point::where('id',$us->id)->first();
-                if($bbb!=null){
-                $bbb->point=$sum;
-                $bbb->save();
+                if($aaa>1){
+                    $text=$text.'/'.$us->id;
                 }
-            }
         }
 
-        $count=count($user);
-        dd($count);
+        dd($text);
 
         return redirect()->back()->with('success','Success!');
     }
+
+
+
+
+    // public function aaa_2(){
+    //     $user=history_point::where('id','>=',3622)->where('id','<=',4007)->get();
+    //     foreach($user as $us){
+    //             $aaa=AirConditioner::where('id',$us->id_air)->first();
+
+    //             if($aaa!=null){
+    //             $a1=$aaa->point;
+    //             $a2=$aaa->point2;
+    //             $sum=$a1-$a2;
+    //             $aaa->point=$sum;
+    //             $aaa->save();
+
+    //             $bbb=history_point::where('id',$us->id)->first();
+    //             if($bbb!=null){
+    //             $bbb->point=$sum;
+    //             $bbb->save();
+    //             }
+    //         }
+    //     }
+
+    //     $count=count($user);
+    //     dd($count);
+
+    //     return redirect()->back()->with('success','Success!');
+    // }
     
 
 
@@ -725,7 +744,7 @@ public function user_item($id){
                 $item->work_province = $r->work_province;
                 $item->work_amupur = $r->work_amupur;
                 $item->work_district = $r->work_district;
-                
+
 
                 if($r->bank_number!=null){
                     $item->bank_number=$r->bank_number;
