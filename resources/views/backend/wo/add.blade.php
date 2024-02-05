@@ -186,7 +186,7 @@
                                         <div class="form-group row">
                                                     <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">อำเภอ</label>
-                                                        <select class="form-control" name="amupur" id="amphure"
+                                                        <select class="form-control" name="work_amupur" id="amphure"
                                                             required="">
                                                             <option value="">ระบุอำเภอ</option>
                                                             @foreach ($amphures as $amphure)
@@ -201,7 +201,7 @@
                                                 <div class="form-group row">
                                                     <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">ตำบล</label>
-                                                        <select class="form-control" name="district" id="district"
+                                                        <select class="form-control" name="work_district" id="district"
                                                             required="">
                                                             <option value="">ระบุตำบล</option>
                                                             @foreach ($districts as $district)
