@@ -73,7 +73,7 @@ class ApiController extends Controller
 
 
       ///user Edit Work Address///
-      public function api_user(Request $r)
+      public function api_user_work_address(Request $r)
       {
           $user = User::where('id', $r->id_user)->first();
   
