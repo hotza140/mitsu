@@ -66,7 +66,7 @@ class BackendController extends Controller
                 if($aaa>1){
                     $text=$text.'/'.$us->id;
                     $ccc=AirConditioner::where('indoor_number',$us->indoor_number)->where('outdoor_number',$us->outdoor_number)->first();
-                    $ggg=history_point::where('id_air',$ccc->id)->first();
+                   
 
                     $name=Customer::where('id',$ccc->customer_id)->first(); 
                     if($name!=null){
@@ -80,6 +80,7 @@ class BackendController extends Controller
                     }
                     }
 
+                    $ggg=history_point::where('id_air',$ccc->id)->first();
                     if($ggg!=null){
                         $ggg->delete();
                     }
