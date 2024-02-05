@@ -3050,7 +3050,7 @@ class ApiController extends Controller
             }
 
 
-            $checks=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
+            $check=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
             if($check!=null){
                 return response()->json([
                     'status' => false,
@@ -3358,7 +3358,7 @@ class ApiController extends Controller
 
         if ($check_serial_outdoor != 0) {
 
-            $checks=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
+            $check=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
             if($check!=null){
                 return response()->json([
                     'status' => false,
