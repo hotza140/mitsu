@@ -3018,6 +3018,14 @@ class ApiController extends Controller
 
         if ($check_serial_outdoor != 0) {
 
+            $check=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
+            if($check!=null){
+                return response()->json([
+                    'status' => false,
+                    'message' => 'มีการลงทะเบียนแอร์นี้ไปแล้ว'
+                ], 400);
+            }
+
             $customer = Customer::where('first_name', $request->first_name)
                 ->where('last_name', $request->last_name)
                 ->first();
@@ -3050,13 +3058,7 @@ class ApiController extends Controller
             }
 
 
-            $check=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
-            if($check!=null){
-                return response()->json([
-                    'status' => false,
-                    'message' => 'มีการลงทะเบียนแอร์นี้ไปแล้ว'
-                ], 400);
-            }
+            
 
             $air_conditioner = new AirConditioner();
             $air_conditioner->customer_id = $customer->id;
