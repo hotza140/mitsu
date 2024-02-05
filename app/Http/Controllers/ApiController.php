@@ -132,6 +132,7 @@ class ApiController extends Controller
             $user->work_district=$r->work_district;
             }
 
+            $user->save();
          
           $message = "Success!";
           $status = true;
