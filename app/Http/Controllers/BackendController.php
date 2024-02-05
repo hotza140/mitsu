@@ -652,6 +652,11 @@ public function user_item($id){
                     $item->condo = $r->condo;
                     $item->road = $r->road;
 
+
+                    $item->work_province = $r->work_province;
+                    $item->work_amupur = $r->work_amupur;
+                    $item->work_district = $r->work_district;
+
                         if($r->bank_number!=null){
                             $item->bank_number=$r->bank_number;
                         }
@@ -716,6 +721,11 @@ public function user_item($id){
                 $item->email = $r->email;
                 $item->phone = $r->phone;
                 $item->code = $r->code;
+
+                $item->work_province = $r->work_province;
+                $item->work_amupur = $r->work_amupur;
+                $item->work_district = $r->work_district;
+                
 
                 if($r->bank_number!=null){
                     $item->bank_number=$r->bank_number;

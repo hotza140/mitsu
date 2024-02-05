@@ -72,6 +72,52 @@ class ApiController extends Controller
 
 
 
+      ///user Edit Work Address///
+      public function api_user(Request $r)
+      {
+          $user = User::where('id', $r->id_user)->first();
+  
+
+          if($user!=null){
+
+            if(@$r->work_province!=null){
+            $user->work_province=$r->work_province;
+            }
+            
+            if(@$r->work_amphur!=null){
+            $user->work_amupur=$r->work_amphur;
+            }
+
+            if(@$r->work_district!=null){
+            $user->work_district=$r->work_district;
+            }
+
+         
+          $message = "Success!";
+          $status = true;
+          return response()->json([
+              'results' => [
+                  'user' => $user,
+              ],
+              'status' =>  $status,
+              'message' =>  $message,
+              'url_picture' => $this->prefix,
+          ]); 
+        }else{
+                $status = false;
+                $message = "Not Have User!.";
+                return response()->json([
+                    'results' => [
+                    ],
+                    'status' => $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+        }
+      }
+     ///user Edit Work Address///
+
+
      ///user_bank///
      public function api_user_bank(Request $r)
      {

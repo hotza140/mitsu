@@ -203,6 +203,45 @@ $picture= Storage::disk('s3')->url($filePath);
                                         </div>
 
 
+
+
+
+                                        <?php  
+                                          $provinces = App\Models\province::orderby('id', 'asc')->get();
+                                          $amphures = App\Models\amphur::orderby('id', 'asc')->get();
+                                          $districts = App\Models\district::orderby('id', 'asc')->get();
+                                        ?>
+                                        <div class="form-group row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <label class="col-form-label">อำเภอบริเวณที่ทำงาน</label>
+                                                        <select class="form-control" name="amupur" id="amphure"
+                                                            required="">
+                                                            <option value="">ระบุอำเภอ</option>
+                                                            @foreach ($amphures as $amphure)
+                                                            <option value="{{$amphure->id}}" @if($amphure->id ==
+                                                                @$item->work_amupur) selected @endif>{{$amphure->name_th}}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+                                                <div class="form-group row">
+                                                    <div class="col-md-6 col-sm-12">
+                                                        <label class="col-form-label">ตำบลบริเวณที่ทำงาน</label>
+                                                        <select class="form-control" name="district" id="district"
+                                                            required="">
+                                                            <option value="">ระบุตำบล</option>
+                                                            @foreach ($districts as $district)
+                                                            <option value="{{$district->id}}" @if($district->id ==
+                                                                @$item->work_district) selected
+                                                                @endif>{{$district->name_th}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+                                                </div>
+
+
                                         <button type="submit" class="btn btn-success " style="color:white;"
                                                 onclick="return confirm('Confirm!');"> <i
                                                     class="fa fa-check-circle-o"></i> Save </button>
@@ -468,5 +507,37 @@ src="{{$picture}}" style="width:100px">
     });;
     </script>
 
+
+<script>
+    $('#province').change(function(){
+            id = $('#province').val();
+            $.get('{{url("fetch_amphure")}}/'+id,function(result){
+                $('#amphure').empty().append('<option value="">ระบุอำเภอ</option>');
+                $('#district').empty().append('<option value="">ระบุตำบล</option>');
+                $('#postcode').val('');
+                $.each(result,function(indexInArray,value){
+                    $('#amphure').append('<option value="'+value.id+'">'+value.name_th+'</option>');
+                });
+            });
+        });
+
+        $('#amphure').change(function(){
+            id = $('#amphure').val();
+            $.get('{{url("fetch_district")}}/'+id,function(result){
+                $('#district').empty().append('<option value="">ระบุตำบล</option>');
+                $('#postcode').val('');
+                $.each(result,function(indexInArray,value){
+                    $('#district').append('<option value="'+value.id+'">'+value.name_th+'</option>');
+                });
+            });
+        });
+
+        $('#district').change(function(){
+            id = $('#district').val();
+            $.get('{{url("fetch_postcode")}}/'+id, function(result){
+                $('#postcode').val(result);
+            });
+        });
+            </script>
 
     @endsection

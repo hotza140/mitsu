@@ -194,6 +194,10 @@ class WOController extends Controller
 
         $item->technician_id = $r->technician_id;
 
+        $item->work_province = $r->work_province;
+        $item->work_amupur = $r->work_amupur;
+        $item->work_district = $r->work_district;
+
 
         if($r->pic_before){
             $check= 'file/upload/' . $item->pic_before;
@@ -330,6 +334,10 @@ class WOController extends Controller
         $item->error_code = $r->error_code;
         $item->wo_price = $r->wo_price;
         $item->wo_status = $r->wo_status;
+
+        $item->work_province = $r->work_province;
+        $item->work_amupur = $r->work_amupur;
+        $item->work_district = $r->work_district;
 
         $item->wo_remark = $r->wo_remark;
 
