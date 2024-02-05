@@ -57,6 +57,7 @@ Route::group([
     Route::get('/test_log', 'ApiController@test_log');
 
 
+    Route::post('/api_user_call_work_address', 'ApiController@api_user_call_work_address');
     Route::post('/api_user_work_address', 'ApiController@api_user_work_address');
     Route::post('/api_user_bank', 'ApiController@api_user_bank');
     

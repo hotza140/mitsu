@@ -70,6 +70,46 @@ class ApiController extends Controller
     protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
 
 
+       ///user Call Work Address///
+       public function api_user_call_work_address(Request $r)
+       {
+           $user = User::where('id', $r->id_user)->first();
+   
+ 
+           if($user!=null){
+            $work_province = province::where('id', $user->work_province)->first();
+            $work_amphur = amphur::where('id', $user->work_amupur)->first();
+            $work_district = district::where('id', $user->work_district)->first();
+ 
+          
+           $message = "Success!";
+           $status = true;
+           return response()->json([
+               'results' => [
+                   'user' => $user,
+                   'work_province' => $work_province,
+                   'work_amphur' => $work_amphur,
+                   'work_district' => $work_district,
+               ],
+               'status' =>  $status,
+               'message' =>  $message,
+               'url_picture' => $this->prefix,
+           ]); 
+         }else{
+                 $status = false;
+                 $message = "Not Have User!.";
+                 return response()->json([
+                     'results' => [
+                     ],
+                     'status' => $status,
+                     'message' =>  $message,
+                     'url_picture' => $this->prefix,
+                 ]);
+         }
+       }
+      ///user Call Work Address///
+
+
 
 
       ///user Edit Work Address///
