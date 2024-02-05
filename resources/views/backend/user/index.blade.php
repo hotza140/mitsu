@@ -127,7 +127,7 @@ src="{{$picture}}"
                                                     <td><img src="{{asset('/img/no_img.png')}}" style="width:100px">
                                                     </td>
                                                     @endif -->
-                                                    <td>{{$items->name}}</td>
+                                                    <td>{{$items->name}} {{$items->lastname}}</td>
                                                     <td>{{$items->email}}</td>
                                                     <td>{{$items->phone}}</td>
                                                     <!-- <td>{{$items->created_at}}</td> -->
