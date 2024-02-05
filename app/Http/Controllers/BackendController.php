@@ -58,42 +58,42 @@ class BackendController extends Controller
 
 {
 
-    public function fff_4(){
-        $user=AirConditioner::get();
-        $text=null;
-        foreach($user as $us){
-                $aaa=AirConditioner::where('indoor_number',$us->indoor_number)->where('outdoor_number',$us->outdoor_number)->count();
+    // public function fff_4(){
+    //     $user=AirConditioner::get();
+    //     $text=null;
+    //     foreach($user as $us){
+    //             $aaa=AirConditioner::where('indoor_number',$us->indoor_number)->where('outdoor_number',$us->outdoor_number)->count();
 
-                if($aaa>1){
-                    $text=$text.'/'.$us->id;
-                    $ccc=AirConditioner::where('indoor_number',$us->indoor_number)->where('outdoor_number',$us->outdoor_number)->first();
+    //             if($aaa>1){
+    //                 $text=$text.'/'.$us->id;
+    //                 $ccc=AirConditioner::where('indoor_number',$us->indoor_number)->where('outdoor_number',$us->outdoor_number)->first();
                    
 
-                    $name=Customer::where('id',$ccc->customer_id)->first(); 
-                    if($name!=null){
-                    $users=User::where('id',$name->mechanic_id)->first();
-                    if($users!=null){
-                        $a1=$users->point;
-                        $a2=$ccc->point;
-                        $a3=$a1-$a2;
-                        $users->point=$a3;
-                        $users->save();
-                    }
-                    }
+    //                 $name=Customer::where('id',$ccc->customer_id)->first(); 
+    //                 if($name!=null){
+    //                 $users=User::where('id',$name->mechanic_id)->first();
+    //                 if($users!=null){
+    //                     $a1=$users->point;
+    //                     $a2=$ccc->point;
+    //                     $a3=$a1-$a2;
+    //                     $users->point=$a3;
+    //                     $users->save();
+    //                 }
+    //                 }
 
-                    $ggg=history_point::where('id_air',$ccc->id)->first();
-                    if($ggg!=null){
-                        $ggg->delete();
-                    }
-                    $ccc->deleted_at=date('Y-m-d H:i:s');
-                    $ccc->save();
-                }
-        }
+    //                 $ggg=history_point::where('id_air',$ccc->id)->first();
+    //                 if($ggg!=null){
+    //                     $ggg->delete();
+    //                 }
+    //                 $ccc->deleted_at=date('Y-m-d H:i:s');
+    //                 $ccc->save();
+    //             }
+    //     }
 
-        dd($text);
+    //     dd($text);
 
-        return redirect()->back()->with('success','Success!');
-    }
+    //     return redirect()->back()->with('success','Success!');
+    // }
 
 
 
