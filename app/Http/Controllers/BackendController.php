@@ -65,6 +65,26 @@ class BackendController extends Controller
 
                 if($aaa>1){
                     $text=$text.'/'.$us->id;
+                    $ccc=AirConditioner::where('indoor_number',$us->indoor_number)->where('outdoor_number',$us->outdoor_number)->first();
+                    $ggg=history_point::where('id_air',$ccc->id)->first();
+
+                    $name=Customer::where('id',$ccc->customer_id)->first(); 
+                    if($name!=null){
+                    $users=User::where('id',$name->mechanic_id)->first();
+                    if($users!=null){
+                        $a1=$users->point;
+                        $a2=$ccc->point;
+                        $a3=$a1-$a2;
+                        $users->point=$a3;
+                        $users->save();
+                    }
+                    }
+
+                    if($ggg!=null){
+                        $ggg->delete();
+                    }
+                    $ccc->deleted_at=date('Y-m-d H:i:s');
+                    $ccc->save();
                 }
         }
 
