@@ -178,6 +178,7 @@
 
 
 
+                                        <br>
                                         <?php  
                                           $provinces = App\Models\province::orderby('id', 'asc')->get();
                                           $amphures = App\Models\amphur::orderby('id', 'asc')->get();
