@@ -25,14 +25,14 @@ Route::group([
     'prefix' => 'common',
 ], function () {
 
-    Route::post('/api_forget_pass','ApiController@api_forget_pass');
+    Route::post('/api_forget_pass', 'ApiController@api_forget_pass');
 
-    Route::get('/train_all','ApiController@train_all');
-    Route::post('/train_turn','ApiController@train_turn');
-    Route::post('/train_turn_detail','ApiController@train_turn_detail');
-    Route::post('/train_list','ApiController@train_list');
-    Route::post('/history_train_list','ApiController@history_train_list');
-    Route::post('/train_turn_confirm','ApiController@train_turn_confirm');
+    Route::get('/train_all', 'ApiController@train_all');
+    Route::post('/train_turn', 'ApiController@train_turn');
+    Route::post('/train_turn_detail', 'ApiController@train_turn_detail');
+    Route::post('/train_list', 'ApiController@train_list');
+    Route::post('/history_train_list', 'ApiController@history_train_list');
+    Route::post('/train_turn_confirm', 'ApiController@train_turn_confirm');
 
     Route::post('/api_otp_register', 'ApiController@api_otp_register');
     Route::get('/api_pdf_work/{id}', 'ApiController@api_pdf_work');
@@ -60,19 +60,20 @@ Route::group([
     Route::post('/api_user_call_work_address', 'ApiController@api_user_call_work_address');
     Route::post('/api_user_work_address', 'ApiController@api_user_work_address');
     Route::post('/api_user_bank', 'ApiController@api_user_bank');
-    
+
     Route::post('/api_user_call', 'ApiController@api_user_call');
     Route::post('/api_edit_user_address', 'ApiController@api_edit_user_address');
-    
+
 
 
     Route::get('/api_air_model', 'ApiController@api_air_model');
 
     Route::get('/api_work', 'ApiController@api_work');
+    Route::get('/api_work/{id}', 'ApiController@api_work_user');
     Route::get('/api_work_detail/{id}', 'ApiController@api_work_detail');
 
     Route::get('/api_work_item/{id}', 'ApiController@api_work_item');
-    
+
     Route::post('/api_work_item_add', 'ApiController@api_work_item_add');
     Route::post('/api_work_item_delete', 'ApiController@api_work_item_delete');
     Route::post('/api_work_item_submit', 'ApiController@api_work_item_submit');

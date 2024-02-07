@@ -70,114 +70,112 @@ class ApiController extends Controller
     protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
 
 
-       ///user Call Work Address///
-       public function api_user_call_work_address(Request $r)
-       {
-           $user = User::where('id', $r->id_user)->first();
-   
- 
-           if($user!=null){
+    ///user Call Work Address///
+    public function api_user_call_work_address(Request $r)
+    {
+        $user = User::where('id', $r->id_user)->first();
+
+
+        if ($user != null) {
             $work_province = province::where('id', $user->work_province)->first();
             $work_amphur = amphur::where('id', $user->work_amupur)->first();
             $work_district = district::where('id', $user->work_district)->first();
- 
-          
-           $message = "Success!";
-           $status = true;
-           return response()->json([
-               'results' => [
-                   'user' => $user,
-                   'work_province' => $work_province,
-                   'work_amphur' => $work_amphur,
-                   'work_district' => $work_district,
-               ],
-               'status' =>  $status,
-               'message' =>  $message,
-               'url_picture' => $this->prefix,
-           ]); 
-         }else{
-                 $status = false;
-                 $message = "Not Have User!.";
-                 return response()->json([
-                     'results' => [
-                     ],
-                     'status' => $status,
-                     'message' =>  $message,
-                     'url_picture' => $this->prefix,
-                 ]);
-         }
-       }
-      ///user Call Work Address///
 
 
-
-
-      ///user Edit Work Address///
-      public function api_user_work_address(Request $r)
-      {
-          $user = User::where('id', $r->id_user)->first();
-  
-
-          if($user!=null){
-
-            if(@$r->work_province!=null){
-            $user->work_province=$r->work_province;
-            }
-            
-            if(@$r->work_amphur!=null){
-            $user->work_amupur=$r->work_amphur;
-            }
-
-            if(@$r->work_district!=null){
-            $user->work_district=$r->work_district;
-            }
-
-            $user->save();
-         
-          $message = "Success!";
-          $status = true;
-          return response()->json([
-              'results' => [
-                  'user' => $user,
-              ],
-              'status' =>  $status,
-              'message' =>  $message,
-              'url_picture' => $this->prefix,
-          ]); 
-        }else{
-                $status = false;
-                $message = "Not Have User!.";
-                return response()->json([
-                    'results' => [
-                    ],
-                    'status' => $status,
-                    'message' =>  $message,
-                    'url_picture' => $this->prefix,
-                ]);
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'user' => $user,
+                    'work_province' => $work_province,
+                    'work_amphur' => $work_amphur,
+                    'work_district' => $work_district,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $status = false;
+            $message = "Not Have User!.";
+            return response()->json([
+                'results' => [],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
         }
-      }
-     ///user Edit Work Address///
+    }
+    ///user Call Work Address///
 
 
-     ///user_bank///
-     public function api_user_bank(Request $r)
-     {
-         $user = User::where('id', $r->id_user)->first();
-         if($user!=null){
-            if(@$r->bank_number!=null){
-                $user->bank_number=$r->bank_number;
+
+
+    ///user Edit Work Address///
+    public function api_user_work_address(Request $r)
+    {
+        $user = User::where('id', $r->id_user)->first();
+
+
+        if ($user != null) {
+
+            if (@$r->work_province != null) {
+                $user->work_province = $r->work_province;
             }
-            
-            if(@$r->bank_title!=null){
-            $user->bank_title=$r->bank_title;
+
+            if (@$r->work_amphur != null) {
+                $user->work_amupur = $r->work_amphur;
             }
 
-            if(@$r->bank_name!=null){
-                $user->bank_name=$r->bank_name;
-                }
+            if (@$r->work_district != null) {
+                $user->work_district = $r->work_district;
+            }
 
-            if(@$r->bank_number!=null or @$r->bank_title!=null or @$r->bank_name!=null){
             $user->save();
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'user' => $user,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $status = false;
+            $message = "Not Have User!.";
+            return response()->json([
+                'results' => [],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        }
+    }
+    ///user Edit Work Address///
+
+
+    ///user_bank///
+    public function api_user_bank(Request $r)
+    {
+        $user = User::where('id', $r->id_user)->first();
+        if ($user != null) {
+            if (@$r->bank_number != null) {
+                $user->bank_number = $r->bank_number;
+            }
+
+            if (@$r->bank_title != null) {
+                $user->bank_title = $r->bank_title;
+            }
+
+            if (@$r->bank_name != null) {
+                $user->bank_name = $r->bank_name;
+            }
+
+            if (@$r->bank_number != null or @$r->bank_title != null or @$r->bank_name != null) {
+                $user->save();
             }
 
             $message = "Success!";
@@ -190,32 +188,31 @@ class ApiController extends Controller
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
             ]);
-         }else{
+        } else {
             $status = false;
             $message = "Not Have User!.";
             return response()->json([
-                'results' => [
-                ],
+                'results' => [],
                 'status' => $status,
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
             ]);
-         }
-     }
-     ///user_bank///
-       
+        }
+    }
+    ///user_bank///
 
 
-        // API TEST LOG
-        public function test_log()
-        {
 
-        try{
-            $add=new tb_log();
-            $add->id_user=8263;
-            $add->id_item=37;
-            $add->title='TEST แลกแต้ม Log History';
-            $add->detail='TEST แลกแต้ม';
+    // API TEST LOG
+    public function test_log()
+    {
+
+        try {
+            $add = new tb_log();
+            $add->id_user = 8263;
+            $add->id_item = 37;
+            $add->title = 'TEST แลกแต้ม Log History';
+            $add->detail = 'TEST แลกแต้ม';
             $add->save();
 
             return response()->json([
@@ -225,7 +222,6 @@ class ApiController extends Controller
                     'add' => $add,
                 ],
             ]);
-        
         } catch (Exception $e) {
             Log::error($e->getMessage());
             return response()->json([
@@ -234,7 +230,6 @@ class ApiController extends Controller
                 'message' => $e->getMessage(),
             ], 400);
         }
-           
     }
 
 
@@ -256,9 +251,9 @@ class ApiController extends Controller
 
     public function train_turn(Request $r)
     {
-        $data_detail = Training::where('id',$r->training_id)->with('province', 'amphure', 'district')->first();
+        $data_detail = Training::where('id', $r->training_id)->with('province', 'amphure', 'district')->first();
         $data = TrainingTurn::where('training_id', $r->training_id)->orderby('turn', 'asc')->get();
-        
+
         return response()->json([
             'status' => true,
             'message' => 'Success',
@@ -285,15 +280,15 @@ class ApiController extends Controller
 
     public function train_list(Request $r)
     {
-        if($r->training_id!=null){
-            $data_detail = Training::where('id',$r->training_id)->with('province', 'amphure', 'district')->first();
-        }else{
-            $data_detail =null;
+        if ($r->training_id != null) {
+            $data_detail = Training::where('id', $r->training_id)->with('province', 'amphure', 'district')->first();
+        } else {
+            $data_detail = null;
         }
-   
+
         $data = TrainingTurn::where('id', $r->turn_id)->orderby('turn', 'asc')->first();
 
-        $lists = TrainingList::where('turn_id', $r->turn_id)->orderby('id','asc')->get();
+        $lists = TrainingList::where('turn_id', $r->turn_id)->orderby('id', 'asc')->get();
 
         return response()->json([
             'status' => true,
@@ -309,15 +304,15 @@ class ApiController extends Controller
 
     public function history_train_list(Request $r)
     {
-        if($r->training_id!=null){
-            $data_detail = Training::where('id',$r->training_id)->with('province', 'amphure', 'district')->first();
-        }else{
-            $data_detail =null;
+        if ($r->training_id != null) {
+            $data_detail = Training::where('id', $r->training_id)->with('province', 'amphure', 'district')->first();
+        } else {
+            $data_detail = null;
         }
-   
+
         $data = TrainingTurn::where('id', $r->turn_id)->orderby('turn', 'asc')->first();
 
-        $lists = TrainingList::where('turn_id', $r->turn_id)->where('user_id', $r->user_id)->orderby('id','desc')->get();
+        $lists = TrainingList::where('turn_id', $r->turn_id)->where('user_id', $r->user_id)->orderby('id', 'desc')->get();
 
         return response()->json([
             'status' => true,
@@ -335,50 +330,48 @@ class ApiController extends Controller
     public function train_turn_confirm(Request $request)
     {
         $data = TrainingTurn::where('id', $request->turn_id)->orderby('turn', 'asc')->first();
-        if($data!=null){
+        if ($data != null) {
 
-        $check = Training::where('id', $data->training_id)->with('province', 'amphure', 'district')->first();
-        if(@$check->status == 'off'){
-            $status = false;
-            $message = "The Training is close.";
+            $check = Training::where('id', $data->training_id)->with('province', 'amphure', 'district')->first();
+            if (@$check->status == 'off') {
+                $status = false;
+                $message = "The Training is close.";
+                return response()->json([
+                    'results' => [],
+                    'status' => $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+            }
+
+            $user = new TrainingList;
+            $user->user_id = $request->user_id;
+            $user->first_name = $request->first_name;
+            $user->last_name = $request->last_name;
+            $user->nickname = $request->nickname;
+            $user->full_name = $request->first_name . ' ' . $request->last_name;
+            $user->phone = $request->phone;
+            $usersResult = User::find($request->user_id);
+            $user->agency = $usersResult->market;
+
+            $user->training_id = $data->training_id;
+            $user->turn_id = $request->turn_id;
+            $user->save();
+
+
             return response()->json([
-                'results' => [
+                'status' => true,
+                'message' => 'Success',
+                'result' => [
+                    'data' => $data,
+                    'user' => $user,
                 ],
-                'status' => $status,
-                'message' =>  $message,
-                'url_picture' => $this->prefix,
             ]);
-        }
-
-        $user = new TrainingList;
-                    $user->user_id = $request->user_id;
-                    $user->first_name = $request->first_name;
-                    $user->last_name = $request->last_name;
-                    $user->nickname = $request->nickname;
-                    $user->full_name = $request->first_name . ' ' . $request->last_name;
-                    $user->phone = $request->phone;
-                    $usersResult = User::find($request->user_id);
-                    $user->agency = $usersResult->market;
-
-                    $user->training_id = $data->training_id;
-                    $user->turn_id = $request->turn_id;
-                    $user->save();
-
-
-        return response()->json([
-            'status' => true,
-            'message' => 'Success',
-            'result' => [
-                'data' => $data,
-                'user' => $user,
-            ],
-        ]);
-        }else{
+        } else {
             $status = false;
             $message = "Not Have Data!";
             return response()->json([
-                'results' => [
-                ],
+                'results' => [],
                 'status' => $status,
                 'message' =>  $message,
                 'url_picture' => $this->prefix,
@@ -500,83 +493,82 @@ class ApiController extends Controller
 
     public function train_turn_approve(Request $request)
     {
-        try{
-        if ($request->id) {
-            // $training_id = $request->id;
+        try {
+            if ($request->id) {
+                // $training_id = $request->id;
 
-            //Check Validate
-            $check_validate = [
-                'user_id' => 'required',
-                'status' => 'required',
-            ];
+                //Check Validate
+                $check_validate = [
+                    'user_id' => 'required',
+                    'status' => 'required',
+                ];
 
-            $error_validator = [
-                'user_id:required' => 'กรุณากรอกข้อมูล',
-                'status:required' => 'กรุณากรอกข้อมูล',
-            ];
+                $error_validator = [
+                    'user_id:required' => 'กรุณากรอกข้อมูล',
+                    'status:required' => 'กรุณากรอกข้อมูล',
+                ];
 
-            $validator = Validator::make(
-                $request->all(),
-                $check_validate,
-                $error_validator
-            );
+                $validator = Validator::make(
+                    $request->all(),
+                    $check_validate,
+                    $error_validator
+                );
 
-            if ($validator->fails()) {
+                if ($validator->fails()) {
+                    return response()->json([
+                        'status' => false,
+                        'error' => $validator->errors(),
+                    ], 400);
+                }
+
+                // $training = Training::where('id', $request->id)->with('province', 'amphure', 'district')->first();
+
+                // if($training==null){
+                //     return response()->json([
+                //     'status' => false,
+                //     'message' => 'Not Found Training'
+                // ], 400);
+                // }
+
+                $turn_id = TrainingTurn::where('id', $request->id)->orderby('turn', 'desc')->first();
+
+                if ($turn_id == null) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Not Found TrainingTurn'
+                    ], 400);
+                }
+
+                $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $request->id)->get();
+
+                foreach ($turn_list as $traning_list) {
+                    $list = TrainingList::find($traning_list->id);
+                    $list->status_approve = $request->status;
+                    $list->save();
+                }
+
+                return response()->json([
+                    'status' => true,
+                    'message' => 'Success!',
+                    'data' => [
+                        // 'training' => $training,
+                        'list' => $turn_list,
+                    ]
+                ]);
+            } else {
                 return response()->json([
                     'status' => false,
-                    'error' => $validator->errors(),
+                    'message' => 'Not Found Training'
                 ], 400);
             }
-
-            // $training = Training::where('id', $request->id)->with('province', 'amphure', 'district')->first();
-
-            // if($training==null){
-            //     return response()->json([
-            //     'status' => false,
-            //     'message' => 'Not Found Training'
-            // ], 400);
-            // }
-
-            $turn_id = TrainingTurn::where('id', $request->id)->orderby('turn', 'desc')->first();
-
-            if($turn_id==null){
-                return response()->json([
-                'status' => false,
-                'message' => 'Not Found TrainingTurn'
-            ], 400);
-            }
-
-            $turn_list = TrainingList::where('user_id', $request->user_id)->where('turn_id', $request->id)->get();
-
-            foreach ($turn_list as $traning_list) {
-                $list = TrainingList::find($traning_list->id);
-                $list->status_approve = $request->status;
-                $list->save();
-            }
-
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
             return response()->json([
-                'status' => true,
-                'message' => 'Success!',
-                'data' => [
-                    // 'training' => $training,
-                    'list' => $turn_list,
-                ]
-            ]);
-        } else {
-            return response()->json([
+                'result' => [],
                 'status' => false,
-                'message' => 'Not Found Training'
+                'message' => $e->getMessage(),
             ], 400);
         }
-
-        } catch (Exception $e) {
-                Log::error($e->getMessage());
-                return response()->json([
-                    'result' => [],
-                    'status' => false,
-                    'message' => $e->getMessage(),
-                ], 400);
-            }
     }
 
 
@@ -1544,6 +1536,25 @@ class ApiController extends Controller
             'url_picture' => $this->prefix,
         ]);
     }
+
+    public function api_work_user($id)
+    {
+        $wo = WO::where('technician_id', null)->where('d_status', 0);
+        if ($id) {
+            $wo = $wo->where('work_province', $id);
+        }
+        $wo = $wo->with('customer')->with('model')->orderby('wo_date', 'desc')->get();
+        $message = "Success!";
+        $status = true;
+        return response()->json([
+            'results' => [
+                'wo' => $wo,
+            ],
+            'status' =>  $status,
+            'message' =>  $message,
+            'url_picture' => $this->prefix,
+        ]);
+    }
     ///WORK///
 
 
@@ -1920,22 +1931,12 @@ class ApiController extends Controller
     public function api_register_user(Request $r)
     {
 
-        try{
-        // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
-        $dff = date('Y-m-d H:i:s');
-        $otp = OTP::where('phone', $r->phone)->first();
-        if ($otp == null) {
-            $message = "OTP Phonenumber Wrong!";
-            $status = false;
-            return response()->json([
-                'results' => [],
-                'status' =>  $status,
-                'message' =>  $message,
-                'url_picture' => $this->prefix,
-            ], 400);
-        } else {
-            if ($otp->otp != $r->otp) {
-                $message = "OTP Wrong!";
+        try {
+            // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
+            $dff = date('Y-m-d H:i:s');
+            $otp = OTP::where('phone', $r->phone)->first();
+            if ($otp == null) {
+                $message = "OTP Phonenumber Wrong!";
                 $status = false;
                 return response()->json([
                     'results' => [],
@@ -1944,8 +1945,8 @@ class ApiController extends Controller
                     'url_picture' => $this->prefix,
                 ], 400);
             } else {
-                if ($dff > $otp->endtime) {
-                    $message = "OTP out of time!";
+                if ($otp->otp != $r->otp) {
+                    $message = "OTP Wrong!";
                     $status = false;
                     return response()->json([
                         'results' => [],
@@ -1953,53 +1954,54 @@ class ApiController extends Controller
                         'message' =>  $message,
                         'url_picture' => $this->prefix,
                     ], 400);
-                }
-            }
-        }
-        // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
-
-        $year = date('Y');
-        $check = User::where('email', $r->email)->first();
-        if ($check == null) {
-            $user = new User();
-            $user->name = $r->name;
-            $user->email = $r->email;
-
-            if ($r->password == null) {
-                if ($r->phone != null) {
-                    $na = $r->phone;
                 } else {
-                    $na = $r->name . '12345';
+                    if ($dff > $otp->endtime) {
+                        $message = "OTP out of time!";
+                        $status = false;
+                        return response()->json([
+                            'results' => [],
+                            'status' =>  $status,
+                            'message' =>  $message,
+                            'url_picture' => $this->prefix,
+                        ], 400);
+                    }
                 }
-                $user->password = Hash::make($na);
-            } else {
-                $na = $r->password;
-                $user->password = Hash::make($r->password);
             }
+            // CHECK OTP  เพิ่มรับค่า otp มาเช็ค
 
-            $user->type = 5;
-            $user->status = 0;
+            $year = date('Y');
+            $check = User::where('email', $r->email)->first();
+            if ($check == null) {
+                $user = new User();
+                $user->name = $r->name;
+                $user->email = $r->email;
 
-            $user->lastname = $r->lastname;
-            $user->phone = $r->phone;
+                if ($r->password == null) {
+                    if ($r->phone != null) {
+                        $na = $r->phone;
+                    } else {
+                        $na = $r->name . '12345';
+                    }
+                    $user->password = Hash::make($na);
+                } else {
+                    $na = $r->password;
+                    $user->password = Hash::make($r->password);
+                }
 
-            // MARKET
-            $user->market = $r->market;
-            $mm = market::where('titleth', $r->market)->first();
-            if ($mm) {
-                $user->id_market = $mm->id;
-            }
-            // MARKET
+                $user->type = 5;
+                $user->status = 0;
 
-            $length = 12;
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength = strlen($characters);
-            $randomString = '';
-            for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[rand(0, $charactersLength - 1)];
-            }
-            $cm = User::where('token', $randomString)->first();
-            if ($cm != null) {
+                $user->lastname = $r->lastname;
+                $user->phone = $r->phone;
+
+                // MARKET
+                $user->market = $r->market;
+                $mm = market::where('titleth', $r->market)->first();
+                if ($mm) {
+                    $user->id_market = $mm->id;
+                }
+                // MARKET
+
                 $length = 12;
                 $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
                 $charactersLength = strlen($characters);
@@ -2007,110 +2009,115 @@ class ApiController extends Controller
                 for ($i = 0; $i < $length; $i++) {
                     $randomString .= $characters[rand(0, $charactersLength - 1)];
                 }
-            }
-            $cmm = User::where('token', $randomString)->first();
-            if ($cmm != null) {
-                $length = 12;
-                $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-                $charactersLength = strlen($characters);
-                $randomString = '';
-                for ($i = 0; $i < $length; $i++) {
-                    $randomString .= $characters[rand(0, $charactersLength - 1)];
+                $cm = User::where('token', $randomString)->first();
+                if ($cm != null) {
+                    $length = 12;
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $charactersLength = strlen($characters);
+                    $randomString = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                    }
                 }
-            }
+                $cmm = User::where('token', $randomString)->first();
+                if ($cmm != null) {
+                    $length = 12;
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $charactersLength = strlen($characters);
+                    $randomString = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                    }
+                }
 
-            $user->token = $randomString;
+                $user->token = $randomString;
 
-            $p = province::where('name_th', $r->province)->first();
-            if ($p != null) {
-                $user->province = $r->province;
-                $user->id_p = $p->id;
-            }
+                $p = province::where('name_th', $r->province)->first();
+                if ($p != null) {
+                    $user->province = $r->province;
+                    $user->id_p = $p->id;
+                }
 
-            // CODE
-            $nu = User::where('type', 5)->orderby('id', 'desc')->first();
-            if ($nu != null) {
-                $nm = $nu->num + 1;
-            } else {
-                $nm = 1;
-            }
-            $idd=$nu->id+1;
-            $user->num = $nm;
-            // $ggg=$user->id;
-            $ggg=$idd;
+                // CODE
+                $nu = User::where('type', 5)->orderby('id', 'desc')->first();
+                if ($nu != null) {
+                    $nm = $nu->num + 1;
+                } else {
+                    $nm = 1;
+                }
+                $idd = $nu->id + 1;
+                $user->num = $nm;
+                // $ggg=$user->id;
+                $ggg = $idd;
 
-            // $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
-            $num = str_pad($ggg, 5, '0', STR_PAD_LEFT);
-            $user->code = $year . 'H' . $num;
-            // CODE
-
-
-
-            $user->save();
+                // $num = str_pad($nm, 5, '0', STR_PAD_LEFT);
+                $num = str_pad($ggg, 5, '0', STR_PAD_LEFT);
+                $user->code = $year . 'H' . $num;
+                // CODE
 
 
-            // ส่ง sms รหัส--------------
-            if ($r->phone != null) {
-                $curl = curl_init();
 
-                curl_setopt_array($curl, array(
-                    CURLOPT_URL => 'https://thsms.com/api/send-sms',
-                    CURLOPT_RETURNTRANSFER => true,
-                    CURLOPT_ENCODING => '',
-                    CURLOPT_MAXREDIRS => 10,
-                    CURLOPT_TIMEOUT => 0,
-                    CURLOPT_FOLLOWLOCATION => true,
-                    CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-                    CURLOPT_CUSTOMREQUEST => 'POST',
-                    CURLOPT_POSTFIELDS => '{
+                $user->save();
+
+
+                // ส่ง sms รหัส--------------
+                if ($r->phone != null) {
+                    $curl = curl_init();
+
+                    curl_setopt_array($curl, array(
+                        CURLOPT_URL => 'https://thsms.com/api/send-sms',
+                        CURLOPT_RETURNTRANSFER => true,
+                        CURLOPT_ENCODING => '',
+                        CURLOPT_MAXREDIRS => 10,
+                        CURLOPT_TIMEOUT => 0,
+                        CURLOPT_FOLLOWLOCATION => true,
+                        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+                        CURLOPT_CUSTOMREQUEST => 'POST',
+                        CURLOPT_POSTFIELDS => '{
             "sender": "MitsuHeavy",
             "msisdn": ["' . $r->phone . '"],
             "message": "รหัส ID User ของคุณคือ ' . $r->email . ' รหัส Password ของคุณคือ  ' . $na . '"
             }',
-                    CURLOPT_HTTPHEADER => array(
-                        'Content-Type: application/json',
-                        'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
-                    ),
+                        CURLOPT_HTTPHEADER => array(
+                            'Content-Type: application/json',
+                            'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJodHRwOlwvXC90aHNtcy5jb21cL21hbmFnZVwvYXBpLWtleSIsImlhdCI6MTY4NzQ5MjI5MSwibmJmIjoxNjg3NDkyMjkxLCJqdGkiOiJYb2t4enZWMEJIa2NEUm1PIiwic3ViIjoxMDk5NzIsInBydiI6IjIzYmQ1Yzg5NDlmNjAwYWRiMzllNzAxYzQwMDg3MmRiN2E1OTc2ZjcifQ.R_YjpLEyW5wS7DRiTMBG7IEx1D-aKMgfIhHDK-7WMyw',
+                        ),
 
-                ));
+                    ));
 
-                $response = curl_exec($curl);
-                curl_close($curl);
+                    $response = curl_exec($curl);
+                    curl_close($curl);
+                }
+                // ส่ง sms รหัส--------------
+
+
+                $message = "Register Success!";
+                $status = true;
+                return response()->json([
+                    'results' => [
+                        'user' => $user,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+            } else {
+                $message = "There is an email on the server!";
+                $status = false;
+                return response()->json([
+                    'results' => [],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ], 400);
             }
-            // ส่ง sms รหัส--------------
-
-
-            $message = "Register Success!";
-            $status = true;
+        } catch (Exception $e) {
             return response()->json([
-                'results' => [
-                    'user' => $user,
-                ],
-                'status' =>  $status,
-                'message' =>  $message,
-                'url_picture' => $this->prefix,
-            ]);
-        } else {
-            $message = "There is an email on the server!";
-            $status = false;
-            return response()->json([
-                'results' => [],
-                'status' =>  $status,
-                'message' =>  $message,
-                'url_picture' => $this->prefix,
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
             ], 400);
         }
-
-
-      } catch (Exception $e) {
-        return response()->json([
-            'result' => [],
-            'status' => false,
-            'message' => $e->getMessage(),
-        ], 400);
-        }
-
-
     }
     ///Register  User///
 
@@ -2289,38 +2296,38 @@ class ApiController extends Controller
 
 
 
-       ///เรียก  User /// 
-       public function api_user_call(Request $r)
-       {
-           $user = User::where('id', $r->id_user)->first();
-           if ($user != null) {
-   
-               $message = "Success!";
-               $status = true;
-               return response()->json([
-                   'results' => [
-                       'user' => $user,
-                   ],
-                   'status' =>  $status,
-                   'message' =>  $message,
-                   'url_picture' => $this->prefix,
-               ]);
-           } else {
-               $message = "There is an ID on the server!";
-               $status = false;
-               return response()->json([
-                   'results' => [],
-                   'status' =>  $status,
-                   'message' =>  $message,
-                   'url_picture' => $this->prefix,
-               ], 400);
-           }
-       }
-       ///เรียก  User ///
+    ///เรียก  User ///
+    public function api_user_call(Request $r)
+    {
+        $user = User::where('id', $r->id_user)->first();
+        if ($user != null) {
+
+            $message = "Success!";
+            $status = true;
+            return response()->json([
+                'results' => [
+                    'user' => $user,
+                ],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+        } else {
+            $message = "There is an ID on the server!";
+            $status = false;
+            return response()->json([
+                'results' => [],
+                'status' =>  $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ], 400);
+        }
+    }
+    ///เรียก  User ///
 
 
 
-     ///EDIT  User  ที่อยู่/// 
+    ///EDIT  User  ที่อยู่///
     public function api_edit_user_address(Request $r)
     {
         $user = User::where('id', $r->id_user)->first();
@@ -2551,63 +2558,105 @@ class ApiController extends Controller
     public function api_buy_item(Request $r)
     {
 
-        try{
-        $user = User::where('id', $r->id_user)->orderby('id', 'desc')->first();
-        $item = item_point::where('id', $r->id_item)->orderby('id', 'desc')->first();
+        try {
+            $user = User::where('id', $r->id_user)->orderby('id', 'desc')->first();
+            $item = item_point::where('id', $r->id_item)->orderby('id', 'desc')->first();
 
-        $cu = $user->point;
-        $ci = $item->point;
-        if ($cu >= $ci) {
-            $sum = $cu - $ci;
-            $user->point = $sum;
+            $cu = $user->point;
+            $ci = $item->point;
+            if ($cu >= $ci) {
+                $sum = $cu - $ci;
+                $user->point = $sum;
 
 
-            if($user->save()){
-            $his = new buy_point();
-            $his->id_user = $user->id;
-            $his->id_item = $item->id;
+                if ($user->save()) {
+                    $his = new buy_point();
+                    $his->id_user = $user->id;
+                    $his->id_item = $item->id;
 
-            $his->title = $item->titleth;
-            if($r->address!=null){
-                $his->address = $r->address;
-            }
-            $his->old_point = $cu;
-            $his->buy_point = $ci;
-            $his->bl_point = $sum;
-            $his->date = date('Y-m-d H:i:s');
+                    $his->title = $item->titleth;
+                    if ($r->address != null) {
+                        $his->address = $r->address;
+                    }
+                    $his->old_point = $cu;
+                    $his->buy_point = $ci;
+                    $his->bl_point = $sum;
+                    $his->date = date('Y-m-d H:i:s');
 
-            $length = 12;
-            $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
-            $charactersLength = strlen($characters);
-            $randomString = '';
-            for ($i = 0; $i < $length; $i++) {
-                $randomString .= $characters[rand(0, $charactersLength - 1)];
-            }
+                    $length = 12;
+                    $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+                    $charactersLength = strlen($characters);
+                    $randomString = '';
+                    for ($i = 0; $i < $length; $i++) {
+                        $randomString .= $characters[rand(0, $charactersLength - 1)];
+                    }
 
-            $rand_num = $randomString;
-            $his->number = $rand_num;
+                    $rand_num = $randomString;
+                    $his->number = $rand_num;
 
-            if($his->save()){
+                    if ($his->save()) {
+                    } else {
+                        $uu = User::where('id', $r->id_user)->orderby('id', 'desc')->first();
+                        $uu->point = $cu;
+                        $uu->save();
 
-            }else{
-            $uu = User::where('id', $r->id_user)->orderby('id', 'desc')->first();
-            $uu->point = $cu;
-            $uu->save();
 
-            
-            $add=new tb_log();
-            $add->id_user=$user->id;
-            $add->id_item=$item->id;
-            $add->title='แลกแต้ม Log ล้มเหลว';
-            $add->detail='แลกแต้ม ชื่อคนแลก '.$user->name.' แลกสินค้าชื่อ '.$item->titleth;
-            $add->point=$ci;
-            $add->old_point=$cu;
-            $add->bl_point=$sum;
+                        $add = new tb_log();
+                        $add->id_user = $user->id;
+                        $add->id_item = $item->id;
+                        $add->title = 'แลกแต้ม Log ล้มเหลว';
+                        $add->detail = 'แลกแต้ม ชื่อคนแลก ' . $user->name . ' แลกสินค้าชื่อ ' . $item->titleth;
+                        $add->point = $ci;
+                        $add->old_point = $cu;
+                        $add->bl_point = $sum;
 
-            if($add->save()){
-                 $message = "Data Fail But Log Save!";
-                $status = false;
-                Log::channel('point_logs')->error('Data Fail But Log Save');
+                        if ($add->save()) {
+                            $message = "Data Fail But Log Save!";
+                            $status = false;
+                            Log::channel('point_logs')->error('Data Fail But Log Save');
+                            return response()->json([
+                                'results' => [
+                                    'item' => $item,
+                                    'user' => $user,
+                                ],
+                                'status' =>  $status,
+                                'message' =>  $message,
+                                'url_picture' => $this->prefix,
+                            ], 400);
+                        } else {
+                            $message = "Log Fail!";
+                            $status = false;
+                            Log::channel('point_logs')->error('Log Fail!');
+                            return response()->json([
+                                'results' => [
+                                    'item' => $item,
+                                    'user' => $user,
+                                ],
+                                'status' =>  $status,
+                                'message' =>  $message,
+                                'url_picture' => $this->prefix,
+                            ], 400);
+                        }
+                    }
+                } else {
+                    $message = "User Save Fail!";
+                    $status = false;
+                    Log::channel('point_logs')->error('User Save Fail!');
+                    return response()->json([
+                        'results' => [
+                            'item' => $item,
+                            'user' => $user,
+                        ],
+                        'status' =>  $status,
+                        'message' =>  $message,
+                        'url_picture' => $this->prefix,
+                    ], 400);
+                }
+
+
+
+                $message = "Success!";
+                $status = true;
                 return response()->json([
                     'results' => [
                         'item' => $item,
@@ -2616,11 +2665,11 @@ class ApiController extends Controller
                     'status' =>  $status,
                     'message' =>  $message,
                     'url_picture' => $this->prefix,
-                ],400);
-            }else{
-                 $message = "Log Fail!";
+                ]);
+            } else {
+                $message = "คะแนนของคุณไม่เพียงพอ";
                 $status = false;
-                Log::channel('point_logs')->error('Log Fail!');
+                Log::channel('point_logs')->error('คะแนนของคุณไม่เพียงพอ');
                 return response()->json([
                     'results' => [
                         'item' => $item,
@@ -2631,73 +2680,23 @@ class ApiController extends Controller
                     'url_picture' => $this->prefix,
                 ], 400);
             }
+        } catch (Exception $e) {
+            Log::error($e->getMessage());
+            Log::channel('point_logs')->error($e->getMessage());
 
+            $f = new tb_log();
+            $f->id_user = $r->id_user;
+            $f->id_item = $r->id_item;
+            $f->title = 'Error Buy Item POINT';
+            $f->detail = $e->getMessage();
+            $f->save();
 
-            }
-
-            }else{
-                $message = "User Save Fail!";
-                $status = false;
-                Log::channel('point_logs')->error('User Save Fail!');
-                return response()->json([
-                    'results' => [
-                        'item' => $item,
-                        'user' => $user,
-                    ],
-                    'status' =>  $status,
-                    'message' =>  $message,
-                    'url_picture' => $this->prefix,
-                ], 400);
-            }
-
-           
-
-            $message = "Success!";
-            $status = true;
             return response()->json([
-                'results' => [
-                    'item' => $item,
-                    'user' => $user,
-                ],
-                'status' =>  $status,
-                'message' =>  $message,
-                'url_picture' => $this->prefix,
-            ]);
-        } else {
-            $message = "คะแนนของคุณไม่เพียงพอ";
-            $status = false;
-            Log::channel('point_logs')->error('คะแนนของคุณไม่เพียงพอ');
-            return response()->json([
-                'results' => [
-                    'item' => $item,
-                    'user' => $user,
-                ],
-                'status' =>  $status,
-                'message' =>  $message,
-                'url_picture' => $this->prefix,
+                'result' => [],
+                'status' => false,
+                'message' => $e->getMessage(),
             ], 400);
         }
-
-
-        } catch (Exception $e) {
-        Log::error($e->getMessage());
-        Log::channel('point_logs')->error($e->getMessage());
-
-        $f=new tb_log();
-        $f->id_user=$r->id_user;
-        $f->id_item=$r->id_item;
-        $f->title='Error Buy Item POINT';
-        $f->detail=$e->getMessage();
-        $f->save();
-
-        return response()->json([
-            'result' => [],
-            'status' => false,
-            'message' => $e->getMessage(),
-        ], 400);
-        }
-    
-    
     }
     ///Buy Item ///
 
@@ -2851,685 +2850,678 @@ class ApiController extends Controller
     {
 
         try {
-        //check customer
-        $check_name_customer = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->get()->count();
-        if ($check_name_customer != 0) {
-            return response()->json([
-                'status' => false,
-                'message' => 'A Customer Name has already been taken.',
-            ], 400);
-        }
-
-        $air_conditioner_validator = [
-            'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
-            'indoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
-            'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
-            'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
-        ];
-
-        $error_validator = [
-            'indoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
-            'outdoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
-        ];
-
-        $validator = Validator::make(
-            $request->all(),
-            $air_conditioner_validator,
-            $error_validator
-        );
-
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => $validator->errors()->first(),
-            ], 400);
-        }
-
-        //Find Serial number in database
-        if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
-            $king1 = strlen($request->indoor_number);
-
-            if ($king1 > 11) {
-                $ca1 = substr($request->indoor_number, 0, -1);
-            } else {
-                $ca1 = $request->indoor_number;
-            }
-
-            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-                ->where('serial_number', $ca1)
-                ->get()->count();
-        }else{
-            $ca1=null;
-        }
-
-        $king2 = strlen($request->outdoor_number);
-
-        if ($king2 > 11) {
-            $ca2 = substr($request->outdoor_number, 0, -1);
-        } else {
-            $ca2 = $request->outdoor_number;
-        }
-
-        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', $ca2)
-            ->get()->count();
-
-        // if (isset($check_serial_indoor)) {
-        //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
-
-        //         $customer = Customer::where('first_name', $request->first_name)
-        //         ->where('last_name', $request->last_name)
-        //         ->first();
-
-        //         if($customer==null){
-        //         $customer = new Customer();
-        //         $customer->mechanic_id = $request->mechanic_id;
-        //         $customer->first_name = $request->first_name;
-        //         $customer->last_name = $request->last_name;
-        //         $customer->full_name = $request->first_name . ' ' . $request->last_name;
-        //         $customer->phone = $request->phone;
-        //         $customer->line = $request->line;
-        //         $customer->address = $request->address;
-        //         $customer->more_address = $request->more_address;
-        //         $customer->latitude = $request->latitude;
-        //         $customer->longitude = $request->longitude;
-        //         $customer->save();
-        //         }else{
-        //         $customer->mechanic_id = $request->mechanic_id;
-        //         $customer->first_name = $request->first_name;
-        //         $customer->last_name = $request->last_name;
-        //         $customer->full_name = $request->first_name . ' ' . $request->last_name;
-        //         $customer->phone = $request->phone;
-        //         $customer->line = $request->line;
-        //         $customer->address = $request->address;
-        //         $customer->more_address = $request->more_address;
-        //         $customer->latitude = $request->latitude;
-        //         $customer->longitude = $request->longitude;
-        //         $customer->save();
-        //         }
-
-        //         $air_conditioner = new AirConditioner();
-        //         $air_conditioner->customer_id = $customer->id;
-        //         $air_conditioner->indoor_number = $ca1;
-        //         $air_conditioner->outdoor_number = $ca2;
-
-        //         if ($air_conditioner->save()) {
-
-        //              // ส่วนเช็ค Model รับ POINT
-        //              $se = DB::connection('pgsql')->table('serial_numbers')
-        //              ->where('serial_number', 'LIKE', '%'.$ca1.'%')
-        //              // ->where('serial_number', $request->indoor_number)
-        //              ->first();
-        //              if($se!=null){
-        //              if($customer!=null){
-        //                  $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-        //                  if($air!=null){
-        //                  $user = User::where('id', $customer->mechanic_id)->first();
-        //                  if($user!=null){
-        //                  $a1=$user->point;
-        //                  $a2=$air->point;
-        //                  $sum=$a1+$a2;
-        //                  $user->point=$sum;
-        //                  $user->save();
-
-        //                  $his=new history_point();
-        //                  $his->title='ได้รับ Point จากการทำรายการ';
-        //                  $his->point=$a2;
-        //                  $his->id_user=$user->id;
-        //                  $his->date=date('Y-m-d H:i:s');
-        //                  $his->save();
-
-        //                  $air_conditioner->in_name = $air->des;
-        //                  $air_conditioner->point = $air->point;
-        //                  $air_conditioner->save();
-
-        //                  return response()->json([
-        //                      'status' => true,
-        //                      'message' => 'Success Receive '.$a2.' Point!',
-        //                      'url_picture' => $this->prefix,
-        //                  ]);
-
-        //                  }
-        //              }}
-        //              }
-        //              // ส่วนเช็ค Model รับ POINT
-
-        //             return response()->json([
-        //                 'status' => true,
-        //                 'message' => 'Success!',
-        //                 'url_picture' => $this->prefix,
-        //             ]);
-        //         } else {
-        //             return response()->json([
-        //                 'status' => false,
-        //                 'message' => 'Data cannot be saved!'
-        //             ], 400);
-        //         }
-        //     } else {
-        //         return response()->json([
-        //             'status' => false,
-        //             'message' => 'Not Found Air Conditioner in Data.'
-        //         ], 400);
-        //     }
-        // } else {
-
-           
-
-
-        if ($check_serial_outdoor != 0) {
-
-            $check=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
-            if($check!=null){
+            //check customer
+            $check_name_customer = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->get()->count();
+            if ($check_name_customer != 0) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'มีการลงทะเบียนแอร์นี้ไปแล้ว'
+                    'message' => 'A Customer Name has already been taken.',
                 ], 400);
             }
 
-            $customer = Customer::where('first_name', $request->first_name)
-                ->where('last_name', $request->last_name)
-                ->first();
+            $air_conditioner_validator = [
+                'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
+                'indoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
+            ];
 
-            if ($customer == null) {
-                $customer = new Customer();
-                $customer->mechanic_id = $request->mechanic_id;
-                $customer->first_name = $request->first_name;
-                $customer->last_name = $request->last_name;
-                $customer->full_name = $request->first_name . ' ' . $request->last_name;
-                $customer->phone = $request->phone;
-                $customer->line = $request->line;
-                $customer->address = $request->address;
-                $customer->more_address = $request->more_address;
-                $customer->latitude = $request->latitude;
-                $customer->longitude = $request->longitude;
-                $customer->save();
-            } else {
-                $customer->mechanic_id = $request->mechanic_id;
-                $customer->first_name = $request->first_name;
-                $customer->last_name = $request->last_name;
-                $customer->full_name = $request->first_name . ' ' . $request->last_name;
-                $customer->phone = $request->phone;
-                $customer->line = $request->line;
-                $customer->address = $request->address;
-                $customer->more_address = $request->more_address;
-                $customer->latitude = $request->latitude;
-                $customer->longitude = $request->longitude;
-                $customer->save();
+            $error_validator = [
+                'indoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+                'outdoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+            ];
+
+            $validator = Validator::make(
+                $request->all(),
+                $air_conditioner_validator,
+                $error_validator
+            );
+
+            if ($validator->fails()) {
+                return response()->json([
+                    'status' => false,
+                    'message' => $validator->errors()->first(),
+                ], 400);
             }
 
+            //Find Serial number in database
+            if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
+                $king1 = strlen($request->indoor_number);
 
-            
+                if ($king1 > 11) {
+                    $ca1 = substr($request->indoor_number, 0, -1);
+                } else {
+                    $ca1 = $request->indoor_number;
+                }
 
-            $air_conditioner = new AirConditioner();
-            $air_conditioner->customer_id = $customer->id;
-            $air_conditioner->indoor_number = $ca1;
-            $air_conditioner->outdoor_number = $ca2;
-
-            if ($air_conditioner->save()) {
-
-                // ส่วนเช็ค Model รับ POINT
-                $se = DB::connection('pgsql')->table('serial_numbers')
-                    // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
-                    ->where('serial_number', $ca2)
-                    ->first();
-
-                $ae = DB::connection('pgsql')->table('serial_numbers')
-                    // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
                     ->where('serial_number', $ca1)
+                    ->get()->count();
+            } else {
+                $ca1 = null;
+            }
+
+            $king2 = strlen($request->outdoor_number);
+
+            if ($king2 > 11) {
+                $ca2 = substr($request->outdoor_number, 0, -1);
+            } else {
+                $ca2 = $request->outdoor_number;
+            }
+
+            $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+                ->where('serial_number', $ca2)
+                ->get()->count();
+
+            // if (isset($check_serial_indoor)) {
+            //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+
+            //         $customer = Customer::where('first_name', $request->first_name)
+            //         ->where('last_name', $request->last_name)
+            //         ->first();
+
+            //         if($customer==null){
+            //         $customer = new Customer();
+            //         $customer->mechanic_id = $request->mechanic_id;
+            //         $customer->first_name = $request->first_name;
+            //         $customer->last_name = $request->last_name;
+            //         $customer->full_name = $request->first_name . ' ' . $request->last_name;
+            //         $customer->phone = $request->phone;
+            //         $customer->line = $request->line;
+            //         $customer->address = $request->address;
+            //         $customer->more_address = $request->more_address;
+            //         $customer->latitude = $request->latitude;
+            //         $customer->longitude = $request->longitude;
+            //         $customer->save();
+            //         }else{
+            //         $customer->mechanic_id = $request->mechanic_id;
+            //         $customer->first_name = $request->first_name;
+            //         $customer->last_name = $request->last_name;
+            //         $customer->full_name = $request->first_name . ' ' . $request->last_name;
+            //         $customer->phone = $request->phone;
+            //         $customer->line = $request->line;
+            //         $customer->address = $request->address;
+            //         $customer->more_address = $request->more_address;
+            //         $customer->latitude = $request->latitude;
+            //         $customer->longitude = $request->longitude;
+            //         $customer->save();
+            //         }
+
+            //         $air_conditioner = new AirConditioner();
+            //         $air_conditioner->customer_id = $customer->id;
+            //         $air_conditioner->indoor_number = $ca1;
+            //         $air_conditioner->outdoor_number = $ca2;
+
+            //         if ($air_conditioner->save()) {
+
+            //              // ส่วนเช็ค Model รับ POINT
+            //              $se = DB::connection('pgsql')->table('serial_numbers')
+            //              ->where('serial_number', 'LIKE', '%'.$ca1.'%')
+            //              // ->where('serial_number', $request->indoor_number)
+            //              ->first();
+            //              if($se!=null){
+            //              if($customer!=null){
+            //                  $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
+            //                  if($air!=null){
+            //                  $user = User::where('id', $customer->mechanic_id)->first();
+            //                  if($user!=null){
+            //                  $a1=$user->point;
+            //                  $a2=$air->point;
+            //                  $sum=$a1+$a2;
+            //                  $user->point=$sum;
+            //                  $user->save();
+
+            //                  $his=new history_point();
+            //                  $his->title='ได้รับ Point จากการทำรายการ';
+            //                  $his->point=$a2;
+            //                  $his->id_user=$user->id;
+            //                  $his->date=date('Y-m-d H:i:s');
+            //                  $his->save();
+
+            //                  $air_conditioner->in_name = $air->des;
+            //                  $air_conditioner->point = $air->point;
+            //                  $air_conditioner->save();
+
+            //                  return response()->json([
+            //                      'status' => true,
+            //                      'message' => 'Success Receive '.$a2.' Point!',
+            //                      'url_picture' => $this->prefix,
+            //                  ]);
+
+            //                  }
+            //              }}
+            //              }
+            //              // ส่วนเช็ค Model รับ POINT
+
+            //             return response()->json([
+            //                 'status' => true,
+            //                 'message' => 'Success!',
+            //                 'url_picture' => $this->prefix,
+            //             ]);
+            //         } else {
+            //             return response()->json([
+            //                 'status' => false,
+            //                 'message' => 'Data cannot be saved!'
+            //             ], 400);
+            //         }
+            //     } else {
+            //         return response()->json([
+            //             'status' => false,
+            //             'message' => 'Not Found Air Conditioner in Data.'
+            //         ], 400);
+            //     }
+            // } else {
+
+
+
+
+            if ($check_serial_outdoor != 0) {
+
+                $check = AirConditioner::where('indoor_number', $ca1)->where('outdoor_number', $ca2)->first();
+                if ($check != null) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'มีการลงทะเบียนแอร์นี้ไปแล้ว'
+                    ], 400);
+                }
+
+                $customer = Customer::where('first_name', $request->first_name)
+                    ->where('last_name', $request->last_name)
                     ->first();
 
-                if ($customer != null) {
-                    // $air = AirModel::where('model_name', $se->product_code)->where('des', $se->product_name)->first();
-                    // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
-                    $air = AirModel::where('des', $se->product_name)->first();
-                    if($se->product_name==@$ae->product_name){
-                        $air_2=null;
-                    }else{
-                        $air_2 = AirModel::where('des', @$ae->product_name)->first();
-                    }
-                    if ($air != null or $air_2 != null) {
-                        $user = User::where('id', $customer->mechanic_id)->first();
-                        if ($user != null) {
-                            $a1 = $user->point;
-
-                            // if($air!=null and $air_2!=null){
-                            //     $w1=$air->point;
-                            //     $w2=$air_2->point;
-                            //     $ws=$w1+$w2;
-                            //     $a2 = $ws;
-                            // }else{
-                            //     $a2 = $air->point;
-                            // }
-
-                            $a2 = $air->point;
-                            $sum = $a1 + $a2;
-                            $user->point = $sum;
-                            // $user->save();
-
-                            if($user->save()){
-                            $his = new history_point();
-                            $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
-                            $his->point = @$a2;
-                            $his->id_user = $user->id;
-                            $his->id_air = $air_conditioner->id;
-                            $his->date = date('Y-m-d H:i:s');
-                            $his->save();
-                            }
-
-                            $air_conditioner->out_name = @$air->des;
-                            $air_conditioner->in_name = @$air_2->des;
-                            $air_conditioner->point = @$a2;
-
-                            if(@$air_2->point==null){
-                                $air_conditioner->point2 = 0;
-                            }else{
-                                $air_conditioner->point2 = @$air_2->point;
-                            }
-                            
-                            $air_conditioner->save();
-
-                            return response()->json([
-                                'status' => true,
-                                'message' => 'Success Receive ' . $a2 . ' Point!',
-                                'url_picture' => $this->prefix,
-                            ]);
-                        }
-                    }else{
-
-
-                        try{
-                            $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
-                            $sss = User::where('id', $request->mechanic_id)->first();
-            
-                            $add=new tb_log();
-                            $add->id_user=$request->mechanic_id;
-                            $add->id_other=$cus->id;
-                            $add->title='เพิ่มแอร์ แต่ไม่ได้คะแนน';
-                            $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
-                            $add->serial=$ca2;
-                            $add->save();
-                            } catch (Exception $e) {
-                            return response()->json([
-                                'result' => [],
-                                'status' => false,
-                                'message' => $e->getMessage(),
-                            ], 400);
-                            }
-
-
-                    }
+                if ($customer == null) {
+                    $customer = new Customer();
+                    $customer->mechanic_id = $request->mechanic_id;
+                    $customer->first_name = $request->first_name;
+                    $customer->last_name = $request->last_name;
+                    $customer->full_name = $request->first_name . ' ' . $request->last_name;
+                    $customer->phone = $request->phone;
+                    $customer->line = $request->line;
+                    $customer->address = $request->address;
+                    $customer->more_address = $request->more_address;
+                    $customer->latitude = $request->latitude;
+                    $customer->longitude = $request->longitude;
+                    $customer->save();
+                } else {
+                    $customer->mechanic_id = $request->mechanic_id;
+                    $customer->first_name = $request->first_name;
+                    $customer->last_name = $request->last_name;
+                    $customer->full_name = $request->first_name . ' ' . $request->last_name;
+                    $customer->phone = $request->phone;
+                    $customer->line = $request->line;
+                    $customer->address = $request->address;
+                    $customer->more_address = $request->more_address;
+                    $customer->latitude = $request->latitude;
+                    $customer->longitude = $request->longitude;
+                    $customer->save();
                 }
-                // ส่วนเช็ค Model รับ POINT
 
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Success!',
-                    'url_picture' => $this->prefix,
-                ]);
+
+
+
+                $air_conditioner = new AirConditioner();
+                $air_conditioner->customer_id = $customer->id;
+                $air_conditioner->indoor_number = $ca1;
+                $air_conditioner->outdoor_number = $ca2;
+
+                if ($air_conditioner->save()) {
+
+                    // ส่วนเช็ค Model รับ POINT
+                    $se = DB::connection('pgsql')->table('serial_numbers')
+                        // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
+                        ->where('serial_number', $ca2)
+                        ->first();
+
+                    $ae = DB::connection('pgsql')->table('serial_numbers')
+                        // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                        ->where('serial_number', $ca1)
+                        ->first();
+
+                    if ($customer != null) {
+                        // $air = AirModel::where('model_name', $se->product_code)->where('des', $se->product_name)->first();
+                        // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                        $air = AirModel::where('des', $se->product_name)->first();
+                        if ($se->product_name == @$ae->product_name) {
+                            $air_2 = null;
+                        } else {
+                            $air_2 = AirModel::where('des', @$ae->product_name)->first();
+                        }
+                        if ($air != null or $air_2 != null) {
+                            $user = User::where('id', $customer->mechanic_id)->first();
+                            if ($user != null) {
+                                $a1 = $user->point;
+
+                                // if($air!=null and $air_2!=null){
+                                //     $w1=$air->point;
+                                //     $w2=$air_2->point;
+                                //     $ws=$w1+$w2;
+                                //     $a2 = $ws;
+                                // }else{
+                                //     $a2 = $air->point;
+                                // }
+
+                                $a2 = $air->point;
+                                $sum = $a1 + $a2;
+                                $user->point = $sum;
+                                // $user->save();
+
+                                if ($user->save()) {
+                                    $his = new history_point();
+                                    $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : ' . $ca1 . ' และ serial outdoor : ' . $ca2;
+                                    $his->point = @$a2;
+                                    $his->id_user = $user->id;
+                                    $his->id_air = $air_conditioner->id;
+                                    $his->date = date('Y-m-d H:i:s');
+                                    $his->save();
+                                }
+
+                                $air_conditioner->out_name = @$air->des;
+                                $air_conditioner->in_name = @$air_2->des;
+                                $air_conditioner->point = @$a2;
+
+                                if (@$air_2->point == null) {
+                                    $air_conditioner->point2 = 0;
+                                } else {
+                                    $air_conditioner->point2 = @$air_2->point;
+                                }
+
+                                $air_conditioner->save();
+
+                                return response()->json([
+                                    'status' => true,
+                                    'message' => 'Success Receive ' . $a2 . ' Point!',
+                                    'url_picture' => $this->prefix,
+                                ]);
+                            }
+                        } else {
+
+
+                            try {
+                                $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                                $sss = User::where('id', $request->mechanic_id)->first();
+
+                                $add = new tb_log();
+                                $add->id_user = $request->mechanic_id;
+                                $add->id_other = $cus->id;
+                                $add->title = 'เพิ่มแอร์ แต่ไม่ได้คะแนน';
+                                $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . $sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
+                                $add->serial = $ca2;
+                                $add->save();
+                            } catch (Exception $e) {
+                                return response()->json([
+                                    'result' => [],
+                                    'status' => false,
+                                    'message' => $e->getMessage(),
+                                ], 400);
+                            }
+                        }
+                    }
+                    // ส่วนเช็ค Model รับ POINT
+
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'url_picture' => $this->prefix,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Data cannot be saved!'
+                    ], 400);
+                }
             } else {
+
+                try {
+                    $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                    $sss = User::where('id', $request->mechanic_id)->first();
+
+                    $add = new tb_log();
+                    $add->id_user = $request->mechanic_id;
+                    $add->id_other = $cus->id;
+                    $add->title = 'เพิ่มแอร์';
+                    $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . $sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
+                    $add->serial = $ca2;
+                    $add->save();
+                } catch (Exception $e) {
+                    return response()->json([
+                        'result' => [],
+                        'status' => false,
+                        'message' => $e->getMessage(),
+                    ], 400);
+                }
+
+
                 return response()->json([
                     'status' => false,
-                    'message' => 'Data cannot be saved!'
+                    'message' => 'Not Found Air Conditioner in Data.'
                 ], 400);
             }
-        } else {
-
-            try{
-                $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
-                $sss = User::where('id', $request->mechanic_id)->first();
-
-                $add=new tb_log();
-                $add->id_user=$request->mechanic_id;
-                $add->id_other=$cus->id;
-                $add->title='เพิ่มแอร์';
-                $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
-                $add->serial=$ca2;
-                $add->save();
-                } catch (Exception $e) {
-                return response()->json([
-                    'result' => [],
-                    'status' => false,
-                    'message' => $e->getMessage(),
-                ], 400);
-                }
-
-                
-            return response()->json([
-                'status' => false,
-                'message' => 'Not Found Air Conditioner in Data.'
-            ], 400);
-        }
-        // }
+            // }
         } catch (Exception $e) {
             Log::error($e->getMessage());
-    
-            $f=new tb_log();
-            $f->id_user=$request->mechanic_id;
-            $f->title='Error FIX AIR /in '.$request->indoor_number.' /out '.$request->outdoor_number;
-            $f->detail=$e->getMessage();
+
+            $f = new tb_log();
+            $f->id_user = $request->mechanic_id;
+            $f->title = 'Error FIX AIR /in ' . $request->indoor_number . ' /out ' . $request->outdoor_number;
+            $f->detail = $e->getMessage();
             $f->save();
-    
+
             return response()->json([
                 'result' => [],
                 'status' => false,
                 'message' => $e->getMessage(),
             ], 400);
-            }
-
-        
-
-        
+        }
     }
 
     public function update_air_conditioner(Request $request)
     {
 
-        try{
-        $check_validate = [
-            'customer_id' => 'required',
-            'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
-            'indoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
-            'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
-            'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
-        ];
+        try {
+            $check_validate = [
+                'customer_id' => 'required',
+                'indoor_number' => 'nullable|unique:air_conditioners,indoor_number',
+                'indoor_number' => 'nullable|unique:air_conditioners,outdoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,indoor_number',
+                'outdoor_number' => 'required|unique:air_conditioners,outdoor_number',
+            ];
 
-        $error_validator = [
-            'indoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
-            'outdoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
-        ];
+            $error_validator = [
+                'indoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+                'outdoor_number:unique' => 'มีข้อมูลนี้อยู่ในระบบแล้ว',
+            ];
 
-        $validator = Validator::make(
-            $request->all(),
-            $check_validate,
-            $error_validator
-        );
+            $validator = Validator::make(
+                $request->all(),
+                $check_validate,
+                $error_validator
+            );
 
-        if ($validator->fails()) {
-            return response()->json([
-                'status' => false,
-                'message' => $validator->errors()->first(),
-            ], 400);
-        }
-
-        if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
-
-            $king1 = strlen($request->indoor_number);
-
-            if ($king1 > 11) {
-                $ca1 = substr($request->indoor_number, 0, -1);
-            } else {
-                $ca1 = $request->indoor_number;
-            }
-
-            $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-                ->where('serial_number', $ca1)
-                ->get()->count();
-        }else{
-            $ca1=null;
-        }
-
-
-        $king2 = strlen($request->outdoor_number);
-
-        if ($king2 > 11) {
-            $ca2 = substr($request->outdoor_number, 0, -1);
-        } else {
-            $ca2 = $request->outdoor_number;
-        }
-
-        $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-            ->where('serial_number', $ca2)
-            ->get()->count();
-
-        // if (isset($check_serial_indoor)) {
-        //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
-        //         $air_conditioner = new AirConditioner;
-        //         $air_conditioner->customer_id = $request->customer_id;
-        //         $air_conditioner->indoor_number = $ca1;
-        //         $air_conditioner->outdoor_number = $ca2;
-
-        //         if ($air_conditioner->save()) {
-        //             $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
-
-
-        //             // ส่วนเช็ค Model รับ POINT
-        //             $se = DB::connection('pgsql')->table('serial_numbers')
-        //             ->where('serial_number', 'LIKE', '%'.$ca1.'%')
-        //             // ->where('serial_number', $request->indoor_number)
-        //             ->first();
-        //             if($se!=null){
-        //             if($customer!=null){
-        //                 $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
-        //                 if($air!=null){
-        //                 $user = User::where('id', $customer->mechanic_id)->first();
-        //                 if($user!=null){
-        //                 $a1=$user->point;
-        //                 $a2=$air->point;
-        //                 $sum=$a1+$a2;
-        //                 $user->point=$sum;
-        //                 $user->save();
-
-        //                 $his=new history_point();
-        //                 $his->title='ได้รับ Point จากการทำรายการ';
-        //                 $his->point=$a2;
-        //                 $his->id_user=$user->id;
-        //                 $his->date=date('Y-m-d H:i:s');
-        //                 $his->save();
-
-        //                 $air_conditioner->in_name = $air->des;
-        //                 $air_conditioner->point = $air->point;
-        //                 $air_conditioner->save();
-
-        //                 return response()->json([
-        //                     'status' => true,
-        //                     'message' => 'Success Receive '.$a2.' Point!',
-        //                     'result' => [
-        //                         'customer' => $customer,
-        //                     ],
-        //                     'url_picture' => $this->prefix,
-        //                 ]);
-
-        //                 }
-        //             }}
-        //             }
-        //             // ส่วนเช็ค Model รับ POINT
-
-        //             return response()->json([
-        //                 'status' => true,
-        //                 'message' => 'Success!',
-        //                 'result' => [
-        //                     'customer' => $customer,
-        //                 ],
-        //                 'url_picture' => $this->prefix,
-        //             ]);
-        //         } else {
-        //             return response()->json([
-        //                 'status' => false,
-        //                 'message' => 'Can Not Update'
-        //             ], 400);
-        //         }
-        //     } else {
-        //         return response()->json([
-        //             'status' => false,
-        //             'message' => 'Not Found Air Conditioner in Data.'
-        //         ], 400);
-        //     }
-        // } else {
-
-         
-
-        if ($check_serial_outdoor != 0) {
-
-            $check=AirConditioner::where('indoor_number',$ca1)->where('outdoor_number',$ca2)->first();
-            if($check!=null){
+            if ($validator->fails()) {
                 return response()->json([
                     'status' => false,
-                    'message' => 'มีการลงทะเบียนแอร์นี้ไปแล้ว'
+                    'message' => $validator->errors()->first(),
                 ], 400);
             }
 
+            if ($request->indoor_number != null  && $request->indoor_number != '' && isset($request->indoor_number)) {
 
-            $air_conditioner = new AirConditioner;
-            $air_conditioner->customer_id = $request->customer_id;
-            $air_conditioner->indoor_number = $ca1;
-            $air_conditioner->outdoor_number = $ca2;
+                $king1 = strlen($request->indoor_number);
 
-         
-            if ($air_conditioner->save()) {
-                $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+                if ($king1 > 11) {
+                    $ca1 = substr($request->indoor_number, 0, -1);
+                } else {
+                    $ca1 = $request->indoor_number;
+                }
 
-                // ส่วนเช็ค Model รับ POINT
-                $se = DB::connection('pgsql')->table('serial_numbers')
-                    // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
-                    ->where('serial_number', $ca2)
-                    ->first();
-
-                $ae = DB::connection('pgsql')->table('serial_numbers')
-                    // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
                     ->where('serial_number', $ca1)
-                    ->first();
-
-                if ($customer != null) {
-                    // $air = AirModel::where('model_name', @$se->product_code)->where('des', @$se->product_name)->first();
-                    // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
-                    $air = AirModel::where('des', @$se->product_name)->first();
-                    if($se->product_name==@$ae->product_name){
-                        $air_2=null;
-                    }else{
-                        $air_2 = AirModel::where('des', @$ae->product_name)->first();
-                    }
-                    if ($air != null or $air_2 != null) {
-                        $user = User::where('id', $customer->mechanic_id)->first();
-                        if ($user != null) {
-                            $a1 = $user->point;
-
-                            // if($air!=null and $air_2!=null){
-                            //     $w1=$air->point;
-                            //     $w2=$air_2->point;
-                            //     $ws=$w1+$w2;
-                            //     $a2 = $ws;
-                            // }else{
-                            //     $a2 = $air->point;
-                            // }
-                            
-                            $a2 = $air->point;
-                            $sum = $a1 + $a2;
-                            $user->point = $sum;
-                            // $user->save();
-
-                            if($user->save()){
-                            $his = new history_point();
-                            $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : '.$ca1.' และ serial outdoor : '.$ca2;
-                            $his->point = @$a2;
-                            $his->id_air = $air_conditioner->id;
-                            $his->id_user = $user->id;
-                            $his->date = date('Y-m-d H:i:s');
-                            $his->save();
-                            }
-
-                            $air_conditioner->out_name = @$air->des;
-                            $air_conditioner->in_name = @$air_2->des;
-                            $air_conditioner->point = @$a2;
-
-                             if(@$air_2->point==null){
-                                $air_conditioner->point2 = 0;
-                            }else{
-                                $air_conditioner->point2 = @$air_2->point;
-                            }
-                            
-                            $air_conditioner->save();
-
-                            return response()->json([
-                                'status' => true,
-                                'message' => 'Success Receive ' . $a2 . ' Point!',
-                                'result' => [
-                                    'customer' => $customer,
-                                ],
-                                'url_picture' => $this->prefix,
-                            ]);
-                        }
-                    }else{
-                        try{
-                            $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
-                            $sss = User::where('id', $request->mechanic_id)->first();
-            
-                            $add=new tb_log();
-                            $add->id_user=$request->mechanic_id;
-                            $add->id_other=$cus->id;
-                            $add->title='เพิ่มแอร์ แต่ไม่ได้คะแนน';
-                            $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
-                            $add->serial=$ca2;
-                            $add->save();
-                            } catch (Exception $e) {
-                            return response()->json([
-                                'result' => [],
-                                'status' => false,
-                                'message' => $e->getMessage(),
-                            ], 400);
-                            }
-
-                    }
-                }
-                // ส่วนเช็ค Model รับ POINT
-
-                return response()->json([
-                    'status' => true,
-                    'message' => 'Success!',
-                    'result' => [
-                        'customer' => $customer,
-                    ],
-                    'url_picture' => $this->prefix,
-                ]);
+                    ->get()->count();
             } else {
+                $ca1 = null;
+            }
+
+
+            $king2 = strlen($request->outdoor_number);
+
+            if ($king2 > 11) {
+                $ca2 = substr($request->outdoor_number, 0, -1);
+            } else {
+                $ca2 = $request->outdoor_number;
+            }
+
+            $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+                ->where('serial_number', $ca2)
+                ->get()->count();
+
+            // if (isset($check_serial_indoor)) {
+            //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
+            //         $air_conditioner = new AirConditioner;
+            //         $air_conditioner->customer_id = $request->customer_id;
+            //         $air_conditioner->indoor_number = $ca1;
+            //         $air_conditioner->outdoor_number = $ca2;
+
+            //         if ($air_conditioner->save()) {
+            //             $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+
+
+            //             // ส่วนเช็ค Model รับ POINT
+            //             $se = DB::connection('pgsql')->table('serial_numbers')
+            //             ->where('serial_number', 'LIKE', '%'.$ca1.'%')
+            //             // ->where('serial_number', $request->indoor_number)
+            //             ->first();
+            //             if($se!=null){
+            //             if($customer!=null){
+            //                 $air = AirModel::where('model_name',$se->product_code)->where('des',$se->product_name)->first();
+            //                 if($air!=null){
+            //                 $user = User::where('id', $customer->mechanic_id)->first();
+            //                 if($user!=null){
+            //                 $a1=$user->point;
+            //                 $a2=$air->point;
+            //                 $sum=$a1+$a2;
+            //                 $user->point=$sum;
+            //                 $user->save();
+
+            //                 $his=new history_point();
+            //                 $his->title='ได้รับ Point จากการทำรายการ';
+            //                 $his->point=$a2;
+            //                 $his->id_user=$user->id;
+            //                 $his->date=date('Y-m-d H:i:s');
+            //                 $his->save();
+
+            //                 $air_conditioner->in_name = $air->des;
+            //                 $air_conditioner->point = $air->point;
+            //                 $air_conditioner->save();
+
+            //                 return response()->json([
+            //                     'status' => true,
+            //                     'message' => 'Success Receive '.$a2.' Point!',
+            //                     'result' => [
+            //                         'customer' => $customer,
+            //                     ],
+            //                     'url_picture' => $this->prefix,
+            //                 ]);
+
+            //                 }
+            //             }}
+            //             }
+            //             // ส่วนเช็ค Model รับ POINT
+
+            //             return response()->json([
+            //                 'status' => true,
+            //                 'message' => 'Success!',
+            //                 'result' => [
+            //                     'customer' => $customer,
+            //                 ],
+            //                 'url_picture' => $this->prefix,
+            //             ]);
+            //         } else {
+            //             return response()->json([
+            //                 'status' => false,
+            //                 'message' => 'Can Not Update'
+            //             ], 400);
+            //         }
+            //     } else {
+            //         return response()->json([
+            //             'status' => false,
+            //             'message' => 'Not Found Air Conditioner in Data.'
+            //         ], 400);
+            //     }
+            // } else {
+
+
+
+            if ($check_serial_outdoor != 0) {
+
+                $check = AirConditioner::where('indoor_number', $ca1)->where('outdoor_number', $ca2)->first();
+                if ($check != null) {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'มีการลงทะเบียนแอร์นี้ไปแล้ว'
+                    ], 400);
+                }
+
+
+                $air_conditioner = new AirConditioner;
+                $air_conditioner->customer_id = $request->customer_id;
+                $air_conditioner->indoor_number = $ca1;
+                $air_conditioner->outdoor_number = $ca2;
+
+
+                if ($air_conditioner->save()) {
+                    $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
+
+                    // ส่วนเช็ค Model รับ POINT
+                    $se = DB::connection('pgsql')->table('serial_numbers')
+                        // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
+                        ->where('serial_number', $ca2)
+                        ->first();
+
+                    $ae = DB::connection('pgsql')->table('serial_numbers')
+                        // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                        ->where('serial_number', $ca1)
+                        ->first();
+
+                    if ($customer != null) {
+                        // $air = AirModel::where('model_name', @$se->product_code)->where('des', @$se->product_name)->first();
+                        // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
+                        $air = AirModel::where('des', @$se->product_name)->first();
+                        if ($se->product_name == @$ae->product_name) {
+                            $air_2 = null;
+                        } else {
+                            $air_2 = AirModel::where('des', @$ae->product_name)->first();
+                        }
+                        if ($air != null or $air_2 != null) {
+                            $user = User::where('id', $customer->mechanic_id)->first();
+                            if ($user != null) {
+                                $a1 = $user->point;
+
+                                // if($air!=null and $air_2!=null){
+                                //     $w1=$air->point;
+                                //     $w2=$air_2->point;
+                                //     $ws=$w1+$w2;
+                                //     $a2 = $ws;
+                                // }else{
+                                //     $a2 = $air->point;
+                                // }
+
+                                $a2 = $air->point;
+                                $sum = $a1 + $a2;
+                                $user->point = $sum;
+                                // $user->save();
+
+                                if ($user->save()) {
+                                    $his = new history_point();
+                                    $his->title = 'ได้รับ Point จากการทำรายการ serial indoor : ' . $ca1 . ' และ serial outdoor : ' . $ca2;
+                                    $his->point = @$a2;
+                                    $his->id_air = $air_conditioner->id;
+                                    $his->id_user = $user->id;
+                                    $his->date = date('Y-m-d H:i:s');
+                                    $his->save();
+                                }
+
+                                $air_conditioner->out_name = @$air->des;
+                                $air_conditioner->in_name = @$air_2->des;
+                                $air_conditioner->point = @$a2;
+
+                                if (@$air_2->point == null) {
+                                    $air_conditioner->point2 = 0;
+                                } else {
+                                    $air_conditioner->point2 = @$air_2->point;
+                                }
+
+                                $air_conditioner->save();
+
+                                return response()->json([
+                                    'status' => true,
+                                    'message' => 'Success Receive ' . $a2 . ' Point!',
+                                    'result' => [
+                                        'customer' => $customer,
+                                    ],
+                                    'url_picture' => $this->prefix,
+                                ]);
+                            }
+                        } else {
+                            try {
+                                $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                                $sss = User::where('id', $request->mechanic_id)->first();
+
+                                $add = new tb_log();
+                                $add->id_user = $request->mechanic_id;
+                                $add->id_other = $cus->id;
+                                $add->title = 'เพิ่มแอร์ แต่ไม่ได้คะแนน';
+                                $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . $sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
+                                $add->serial = $ca2;
+                                $add->save();
+                            } catch (Exception $e) {
+                                return response()->json([
+                                    'result' => [],
+                                    'status' => false,
+                                    'message' => $e->getMessage(),
+                                ], 400);
+                            }
+                        }
+                    }
+                    // ส่วนเช็ค Model รับ POINT
+
+                    return response()->json([
+                        'status' => true,
+                        'message' => 'Success!',
+                        'result' => [
+                            'customer' => $customer,
+                        ],
+                        'url_picture' => $this->prefix,
+                    ]);
+                } else {
+                    return response()->json([
+                        'status' => false,
+                        'message' => 'Can Not Update'
+                    ], 400);
+                }
+            } else {
+
+                try {
+                    $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
+                    $sss = User::where('id', $request->mechanic_id)->first();
+
+                    $add = new tb_log();
+                    $add->id_user = $request->mechanic_id;
+                    $add->id_other = $cus->id;
+                    $add->title = 'เพิ่มแอร์';
+                    $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . $sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
+                    $add->serial = $ca2;
+                    $add->save();
+                } catch (Exception $e) {
+                    return response()->json([
+                        'result' => [],
+                        'status' => false,
+                        'message' => $e->getMessage(),
+                    ], 400);
+                }
+
+
                 return response()->json([
                     'status' => false,
-                    'message' => 'Can Not Update'
+                    'message' => 'Not Found Air Conditioner in Data.'
                 ], 400);
             }
-        } else {
-
-            try{
-                $cus = Customer::where('mechanic_id', '!=', null)->where('first_name', $request->first_name)->where('last_name', $request->last_name)->first();
-                $sss = User::where('id', $request->mechanic_id)->first();
-
-                $add=new tb_log();
-                $add->id_user=$request->mechanic_id;
-                $add->id_other=$cus->id;
-                $add->title='เพิ่มแอร์';
-                $add->detail='เพิ่มแอร์ ชื่อคนเพิ่ม '.$sss->name.' เพิ่มให้ลูกค้าชื่อ '.$request->first_name.' '.$request->last_name;
-                $add->serial=$ca2;
-                $add->save();
-                } catch (Exception $e) {
-                return response()->json([
-                    'result' => [],
-                    'status' => false,
-                    'message' => $e->getMessage(),
-                ], 400);
-                }
-
-
-            return response()->json([
-                'status' => false,
-                'message' => 'Not Found Air Conditioner in Data.'
-            ], 400);
-        }
-        // }
+            // }
 
         } catch (Exception $e) {
             Log::error($e->getMessage());
-    
-            $f=new tb_log();
-            $f->id_user=$request->mechanic_id;
-            $f->title='Error FIX AIR /in '.$request->indoor_number.' /out '.$request->outdoor_number;
-            $f->detail=$e->getMessage();
+
+            $f = new tb_log();
+            $f->id_user = $request->mechanic_id;
+            $f->title = 'Error FIX AIR /in ' . $request->indoor_number . ' /out ' . $request->outdoor_number;
+            $f->detail = $e->getMessage();
             $f->save();
-    
+
             return response()->json([
                 'result' => [],
                 'status' => false,
                 'message' => $e->getMessage(),
             ], 400);
-            }
+        }
     }
 
     public function update_customer(Request $request)
