@@ -221,7 +221,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                             <option value="">ระบุจังหวัด</option>
                                                             @foreach ($provinces as $province)
                                                             <option value="{{$province->id}}" @if($province->id ==
-                                                                @$item->province) selected @endif
+                                                                @$item->work_province) selected @endif
                                                                 >{{$province->name_th}}</option>
                                                             @endforeach
 
