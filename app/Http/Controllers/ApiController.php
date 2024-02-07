@@ -15,7 +15,7 @@ use App\Models\banner;
 use App\Models\product;
 use App\Models\Customer;
 use App\Models\district;
-
+use Illuminate\Support\Facades\Http;
 use App\Models\province;
 use App\Models\Training;
 use App\Models\buy_point;
@@ -1750,51 +1750,12 @@ class ApiController extends Controller
             ], 400);
         }
 
-        $curl = curl_init();
-
-        $postData = [
-            'province' =>  $wo->work_province
-        ];
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-
-        $curl = curl_init();
-
-        $postData = [
-            'province' =>  "all"
-        ];
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-        // echo $response;
-
+        $response = Http::post('http://heavyoneclick.com:3000/updateRealtime', [
+            'province' => $wo->work_province
+        ]);
+        $response2 = Http::post('http://heavyoneclick.com:3000/updateRealtime', [
+            'province' => "all"
+        ]);
         $message = "Success!";
         $status = true;
         return response()->json([

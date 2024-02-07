@@ -2,34 +2,35 @@
 
 namespace App\Http\Controllers;
 
+use DB;
+use PDF;
+use Auth;
 use App\WO;
 use App\WO_item;
-use App\Models\Customer;
-use Illuminate\Http\Request;
-use App\Http\Requests\WOCreateRequest;
 
-use App\Models\TechnicianService;
+use App\AirModel;
 
 use App\Models\noti;
 
-use App\AirModel;
-use App\Wo_air_checkModel;
 use App\Air_listModel;
+use App\Models\Customer;
+use App\Wo_air_checkModel;
 
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
+use Illuminate\support\carbon;
+use App\Models\TechnicianService;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Session;
-use Illuminate\Support\Facades\View;
 
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\View;
 use Maatwebsite\Excel\Facades\Excel;
-use Illuminate\support\carbon;
-use DB;
-use Auth;
+use App\Http\Requests\WOCreateRequest;
+use Illuminate\Support\Facades\Session;
 
-use PDF;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 
 class WOController extends Controller
 {
@@ -288,51 +289,12 @@ class WOController extends Controller
 
 
         $item->save();
-
-        $curl = curl_init();
-
-        $postData = [
+        $response1 = Http::post('http://heavyoneclick.com:3000/updateRealtime', [
             'province' => $r->work_province
-        ];
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-        // echo $response;
-
-        $curl = curl_init();
-
-        $postData = [
-            'province' =>  "all"
-        ];
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
+        ]);
+        $response2 = Http::post('http://heavyoneclick.com:3000/updateRealtime', [
+            'province' => "all"
+        ]);
 
 
         $aaa = new noti();
@@ -470,50 +432,12 @@ class WOController extends Controller
 
         $wo_item = DB::table('wo_item')->where('id_wo', $id)->update(['d_status' => 1]);
 
-        $curl = curl_init();
-
-        $postData = [
+        $response1 = Http::post('http://heavyoneclick.com:3000/updateRealtime', [
             'province' => $item->work_province
-        ];
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
-        // echo $response;
-
-        $curl = curl_init();
-
-        $postData = [
-            'province' =>  "all"
-        ];
-
-        curl_setopt_array($curl, array(
-            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-            CURLOPT_RETURNTRANSFER => true,
-            CURLOPT_ENCODING => '',
-            CURLOPT_MAXREDIRS => 10,
-            CURLOPT_TIMEOUT => 0,
-            CURLOPT_FOLLOWLOCATION => true,
-            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-            CURLOPT_CUSTOMREQUEST => 'POST',
-            CURLOPT_POSTFIELDS => http_build_query($postData),
-        ));
-
-        $response = curl_exec($curl);
-
-        curl_close($curl);
+        ]);
+        $response2 = Http::post('http://heavyoneclick.com:3000/updateRealtime', [
+            'province' => "all"
+        ]);
         // echo $response;
 
         return redirect()->back()->with('success', 'Sucess!');
