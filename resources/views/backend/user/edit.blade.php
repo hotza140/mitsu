@@ -211,7 +211,26 @@ $picture= Storage::disk('s3')->url($filePath);
                                           $amphures = App\Models\amphur::orderby('id', 'asc')->get();
                                           $districts = App\Models\district::orderby('id', 'asc')->get();
                                         ?>
+
+
                                         <div class="form-group row">
+                                            <div class="col-md-6 col-sm-12">
+                                                        <label class="col-form-label">จังหวัด</label>
+                                                        <select class="form-control" name="province" id="province"
+                                                            required="">
+                                                            <option value="">ระบุจังหวัด</option>
+                                                            @foreach ($provinces as $province)
+                                                            <option value="{{$province->id}}" @if($province->id ==
+                                                                @$item->province) selected @endif
+                                                                >{{$province->name_th}}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+                                        </div>
+
+
+                                        <!-- <div class="form-group row">
                                                     <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">อำเภอบริเวณที่ทำงาน</label>
                                                         <select class="form-control" name="work_amupur" id="amphure"
@@ -239,7 +258,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                             @endforeach
                                                         </select>
                                                     </div>
-                                                </div>
+                                                </div> -->
 
 
                                         <button type="submit" class="btn btn-success " style="color:white;"
