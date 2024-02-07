@@ -199,89 +199,89 @@ class WOController extends Controller
         $item->work_district = $r->work_district;
 
 
-        if($r->pic_before){
-            $check= 'file/upload/' . $item->pic_before;
-                  Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_before');
-          $fileName = $_FILES['pic_before']['name'];
-           $fileName = date('YmdHis').'_'.$fileName;
-          $filePath = 'file/upload/' . $fileName;
-          Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_before = $fileName;
-          }
+        if ($r->pic_before) {
+            $check = 'file/upload/' . $item->pic_before;
+            Storage::disk('s3')->delete($check);
+            $file = $r->file('pic_before');
+            $fileName = $_FILES['pic_before']['name'];
+            $fileName = date('YmdHis') . '_' . $fileName;
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->pic_before = $fileName;
+        }
 
-          if($r->pic_after){
-            $check= 'file/upload/' . $item->pic_after;
-                  Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_after');
-          $fileName = $_FILES['pic_after']['name'];
-           $fileName = date('YmdHis').'_'.$fileName;
-          $filePath = 'file/upload/' . $fileName;
-          Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_after = $fileName;
-          }
+        if ($r->pic_after) {
+            $check = 'file/upload/' . $item->pic_after;
+            Storage::disk('s3')->delete($check);
+            $file = $r->file('pic_after');
+            $fileName = $_FILES['pic_after']['name'];
+            $fileName = date('YmdHis') . '_' . $fileName;
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->pic_after = $fileName;
+        }
 
-          if($r->pic_before2){
-            $check= 'file/upload/' . $item->pic_before2;
-                  Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_before2');
-          $fileName = $_FILES['pic_before2']['name'];
-           $fileName = date('YmdHis').'_'.$fileName;
-          $filePath = 'file/upload/' . $fileName;
-          Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_before2 = $fileName;
-          }
+        if ($r->pic_before2) {
+            $check = 'file/upload/' . $item->pic_before2;
+            Storage::disk('s3')->delete($check);
+            $file = $r->file('pic_before2');
+            $fileName = $_FILES['pic_before2']['name'];
+            $fileName = date('YmdHis') . '_' . $fileName;
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->pic_before2 = $fileName;
+        }
 
-          if($r->pic_after2){
-            $check= 'file/upload/' . $item->pic_after2;
-                  Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_after2');
-          $fileName = $_FILES['pic_after2']['name'];
-           $fileName = date('YmdHis').'_'.$fileName;
-          $filePath = 'file/upload/' . $fileName;
-          Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_after2 = $fileName;
-          }
-       
+        if ($r->pic_after2) {
+            $check = 'file/upload/' . $item->pic_after2;
+            Storage::disk('s3')->delete($check);
+            $file = $r->file('pic_after2');
+            $fileName = $_FILES['pic_after2']['name'];
+            $fileName = date('YmdHis') . '_' . $fileName;
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->pic_after2 = $fileName;
+        }
 
-        $air = AirModel::where('des',$r->model_name)->first();
-        if($air!=null){
+
+        $air = AirModel::where('des', $r->model_name)->first();
+        if ($air != null) {
             $item->air_model = $air->id;
-        }else{
+        } else {
             $air = new AirModel();
-            $air->des=$r->model_name;
-            $air->model_name='no_name';
-            $air->point=0;
+            $air->des = $r->model_name;
+            $air->model_name = 'no_name';
+            $air->point = 0;
             $air->save();
 
             $item->air_model = $air->id;
         }
 
         $customer = Customer::where('first_name', $r->first_name)
-        ->where('last_name', $r->last_name)->first();
+            ->where('last_name', $r->last_name)->first();
 
-        if($customer==null){
-        $customer = new Customer();
-        $customer->first_name = $r->first_name;
-        $customer->last_name = $r->last_name;
-        $customer->full_name = $r->first_name . ' ' . $r->last_name;
-        $customer->phone = $r->phone;
-        $customer->address = $r->address;
+        if ($customer == null) {
+            $customer = new Customer();
+            $customer->first_name = $r->first_name;
+            $customer->last_name = $r->last_name;
+            $customer->full_name = $r->first_name . ' ' . $r->last_name;
+            $customer->phone = $r->phone;
+            $customer->address = $r->address;
 
-        $customer->mechanic_id = null;
-        $customer->line = null;
-        $customer->more_address = null;
-        $customer->latitude = 0;
-        $customer->longitude = 0;
+            $customer->mechanic_id = null;
+            $customer->line = null;
+            $customer->more_address = null;
+            $customer->latitude = 0;
+            $customer->longitude = 0;
 
-        $customer->save();
-        }else{
-        $customer->first_name = $r->first_name;
-        $customer->last_name = $r->last_name;
-        $customer->full_name = $r->first_name . ' ' . $r->last_name;
-        $customer->phone = $r->phone;
-        $customer->address = $r->address;
-        $customer->save();
+            $customer->save();
+        } else {
+            $customer->first_name = $r->first_name;
+            $customer->last_name = $r->last_name;
+            $customer->full_name = $r->first_name . ' ' . $r->last_name;
+            $customer->phone = $r->phone;
+            $customer->address = $r->address;
+            $customer->save();
         }
 
         $item->customer_id = $customer->id;
@@ -291,15 +291,20 @@ class WOController extends Controller
 
         $curl = curl_init();
 
+        $postData = [
+            'province' => $r->work_province
+        ];
+
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => http_build_query($postData),
         ));
 
         $response = curl_exec($curl);
@@ -307,11 +312,33 @@ class WOController extends Controller
         curl_close($curl);
         // echo $response;
 
+        $curl = curl_init();
+
+        $postData = [
+            'province' =>  "all"
+        ];
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => http_build_query($postData),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+
 
         $aaa = new noti();
         $aaa->id_work = $item->id;
-     
-        $aaa->titleth = 'มีงานใหม่ หมายเลขงาน/'.$item->wo_number;
+
+        $aaa->titleth = 'มีงานใหม่ หมายเลขงาน/' . $item->wo_number;
         $aaa->detailth = 'มีงานใหม่';
 
         $aaa->id_admin = Auth::user()->id;
@@ -343,85 +370,85 @@ class WOController extends Controller
 
         $item->technician_id = $r->technician_id;
 
-        if($r->pic_before){
-            $check= 'file/upload/' . $item->pic_before;
-                  Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_before');
-          $fileName = $_FILES['pic_before']['name'];
-           $fileName = date('YmdHis').'_'.$fileName;
-          $filePath = 'file/upload/' . $fileName;
-          Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_before = $fileName;
-          }
+        if ($r->pic_before) {
+            $check = 'file/upload/' . $item->pic_before;
+            Storage::disk('s3')->delete($check);
+            $file = $r->file('pic_before');
+            $fileName = $_FILES['pic_before']['name'];
+            $fileName = date('YmdHis') . '_' . $fileName;
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->pic_before = $fileName;
+        }
 
-          if($r->pic_before2){
-            $check= 'file/upload/' . $item->pic_before2;
-                  Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_before2');
-          $fileName = $_FILES['pic_before2']['name'];
-           $fileName = date('YmdHis').'_'.$fileName;
-          $filePath = 'file/upload/' . $fileName;
-          Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_before2 = $fileName;
-          }
+        if ($r->pic_before2) {
+            $check = 'file/upload/' . $item->pic_before2;
+            Storage::disk('s3')->delete($check);
+            $file = $r->file('pic_before2');
+            $fileName = $_FILES['pic_before2']['name'];
+            $fileName = date('YmdHis') . '_' . $fileName;
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->pic_before2 = $fileName;
+        }
 
-          if($r->pic_after2){
-            $check= 'file/upload/' . $item->pic_after2;
-                  Storage::disk('s3')->delete($check);
-          $file = $r->file('pic_after2');
-          $fileName = $_FILES['pic_after2']['name'];
-           $fileName = date('YmdHis').'_'.$fileName;
-          $filePath = 'file/upload/' . $fileName;
-          Storage::disk('s3')->put($filePath, file_get_contents($file));
-          $item->pic_after2 = $fileName;
-          }
+        if ($r->pic_after2) {
+            $check = 'file/upload/' . $item->pic_after2;
+            Storage::disk('s3')->delete($check);
+            $file = $r->file('pic_after2');
+            $fileName = $_FILES['pic_after2']['name'];
+            $fileName = date('YmdHis') . '_' . $fileName;
+            $filePath = 'file/upload/' . $fileName;
+            Storage::disk('s3')->put($filePath, file_get_contents($file));
+            $item->pic_after2 = $fileName;
+        }
 
-        $air = AirModel::where('des',$r->model_name)->first();
-        if($air!=null){
+        $air = AirModel::where('des', $r->model_name)->first();
+        if ($air != null) {
             $item->air_model = $air->id;
-        }else{
+        } else {
             $air = new AirModel();
-            $air->des=$r->model_name;
-            $air->model_name='no_name';
-            $air->point=0;
+            $air->des = $r->model_name;
+            $air->model_name = 'no_name';
+            $air->point = 0;
             $air->save();
 
             $item->air_model = $air->id;
         }
-        
+
 
         $customer = Customer::where('first_name', $r->first_name)
-        ->where('last_name', $r->last_name)->first();
+            ->where('last_name', $r->last_name)->first();
 
-        if($customer==null){
-        $customer = new Customer();
-        $customer->first_name = $r->first_name;
-        $customer->last_name = $r->last_name;
-        $customer->full_name = $r->first_name . ' ' . $r->last_name;
-        $customer->phone = $r->phone;
-        $customer->address = $r->address;
+        if ($customer == null) {
+            $customer = new Customer();
+            $customer->first_name = $r->first_name;
+            $customer->last_name = $r->last_name;
+            $customer->full_name = $r->first_name . ' ' . $r->last_name;
+            $customer->phone = $r->phone;
+            $customer->address = $r->address;
 
-        $customer->mechanic_id = null;
-        $customer->line = null;
-        $customer->more_address = null;
-        $customer->latitude = 0;
-        $customer->longitude = 0;
+            $customer->mechanic_id = null;
+            $customer->line = null;
+            $customer->more_address = null;
+            $customer->latitude = 0;
+            $customer->longitude = 0;
 
-        $customer->save();
-        }else{
-        $customer->first_name = $r->first_name;
-        $customer->last_name = $r->last_name;
-        $customer->full_name = $r->first_name . ' ' . $r->last_name;
-        $customer->phone = $r->phone;
-        $customer->address = $r->address;
-        $customer->save();
+            $customer->save();
+        } else {
+            $customer->first_name = $r->first_name;
+            $customer->last_name = $r->last_name;
+            $customer->full_name = $r->first_name . ' ' . $r->last_name;
+            $customer->phone = $r->phone;
+            $customer->address = $r->address;
+            $customer->save();
         }
 
         $item->customer_id = $customer->id;
         $item->save();
 
         // return redirect()->to('/backend/wo')->with('success', 'Sucess!');
-        return redirect()->to('/backend/wo_edit/'.$id)->with('success', 'Sucess!');
+        return redirect()->to('/backend/wo_edit/' . $id)->with('success', 'Sucess!');
     }
     public function wo_edit($id)
     {
@@ -441,19 +468,47 @@ class WOController extends Controller
         $item->d_status = 1;
         $item->save();
 
-        $wo_item=DB::table('wo_item')->where('id_wo',$id)->update(['d_status' => 1]);
+        $wo_item = DB::table('wo_item')->where('id_wo', $id)->update(['d_status' => 1]);
 
         $curl = curl_init();
 
+        $postData = [
+            'province' => $item->work_province
+        ];
+
         curl_setopt_array($curl, array(
-        CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
-        CURLOPT_RETURNTRANSFER => true,
-        CURLOPT_ENCODING => '',
-        CURLOPT_MAXREDIRS => 10,
-        CURLOPT_TIMEOUT => 0,
-        CURLOPT_FOLLOWLOCATION => true,
-        CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
-        CURLOPT_CUSTOMREQUEST => 'GET',
+            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => http_build_query($postData),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        // echo $response;
+
+        $curl = curl_init();
+
+        $postData = [
+            'province' =>  "all"
+        ];
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'http://heavyoneclick.com:3000/updateRealtime',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => http_build_query($postData),
         ));
 
         $response = curl_exec($curl);

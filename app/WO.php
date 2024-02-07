@@ -23,6 +23,7 @@ class WO extends Model
         'wo_status',
         'wo_remark',
         'wo_picture',
+        'work_province'
     ];
 
     public function customer()
@@ -34,7 +35,4 @@ class WO extends Model
     {
         return $this->belongsTo('App\AirModel', 'air_model');
     }
-
-    
-
 }
