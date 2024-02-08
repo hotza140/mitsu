@@ -1170,7 +1170,7 @@ public function user_item($id){
         $item=new history_point();
         $item->title='เพิ่มแต้มโดย ADMIN ('.Auth::user()->email.')';
         $item->point=$r->point;
-        $toppic->point=$r->toppic;
+        $item->toppic=$r->toppic;
         $item->id_user=$r->id_user;
         $item->date=date('Y-m-d H:i:s');
         $item->save();
