@@ -217,7 +217,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                             <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">จังหวัด</label>
                                                         <select class="form-control" name="work_province" id="province"
-                                                            required="">
+                                                            >
                                                             <option value="">ระบุจังหวัด</option>
                                                             @foreach ($provinces as $province)
                                                             <option value="{{$province->id}}" @if($province->id ==
@@ -234,7 +234,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                     <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">อำเภอบริเวณที่ทำงาน</label>
                                                         <select class="form-control" name="work_amupur" id="amphure"
-                                                            required="">
+                                                            >
                                                             <option value="">ระบุอำเภอ</option>
                                                             @foreach ($amphures as $amphure)
                                                             <option value="{{$amphure->id}}" @if($amphure->id ==
@@ -249,7 +249,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                     <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">ตำบลบริเวณที่ทำงาน</label>
                                                         <select class="form-control" name="work_district" id="district"
-                                                            required="">
+                                                            >
                                                             <option value="">ระบุตำบล</option>
                                                             @foreach ($districts as $district)
                                                             <option value="{{$district->id}}" @if($district->id ==
@@ -310,6 +310,15 @@ $picture= Storage::disk('s3')->url($filePath);
                                                 <div class="col-sm-2">
                                                     <label class="col-form-label">Point</label>
                                                     <input type="number" name="point" class="form-control" id=""
+                                                        value="" required>
+                                                </div>
+                                            </div>
+                                            <br>
+
+                                            <div class="form-group row">
+                                                <div class="col-sm-7">
+                                                    <label class="col-form-label">หมายเหตุ</label>
+                                                    <input type="text" name="toppic" class="form-control" id=""
                                                         value="" required>
                                                 </div>
                                             </div>

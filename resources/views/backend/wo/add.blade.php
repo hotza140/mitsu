@@ -189,7 +189,7 @@
                                             <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">จังหวัด</label>
                                                         <select class="form-control" name="work_province" id="province"
-                                                            required="">
+                                                            >
                                                             <option value="">ระบุจังหวัด</option>
                                                             @foreach ($provinces as $province)
                                                             <option value="{{$province->id}}" @if($province->id ==
@@ -205,7 +205,7 @@
                                                     <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">อำเภอ</label>
                                                         <select class="form-control" name="work_amupur" id="amphure"
-                                                            required="">
+                                                            >
                                                             <option value="">ระบุอำเภอ</option>
                                                             @foreach ($amphures as $amphure)
                                                             <option value="{{$amphure->id}}" @if($amphure->id ==
@@ -220,7 +220,7 @@
                                                     <div class="col-md-6 col-sm-12">
                                                         <label class="col-form-label">ตำบล</label>
                                                         <select class="form-control" name="work_district" id="district"
-                                                            required="">
+                                                            >
                                                             <option value="">ระบุตำบล</option>
                                                             @foreach ($districts as $district)
                                                             <option value="{{$district->id}}" @if($district->id ==
