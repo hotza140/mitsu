@@ -18,7 +18,7 @@ use Yajra\DataTables\Facades\DataTables;
 
 use Illuminate\Contracts\View\View;
 use Maatwebsite\Excel\Concerns\FromView;
-class dataExport implements FromView
+class trainExport implements FromView
 {
     // public function collection()
     public function view(): View
