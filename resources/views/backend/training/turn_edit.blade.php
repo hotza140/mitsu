@@ -252,7 +252,7 @@
                      <?php
                      $point = App\Models\TrainingList::where('turn_id', $item->id)->get();
 
-                     $call = App\Models\TrainingTurn::where('turn_id', $id)->first();
+                     $call = App\Models\TrainingTurn::where('id', $id)->first();
                      $aaa = App\Models\Training::where('id', @$call->training_id)->first();
 
                      if($aaa!=null){
