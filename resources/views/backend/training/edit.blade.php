@@ -316,6 +316,7 @@
                                 <!-- Zero config.table start -->
                                 <div class="card">
                                     <div class="card-header">
+                                        
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
                                             <table id="" class="table table-striped table-bordered nowrap">

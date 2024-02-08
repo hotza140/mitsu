@@ -29,8 +29,19 @@ use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\support\carbon;
 
+use App\Exports\trainExport;
+
 class TrainingController extends Controller
 {
+
+    public function train_export(Request $r){
+        $date_time=date('Y-m-d_h:i:s');
+        // dd($date_time);
+        $name="trainExport".$date_time;
+        return Excel::download(new trainExport,"$name.xlsx");
+    }
+
+
     public function index()
     {
         $data['page'] = 'training';
@@ -136,6 +147,7 @@ class TrainingController extends Controller
         $data['districts'] = district::orderby('id', 'asc')->get();
         return view('backend.training.turn_edit', $data,[
             'item'=>$item,
+            'id'=>$id,
         ]);
     }
 

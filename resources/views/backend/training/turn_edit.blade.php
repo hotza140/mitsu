@@ -251,6 +251,15 @@
                      <!-- --------------------- -->
                      <?php
                      $point = App\Models\TrainingList::where('turn_id', $item->id)->get();
+
+                     $call = App\Models\TrainingTurn::where('turn_id', $id)->first();
+                     $aaa = App\Models\Training::where('turn_id', @$call->training_id)->first();
+
+                     if($aaa!=null){
+                        $title=$aaa->name;
+                     }else{
+                        $title=null;
+                     }
                      ?>
                     <div class="page-body">
                         <div class="row">
@@ -258,6 +267,25 @@
                                 <!-- Zero config.table start -->
                                 <div class="card">
                                     <div class="card-header">
+
+                                    <div><br>
+                               <h5>Export รายชื่อผู้ลงทะเบียน</h5>
+                                   <form class="form-horizontal" action="{{url('backend/train_export')}}" method="POST" enctype="multipart/form-data">
+                                          @csrf
+                                          
+                                          <input type="hidden" name="id" value="{{@$id}}"  class="col-md-2">
+                                          <input type="hidden" name="title" value="{{@$title}}"  class="col-md-2">
+                                          <input type="hidden" name="turn" value="{{@$item->turn}}"  class="col-md-2">
+
+                                       <button type="submit" class="btn btn-danger" style="color:white;"
+                                               onclick="return confirm('Confirm!');"> <i
+                                                   class="fa fa-check-circle-o"></i> Enter </button>
+                                       </form>
+                                       </div>
+                                       <br>
+
+
+
                                     <h5>รายชื่อผู้ฝึกอบรม</h5>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
