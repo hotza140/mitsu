@@ -349,6 +349,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                         <th>#</th>
                                                         <th>Title</th>
                                                         <th>Point</th>
+                                                        <th>หมายเหตุ</th>
                                                         <th>Date</th>
                                                         <!-- <th>Created_at</th> -->
                                                         <!-- <th>Updated_at</th> -->
@@ -362,6 +363,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                         <td>{{$key+1}}</td>
                                                         <td>{{$items->title}}</td>
                                                         <td>{{$items->point}}</td>
+                                                        <td>{{$items->toppic}}</td>
                                                         <?php if($items->date!=null){$date=date('d/m/Y',strtotime($items->date));}else{$date=null;}  ?>
                                                         <td>{{$date}}</td>
                                                         <!-- <td>{{$items->created_at}}</td> -->
@@ -382,6 +384,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                                         <th>#</th>
                                                         <th>Title</th>
                                                         <th>Point</th>
+                                                        <th>หมายเหตุ</th>
                                                         <th>Date</th>
                                                         <!-- <th>Created_at</th> -->
                                                         <!-- <th>Updated_at</th> -->
