@@ -243,7 +243,7 @@ Route::prefix('backend')->group(function(){
 
 
 
-    Route::post('backend/train_export',[App\Http\Controllers\TrainingController::class, 'train_export']);
+    Route::post('train_export',[App\Http\Controllers\TrainingController::class, 'train_export']);
     // ===== Training =====
     Route::get('training/turn_destroy/{id}',[App\Http\Controllers\TrainingController::class, 'turn_destroy']);
     Route::get('training/turn_edit/{id}',[App\Http\Controllers\TrainingController::class, 'turn_edit']);
