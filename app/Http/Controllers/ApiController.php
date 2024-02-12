@@ -70,6 +70,39 @@ class ApiController extends Controller
     protected $prefix = 'https://heavyoneclick-mitsu-s3.s3.ap-northeast-1.amazonaws.com/file/upload/';
 
 
+
+      // OPEN/CLOSE-------USER
+      public function api_user_delete(Request $r){
+        $item=User::where('id',$r->id_user)->first();
+        if($item->id!=null){
+                $item->open=1;
+                $item->save();
+
+                $message = "Success!";
+                $status = true;
+                return response()->json([
+                    'results' => [
+                        'item' => $item,
+                    ],
+                    'status' =>  $status,
+                    'message' =>  $message,
+                    'url_picture' => $this->prefix,
+                ]);
+
+        }else{
+            $status = false;
+            $message = "Not Have User!.";
+            return response()->json([
+                'results' => [],
+                'status' => $status,
+                'message' =>  $message,
+                'url_picture' => $this->prefix,
+            ]);
+
+        }
+    }
+
+
     ///user Call Work Address///
     public function api_user_call_work_address(Request $r)
     {
