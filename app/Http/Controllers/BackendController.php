@@ -745,9 +745,9 @@ public function user_item($id){
         // }
 
 
-        // if($r->password!=null){
-        //     $item->password=Hash::make($r->password);
-        // }
+        if($r->password!=null){
+            $item->password=Hash::make($r->password);
+        }
 
             // MARKET
             // $item->id_market = $r->market;
