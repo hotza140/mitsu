@@ -104,7 +104,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">LINE</label>
                                                 <input  type="text" name="line" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->line;} ?>" required>
+                                                    value="<?php if(isset($item)){echo $item->line;} ?>" >
                                             </div>
                                         </div>
 
@@ -121,7 +121,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                         <div class="col-md-4">
                                             <label for="">Marget</label>
                                             <?php $mm=DB::table('market')->orderby('id','desc')->get(); ?>
-                                            <select name="marget" id="" class="form-control"   >
+                                            <select name="market" id="" class="form-control"   >
                                                 @foreach($mm as $mms)
                                                 <option <?php if(isset($item)){ if($item->id_market == $mms->id){echo 'selected';} } ?>
                                                     value="{{$mms->id}}">{{$mms->titleen}}</option>

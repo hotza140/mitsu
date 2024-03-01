@@ -86,7 +86,7 @@
                                             <div class="col-md-4">
                                             <label for="">Marget</label>
                                             <?php $mm=DB::table('market')->orderby('id','desc')->get(); ?>
-                                            <select name="marget" id="" class="form-control"  >
+                                            <select name="market" id="" class="form-control"  >
                                                 @foreach($mm as $mms)
                                                 <option <?php if(isset($item)){ if($item->id_market == $mms->id){echo 'selected';} } ?>
                                                     value="{{$mms->id}}">{{$mms->titleen}}</option>
