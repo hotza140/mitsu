@@ -103,7 +103,7 @@ $picture= Storage::disk('s3')->url($filePath);
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">LINE</label>
-                                                <input disabled type="text" name="line" class="form-control" id=""
+                                                <input  type="text" name="line" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->line;} ?>" required>
                                             </div>
                                         </div>
@@ -117,10 +117,11 @@ $picture= Storage::disk('s3')->url($filePath);
                                         </div>
 
 
-                                        <div class="form-group col-md-4">
+                                        <div class="form-group row">
+                                        <div class="col-md-4">
                                             <label for="">Marget</label>
                                             <?php $mm=DB::table('market')->orderby('id','desc')->get(); ?>
-                                            <select name="marget" id="" class="form-control"  disabled >
+                                            <select name="marget" id="" class="form-control"   >
                                                 @foreach($mm as $mms)
                                                 <option <?php if(isset($item)){ if($item->id_market == $mms->id){echo 'selected';} } ?>
                                                     value="{{$mms->id}}">{{$mms->titleen}}</option>
@@ -128,44 +129,78 @@ $picture= Storage::disk('s3')->url($filePath);
 
                                             </select>
                                         </div>
+                                        </div>
+
+                                        <?php  
+                                          $provinces = App\Models\province::orderby('id', 'asc')->get();
+                                          $amphures = App\Models\amphur::orderby('id', 'asc')->get();
+                                          $districts = App\Models\district::orderby('id', 'asc')->get();
+                                        ?>
+
+
 
                                         <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">Province</label>
-                                                <input disabled type="text" name="province" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->province;} ?>">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">District</label>
-                                                <input disabled type="text" name="district" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->district;} ?>">
-                                            </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="col-form-label">จังหวัด</label>
+                                                        <select class="form-control" name="province" id="province_add"
+                                                            >
+                                                            <option value="{{@$item->id_p}}">{{@$item->province}}</option>
+                                                            @foreach ($provinces as $province)
+                                                            <option value="{{$province->id}}" @if($province->id ==
+                                                                @$item->id_p) selected @endif
+                                                                >{{$province->name_th}}</option>
+                                                            @endforeach
+
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                        <label class="col-form-label">อำเภอ</label>
+                                                        <select class="form-control" name="amphur" id="amphure_add"
+                                                            >
+                                                            <option value="{{@$item->id_a}}">{{@$item->amphur}}</option>
+                                                            @foreach ($amphures as $amphure)
+                                                            <option value="{{$amphure->id}}" @if($amphure->id ==
+                                                                @$item->id_a) selected @endif>{{$amphure->name_th}}
+                                                            </option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
                                         </div>
 
 
                                         <div class="form-group row">
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">Amphur</label>
-                                                <input disabled type="text" name="amphur" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->amphur;} ?>">
-                                            </div>
-                                            <div class="col-sm-3">
-                                                <label class="col-form-label">Zipcode</label>
-                                                <input disabled type="text" name="zipcode" class="form-control" id=""
-                                                    value="<?php if(isset($item)){echo $item->zipcode;} ?>">
-                                            </div>
+                                                    <div class="col-sm-4">
+                                                        <label class="col-form-label">ตำบล</label>
+                                                        <select class="form-control" name="district" id="district_add"
+                                                            >
+                                                            <option value="{{@$item->id_d}}">{{@$item->district}}</option>
+                                                            @foreach ($districts as $district)
+                                                            <option value="{{$district->id}}" @if($district->id ==
+                                                                @$item->id_d) selected
+                                                                @endif>{{$district->name_th}}</option>
+                                                            @endforeach
+                                                        </select>
+                                                    </div>
+
+                                                    <div class="col-sm-4">
+                                                    <label class="col-form-label">Zipcode</label>
+                                                    <input  type="text" name="zipcode" class="form-control" id="postcode_add"
+                                                        value="<?php if(isset($item)){echo $item->zipcode;} ?>">
+                                                    </div>
                                         </div>
+                                      
 
 
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">บ้านเลขที่</label>
-                                                <input disabled type="text" name="house" class="form-control" id=""
+                                                <input  type="text" name="house" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->house;} ?>">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">หมู่ที่</label>
-                                                <input disabled type="text" name="moo" class="form-control" id=""
+                                                <input  type="text" name="moo" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->moo;} ?>">
                                             </div>
                                         </div>
@@ -173,12 +208,12 @@ $picture= Storage::disk('s3')->url($filePath);
                                         <div class="form-group row">
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">หมู่บ้าน/คอนโด</label>
-                                                <input disabled type="text" name="condo" class="form-control" id=""
+                                                <input  type="text" name="condo" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->condo;} ?>">
                                             </div>
                                             <div class="col-sm-3">
                                                 <label class="col-form-label">ถนน</label>
-                                                <input disabled type="text" name="road" class="form-control" id=""
+                                                <input  type="text" name="road" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->road;} ?>">
                                             </div>
                                         </div>
@@ -206,11 +241,7 @@ $picture= Storage::disk('s3')->url($filePath);
 
 
 
-                                        <?php  
-                                          $provinces = App\Models\province::orderby('id', 'asc')->get();
-                                          $amphures = App\Models\amphur::orderby('id', 'asc')->get();
-                                          $districts = App\Models\district::orderby('id', 'asc')->get();
-                                        ?>
+                                      
 
 
                                         <div class="form-group row">
@@ -567,6 +598,49 @@ src="{{$picture}}" style="width:100px">
             id = $('#district').val();
             $.get('{{url("fetch_postcode")}}/'+id, function(result){
                 $('#postcode').val(result);
+            });
+        });
+            </script>
+
+
+
+
+
+
+
+
+
+
+
+
+    <script>
+    $('#province_add').change(function(){
+            id = $('#province_add').val();
+            $.get('{{url("fetch_amphure")}}/'+id,function(result){
+                $('#amphure_add').empty().append('<option value="">ระบุอำเภอ</option>');
+                $('#district_add').empty().append('<option value="">ระบุตำบล</option>');
+                $('#postcode_add').val('');
+                $.each(result,function(indexInArray,value){
+                    $('#amphure_add').append('<option value="'+value.id+'">'+value.name_th+'</option>');
+                });
+            });
+        });
+
+        $('#amphure_add').change(function(){
+            id = $('#amphure_add').val();
+            $.get('{{url("fetch_district")}}/'+id,function(result){
+                $('#district_add').empty().append('<option value="">ระบุตำบล</option>');
+                $('#postcode_add').val('');
+                $.each(result,function(indexInArray,value){
+                    $('#district_add').append('<option value="'+value.id+'">'+value.name_th+'</option>');
+                });
+            });
+        });
+
+        $('#district_add').change(function(){
+            id = $('#district_add').val();
+            $.get('{{url("fetch_postcode")}}/'+id, function(result){
+                $('#postcode_add').val(result);
             });
         });
             </script>

@@ -712,20 +712,44 @@ public function user_item($id){
                         }
     
                     $item->zipcode = $r->zipcode;
-                    $p = province::where('name_th',"LIKE","%{$r->province}%",)->first();
-                    if ($p != null) {
-                        $item->id_p = $p->id;
-                        $item->province = $r->province;
+
+
+                    // $p = province::where('name_th',"LIKE","%{$r->province}%",)->first();
+                    // if ($p != null) {
+                    //     $item->id_p = $p->id;
+                    //     $item->province = $r->province;
+                    // }
+                    // $d = district::where('name_th',"LIKE","%{$r->district}%",)->first();
+                    // if ($d != null) {
+                    //     $item->id_d = $d->id;
+                    //     $item->district = $r->district;
+                    // }
+                    // $a = amphur::where('name_th',"LIKE","%{$r->amphur}%",)->first();
+                    // if ($a != null) {
+                    //     $item->id_a = $a->id;
+                    //     $item->amphur = $r->amphur;
+                    // }
+
+                    if ($r->province != null) {
+                        $p = province::where('id', $r->province)->first();
+                        if ($p != null) {
+                            $item->id_p = $r->province;
+                            $item->province = @$p->name_th;
+                        }
                     }
-                    $d = district::where('name_th',"LIKE","%{$r->district}%",)->first();
-                    if ($d != null) {
-                        $item->id_d = $d->id;
-                        $item->district = $r->district;
+                    if ($r->district != null) {
+                        $d = district::where('id', $r->district)->first();
+                        if ($d != null) {
+                            $item->id_d = $r->district;
+                            $item->district = @$d->name_th;
+                        }
                     }
-                    $a = amphur::where('name_th',"LIKE","%{$r->amphur}%",)->first();
-                    if ($a != null) {
-                        $item->id_a = $a->id;
-                        $item->amphur = $r->amphur;
+                    if ($r->amphur != null) {
+                        $a = amphur::where('id', $r->amphur)->first();
+                        if ($a != null) {
+                            $item->id_a = $r->amphur;
+                            $item->amphur = @$a->name_th;
+                        }
                     }
     
 
@@ -738,11 +762,11 @@ public function user_item($id){
     }
     public function user_update(Request $r,$id){
         $item=User::where('id',$id)->first();
-        // $ch=User::where('id','!=',$id)->where('email',$r->email)->first();
+        $ch=User::where('id','!=',$id)->where('email',$r->email)->first();
 
-        // if($ch!=null){
-        //     return redirect()->back()->with('success','Email Same in Data!');
-        // }
+        if($ch!=null){
+            return redirect()->back()->with('success','Email Same in Data!');
+        }
 
 
         if($r->password!=null){
@@ -750,11 +774,11 @@ public function user_item($id){
         }
 
             // MARKET
-            // $item->id_market = $r->market;
-            // $mm = market::where('id', $r->market)->first();
-            // if($mm){
-            //     $item->market = $mm->titleen;
-            // }
+            $item->id_market = $r->market;
+            $mm = market::where('id', $r->market)->first();
+            if($mm){
+                $item->market = $mm->titleen;
+            }
             // MARKET
 
                 $item->nickname = $r->nickname;
@@ -782,13 +806,14 @@ public function user_item($id){
                 }
 
 
-                // $item->line = $r->line;
-                // $item->house = $r->house;
-                // $item->moo = $r->moo;
-                // $item->condo = $r->condo;
-                // $item->road = $r->road;
+                $item->line = $r->line;
+                $item->house = $r->house;
+                $item->moo = $r->moo;
+                $item->condo = $r->condo;
+                $item->road = $r->road;
+                $item->zipcode = $r->zipcode;
 
-                // $item->zipcode = $r->zipcode;
+
                 // $p = province::where('name_th',"LIKE","%{$r->province}%",)->first();
                 // if ($p != null) {
                 //     $item->id_p = $p->id;
@@ -804,6 +829,29 @@ public function user_item($id){
                 //     $item->id_a = $a->id;
                 //     $item->amphur = $r->amphur;
                 // }
+
+
+                if ($r->province != null) {
+                    $p = province::where('id', $r->province)->first();
+                    if ($p != null) {
+                        $item->id_p = $r->province;
+                        $item->province = @$p->name_th;
+                    }
+                }
+                if ($r->district != null) {
+                    $d = district::where('id', $r->district)->first();
+                    if ($d != null) {
+                        $item->id_d = $r->district;
+                        $item->district = @$d->name_th;
+                    }
+                }
+                if ($r->amphur != null) {
+                    $a = amphur::where('id', $r->amphur)->first();
+                    if ($a != null) {
+                        $item->id_a = $r->amphur;
+                        $item->amphur = @$a->name_th;
+                    }
+                }
 
 
         $item->save();
