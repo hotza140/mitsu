@@ -689,7 +689,7 @@ public function user_item($id){
              }
              // MARKET
 
-             
+
                     $item->nickname = $r->nickname;
                     $item->name = $r->name;
                     $item->lastname = $r->lastname;
@@ -784,7 +784,6 @@ public function user_item($id){
 
             // MARKET
             $item->id_market = $r->market;
-            dd($item->id_market,$r->market);
             $mm = market::where('id', $r->market)->first();
             if($mm){
                 $item->market = $mm->titleen;
