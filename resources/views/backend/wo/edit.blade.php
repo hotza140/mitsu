@@ -176,6 +176,11 @@
 
                                             </select>
                                         </div>
+                                        <div class="col-sm-4">
+                                                <label class="col-form-label">วัน-เวลาที่นัดหมาย</label>
+                                                <input type="datetime-local" name="date_nud" class="form-control" id="pic"
+                                                    value="<?php if(isset($item)){echo $item->date_nud;} ?>">
+                                            </div>
                                         </div>
 
 

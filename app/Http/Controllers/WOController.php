@@ -193,6 +193,8 @@ class WOController extends Controller
 
         $item->wo_remark = $r->wo_remark;
 
+        $item->date_nud = $r->date_nud;
+
         $item->technician_id = $r->technician_id;
 
         $item->work_province = $r->work_province;
@@ -329,6 +331,8 @@ class WOController extends Controller
         $item->work_district = $r->work_district;
 
         $item->wo_remark = $r->wo_remark;
+
+        $item->date_nud = $r->date_nud;
 
         $item->technician_id = $r->technician_id;
 

@@ -43,7 +43,8 @@
                                                     <th>ชื่อรุ่น ใน/นอก</th>
                                                     <th>รหัสไฟกระพริบ</th>
                                                     <th>ค่าบริการ</th>
-                                                     <th>วันที่/เวลา</th>
+                                                    <th>วันที่/เวลา นัดหมาย</th>
+                                                     <th>วันที่/เวลา เปิดงาน</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <th>มีคนรับรึยัง</th>
                                                     <th>สถานะงาน</th>
@@ -71,6 +72,7 @@
                                                     
                                                     <td>{{$items->error_code}}</td>
                                                     <td>{{$items->wo_price}}</td>
+                                                    <td>{{$items->date_nud}}</td>
                                                      <td>{{$items->wo_date}}<br>{{$items->wo_time}}</td>
 
                                                     @if($items->technician_id==null)
@@ -118,6 +120,7 @@
                                                     <th>ชื่อรุ่น ใน/นอก</th>
                                                     <th>รหัสไฟกระพริบ</th>
                                                     <th>ค่าบริการ</th>
+                                                    <th>วันที่/เวลา นัดหมาย</th>
                                                     <th>วันที่/เวลา</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <th>มีคนรับรึยัง</th>
