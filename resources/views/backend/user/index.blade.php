@@ -47,8 +47,9 @@
                                     <div><br>
                                     <form class="form-horizontal" action="{{url('/backend/user')}}" method="GET" enctype="multipart/form-data">
                                            @csrf
-                                        <!-- <input type="text" name="search"  class="col-md-2"> Search -->
+                                        <input type="text" name="search"  class="col-md-2"> Search
                                         
+                                        <br><br><br>
 
                                         <input type="date" name="start_date" value="{{@$start_date}}" required  class="col-md-2">Start<br><br>
                                        <input type="date" name="end_date" value="{{@$end_date}}"  required class="col-md-2">End<br><br>
@@ -182,6 +183,7 @@ src="{{$picture}}"
                                 //   {{@$item->appends(Request::all())->links()}} 
                                  
                                  ?>
+                                 {{@$item->appends(Request::all())->links()}} 
                                     </div>
                                 </div>
 
@@ -201,8 +203,8 @@ src="{{$picture}}"
                                 <script>
                     $(document).ready(function() {
                         var table = $('#export_excel_file').DataTable({
-                            // dom: '<"wrapper"B>',
-                            dom: 'Bfrtip',
+                            dom: '<"wrapper"B>',
+                            // dom: 'Bfrtip',
                             buttons: [
                                 {
                                     extend: 'excel',

@@ -24,8 +24,13 @@
 
                     <!-- --------------------- -->
                     <?php 
-                     $data = App\Models\buy_point::where('status',0)->whereBetween('created_at', [$start_date, $end_date])
-                     ->with('item')->with('user')->orderby('id','desc')->get();
+                    if($start_date!=null){
+                        $data = App\Models\buy_point::where('status',0)->whereBetween('created_at', [$start_date, $end_date])
+                        ->with('item')->with('user')->orderby('id','desc')->get();
+                    }else{
+                        $data = App\Models\buy_point::where('status',0)->with('item')->with('user')->orderby('id','desc')->get();
+                    }
+                     
                     ?>
                     <div class="page-body">
                         <div class="row">

@@ -652,12 +652,9 @@ public function user_item($id){
         $start_date=$r->start_date;
         $end_date=$r->end_date;
 
-        if($start_date==null){
-            $start_date=date('Y-m-d');
-            $end_date=date('Y-m-d');
-        }
+  
 
-        if($search!=null){
+        if($search!=null or $start_date !=null ){
         $item=User::where(function($query) use($search){
             $query->orWhere('name', 'LIKE', '%'.$search.'%');
             $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
@@ -666,11 +663,9 @@ public function user_item($id){
             $query->orWhere('phone', 'LIKE', '%'.$search.'%');
         })->where('type','>',2)->where('status',1)
         ->whereBetween('created_at', [$start_date, $end_date])
-        ->orderby('id','desc')->get();
+        ->orderby('id','desc')->paginate(20);
         }else{
-            $item=User ::where('type','>',2)->where('status',1)
-            ->whereBetween('created_at', [$start_date, $end_date])
-            ->orderby('id','desc')->get();
+            $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(20);
         }
 
         
@@ -1512,10 +1507,6 @@ public function user_item($id){
     public function wait_point(Request $r){
         $start_date=$r->start_date;
         $end_date=$r->end_date;
-        if($start_date==null){
-            $start_date=date('Y-m-d');
-            $end_date=date('Y-m-d');
-        }
         return view('backend.item_point.index_wait',[
             'page'=>"item_point",
             'list'=>"wait_point",
