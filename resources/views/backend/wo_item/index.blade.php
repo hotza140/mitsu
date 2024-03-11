@@ -13,7 +13,7 @@
                 <!-- Page-header start -->
                 <div class="page-header card">
                     <div class="card-block">
-                        <h5 class="m-b-10">WORK ITEM BACKEND</h5>
+                        <h5 class="m-b-10">รายการอะไหล่</h5>
                     </div>
                 </div>
                 <!-- Page-header end -->
