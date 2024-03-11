@@ -686,6 +686,7 @@ public function user_item($id){
             'page'=>"user",
             'list'=>"user",
 
+            'search'=>$search,
             'start_date'=>$start_date,
             'end_date'=>$end_date,
         ]);
