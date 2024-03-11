@@ -235,6 +235,11 @@ $picture= Storage::disk('s3')->url($filePath);
                                                 <input  type="text" name="bank_number" class="form-control" id=""
                                                     value="<?php if(isset($item)){echo $item->bank_number;} ?>">
                                             </div>
+                                            <div class="col-sm-3">
+                                                <label class="col-form-label">หมายเลข Promptpay</label>
+                                                <input  type="text" name="bank_promp" class="form-control" id=""
+                                                    value="<?php if(isset($item)){echo $item->bank_promp;} ?>">
+                                            </div>
                                         </div>
 
 

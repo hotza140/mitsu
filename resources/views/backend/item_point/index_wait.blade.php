@@ -70,6 +70,7 @@
                                                         <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
+                                                        <th>รูปแบบการรับ</th>
                                                         <th>ที่อยู่จัดส่ง</th>
                                                         <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->
@@ -93,6 +94,12 @@
                                                             Email: {{(@$p1->email)?? '-'}}
                                                             Line: {{(@$p1->line)?? '-'}}
                                                         </td>
+                                                        @if($itts->way==null)
+                                                        <td>รับตามที่อยู่</td>
+                                                        @else
+                                                        <td>{{$itts->way}}</td>
+                                                        @endif
+
                                                         @if($itts->address!=null)
                                                         <td>{{@$p1->province}}/{{@$p1->district}}/{{@$p1->amphur}}/{{@$p1->location}}</td>
                                                         @else
@@ -126,6 +133,7 @@
                                                     <th>เลขที่คำขอ</th>
                                                         <th>ชื่อลูกค้า</th>
                                                         <th>ข้อมูลติดต่อ</th>
+                                                        <th>รูปแบบการรับ</th>
                                                         <th>ที่อยู่จัดส่ง</th>
                                                         <th>ชื่อสินค้า</th>
                                                         <!-- <th>Title</th> -->

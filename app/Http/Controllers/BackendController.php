@@ -710,6 +710,8 @@ public function user_item($id){
                     $item->email = $r->email;
                     $item->phone = $r->phone;
                     $item->line = $r->line;
+
+                    $item->promp = $r->promp;
     
                   
                     $item->house = $r->house;
@@ -810,6 +812,8 @@ public function user_item($id){
                 $item->email = $r->email;
                 $item->phone = $r->phone;
                 $item->code = $r->code;
+
+                $item->promp = $r->promp;
 
                 $item->work_province = $r->work_province;
                 $item->work_amupur = $r->work_amupur;

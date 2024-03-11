@@ -541,7 +541,7 @@
                                 <li class="pcoded-hasmenu"> @endif
                                     <a href="javascript:void(0)">
                                         <span class="pcoded-micon"><i class="ti-home"></i><b>D</b></span>
-                                        <span class="pcoded-mtext">WORK</span>
+                                        <span class="pcoded-mtext">มอบหมายงาน</span>
                                         <span class="pcoded-mcaret"></span>
                                         <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                     </a>
@@ -554,7 +554,7 @@
                                         <li class=""> @endif
                                             <a href="{{url('backend/wo')}}">
                                                 <span class="pcoded-micon"><i class="ti-angle-right"></i></span>
-                                                <span class="pcoded-mtext">WORK</span>
+                                                <span class="pcoded-mtext">มอบหมายงาน</span>
                                                 <span class="pcoded-mcaret"></span>
                                                 <!-- <span class="pcoded-badge label label-danger">1</span> -->
                                             </a>
