@@ -82,11 +82,27 @@
                                         </form>
                                         </div>
 
+
+
+
+                                        <div><br>
+                                    <form class="form-horizontal" target="_blank" action="{{url('backend/user_export')}}" method="POST" enctype="multipart/form-data">
+                                           @csrf
+                                           <?php   ?>
+                                           <input type="hidden" name="id" value="{{@$all}}" class="col-md-2"> 
+
+                                       <button type="submit"  class="btn btn-danger" style="color:white;"
+                                               onclick="return confirm('Confirm!');"> <i
+                                                   class="fa fa-check-circle-o"></i> Excel </button>
+                                                   
+                                        </form>
+                                        </div>
+
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <!-- <table id="table_no" class="table table-striped table-bordered nowrap"> -->
-                                        <table id="export_excel_file" class="table table-striped table-bordered nowrap">
+                                        <table id="table_no" class="table table-striped table-bordered nowrap">
+                                        <!-- <table id="export_excel_file" class="table table-striped table-bordered nowrap"> -->
                                             <thead>
                                                 <tr>
 

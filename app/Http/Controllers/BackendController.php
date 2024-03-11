@@ -647,6 +647,20 @@ public function user_item($id){
     // SERVICE
 
        //user//
+
+       public function user_export(Request $r){
+        $id=$r->id;
+        $id = json_decode($id, true);
+        $item=User ::where('type','>',2)->whereIn('id',$id)->orderby('id','desc')->get();
+
+        
+        return view('backend.user.excel',[
+            'item'=>$item,
+            'page'=>"user",
+            'list'=>"user",
+        ]);
+    }
+
        public function user(Request $r){
         $search=$r->search;
         $start_date=$r->start_date;
@@ -655,19 +669,19 @@ public function user_item($id){
   
 
         if($search!=null and $start_date ==null ){
-        $item=User::where(function($query) use($search){
+        $all=User::where(function($query) use($search){
             $query->orWhere('name', 'LIKE', '%'.$search.'%');
             $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
             $query->orWhere('code', 'LIKE', '%'.$search.'%');
             $query->orWhere('email', 'LIKE', '%'.$search.'%');
             $query->orWhere('phone', 'LIKE', '%'.$search.'%');
         })->where('type','>',2)->where('status',1)
-        ->orderby('id','desc')->paginate(20);
+        ->orderby('id','desc')->pluck('id');
         }elseif($search==null and $start_date !=null ){
-            $item=User::whereBetween('created_at', [$start_date, $end_date])->where('type','>',2)
-            ->orderby('id','desc')->paginate(20);
+            $all=User::whereBetween('created_at', [$start_date, $end_date])->where('type','>',2)
+            ->orderby('id','desc')->pluck('id');
         }elseif($search!=null and $start_date !=null ){
-            $item=User::where(function($query) use($search){
+            $all=User::where(function($query) use($search){
                 $query->orWhere('name', 'LIKE', '%'.$search.'%');
                 $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
                 $query->orWhere('code', 'LIKE', '%'.$search.'%');
@@ -675,17 +689,20 @@ public function user_item($id){
                 $query->orWhere('phone', 'LIKE', '%'.$search.'%');
             })->where('type','>',2)->where('status',1)
             ->whereBetween('created_at', [$start_date, $end_date])
-            ->orderby('id','desc')->paginate(20);
+            ->orderby('id','desc')->pluck('id');
         }else{
-            $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(20);
+            $all=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->pluck('id');
         }
 
+
+        $item=User ::where('type','>',2)->whereIn('id',$all)->orderby('id','desc')->paginate(20);
         
         return view('backend.user.index',[
             'item'=>$item,
             'page'=>"user",
             'list'=>"user",
 
+            'all'=>$all,
             'search'=>$search,
             'start_date'=>$start_date,
             'end_date'=>$end_date,

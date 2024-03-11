@@ -94,6 +94,8 @@ Route::prefix('backend')->group(function(){
     //user
     Route::post('user_excel',[App\Http\Controllers\BackendController::class,'user_excel']);
 
+    Route::post('user_export',[App\Http\Controllers\BackendController::class,'user_export']);
+
     Route::get('user_item/{id}',[App\Http\Controllers\BackendController::class,'user_item']);
 
     Route::get('gal_service/{type}/{id}/{user}',[App\Http\Controllers\BackendController::class,'gal_service']);
