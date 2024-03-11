@@ -47,14 +47,28 @@
                                     <div><br>
                                     <form class="form-horizontal" action="{{url('/backend/user')}}" method="GET" enctype="multipart/form-data">
                                            @csrf
-                                        <input type="text" name="search"  class="col-md-2"> Search
+                                        <!-- <input type="text" name="search"  class="col-md-2"> Search -->
+                                        
+
+                                        <input type="date" name="start_date" value="{{@$start_date}}" required  class="col-md-2">Start<br><br>
+                                       <input type="date" name="end_date" value="{{@$end_date}}"  required class="col-md-2">End<br><br>
+
+                                       <button type="submit" class="btn btn-danger" style="color:white;"
+                                               onclick="return confirm('Confirm!');"> <i
+                                                   class="fa fa-check-circle-o"></i> Enter </button>
+
+                                                   <a href="{{ url('/backend/user') }}"
+                                               style="color:white;" class="btn btn-warning"> <i
+                                                   class="fa fa-share-square-o"></i> Reset </a>
+                                                   
                                         </form>
                                         </div>
 
                                 </div>
                                 <div class="card-block">
                                     <div class="dt-responsive table-responsive">
-                                        <table id="table_no" class="table table-striped table-bordered nowrap">
+                                        <!-- <table id="table_no" class="table table-striped table-bordered nowrap"> -->
+                                        <table id="export_excel_file" class="table table-striped table-bordered nowrap">
                                             <thead>
                                                 <tr>
 
@@ -164,9 +178,40 @@ src="{{$picture}}"
                                             </tfoot>
                                         </table>
                                         <br><br>
-                                    {{$item->appends(Request::all())->links()}}
+                                 <?php  
+                                //   {{@$item->appends(Request::all())->links()}} 
+                                 
+                                 ?>
                                     </div>
                                 </div>
+
+
+                                <style>
+                        button.dt-button, div.dt-button, a.dt-button, button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled), button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled) {
+                            background-color: #ffb64d;
+                            border-color: #000;
+                            border-radius: 2px;
+                            color: #fff;
+                            background-image: none;
+                            font-size: 14px;
+                        }
+                    </style>
+
+
+                                <script>
+                    $(document).ready(function() {
+                        var table = $('#export_excel_file').DataTable({
+                            // dom: '<"wrapper"B>',
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'excel',
+                                    filename: 'ข้อมูลสมาชิก',
+                                }
+                            ]
+                        });
+                        });
+                    </script>
 
 
                             </div>

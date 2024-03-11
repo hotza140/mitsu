@@ -649,6 +649,14 @@ public function user_item($id){
        //user//
        public function user(Request $r){
         $search=$r->search;
+        $start_date=$r->start_date;
+        $end_date=$r->end_date;
+
+        if($start_date==null){
+            $start_date=date('Y-m-d');
+            $end_date=date('Y-m-d');
+        }
+
         if($search!=null){
         $item=User::where(function($query) use($search){
             $query->orWhere('name', 'LIKE', '%'.$search.'%');
@@ -656,9 +664,13 @@ public function user_item($id){
             $query->orWhere('code', 'LIKE', '%'.$search.'%');
             $query->orWhere('email', 'LIKE', '%'.$search.'%');
             $query->orWhere('phone', 'LIKE', '%'.$search.'%');
-        })->where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(20);
+        })->where('type','>',2)->where('status',1)
+        ->whereBetween('created_at', [$start_date, $end_date])
+        ->orderby('id','desc')->get();
         }else{
-            $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(20);
+            $item=User ::where('type','>',2)->where('status',1)
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->orderby('id','desc')->get();
         }
 
         
@@ -666,6 +678,9 @@ public function user_item($id){
             'item'=>$item,
             'page'=>"user",
             'list'=>"user",
+
+            'start_date'=>$start_date,
+            'end_date'=>$end_date,
         ]);
     }
     public function user_store(Request $r){
@@ -1490,10 +1505,19 @@ public function user_item($id){
     // Choose item_point
 
 
-    public function wait_point(){
+    public function wait_point(Request $r){
+        $start_date=$r->start_date;
+        $end_date=$r->end_date;
+        if($start_date==null){
+            $start_date=date('Y-m-d');
+            $end_date=date('Y-m-d');
+        }
         return view('backend.item_point.index_wait',[
             'page'=>"item_point",
             'list'=>"wait_point",
+
+            'start_date'=>$start_date,
+            'end_date'=>$end_date,
         ]);
     }
     public function wait_destroy($id){

@@ -23,7 +23,9 @@
 
 
                     <!-- --------------------- -->
-                    <?php  $data = App\Models\buy_point::where('status',0)->with('item')->with('user')->orderby('id','desc')->get();
+                    <?php 
+                     $data = App\Models\buy_point::where('status',0)->whereBetween('created_at', [$start_date, $end_date])
+                     ->with('item')->with('user')->orderby('id','desc')->get();
                     ?>
                     <div class="page-body">
                         <div class="row">
@@ -36,10 +38,31 @@
                                             <h3 class="m-b-10" >รายการแลกเปลี่ยนรอยืนยัน</h3>
                                         </strong>
 
+
+                                        <div><br>
+                                    <form class="form-horizontal" action="{{url('/backend/wait_point')}}" method="GET" enctype="multipart/form-data">
+                                           @csrf
+                                        
+
+                                        <input type="date" name="start_date" value="{{@$start_date}}" required class="col-md-2">Start<br><br>
+                                       <input type="date" name="end_date" value="{{@$end_date}}"  required class="col-md-2">End<br><br>
+
+                                       <button type="submit" class="btn btn-danger" style="color:white;"
+                                               onclick="return confirm('Confirm!');"> <i
+                                                   class="fa fa-check-circle-o"></i> Enter </button>
+
+                                                   <a href="{{ url('/backend/wait_point') }}"
+                                               style="color:white;" class="btn btn-warning"> <i
+                                                   class="fa fa-share-square-o"></i> Reset </a>
+                                                   
+                                        </form>
+                                        </div>
+
                                     </div>
                                     <div class="card-block">
                                         <div class="dt-responsive table-responsive">
-                                            <table id="simpletable3" class="table table-striped table-bordered nowrap">
+                                            <!-- <table id="simpletable3" class="table table-striped table-bordered nowrap"> -->
+                                            <table id="export_excel_file" class="table table-striped table-bordered nowrap">
                                                 <thead>
                                                     <tr>
 
@@ -133,6 +156,30 @@
                     </div>
                     <!-- -------------------- -->
 
+                    <style>
+                        button.dt-button, div.dt-button, a.dt-button, button.dt-button:focus:not(.disabled), div.dt-button:focus:not(.disabled), a.dt-button:focus:not(.disabled), button.dt-button:active:not(.disabled), button.dt-button.active:not(.disabled), div.dt-button:active:not(.disabled), div.dt-button.active:not(.disabled), a.dt-button:active:not(.disabled), a.dt-button.active:not(.disabled) {
+                            background-color: #ffb64d;
+                            border-color: #000;
+                            border-radius: 2px;
+                            color: #fff;
+                            background-image: none;
+                            font-size: 14px;
+                        }
+                    </style>
+
+                    <script>
+                    $(document).ready(function() {
+                        var table = $('#export_excel_file').DataTable({
+                            dom: 'Bfrtip',
+                            buttons: [
+                                {
+                                    extend: 'excel',
+                                    filename: 'รายการแลกเปลี่ยนรอยืนยัน',
+                                }
+                            ]
+                        });
+                        });
+                    </script>
 
 
 
