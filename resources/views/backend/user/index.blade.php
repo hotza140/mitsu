@@ -47,9 +47,26 @@
                                     <div><br>
                                     <form class="form-horizontal" action="{{url('/backend/user')}}" method="GET" enctype="multipart/form-data">
                                            @csrf
-                                        <input type="text" name="search"  class="col-md-2"> Search
+                                        <input type="text" name="search" value="{{@$search}}"  class="col-md-2"> Search
+
+                                        <input type="hidden" name="start_date" value="{{@$start_date}}"   class="col-md-2">
+                                       <input type="hidden" name="end_date" value="{{@$end_date}}"   class="col-md-2">
                                         
-                                        <br><br><br>
+                                       <button type="submit" class="btn btn-danger" style="color:white;"
+                                               onclick="return confirm('Confirm!');"> <i
+                                                   class="fa fa-check-circle-o"></i> Enter </button>
+                                                   
+                                        </form>
+                                        </div>
+
+
+
+
+
+                                        <div><br>
+                                    <form class="form-horizontal" action="{{url('/backend/user')}}" method="GET" enctype="multipart/form-data">
+                                           @csrf
+                                           <input type="hidden" name="search" value="{{@$search}}" class="col-md-2"> 
 
                                         <input type="date" name="start_date" value="{{@$start_date}}" required  class="col-md-2">Start<br><br>
                                        <input type="date" name="end_date" value="{{@$end_date}}"  required class="col-md-2">End<br><br>

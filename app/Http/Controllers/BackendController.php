@@ -654,7 +654,7 @@ public function user_item($id){
 
   
 
-        if($search!=null or $start_date !=null ){
+        if($search!=null and $start_date ==null ){
         $item=User::where(function($query) use($search){
             $query->orWhere('name', 'LIKE', '%'.$search.'%');
             $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
@@ -662,8 +662,20 @@ public function user_item($id){
             $query->orWhere('email', 'LIKE', '%'.$search.'%');
             $query->orWhere('phone', 'LIKE', '%'.$search.'%');
         })->where('type','>',2)->where('status',1)
-        ->whereBetween('created_at', [$start_date, $end_date])
         ->orderby('id','desc')->paginate(20);
+        }elseif($search==null and $start_date !=null ){
+            $item=User::whereBetween('created_at', [$start_date, $end_date])->where('type','>',2)
+            ->orderby('id','desc')->paginate(20);
+        }elseif($search!=null and $start_date !=null ){
+            $item=User::where(function($query) use($search){
+                $query->orWhere('name', 'LIKE', '%'.$search.'%');
+                $query->orWhere('lastname', 'LIKE', '%'.$search.'%');
+                $query->orWhere('code', 'LIKE', '%'.$search.'%');
+                $query->orWhere('email', 'LIKE', '%'.$search.'%');
+                $query->orWhere('phone', 'LIKE', '%'.$search.'%');
+            })->where('type','>',2)->where('status',1)
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->orderby('id','desc')->paginate(20);
         }else{
             $item=User ::where('type','>',2)->where('status',1)->orderby('id','desc')->paginate(20);
         }
