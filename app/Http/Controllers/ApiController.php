@@ -3180,9 +3180,9 @@ class ApiController extends Controller
 
                                 $add = new tb_log();
                                 $add->id_user = $request->mechanic_id;
-                                $add->id_other = $cus->id;
+                                $add->id_other = @$cus->id;
                                 $add->title = 'เพิ่มแอร์ แต่ไม่ได้คะแนน';
-                                $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . $sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
+                                $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . @$sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
                                 $add->serial = $ca2;
                                 $add->save();
                             } catch (Exception $e) {
@@ -3486,9 +3486,9 @@ class ApiController extends Controller
 
                                 $add = new tb_log();
                                 $add->id_user = $request->mechanic_id;
-                                $add->id_other = $cus->id;
+                                $add->id_other = @$cus->id;
                                 $add->title = 'เพิ่มแอร์ แต่ไม่ได้คะแนน';
-                                $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . $sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
+                                $add->detail = 'เพิ่มแอร์ ชื่อคนเพิ่ม ' . @$sss->name . ' เพิ่มให้ลูกค้าชื่อ ' . $request->first_name . ' ' . $request->last_name;
                                 $add->serial = $ca2;
                                 $add->save();
                             } catch (Exception $e) {
