@@ -1723,14 +1723,11 @@ class ApiController extends Controller
         if ($r->date == null or $r->date == "null") {
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
             ->whereBetween('wo_date', [$date, $date_a])
-            // ->wheredate('wo_date', '>=', $date)
-            //     ->wheredate('wo_date', '<=', $date_a)
-                ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         } else {
             $date_s = $r->date;
             $date_sa = date('Y-m-d', strtotime($date_s . ' + 7 days'));
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
-            // ->wheredate('wo_date', $date)
             ->whereBetween('wo_date', [$date_s, $date_sa])
             ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
         }
