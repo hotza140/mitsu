@@ -1715,7 +1715,7 @@ class ApiController extends Controller
 
 
 
-      ///WORK งานที่รับของแต่ละคน///
+     ///WORK งานที่รับของแต่ละคน///
     public function api_work_list(Request $r)
     {
         $date = date('Y-m-d');
@@ -1725,14 +1725,14 @@ class ApiController extends Controller
         if ($r->date == null) {
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
             ->wheredate('wo_date', '>=', $date)
-                ->wheredate('wo_date', '<=', $date_a)
-                ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+            ->wheredate('wo_date', '<=', $date_a)
+            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
         } else {
             $date= $r->date;
             $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
             ->wheredate('wo_date', '>=', $date)
-                ->wheredate('wo_date', '<=', $date_a)
+            ->wheredate('wo_date', '<=', $date_a)
             ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
         }
 
@@ -1742,7 +1742,7 @@ class ApiController extends Controller
                 $wo = WO::where('technician_id', '!=', null)
                 ->wheredate('wo_date', '>=', $date)
                 ->wheredate('wo_date', '<=', $date_a)
-                    ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+                 ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
             } else {
                 $date= $r->date;
                 $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
