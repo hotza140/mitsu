@@ -1715,21 +1715,43 @@ class ApiController extends Controller
 
 
 
-    ///WORK งานที่รับของแต่ละคน///
+      ///WORK งานที่รับของแต่ละคน///
     public function api_work_list(Request $r)
     {
         $date = date('Y-m-d');
         $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
-        if ($r->date == null or $r->date == "null") {
+
+        if($r->id!=null){
+        if ($r->date == null) {
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
-            ->whereBetween('wo_date', [$date, $date_a])
-            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            ->wheredate('wo_date', '>=', $date)
+                ->wheredate('wo_date', '<=', $date_a)
+                ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
         } else {
-            $date_s = $r->date;
-            $date_sa = date('Y-m-d', strtotime($date_s . ' + 7 days'));
+            $date= $r->date;
+            $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
-            ->whereBetween('wo_date', [$date_s, $date_sa])
-            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_time', 'asc')->get();
+            ->wheredate('wo_date', '>=', $date)
+                ->wheredate('wo_date', '<=', $date_a)
+            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+        }
+
+        }else{
+
+            if ($r->date == null) {
+                $wo = WO::where('technician_id', '!=', null)
+                ->wheredate('wo_date', '>=', $date)
+                ->wheredate('wo_date', '<=', $date_a)
+                    ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+            } else {
+                $date= $r->date;
+                $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
+                $wo = WO::where('technician_id', '!=', null)
+                ->wheredate('wo_date', '>=', $date)
+                ->wheredate('wo_date', '<=', $date_a)
+                ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+            }
+
         }
 
         $message = "Success!";
@@ -1738,6 +1760,7 @@ class ApiController extends Controller
             'results' => [
                 'wo' => $wo,
                 'date' => $date,
+				'date_a' => $date_a,
             ],
             'status' =>  $status,
             'message' =>  $message,
