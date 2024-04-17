@@ -1724,32 +1724,32 @@ class ApiController extends Controller
         if($r->id!=null){
         if ($r->date == null) {
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
-            ->wheredate('wo_date', '>=', $date)
-            ->wheredate('wo_date', '<=', $date_a)
-            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+            ->wheredate('date_nud', '>=', $date)
+            ->wheredate('date_nud', '<=', $date_a)
+            ->where('d_status', 0)->with('customer')->with('model')->orderby('date_nud', 'asc')->get();
         } else {
             $date= $r->date;
             $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
             $wo = WO::where('technician_id', '!=', null)->where('technician_id', $r->id)
-            ->wheredate('wo_date', '>=', $date)
-            ->wheredate('wo_date', '<=', $date_a)
-            ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+            ->wheredate('date_nud', '>=', $date)
+            ->wheredate('date_nud', '<=', $date_a)
+            ->where('d_status', 0)->with('customer')->with('model')->orderby('date_nud', 'asc')->get();
         }
 
         }else{
 
             if ($r->date == null) {
                 $wo = WO::where('technician_id', '!=', null)
-                ->wheredate('wo_date', '>=', $date)
-                ->wheredate('wo_date', '<=', $date_a)
-                 ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+                ->wheredate('date_nud', '>=', $date)
+                ->wheredate('date_nud', '<=', $date_a)
+                 ->where('d_status', 0)->with('customer')->with('model')->orderby('date_nud', 'asc')->get();
             } else {
                 $date= $r->date;
                 $date_a = date('Y-m-d', strtotime($date . ' + 7 days'));
                 $wo = WO::where('technician_id', '!=', null)
-                ->wheredate('wo_date', '>=', $date)
-                ->wheredate('wo_date', '<=', $date_a)
-                ->where('d_status', 0)->with('customer')->with('model')->orderby('wo_date', 'asc')->get();
+                ->wheredate('date_nud', '>=', $date)
+                ->wheredate('date_nud', '<=', $date_a)
+                ->where('d_status', 0)->with('customer')->with('model')->orderby('date_nud', 'asc')->get();
             }
 
         }
