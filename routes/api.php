@@ -72,6 +72,8 @@ Route::group([
 
     Route::get('/api_air_model', 'ApiController@api_air_model');
 
+    Route::get('/api_work_aircheck/{id}', 'ApiController@api_work_aircheck');
+
     Route::get('/api_work', 'ApiController@api_work');
     Route::get('/api_work/{id}', 'ApiController@api_work_user');
     Route::get('/api_work_detail/{id}', 'ApiController@api_work_detail');

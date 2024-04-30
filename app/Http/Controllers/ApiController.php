@@ -1715,6 +1715,27 @@ class ApiController extends Controller
 
 
 
+
+     ///WORK AIRCHECK///
+     public function api_work_aircheck($id)
+     {
+         $air_check = Wo_air_checkModel::where('id_wo', $id)->first();
+ 
+         $message = "Success!";
+         $status = true;
+         return response()->json([
+             'results' => [
+                 'air_check' => $air_check,
+             ],
+             'status' =>  $status,
+             'message' =>  $message,
+             'url_picture' => $this->prefix,
+         ]);
+     }
+     ///WORK AIRCHECK///
+
+
+
      ///WORK งานที่รับของแต่ละคน///
     public function api_work_list(Request $r)
     {
