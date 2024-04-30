@@ -943,7 +943,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json([
                 'results' => [
-                    'air_list' => $air_list,
+                    'cc' => $cc,
                     'sum1' => $sum1,
                     'sum2' => $sum2,
                     'sum3' => $sum3,
@@ -1027,7 +1027,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json([
                 'results' => [
-                    'air_list' => $air_list,
+                    'cc' => $cc,
                     'sum1' => $sum1,
                     'sum2' => $sum2,
                     'sum3' => $sum3,
@@ -1112,7 +1112,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json([
                 'results' => [
-                    'air_list' => $air_list,
+                    'cc' => $cc,
                     'sum1' => $sum1,
                     'sum2' => $sum2,
                     'sum3' => $sum3,
@@ -1198,7 +1198,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json([
                 'results' => [
-                    'air_list' => $air_list,
+                    'cc' => $cc,
                     'sum1' => $sum1,
                     'sum2' => $sum2,
                     'sum3' => $sum3,
@@ -1284,7 +1284,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json([
                 'results' => [
-                    'air_list' => $air_list,
+                    'cc' => $cc,
                     'sum1' => $sum1,
                     'sum2' => $sum2,
                     'sum3' => $sum3,
@@ -1369,7 +1369,7 @@ class ApiController extends Controller
             $status = true;
             return response()->json([
                 'results' => [
-                    'air_list' => $air_list,
+                    'cc' => $cc,
                     'sum1' => $sum1,
                     'sum2' => $sum2,
                     'sum3' => $sum3,
