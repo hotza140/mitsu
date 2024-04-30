@@ -957,7 +957,7 @@ class ApiController extends Controller
             ]);
         } else {
             $message = "Not Have Models or Work!";
-            $status = true;
+            $status = false;
             return response()->json([
                 'results' => [],
                 'status' =>  $status,
@@ -1044,7 +1044,7 @@ class ApiController extends Controller
             ]);
         } else {
             $message = "Not Have Models or Work!";
-            $status = true;
+            $status = false;
             return response()->json([
                 'results' => [],
                 'status' =>  $status,
@@ -1132,7 +1132,7 @@ class ApiController extends Controller
             ]);
         } else {
             $message = "Not Have Models or Work!";
-            $status = true;
+            $status = false;
             return response()->json([
                 'results' => [],
                 'status' =>  $status,
@@ -1221,7 +1221,7 @@ class ApiController extends Controller
             ]);
         } else {
             $message = "Not Have Models or Work!";
-            $status = true;
+            $status = false;
             return response()->json([
                 'results' => [],
                 'status' =>  $status,
@@ -1310,7 +1310,7 @@ class ApiController extends Controller
             ]);
         } else {
             $message = "Not Have Models or Work!";
-            $status = true;
+            $status = false;
             return response()->json([
                 'results' => [],
                 'status' =>  $status,
@@ -1398,7 +1398,7 @@ class ApiController extends Controller
             ]);
         } else {
             $message = "Not Have Models or Work!";
-            $status = true;
+            $status = false;
             return response()->json([
                 'results' => [],
                 'status' =>  $status,
@@ -1407,7 +1407,7 @@ class ApiController extends Controller
             ]);
         }
     }
-    ///air_listcheck1///
+    ///air_listcheck6///
 
 
 
