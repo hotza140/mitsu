@@ -1329,8 +1329,6 @@ class ApiController extends Controller
         $air_list = Air_listModel::where('model', $r->model)->first();
         $wo = WO::where('id', $r->id_work)->first();
 
-        dd($air_list,$wo,$r->model,$r->id_work);
-
         if ($air_list != null and $wo != null) {
 
             $cc = Wo_air_checkModel::where('id_wo', $wo->id)->first();
