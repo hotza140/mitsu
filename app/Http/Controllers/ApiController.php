@@ -903,7 +903,8 @@ class ApiController extends Controller
                 } else {
                     $sum1 = 'ผิดปกติ';
                 }
-                $r1 = $r->check1 . '-' . $sum1;
+                // $r1 = $r->check1 . '-' . $sum1;
+                $r1 = $r->check1;
                 $cc->min1 = $r1;
             } else {
                 $sum1 = null;
@@ -915,7 +916,8 @@ class ApiController extends Controller
                 } else {
                     $sum2 = 'ผิดปกติ';
                 }
-                $r2 = $r->check2 . '-' . $sum2;
+                // $r2 = $r->check2 . '-' . $sum2;
+                $r2 = $r->check2;
                 $cc->stan1 = $r2;
             } else {
                 $sum2 = null;
@@ -928,7 +930,8 @@ class ApiController extends Controller
                 } else {
                     $sum3 = 'ผิดปกติ';
                 }
-                $r3 = $r->check3 . '-' . $sum3;
+                // $r3 = $r->check3 . '-' . $sum3;
+                $r3 = $r->check3;
                 $cc->max1 = $r3;
             } else {
                 $sum3 = null;
@@ -987,7 +990,8 @@ class ApiController extends Controller
                 } else {
                     $sum1 = 'ผิดปกติ';
                 }
-                $r1 = $r->check1 . '-' . $sum1;
+                // $r1 = $r->check1 . '-' . $sum1;
+                $r1 = $r->check1;
                 $cc->min2 = $r1;
             } else {
                 $sum1 = null;
@@ -999,7 +1003,8 @@ class ApiController extends Controller
                 } else {
                     $sum2 = 'ผิดปกติ';
                 }
-                $r2 = $r->check2 . '-' . $sum2;
+                // $r2 = $r->check2 . '-' . $sum2;
+                $r2 = $r->check2;
                 $cc->stan2 = $r2;
             } else {
                 $sum2 = null;
@@ -1012,7 +1017,8 @@ class ApiController extends Controller
                 } else {
                     $sum3 = 'ผิดปกติ';
                 }
-                $r3 = $r->check3 . '-' . $sum3;
+                // $r3 = $r->check3 . '-' . $sum3;
+                $r3 = $r->check3;
                 $cc->max2 = $r3;
             } else {
                 $sum3 = null;
@@ -1072,7 +1078,8 @@ class ApiController extends Controller
                 } else {
                     $sum1 = 'ผิดปกติ';
                 }
-                $r1 = $r->check1 . '-' . $sum1;
+                // $r1 = $r->check1 . '-' . $sum1;
+                $r1 = $r->check1;
                 $cc->min3 = $r1;
             } else {
                 $sum1 = null;
@@ -1084,7 +1091,8 @@ class ApiController extends Controller
                 } else {
                     $sum2 = 'ผิดปกติ';
                 }
-                $r2 = $r->check2 . '-' . $sum2;
+                // $r2 = $r->check2 . '-' . $sum2;
+                $r2 = $r->check2;
                 $cc->stan3 = $r2;
             } else {
                 $sum2 = null;
@@ -1097,7 +1105,8 @@ class ApiController extends Controller
                 } else {
                     $sum3 = 'ผิดปกติ';
                 }
-                $r3 = $r->check3 . '-' . $sum3;
+                // $r3 = $r->check3 . '-' . $sum3;
+                $r3 = $r->check3;
                 $cc->max3 = $r3;
             } else {
                 $sum3 = null;
@@ -1158,7 +1167,8 @@ class ApiController extends Controller
                 } else {
                     $sum1 = 'ผิดปกติ';
                 }
-                $r1 = $r->check1 . '-' . $sum1;
+                // $r1 = $r->check1 . '-' . $sum1;
+                $r1 = $r->check1;
                 $cc->min4 = $r1;
             } else {
                 $sum1 = null;
@@ -1170,7 +1180,8 @@ class ApiController extends Controller
                 } else {
                     $sum2 = 'ผิดปกติ';
                 }
-                $r2 = $r->check2 . '-' . $sum2;
+                // $r2 = $r->check2 . '-' . $sum2;
+                $r2 = $r->check2;
                 $cc->stan4 = $r2;
             } else {
                 $sum2 = null;
@@ -1183,7 +1194,8 @@ class ApiController extends Controller
                 } else {
                     $sum3 = 'ผิดปกติ';
                 }
-                $r3 = $r->check3 . '-' . $sum3;
+                // $r3 = $r->check3 . '-' . $sum3;
+                $r3 = $r->check3;
                 $cc->max4 = $r3;
             } else {
                 $sum3 = null;
@@ -1244,7 +1256,8 @@ class ApiController extends Controller
                 } else {
                     $sum1 = 'ผิดปกติ';
                 }
-                $r1 = $r->check1 . '-' . $sum1;
+                // $r1 = $r->check1 . '-' . $sum1;
+                $r1 = $r->check1;
                 $cc->min5 = $r1;
             } else {
                 $sum1 = null;
@@ -1256,7 +1269,8 @@ class ApiController extends Controller
                 } else {
                     $sum2 = 'ผิดปกติ';
                 }
-                $r2 = $r->check2 . '-' . $sum2;
+                // $r2 = $r->check2 . '-' . $sum2;
+                $r2 = $r->check2;
                 $cc->stan5 = $r2;
             } else {
                 $sum2 = null;
@@ -1269,7 +1283,8 @@ class ApiController extends Controller
                 } else {
                     $sum3 = 'ผิดปกติ';
                 }
-                $r3 = $r->check3 . '-' . $sum3;
+                // $r3 = $r->check3 . '-' . $sum3;
+                $r3 = $r->check3;
                 $cc->max5 = $r3;
             } else {
                 $sum3 = null;
@@ -1329,7 +1344,8 @@ class ApiController extends Controller
                 } else {
                     $sum1 = 'ผิดปกติ';
                 }
-                $r1 = $r->check1 . '-' . $sum1;
+                // $r1 = $r->check1 . '-' . $sum1;
+                $r1 = $r->check1;
                 $cc->min6 = $r1;
             } else {
                 $sum1 = null;
@@ -1341,7 +1357,8 @@ class ApiController extends Controller
                 } else {
                     $sum2 = 'ผิดปกติ';
                 }
-                $r2 = $r->check2 . '-' . $sum2;
+                // $r2 = $r->check2 . '-' . $sum2;
+                $r2 = $r->check2;
                 $cc->stan6 = $r2;
             } else {
                 $sum2 = null;
@@ -1354,7 +1371,8 @@ class ApiController extends Controller
                 } else {
                     $sum3 = 'ผิดปกติ';
                 }
-                $r3 = $r->check3 . '-' . $sum3;
+                // $r3 = $r->check3 . '-' . $sum3;
+                $r3 = $r->check3;
                 $cc->max6 = $r3;
             } else {
                 $sum3 = null;
