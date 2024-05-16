@@ -35,6 +35,17 @@
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
     ),
   ),
+  'jfbiswajit/php-bigquery' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'JfBiswajit\\PHPBigQuery\\Providers\\BigQueryServiceProvider',
+    ),
+    'aliases' => 
+    array (
+      'BigQuery' => 'JfBiswajit\\PHPBigQuery\\Facades\\BigQuery',
+    ),
+  ),
   'kitloong/laravel-migrations-generator' => 
   array (
     'providers' => 
