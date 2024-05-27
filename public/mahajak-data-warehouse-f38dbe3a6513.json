@@ -1,0 +1,13 @@
+{
+  "type": "service_account",
+  "project_id": "mahajak-data-warehouse",
+  "private_key_id": "f38dbe3a6513b426b4c5cc55bfe01ca9d6279108",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvgIBADANBgkqhkiG9w0BAQEFAASCBKgwggSkAgEAAoIBAQC6KPgWZ0Zc36a4\nnvFcOI6HX4DhSBcDLHr8SLo+Ak5o7r0mJ51vlufHvWxYwjrxB9yhNLNGAE7CVAv7\nVFyN2IrV6VRqsNtNZyBwFJ+ASUdVIjbf9EyEssq7CJSgMDTVvIAacRRxWVN9HE3L\nx0Wq5LqSnQTR+m3Jeu/BEtaW7RBqDz3sg0edmULEizoE4o3s1oh7NnCmXKtJX4q9\nQ783LpSo2hMaU6HNpKXMoPwHczQInp4QRzcYNh7+89wiP4OmMiUD9/XG4eJGijl4\nJcuhwcFVVRzqwjGhN0xv16UaKqwwIQmsv3pK5ONNaeXWT+IOD1Jn63PRnfKOXy5j\naXjl+nAnAgMBAAECggEAPXExNL/AXv3oOo4nLl9yV2bjlDdldQQ00Vi1s6qyM3r8\njf/MPBzsAiZYgNEWgCAupzxMIUIPvJ7d14WICL8cT67z0ETwFNOBRszfugk1lHk2\n8GLi8HdMZz/VQiu2/IZ7J38EFsc7QZNab/Qk39sfYy2U/jLwEmxTfn+XuPekj8RI\n0ghinaVqUtWVdBRtBtffuzlQ37UIYjZsbQ8io/1WfeCuWsK4BqXMgyrWDRWs03Vx\nQ7Rn7hIh/hiGVh5nc9qLk3j4IkYYjYKau0IEhq7OhYQ2OMWuuS8LeR1pAHf5c18w\nYH/PSpEJU3y9XUuPtCp8tXxwu5aBCC4+WM2O3R4tDQKBgQDkxMwXxBlgqX77br1a\n66T6nMb3h7BoYhiP4cHEGwgS+SVF1cp0raSpYawvtHjlatqSgaaZhFn4EXQOkuDx\nwiFq8wX4FfXfmhIWla+u8JADFaE6RTQFxBCnLEYu+WZlvAGiRwdPf1h67E33Lx7K\nYACqlr6Vlwlj/D+W3A5TdHDwHQKBgQDQUcTxiYd1REnZUTN9KRREabX3zYnHUWe+\nbWwmC98WcI7NZ44ethzu0E7qCwkB5LVX39IDiZ8wQcz8lFBLva8bAfMaK2OkYD/G\nQ7IpBB6DueXSJhGAAePVl0GAeSzsJz7xDLSBtTq8FUTM/NTrofuvbu4Uf5+rL5xA\nSRMiJTS2EwKBgH/5r4qkAuZWK1kQjBEuva4Mwil62K6sIb1rt2+zB4NFqRo2DPnU\noca3gxF0ziTY78kBimda6NGjQd9dP0U/Kl6f8PjloBQkJnZH6m3c2VNAaF8mk4Ge\nOwqp8+EXV7cVw3w6a9aHEMJDKyJaU8k2h2jmx1r7kR9D33bPR5xcCUnpAoGBAIk/\ndkvUWmSOS0FcWFn7uJiiNPtAdafWIE279ebTJ3W3Tr5RnbbqMQG+SF+2SYbv0fJF\nSi5+e1zl3VIDvStJm5ZloG77azifGSVc8IJJbnlG/v2HizwVArB0aPll3IzyBmv1\n/O8AIeRM9vk/EmD0ZcfdhAoJU38LbRyFiI+Uh7f1AoGBAIAwGHiMQhJtcLpHz3in\nI7e23OI/8kpvBAFrueC5wFiU4MbTLgB8HSpuk5QNbny1yEp+Tm/UmSgpWv14Leb/\n1jY+1raPn4bvuIbjmOGdGg7IMyEr/dlcF4j6/uD/sY9GVUMgvp2z4aujLgYZmvzC\ntw87bNqLPEPblK2EpmKU7Sm6\n-----END PRIVATE KEY-----\n",
+  "client_email": "orange-sync@mahajak-data-warehouse.iam.gserviceaccount.com",
+  "client_id": "104333161296748507846",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/orange-sync%40mahajak-data-warehouse.iam.gserviceaccount.com",
+  "universe_domain": "googleapis.com"
+}
