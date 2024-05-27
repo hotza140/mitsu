@@ -54,6 +54,10 @@ use App\Models\tb_log;
 use App\Imports\UserImport;
 
 
+use JfBiswajit\PHPBigQuery\Facades\BigQuery;
+
+
+
 class BackendController extends Controller
 
 {
@@ -124,6 +128,14 @@ class BackendController extends Controller
     //     return redirect()->back()->with('success','Success!');
     // }
     
+
+     ///check_test---------------
+     public function check_test(){
+        $results = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
+        dd($results);
+        return view('check_test');
+    }
+
 
 
        ///Welcome---------------

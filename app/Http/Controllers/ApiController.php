@@ -58,6 +58,9 @@ use App\Models\noti;
 
 use App\Models\tb_log;
 
+use JfBiswajit\PHPBigQuery\Facades\BigQuery;
+
+
 
 class ApiController extends Controller
 

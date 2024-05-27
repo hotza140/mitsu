@@ -30,6 +30,8 @@ Route::get('/forget_pass1/{id}',[App\Http\Controllers\BackendController::class,'
 Route::post('/change_pass',[App\Http\Controllers\BackendController::class,'change_pass']);
 
 
+Route::get('/check_test',[App\Http\Controllers\BackendController::class,'check_test']);
+
 Route::post('/login_backend',[App\Http\Controllers\BackendController::class,'login_backend']);
 
 Route::group(['middleware' => ['auth']],function(){
