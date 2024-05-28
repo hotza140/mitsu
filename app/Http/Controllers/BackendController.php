@@ -55,7 +55,8 @@ use App\Imports\UserImport;
 
 
 use JfBiswajit\PHPBigQuery\Facades\BigQuery;
-
+use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\BigQuery\QueryJobConfiguration;
 
 
 class BackendController extends Controller

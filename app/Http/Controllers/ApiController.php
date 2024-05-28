@@ -59,6 +59,8 @@ use App\Models\noti;
 use App\Models\tb_log;
 
 use JfBiswajit\PHPBigQuery\Facades\BigQuery;
+use Google\Cloud\BigQuery\BigQueryClient;
+use Google\Cloud\BigQuery\QueryJobConfiguration;
 
 
 
