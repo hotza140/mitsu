@@ -141,10 +141,32 @@ class BackendController extends Controller
         // $queryJob = $bigQuery->query($query);
         // $results = $queryJob->queryResults();
 
-        $results = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
-        dd($results);
 
-        foreach ($results as $row) {
+        // $results = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
+        // dd($results);
+
+        // foreach ($results as $row) {
+        //     print_r($row);
+        // }
+
+
+      // Create a BigQuery client
+        $bigQuery = new BigQueryClient();
+
+        $query = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
+
+
+        // $query = 'SELECT * FROM `mahajak-data-warehouse.DWH_SYNC_THIRDPARTY.ac_serial_no`';
+
+        $jobConfig = $bigQuery->query($query);
+        $queryJobConfig = $jobConfig->query($query);
+        $queryJobConfig->allowLargeResults(true);
+
+        $queryJob = $bigQuery->startQuery($queryJobConfig);
+        $queryJob->waitUntilComplete();
+        $queryResults = $queryJob->queryResults();
+
+        foreach ($queryResults as $row) {
             print_r($row);
         }
 
