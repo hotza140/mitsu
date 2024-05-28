@@ -132,9 +132,21 @@ class BackendController extends Controller
 
      ///check_test---------------
      public function check_test(){
-        $results = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
+        // $bigQuery = new BigQuery();
+        // $projectId = 'mahajak-data-warehouse';
+        // $datasetId = 'DWH_SYNC_THIRDPARTY';
+        // $tableId = 'ac_serial_no';
+        // $query = 'SELECT * FROM `' . $projectId . '.' . $datasetId . '.' . $tableId . '` LIMIT 10';
 
+        // $queryJob = $bigQuery->query($query);
+        // $results = $queryJob->queryResults();
+
+        $results = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
         dd($results);
+
+        foreach ($results as $row) {
+            print_r($row);
+        }
 
     }
 
