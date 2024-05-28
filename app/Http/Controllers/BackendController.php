@@ -149,12 +149,13 @@ class BackendController extends Controller
         //     print_r($row);
         // }
 
-
         $bigQuery = new BigQueryClient();
         $query = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
+
         $jobConfig = $bigQuery->query($query);
-        $jobConfig->allowLargeResults(true);
-        $queryJob = $bigQuery->startQuery($jobConfig);
+        $queryJobConfig = $jobConfig->query($query);
+        $queryJobConfig->allowLargeResults();
+        $queryJob = $bigQuery->startQuery($queryJobConfig);
         $queryJob->waitUntilComplete();
         $queryResults = $queryJob->queryResults();
 
