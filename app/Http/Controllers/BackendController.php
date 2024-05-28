@@ -133,8 +133,9 @@ class BackendController extends Controller
      ///check_test---------------
      public function check_test(){
         $results = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
+
         dd($results);
-        return view('check_test');
+
     }
 
 
