@@ -150,19 +150,11 @@ class BackendController extends Controller
         // }
 
 
-      // Create a BigQuery client
         $bigQuery = new BigQueryClient();
-
         $query = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
-
-
-        // $query = 'SELECT * FROM `mahajak-data-warehouse.DWH_SYNC_THIRDPARTY.ac_serial_no`';
-
         $jobConfig = $bigQuery->query($query);
-        $queryJobConfig = $jobConfig->query($query);
-        $queryJobConfig->allowLargeResults(true);
-
-        $queryJob = $bigQuery->startQuery($queryJobConfig);
+        $jobConfig->allowLargeResults(true);
+        $queryJob = $bigQuery->startQuery($jobConfig);
         $queryJob->waitUntilComplete();
         $queryResults = $queryJob->queryResults();
 
@@ -181,7 +173,7 @@ class BackendController extends Controller
 
 
 
-    
+
 
 
        ///Welcome---------------
