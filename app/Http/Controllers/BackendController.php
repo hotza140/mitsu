@@ -63,6 +63,9 @@ class BackendController extends Controller
 
 {
 
+
+    // FIX -----------------
+
     // public function fff_4(){
     //     $user=AirConditioner::get();
     //     $text=null;
@@ -129,10 +132,40 @@ class BackendController extends Controller
     //     return redirect()->back()->with('success','Success!');
     // }
     
+    // FIX -----------------
+
+
+
+
+
+    
+
+
 
      ///check_test---------------
      public function check_test(){
-        // $bigQuery = new BigQuery();
+
+
+        $bigQuery = new BigQueryClient();
+        $query = 'SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no';
+
+        $queryJobConfig = $bigQuery->query($query);
+        $queryJobConfig->allowLargeResults(true);
+        $queryJob = $bigQuery->startQuery($queryJobConfig);
+        $queryJob->waitUntilComplete();
+        $queryResults = $queryJob->queryResults();
+        dd($queryResults);
+
+        foreach ($queryResults as $row) {
+            print_r($row);
+            dd($row);
+        }
+
+
+
+        // เก่า 1-------
+
+          // $bigQuery = new BigQuery();
         // $projectId = 'mahajak-data-warehouse';
         // $datasetId = 'DWH_SYNC_THIRDPARTY';
         // $tableId = 'ac_serial_no';
@@ -148,31 +181,25 @@ class BackendController extends Controller
         // foreach ($results as $row) {
         //     print_r($row);
         // }
-
-        $bigQuery = new BigQueryClient();
-        $query = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
-        // dd($query);
+          // เก่า 1-------
 
 
-        $jobConfig = $bigQuery->query($query);
-        // dd($jobConfig);
-        $queryJobConfig = $jobConfig->query($query);
-        // dd($queryJobConfig);
-        $queryJobConfig->allowLargeResults(true);
-        // $queryJobConfig->allowLargeResults();
-        // dd($queryJobConfig);
-        $queryJob = $bigQuery->startQuery($queryJobConfig);
-        dd($queryJob);
-        $queryJob->waitUntilComplete();
-        // dd($queryJob);
-        $queryResults = $queryJob->queryResults();
-        // dd($queryResults);
 
-        foreach ($queryResults as $row) {
-            print_r($row);
-            // dd($row);
-        }
+        //   เก่า 2-------
+        // $bigQuery = new BigQueryClient();
+        // $query = BigQuery::query('SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no');
 
+        // $jobConfig = $bigQuery->query($query);
+        // $queryJobConfig = $jobConfig->query($query);
+        // $queryJobConfig->allowLargeResults(true);
+        // $queryJob = $bigQuery->startQuery($queryJobConfig);
+        // $queryJob->waitUntilComplete();
+        // $queryResults = $queryJob->queryResults();
+
+        // foreach ($queryResults as $row) {
+        //     print_r($row);
+        // }
+        //   เก่า 2-------
 
 
 
