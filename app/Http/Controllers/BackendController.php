@@ -147,7 +147,7 @@ class BackendController extends Controller
 
 
         $bigQuery = new BigQueryClient();
-        $query = 'SELECT * FROM DWH_SYNC_THIRDPARTY.ac_serial_no';
+        $query = 'SELECT * FROM DWH_AC_SYNC_THIRDPARTY.ac_serial_no';
 
         $queryJobConfig = $bigQuery->query($query);
         $queryJobConfig->allowLargeResults(true);
