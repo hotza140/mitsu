@@ -155,10 +155,17 @@ class BackendController extends Controller
         $queryJob = $bigQuery->startQuery($queryJobConfig);
         $queryJob->waitUntilComplete();
         $queryResults = $queryJob->queryResults();
-
+        
+        $se_check=null;
         foreach ($queryResults as $row) {
             print_r($row);
+            print_r($row['serial_number']);
+            if(@$row['serial_number']!=null){
+                $se_check=@$row['serial_number'];
+            }
         }
+
+        dd($se_check);
 
 
 
