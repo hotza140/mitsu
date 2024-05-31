@@ -2996,9 +2996,29 @@ class ApiController extends Controller
                     $ca1 = $request->indoor_number;
                 }
 
-                $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', $ca1)
-                    ->get()->count();
+                
+                // $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
+                //     ->where('serial_number', $ca1)
+                //     ->get()->count();
+
+                    $seer1=$ca1;
+                    $bigQuery1 = new BigQueryClient();
+                    $query1 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer1.'"';
+                    
+                    $queryJobConfig1 = $bigQuery1->query($query1);
+                    $queryJobConfig1->allowLargeResults(true);
+                    $queryJob1 = $bigQuery1->startQuery($queryJobConfig1);
+                    $queryJob1->waitUntilComplete();
+                    $queryResults1 = $queryJob1->queryResults();
+                    
+                    $check_serial_indoor=0;
+                    foreach ($queryResults1 as $row) {
+                        if(@$row['serial_number']!=null){
+                            $check_serial_indoor=1;
+                        }
+                    }
+
+
             } else {
                 $ca1 = null;
             }
@@ -3011,9 +3031,30 @@ class ApiController extends Controller
                 $ca2 = $request->outdoor_number;
             }
 
-            $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-                ->where('serial_number', $ca2)
-                ->get()->count();
+            // $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+            //     ->where('serial_number', $ca2)
+            //     ->get()->count();
+
+
+            $seer2=$ca2;
+            $bigQuery2 = new BigQueryClient();
+            $query2 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer2.'"';
+            
+            $queryJobConfig2 = $bigQuery2->query($query2);
+            $queryJobConfig2->allowLargeResults(true);
+            $queryJob2 = $bigQuery2->startQuery($queryJobConfig2);
+            $queryJob2->waitUntilComplete();
+            $queryResults2 = $queryJob2->queryResults();
+            
+            $check_serial_outdoor=0;
+            foreach ($queryResults2 as $row) {
+                if(@$row['serial_number']!=null){
+                    $check_serial_outdoor=1;
+                }
+            }
+
+
+
 
             // if (isset($check_serial_indoor)) {
             //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
@@ -3169,24 +3210,61 @@ class ApiController extends Controller
                 if ($air_conditioner->save()) {
 
                     // ส่วนเช็ค Model รับ POINT
-                    $se = DB::connection('pgsql')->table('serial_numbers')
-                        // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
-                        ->where('serial_number', $ca2)
-                        ->first();
+                    // $se = DB::connection('pgsql')->table('serial_numbers')
+                    //     // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
+                    //     ->where('serial_number', $ca2)
+                    //     ->first();
 
-                    $ae = DB::connection('pgsql')->table('serial_numbers')
-                        // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
-                        ->where('serial_number', $ca1)
-                        ->first();
+                        $seer22=$ca2;
+                        $bigQuery22 = new BigQueryClient();
+                        $query22 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer22.'"';
+                        
+                        $queryJobConfig22 = $bigQuery22->query($query22);
+                        $queryJobConfig22->allowLargeResults(true);
+                        $queryJob22 = $bigQuery22->startQuery($queryJobConfig22);
+                        $queryJob22->waitUntilComplete();
+                        $queryResults22 = $queryJob22->queryResults();
+                        
+                        $se_product_name=0;
+                        foreach ($queryResults22 as $row) {
+                            if(@$row['product_name']!=null){
+                                $se_product_name=@$row['product_name'];
+                            }
+                        }
+
+
+
+                    // $ae = DB::connection('pgsql')->table('serial_numbers')
+                    //     // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                    //     ->where('serial_number', $ca1)
+                    //     ->first();
+
+                        $seer11=$ca1;
+                        $bigQuery11 = new BigQueryClient();
+                        $query11 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer11.'"';
+                        
+                        $queryJobConfig11 = $bigQuery11->query($query11);
+                        $queryJobConfig11->allowLargeResults(true);
+                        $queryJob11 = $bigQuery11->startQuery($queryJobConfig11);
+                        $queryJob11->waitUntilComplete();
+                        $queryResults11 = $queryJob11->queryResults();
+                        
+                        $ae_product_name=0;
+                        foreach ($queryResults11 as $row) {
+                            if(@$row['product_name']!=null){
+                                $ae_product_name=@$row['product_name'];
+                            }
+                        }
+
 
                     if ($customer != null) {
-                        // $air = AirModel::where('model_name', $se->product_code)->where('des', $se->product_name)->first();
-                        // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
-                        $air = AirModel::where('des', $se->product_name)->first();
-                        if ($se->product_name == @$ae->product_name) {
+                        // $air = AirModel::where('model_name', $se->product_code)->where('des', @$se_product_name)->first();
+                        // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae_product_name)->first();
+                        $air = AirModel::where('des', @$se_product_name)->first();
+                        if (@$se_product_name == @$ae_product_name) {
                             $air_2 = null;
                         } else {
-                            $air_2 = AirModel::where('des', @$ae->product_name)->first();
+                            $air_2 = AirModel::where('des', @$ae_product_name)->first();
                         }
                         if ($air != null or $air_2 != null) {
                             $user = User::where('id', $customer->mechanic_id)->first();
@@ -3356,9 +3434,28 @@ class ApiController extends Controller
                     $ca1 = $request->indoor_number;
                 }
 
-                $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
-                    ->where('serial_number', $ca1)
-                    ->get()->count();
+                // $check_serial_indoor = DB::connection('pgsql')->table('serial_numbers')
+                //     ->where('serial_number', $ca1)
+                //     ->get()->count();
+
+                    $seer1=$ca1;
+                    $bigQuery1 = new BigQueryClient();
+                    $query1 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer1.'"';
+                    
+                    $queryJobConfig1 = $bigQuery1->query($query1);
+                    $queryJobConfig1->allowLargeResults(true);
+                    $queryJob1 = $bigQuery1->startQuery($queryJobConfig1);
+                    $queryJob1->waitUntilComplete();
+                    $queryResults1 = $queryJob1->queryResults();
+                    
+                    $check_serial_indoor=0;
+                    foreach ($queryResults1 as $row) {
+                        if(@$row['serial_number']!=null){
+                            $check_serial_indoor=1;
+                        }
+                    }
+
+
             } else {
                 $ca1 = null;
             }
@@ -3372,9 +3469,28 @@ class ApiController extends Controller
                 $ca2 = $request->outdoor_number;
             }
 
-            $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
-                ->where('serial_number', $ca2)
-                ->get()->count();
+            // $check_serial_outdoor = DB::connection('pgsql')->table('serial_numbers')
+            //     ->where('serial_number', $ca2)
+            //     ->get()->count();
+
+            $seer2=$ca2;
+            $bigQuery2 = new BigQueryClient();
+            $query2 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer2.'"';
+            
+            $queryJobConfig2 = $bigQuery2->query($query2);
+            $queryJobConfig2->allowLargeResults(true);
+            $queryJob2 = $bigQuery2->startQuery($queryJobConfig2);
+            $queryJob2->waitUntilComplete();
+            $queryResults2 = $queryJob2->queryResults();
+            
+            $check_serial_outdoor=0;
+            foreach ($queryResults2 as $row) {
+                if(@$row['serial_number']!=null){
+                    $check_serial_outdoor=1;
+                }
+            }
+
+            
 
             // if (isset($check_serial_indoor)) {
             //     if ($check_serial_indoor != 0 && $check_serial_outdoor != 0) {
@@ -3474,24 +3590,59 @@ class ApiController extends Controller
                     $customer = Customer::where('id', $request->customer_id)->with('airconditioner')->first();
 
                     // ส่วนเช็ค Model รับ POINT
-                    $se = DB::connection('pgsql')->table('serial_numbers')
-                        // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
-                        ->where('serial_number', $ca2)
-                        ->first();
+                    // $se = DB::connection('pgsql')->table('serial_numbers')
+                    //     // ->where('serial_number', 'LIKE', '%' . $ca2 . '%')
+                    //     ->where('serial_number', $ca2)
+                    //     ->first();
 
-                    $ae = DB::connection('pgsql')->table('serial_numbers')
-                        // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
-                        ->where('serial_number', $ca1)
-                        ->first();
+                    $seer22=$ca2;
+                    $bigQuery22 = new BigQueryClient();
+                    $query22 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer22.'"';
+                    
+                    $queryJobConfig22 = $bigQuery22->query($query22);
+                    $queryJobConfig22->allowLargeResults(true);
+                    $queryJob22 = $bigQuery22->startQuery($queryJobConfig22);
+                    $queryJob22->waitUntilComplete();
+                    $queryResults22 = $queryJob22->queryResults();
+                    
+                    $se_product_name=0;
+                    foreach ($queryResults22 as $row) {
+                        if(@$row['product_name']!=null){
+                            $se_product_name=@$row['product_name'];
+                        }
+                    }
+
+
+                    // $ae = DB::connection('pgsql')->table('serial_numbers')
+                    //     // ->where('serial_number', 'LIKE', '%' . $ca1 . '%')
+                    //     ->where('serial_number', $ca1)
+                    //     ->first();
+
+                    $seer11=$ca1;
+                    $bigQuery11 = new BigQueryClient();
+                    $query11 = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer11.'"';
+                    
+                    $queryJobConfig11 = $bigQuery11->query($query11);
+                    $queryJobConfig11->allowLargeResults(true);
+                    $queryJob11 = $bigQuery11->startQuery($queryJobConfig11);
+                    $queryJob11->waitUntilComplete();
+                    $queryResults11 = $queryJob11->queryResults();
+                    
+                    $ae_product_name=0;
+                    foreach ($queryResults11 as $row) {
+                        if(@$row['product_name']!=null){
+                            $ae_product_name=@$row['product_name'];
+                        }
+                    }
 
                     if ($customer != null) {
-                        // $air = AirModel::where('model_name', @$se->product_code)->where('des', @$se->product_name)->first();
-                        // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae->product_name)->first();
-                        $air = AirModel::where('des', @$se->product_name)->first();
-                        if ($se->product_name == @$ae->product_name) {
+                        // $air = AirModel::where('model_name', @$se->product_code)->where('des', @$se_product_name)->first();
+                        // $air_2 = AirModel::where('model_name', @$ae->product_code)->where('des', @$ae_product_name)->first();
+                        $air = AirModel::where('des', @$se_product_name)->first();
+                        if (@$se_product_name == @$ae_product_name) {
                             $air_2 = null;
                         } else {
-                            $air_2 = AirModel::where('des', @$ae->product_name)->first();
+                            $air_2 = AirModel::where('des', @$ae_product_name)->first();
                         }
                         if ($air != null or $air_2 != null) {
                             $user = User::where('id', $customer->mechanic_id)->first();
