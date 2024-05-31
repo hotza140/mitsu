@@ -146,8 +146,9 @@ class BackendController extends Controller
      public function check_test(){
 
 
+        $seer='AF8600245MF';
         $bigQuery = new BigQueryClient();
-        $query = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no';
+        $query = 'SELECT * FROM mahajak-data-warehouse.DWH_AC_SYNC_THIRDPTY.ac_serial_no WHERE serial_number = "'.$seer.'"';
         
         $queryJobConfig = $bigQuery->query($query);
         $queryJobConfig->allowLargeResults(true);
@@ -157,7 +158,6 @@ class BackendController extends Controller
 
         foreach ($queryResults as $row) {
             print_r($row);
-            dd($row);
         }
 
 
