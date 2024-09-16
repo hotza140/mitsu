@@ -113,6 +113,8 @@
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
+                                                    <th>Market</th>
+                                                    <th>Province</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
@@ -178,6 +180,8 @@ src="{{$picture}}"
                                                     <td>{{$items->name}} {{$items->lastname}}</td>
                                                     <td>{{$items->email}}</td>
                                                     <td>{{$items->phone}}</td>
+                                                    <td>{{$items->market}}</td>
+                                                    <td>{{$items->province}}</td>
                                                     <!-- <td>{{$items->created_at}}</td> -->
                                                     <!-- <td>{{$items->updated_at}}</td> -->
                                                     <td>
@@ -205,6 +209,8 @@ src="{{$picture}}"
                                                     <th>Name</th>
                                                     <th>Email</th>
                                                     <th>Phone</th>
+                                                    <th>Market</th>
+                                                    <th>Province</th>
                                                     <!-- <th>Created_at</th> -->
                                                     <!-- <th>Updated_at</th> -->
                                                     <th>Tool</th>
