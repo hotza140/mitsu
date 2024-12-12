@@ -63,6 +63,16 @@ class BackendController extends Controller
 
 {
 
+    public function heavyoneclick_Appload(){
+        return view('apk.index',[
+        ]);
+    }
+	
+	public function download(){
+        return view('apk.download',[
+        ]);
+    }
+
 
     // FIX -----------------
 

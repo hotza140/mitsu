@@ -19,6 +19,9 @@ use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
+Route::get('heavyoneclick_Appload', [App\Http\Controllers\BackendController::class, 'heavyoneclick_Appload']);
+Route::get('download', [App\Http\Controllers\BackendController::class, 'download']);
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/config-cache', function() {
